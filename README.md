@@ -12,8 +12,8 @@ Open Office Copilot currently supports the following platforms and software, wit
 | ---------------- | ----------- | ------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | Microsoft Office | Done        | Word,Powpoint,Excel,Outlook(classic) | [link](https://appsource.microsoft.com/en-us/product/office/WA200006772?tab=Overview)            |
 | Google Workspace | Done        | Docs,Sides,Sheets                    | [link](https://workspace.google.com/u/0/marketplace/app/sally_suite/502322973058)                |
-| Google Extension | In Progress | Chrome                               | [link](https://chromewebstore.google.com/detail/sally/eomgoeagcnhiodfbghbojilbdlhlkllf)          |
-| Edge Extension   | In Progress | Edge                                 | [link](https://microsoftedge.microsoft.com/addons/detail/sally/gcmnlkbgphffgkpdblpmnaapdnnajkel) |
+| Google Extension | Done        | Chrome                               | [link](https://chromewebstore.google.com/detail/sally/eomgoeagcnhiodfbghbojilbdlhlkllf)          |
+| Edge Extension   | Done        | Edge                                 | [link](https://microsoftedge.microsoft.com/addons/detail/sally/gcmnlkbgphffgkpdblpmnaapdnnajkel) |
 | Browser          | Done        | Chrome,Edge,Firefox                  | [link](https://www.sally.bot)                                                                    |
 | WPS Office       | In Progress | None                                 |                                                                                                  |
 
