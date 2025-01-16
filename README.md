@@ -2,7 +2,7 @@
 
 Open Office Copilot is an open-source office copilot platform built on Agents, capable of supporting both Microsoft Office and Google Workspace.
 
-We are preparing open source this project in the next few weeks. you can expenrice it now at [Sally](https://www.sally.bot).
+We are preparing to open source this project in the coming weeks. In the meantime, you can experience it now at [https://www.sally.bot](https://www.sally.bot).
 
 ## Support Platforms and Software
 
