@@ -25,7 +25,7 @@ The following models have been tested and can be used in the system. The more st
 - GPT-4o ⭐️⭐️⭐️
 - Claude 3.5 haiku ⭐️⭐️⭐️
 - Claude 3.5 sonnet ⭐️⭐️⭐️⭐️⭐️
-- DeepSeek V3 ⭐️⭐️⭐️⭐️⭐️
+- DeepSeek V3 ⭐️⭐️⭐️⭐️
 
 ## Support AI Model Providers
 
