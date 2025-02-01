@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Textarea } from 'chat-list/components/ui/textarea';
 import Button from 'chat-list/components/button';
 import Markdown from 'chat-list/components/markdown';
 import { useTranslation } from 'react-i18next';
 import { ImageGenerations } from 'chat-list/types/image';
-import gpt from '@api/gpt'
+import gpt from '@api/gpt';
 
 export default function VisionRender() {
     const { t } = useTranslation(['base', 'image']);
@@ -17,7 +17,7 @@ export default function VisionRender() {
         setInputValue(e.target.value);
     };
     const ask = async () => {
-        setError('')
+        setError('');
         if (!inputValue) {
             return;
         }
@@ -30,18 +30,18 @@ export default function VisionRender() {
         });
         if (result?.data?.[0].b64_json) {
             // const content = `![image](data:image/png;base64,${result.data[0].b64_json})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`
-            const content = `![image](data:image/png;base64,${result.data[0].b64_json})`
+            const content = `![image](data:image/png;base64,${result.data[0].b64_json})`;
             // appendMsg(buildChatMessage(content, 'text', 'assistant'));
             // return 'Task completed';
-            setMessages([...messages, content])
+            setMessages([...messages, content]);
         } if (result?.data?.[0].url) {
             // const content = `![image](${result.data[0].url})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`
-            const content = `![image](${result.data[0].url})`
-            setMessages([...messages, content])
+            const content = `![image](${result.data[0].url})`;
+            setMessages([...messages, content]);
         } else {
-            setError(t('image:fail'))
+            setError(t('image:fail'));
         }
-    }
+    };
 
     return (
         <div className="flex flex-col p-2 h-full">
@@ -70,7 +70,7 @@ export default function VisionRender() {
                             <Markdown key={index} className='mt-2 p-2'>
                                 {msg}
                             </Markdown>
-                        )
+                        );
                     })
                 }
             </div>

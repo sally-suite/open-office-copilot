@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from '../ui/input';
-import IconButton from 'chat-list/components/icon-button'
+import IconButton from 'chat-list/components/icon-button';
 import { Trash } from 'lucide-react';
 
 interface StepItemProps {

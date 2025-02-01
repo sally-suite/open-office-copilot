@@ -4,12 +4,12 @@ import { IChatMessage, QuickReplyItem } from 'chat-list/types/message';
 import introduce from './prompts/introduce.md';
 import sheetApi from '@api/sheet';
 import { Sigma } from 'lucide-react';
-import instruction from './prompts/instruction.md'
-import description from './prompts/description.md'
+import instruction from './prompts/instruction.md';
+import description from './prompts/description.md';
 
 import FormulaRender from 'chat-list/components/render-formula';
 export class EditFunction extends ChatPluginBase implements IChatPlugin {
-  name = "GPT Formulas"
+  name = "GPT Formulas";
   icon = Sigma;
   action = 'gpt-formula';
   shortDescription = "Help you write GPT Formulas.";
@@ -30,8 +30,8 @@ export class EditFunction extends ChatPluginBase implements IChatPlugin {
     return input;
   };
   render = () => {
-    return <FormulaRender />
-  }
+    return <FormulaRender />;
+  };
 }
 
 export default new EditFunction();

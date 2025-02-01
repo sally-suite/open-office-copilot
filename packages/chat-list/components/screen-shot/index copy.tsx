@@ -7,7 +7,7 @@ const ScreenshotComponent = () => {
     const [isCapturing, setIsCapturing] = useState(false);
     const [selection, setSelection] = useState(null);
     const [confirming, setConfirming] = useState(false);
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageUrl, setImageUrl] = useState('');
     const containerRef = useRef(null);
 
     const handleCaptureStart = () => {
@@ -43,7 +43,7 @@ const ScreenshotComponent = () => {
         setIsCapturing(false);
         setSelection(null);
         setConfirming(false);
-    }
+    };
     const handleConfirm = () => {
         setTimeout(() => {
             html2canvas(containerRef.current, {
@@ -60,7 +60,7 @@ const ScreenshotComponent = () => {
                 // setIsCapturing(false);
                 // setSelection(null);
                 // setConfirming(false);
-                setImageUrl(base64Image)
+                setImageUrl(base64Image);
             });
         }, 0);
     };

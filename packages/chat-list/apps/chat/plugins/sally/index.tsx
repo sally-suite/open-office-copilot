@@ -25,8 +25,8 @@ export class Start extends ChatPluginBase implements IChatPlugin {
         <CardTools introduction={''} />
         <CardAgents introduction={''} />
       </>
-    )
-  }
+    );
+  };
   instruction = instruction;
   fileConfig = {
     accept: {
@@ -53,18 +53,18 @@ export class Start extends ChatPluginBase implements IChatPlugin {
       //   code: 'test2',
       //   name: 'test2'
       // }
-    ]
+    ];
   };
   onQuickReply = async () => {
     // const { appendMsg, setPlugins, plugins } = this.context;
     // appendMsg(this.buildChatMessage(mark, 'text'))
-  }
+  };
   tools: any[] = ['search', 'pip_install', 'python_interpreter'];
   agents: any[] = ['vision'];
   initialize = false;
   injectContext = async () => {
-    return await getSheetInfo()
-  }
+    return await getSheetInfo();
+  };
   onReceive = async (message: IChatMessage) => {
     const { setTyping, plugins, showMessage } = this.context;
     // const text = message.content as string;
@@ -85,7 +85,7 @@ export class Start extends ChatPluginBase implements IChatPlugin {
 
         const { type, files } = message;
         if (type == 'parts') {
-          window.INPUT_EXCEL_FILE = files[0]
+          window.INPUT_EXCEL_FILE = files[0];
         }
 
         if (!this.initialize) {
@@ -115,8 +115,8 @@ export class Start extends ChatPluginBase implements IChatPlugin {
 
     // }
 
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
 }
 
 export default new Start(dataRangeAnalyzeMixin);

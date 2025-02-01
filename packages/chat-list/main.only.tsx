@@ -6,7 +6,7 @@ import { UserProvider } from 'chat-list/store/userContext';
 import { ChatProvider } from 'chat-list/store/chatContext';
 import { createHashRouter, RouterProvider, createMemoryRouter } from 'react-router-dom';
 import 'chat-list/components/icon/svg-icons-register';
-import Wellcome from 'chat-list/components/wellcome'
+import Wellcome from 'chat-list/components/wellcome';
 import 'chat-list/assets/css/global.css';
 import 'chat-list/assets/css/common.less';
 import 'chat-list/assets/css/chatui-theme.less';

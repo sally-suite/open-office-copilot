@@ -3,15 +3,15 @@ import { ChatPluginBase, IChatPlugin } from 'chat-list/types/plugin';
 import { IChatMessage } from 'chat-list/types/message';
 import CardTranslate from 'chat-list/components/card-translate-doc';
 import React from 'react';
-import promptSetting from './prompt'
-import docApi from '@api/doc'
+import promptSetting from './prompt';
+import docApi from '@api/doc';
 import { capitalizeFirstLetter } from 'chat-list/utils';
 import i18n from 'chat-list/locales/i18n';
 import instruction from './prompt/instruction.md';
 import { t } from 'i18next';
 // import SallyAvatar from 'chat-list/components/avatars/sally'
 import sallyPng from 'chat-list/assets/img/sally-32.png';
-import CardIntroduce from 'chat-list/components/card-introduce/index.doc'
+import CardIntroduce from 'chat-list/components/card-introduce/index.doc';
 // import introduction from './prompt/introduction.md'
 
 export class Start extends ChatPluginBase implements IChatPlugin {
@@ -24,8 +24,8 @@ export class Start extends ChatPluginBase implements IChatPlugin {
   // introduce = i18n.t('doc.wellcome_message', `Hi! I'm Sally,How can I assist you today?`);
   // introduce = i18n.t('prompt:doc_introduction', "Hi! I'm Sally,How can I assist you today?");
   introduce = () => {
-    return <CardIntroduce />
-  }
+    return <CardIntroduce />;
+  };
   instruction = instruction;
   fileConfig = {
     accept: {
@@ -43,13 +43,13 @@ export class Start extends ChatPluginBase implements IChatPlugin {
         id,
         name: id,
         enable: true
-      }
+      };
     }).map((agent) => {
       return {
         code: agent.id,
         name: capitalizeFirstLetter(i18n.t(`doc.agent.${agent.id}` as any)),
         tip: i18n.t(`doc.agent.${agent.id}.short_description`, agent.name)
-      }
+      };
     });
 
     const quickReplies: QuickReplyItem[] = [
@@ -131,11 +131,11 @@ export class Start extends ChatPluginBase implements IChatPlugin {
       const text = await docApi.getSelectedText();
       let content;
       if (text) {
-        content = `${t('doc.selected_text', 'You have selected text:')}\n${text}`
+        content = `${t('doc.selected_text', 'You have selected text:')}\n${text}`;
       } else {
         content = `${t('doc.not_selected_text', "You didn't select any text.")}`;
       }
-      const msg = this.buildChatMessage(content, 'text', null, 'assistant')
+      const msg = this.buildChatMessage(content, 'text', null, 'assistant');
       appendMsg(msg);
     }
     else if (item.code == 'translate') {
@@ -148,7 +148,7 @@ export class Start extends ChatPluginBase implements IChatPlugin {
       />, 'card'));
     }
     else {
-      this.context.setTyping(true)
+      this.context.setTyping(true);
       const prompt = (promptSetting as any)[item.code];
       const text = await docApi.getSelectedText();
       const result = await this.context.chat({
@@ -174,10 +174,10 @@ export class Start extends ChatPluginBase implements IChatPlugin {
   injectContext = async () => {
     const text = await docApi.getSelectedText();
     if (text) {
-      return `I have selected text:\n\n${text}`
+      return `I have selected text:\n\n${text}`;
     }
     return "I didn't selected some text.";
-  }
+  };
   onReceive = async (message: IChatMessage) => {
     const { setTyping, plugins } = this.context;
     // const text = message.content as string;
@@ -195,8 +195,8 @@ export class Start extends ChatPluginBase implements IChatPlugin {
         return msg;
       }
     }
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
   // render() {
   //   return <SallyRender />
   // }

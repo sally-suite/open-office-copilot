@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { plugins } from './plugins';
-import { init } from 'chat-list/service/log'
+import { init } from 'chat-list/service/log';
 import ChatList from 'chat-list/components/chat-list';
 import { UserProvider } from 'chat-list/store/userContext';
 import { ChatProvider } from 'chat-list/store/chatContext';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import 'chat-list/components/icon/svg-icons-register';
-import Wellcome from 'chat-list/components/wellcome'
+import Wellcome from 'chat-list/components/wellcome';
 import 'chat-list/assets/css/global.css';
 import 'chat-list/assets/css/common.less';
 import 'chat-list/assets/css/chatui-theme.less';
@@ -87,8 +87,8 @@ export default function Main({ docType, plugins }: IMainProps) {
             {
               !wellcome && (
                 <Wellcome onStart={() => {
-                  setLocalStore('sheet-chat-wellcome', '1')
-                  setWellcome('1')
+                  setLocalStore('sheet-chat-wellcome', '1');
+                  setWellcome('1');
                 }} />
               )
             }

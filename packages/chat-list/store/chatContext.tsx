@@ -1,4 +1,4 @@
-import useMessages from 'chat-list/hook/useMesssages'
+import useMessages from 'chat-list/hook/useMesssages';
 import {
   ChatState,
   DocType,
@@ -27,7 +27,7 @@ import { extractMentions, platform, removeMentions, sleep, uuid } from 'chat-lis
 import CardPriacy from 'chat-list/components/card-privacy';
 import { getUserPrivacyState } from 'chat-list/service/users';
 import useLocalStore from 'chat-list/hook/useLocalStore';
-import { publish, subscribe, unsubscribe } from 'chat-list/msb/public'
+import { publish, subscribe, unsubscribe } from 'chat-list/msb/public';
 import { parseDocuments } from 'chat-list/utils/file';
 import { logEvent, pageView } from 'chat-list/service/log';
 import useModel from 'chat-list/hook/useModel';
@@ -43,7 +43,7 @@ import { DEFAULT_MODEL } from 'chat-list/config/llm';
 const PLATFORM = platform();
 const memStore = {
   privateState: false
-}
+};
 const ChatContext = createContext<Partial<ChatState>>({
   platform: PLATFORM,
   text: '',
@@ -76,7 +76,7 @@ const ChatProvider = ({
   const [loading, setLoading] = useState(true);
   const [text, setText] = useState('');
   const { user, setUserState, updatePoints, setOpenLogin } = useContext(UserContext);
-  const [plugins, setPlugins] = useState(insidePlugins)
+  const [plugins, setPlugins] = useState(insidePlugins);
   const tools = toolMap[docType];
 
   const [plugin, setPlugin] = useState<IChatPlugin>(plugins[0]);
@@ -125,13 +125,13 @@ const ChatProvider = ({
           resetList([]);
         }
         // if exact match set default prompt
-        pageView(result.plugin.action)
+        pageView(result.plugin.action);
         setPlugin(result.plugin as IChatPlugin);
 
         return true;
       }
       return false;
-    }, [plugin, plugins])
+    }, [plugin, plugins]);
 
   const checkPrivacyState = useCallback(async () => {
     const privacyState = await getUserPrivacyState();
@@ -168,27 +168,27 @@ const ChatProvider = ({
     }
     return true;
 
-  }, [user?.isAuthenticated])
+  }, [user?.isAuthenticated]);
 
   const checkState = async () => {
     setLoading(true);
     await checkPrivacyState();
     setLoading(false);
-  }
+  };
 
   const newChat = () => {
-    resetList([])
+    resetList([]);
     try {
       plugins.forEach((plg) => {
         plg.shortTermMemory = [];
         plg.memory = [];
         plugin.stop();
-      })
+      });
       plugin.stop();
     } catch (e) {
       console.log(e);
     }
-  }
+  };
   const quickReply = useCallback((item: any) => {
     if (item.action === 'abort') {
       // if (typing) {
@@ -219,13 +219,13 @@ const ChatProvider = ({
       content: 0,
       position: 'right',
       role: 'user',
-    }
-    appendMsg(msg)
+    };
+    appendMsg(msg);
     const id = msg._id;
     return (value: number) => {
       // console.log(value)
       if (value === 100) {
-        deleteMsg(id)
+        deleteMsg(id);
         return;
       }
       // console.log(id)
@@ -234,10 +234,10 @@ const ChatProvider = ({
         content: value,
         position: 'right',
         role: 'user',
-      }
-      updateMsg(id, msg)
-    }
-  }
+      };
+      updateMsg(id, msg);
+    };
+  };
 
   const sendMsg = useCallback(async (message: IChatMessage) => {
     if (!message.role || message.role === 'user') {
@@ -292,7 +292,7 @@ const ChatProvider = ({
         const progress = showProgress();
         const fileContent = await parseDocuments(message.files, async (file, i) => {
           await sleep(300);
-          progress(((i + 1) / files.length) * 100)
+          progress(((i + 1) / files.length) * 100);
         });
         if (fileContent) {
           message.content = fileContent;
@@ -307,7 +307,7 @@ const ChatProvider = ({
         const progress = showProgress();
         const fileContent = await parseDocuments(message.files, async (file, i) => {
           await sleep(300);
-          progress(((i + 1) / files.length) * 100)
+          progress(((i + 1) / files.length) * 100);
         });
         // const fileNames = message.files.map(p => `1. ${p.name}`).join('\n');
         if (fileContent) {
@@ -323,10 +323,10 @@ const ChatProvider = ({
       }
     }
     setTimeout(() => {
-      publish(message)
-    }, 0)
+      publish(message);
+    }, 0);
 
-  }, [conversationId, model, plugins, dataContext, user])
+  }, [conversationId, model, plugins, dataContext, user]);
 
 
   const subscribeMessage = useCallback(() => {
@@ -336,12 +336,12 @@ const ChatProvider = ({
     // subscribe all message from assistant
     subscribe((message) => {
 
-      appendMsg(message)
+      appendMsg(message);
     }, {
       sender: user.email,
       mentions: [],
       role: 'assistant'
-    })
+    });
     // current plugin subscribe message from user,no mention
     subscribe(async (message) => {
       try {
@@ -350,8 +350,8 @@ const ChatProvider = ({
         if (mute) {
           appendMsg(buildChatMessage(<CardMute message={message} onContinue={() => {
             setMute(false);
-            sendMsg(message)
-          }} />, 'card'))
+            sendMsg(message);
+          }} />, 'card'));
           return;
         }
         if (typeof message.content === 'string' && message.content.startsWith('@')) {
@@ -374,15 +374,15 @@ const ChatProvider = ({
         await plugin.onReceive(message);
         // check points, if points < 0, show message to user
       } catch (e) {
-        console.error(e)
+        console.error(e);
         logEvent('exception', {
           'agent': plugin.action,
           'message': e.message,
-        })
+        });
         if (e.code === 401) {
           setUserState({
             isAuthenticated: false
-          })
+          });
         } else {
           appendMsg(buildChatMessage(`Exception: ${e.message}`, 'text'));
         }
@@ -395,7 +395,7 @@ const ChatProvider = ({
       sender: plugin.action,
       mentions: [],
       role: 'user'
-    })
+    });
     // plugin only subscribe message that include mention
     // plugins
     //   .filter(p => p.action !== 'sally')
@@ -449,7 +449,7 @@ const ChatProvider = ({
       });
       if (list && list.length > 0) {
         const customAgents = list.map((agent: IAgent) => {
-          return new CustomAgent(agent)
+          return new CustomAgent(agent);
         });
         const allPlugins = insidePlugins.concat(customAgents);
         setPlugins(allPlugins);
@@ -457,40 +457,40 @@ const ChatProvider = ({
       }
 
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
   const showMessage = (message: string | React.ReactNode, role: 'tool' | 'assistant' = 'tool', type: ChatMessageType = 'text') => {
     if (role === 'tool') {
-      const msg = buildChatMessage(<ToolMessage status='running' content={`${message}`} />, 'card', 'assistant')
+      const msg = buildChatMessage(<ToolMessage status='running' content={`${message}`} />, 'card', 'assistant');
       appendMsg(msg);
       return {
         delete() {
           deleteMsg(msg._id);
         },
         update(message: string) {
-          const result = buildChatMessage(<ToolMessage status='running' content={`${message}`} />, 'card', 'assistant',)
+          const result = buildChatMessage(<ToolMessage status='running' content={`${message}`} />, 'card', 'assistant',);
           result._id = msg._id;
           updateMsg(msg._id, result);
         },
         succeeded(message: string) {
-          const result = buildChatMessage(<ToolMessage status='success' content={`${message}`} />, 'card', 'assistant',)
+          const result = buildChatMessage(<ToolMessage status='success' content={`${message}`} />, 'card', 'assistant',);
           result._id = msg._id;
           updateMsg(msg._id, result);
         },
         failed(error: string) {
-          const result = buildChatMessage(<ToolMessage status='failed' content={`${error}`} />, 'card', 'assistant',)
+          const result = buildChatMessage(<ToolMessage status='failed' content={`${error}`} />, 'card', 'assistant',);
           result._id = msg._id;
           updateMsg(msg._id, result);
         }
-      }
+      };
     } else if (role === 'assistant') {
       const msg = buildChatMessage(message, type, 'assistant');
       let isAppend = false;
       if (!message) {
         isAppend = false;
-        setTyping(true)
+        setTyping(true);
       } else {
         isAppend = true;
         appendMsg(msg);
@@ -502,27 +502,27 @@ const ChatProvider = ({
         update(message: string | React.ReactNode) {
           // msg.content = message;
           if (isAppend) {
-            const result = buildChatMessage(message, type, 'assistant',)
+            const result = buildChatMessage(message, type, 'assistant',);
             result._id = msg._id;
             updateMsg(msg._id, result);
           } else {
             isAppend = true;
-            const result = buildChatMessage(message, type, 'assistant',)
+            const result = buildChatMessage(message, type, 'assistant',);
             result._id = msg._id;
             appendMsg(msg);
           }
         }
-      }
+      };
     }
 
-  }
+  };
 
   const setAgentMode = (agent: string, modeType: ModeType) => {
     setMode({
       ...mode,
       [agent]: modeType
-    })
-  }
+    });
+  };
 
   context.current = {
     platform: PLATFORM,
@@ -603,8 +603,8 @@ const ChatProvider = ({
           id,
           name: id,
           enable: true
-        }
-      })
+        };
+      });
 
       setAgentTools(agentTools);
     } else {
@@ -630,27 +630,27 @@ const ChatProvider = ({
     if (plugins) {
       plugins.forEach((plg) => {
         plg.context = context.current;
-      })
+      });
     }
   }, [context.current]);
 
   useEffect(() => {
-    subscribeMessage()
+    subscribeMessage();
     return () => {
       unsubscribe();
-    }
+    };
   }, [subscribeMessage]);
 
   useEffect(() => {
-    setConversationId(uuid())
-  }, [plugin, model])
+    setConversationId(uuid());
+  }, [plugin, model]);
 
   useEffect(() => {
     if (!user.isAuthenticated) {
       return;
     }
     loadAgents();
-  }, [user.isAuthenticated])
+  }, [user.isAuthenticated]);
 
   useEffect(() => {
     if (memStore.privateState) {

@@ -11,7 +11,7 @@ export const Points = [
         price: 10,
         point: 500
     }
-]
+];
 
 
 export const PointConfig: { [x: string]: number } = {
@@ -33,4 +33,4 @@ export const PointConfig: { [x: string]: number } = {
     'deepseek-chat': 0.25,
     'deepseek-coder': 0.25,
     'glm-4-air': 0.3,
-}
+};

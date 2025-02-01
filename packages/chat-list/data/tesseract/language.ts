@@ -19,4 +19,4 @@ export default [
     { "value": "nld", "text": "Dutch; Flemish", "translatedText": "Nederlands; Vlaams" },
     { "value": "fas", "text": "Persian", "translatedText": "فارسی" },
     { "value": "uzb_cyrl", "text": "Uzbek - Cyrillic", "translatedText": "Ўзбек - Кирилл" }
-]
+];

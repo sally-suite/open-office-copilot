@@ -15,7 +15,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 
 import { ILangItem } from "types/translate";
 import { ArrowUpDown } from "lucide-react";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { Input } from "../ui/input";
 
 
@@ -43,7 +43,7 @@ const transModeOptions = [
 export default React.memo(function CardTranslateSetting(props: ICardSettingProps) {
   const { title, onChange } = props;
   const { t } = useTranslation(['translate']);
-  const [rows, setRows] = useState(3)
+  const [rows, setRows] = useState(3);
   const { value: source, setValue: setSource } =
     useLocalStore(SHEET_CHAT_FROM_LANG);
   const { value: target, setValue: setTarget } =
@@ -105,8 +105,8 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
     if (Number(e.target.value) <= 0) {
       return 0;
     }
-    setRows(Number(e.target.value))
-  }
+    setRows(Number(e.target.value));
+  };
   return (
     <div className="p-2 flex flex-col mx-auto mt-2">
       <div>
@@ -157,7 +157,7 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
                   >
                     {t(`mode.${opt.value}`, opt.label)}
                   </SelectItem>
-                )
+                );
               })
             }
           </SelectContent>

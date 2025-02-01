@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import SiderNav from 'chat-list/components/nav-sider';
-import ChatRender from 'chat-list/components/chat-list'
+import ChatRender from 'chat-list/components/chat-list';
 import { cn } from 'chat-list/lib/utils';
 
 

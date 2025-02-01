@@ -5,7 +5,7 @@ import { IChatMessage } from 'chat-list/types/message';
 import introduce from './prompts/introduce.md';
 import { Languages } from 'lucide-react';
 import instruction from './prompts/instruction.md';
-import CardTranslateDoc from 'chat-list/components/render-translate-doc'
+import CardTranslateDoc from 'chat-list/components/render-translate-doc';
 import i18n from 'chat-list/locales/i18n';
 export class TranslateSheet extends ChatPluginBase implements IChatPlugin {
   name = 'Translate Doc';
@@ -21,8 +21,8 @@ export class TranslateSheet extends ChatPluginBase implements IChatPlugin {
     return;
   };
   render = () => {
-    return <CardTranslateDoc />
-  }
+    return <CardTranslateDoc />;
+  };
 }
 
 export default new TranslateSheet();

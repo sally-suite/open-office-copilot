@@ -39,7 +39,7 @@ export const MODEL_LIST = [
     //     value: 'gemini-pro-vision',
     //     name: 'GEMINI VISION'
     // },
-]
+];
 
 export const VISION_MODEL_LIST = [
     // {

@@ -1,17 +1,18 @@
+/* eslint-disable react/no-children-prop */
 
 import React, { } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 // import rehypeKatex from 'rehype-katex'
-import remarkMermaid from './remark-mermaidjs/browser'
+import remarkMermaid from './remark-mermaidjs/browser';
 import Table from './table';
 import image from 'chat-list/utils/image';
-import Image from './image'
+import Image from './image';
 import { NormalComponents } from 'react-markdown/lib/complex-types';
 import { SpecialComponents } from 'react-markdown/lib/ast-to-react';
 import { isImageLink } from 'chat-list/utils';
-import ErrorBoundary from 'chat-list/components/error-boundary'
-import Svg from './svg'
+import ErrorBoundary from 'chat-list/components/error-boundary';
+import Svg from './svg';
 // import remarkPlantUml from '@akebifiky/remark-simple-plantuml'
 import './index.less';
 
@@ -54,8 +55,8 @@ export default React.memo(function Markdown(props: IMarkdownProps) {
   } = props;
 
   const content = replaceImageLinks(children);
-  const remarkPlugins = [remarkGfm, remarkMermaid]
-  const rehypePlugins = [];
+  const remarkPlugins = [remarkGfm, remarkMermaid];
+  const rehypePlugins: any[] = [];
 
   return (
     <div className={`relative group w-full ${className}`}>

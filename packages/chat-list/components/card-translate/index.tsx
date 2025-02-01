@@ -1,12 +1,12 @@
-import React, { } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Card,
   CardContent,
   CardTitle,
   // RadioGroup,
 } from "chat-list/components/ui/card";
-import TranslateForm from './form'
+import TranslateForm from './form';
 
 interface ICardTranslateProps {
   targetLanguage: string,

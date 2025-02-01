@@ -11,27 +11,27 @@ const includes = ['calculator', 'chart', 'filter', 'intelligent', 'translate', '
 
 export const buildPrompt = (user_requirement: string, plugins: IChatPlugin[]) => {
     const agents_list = plugins.filter(p => includes.includes(p.action)).map((plg, index) => {
-        return `## ${index + 1}.${plg.action} ## \n ${plg.description} \n`
+        return `## ${index + 1}.${plg.action} ## \n ${plg.description} \n`;
     }).join('\n');
     return template(taskPlanPrompt, {
         user_requirement,
         agents_list
-    })
-}
+    });
+};
 
 export const buildSystemMessage = (input: string, plugins: IChatPlugin[]): IMessageBody => {
     const context = {
         role: 'system',
         content: buildPrompt(input, plugins)
     } as IMessageBody;
-    return context
-}
+    return context;
+};
 
 export const buildMainMessages = async (messages: IChatMessage[], input: string, plugins: IChatPlugin[]) => {
     const context = {
         role: 'system',
         content: buildPrompt(input, plugins)
-    }
+    };
 
     return [
         context,
@@ -40,22 +40,22 @@ export const buildMainMessages = async (messages: IChatMessage[], input: string,
             role: 'user',
             content: input
         }
-    ]
-}
+    ];
+};
 
 export const parseTaskList = (content: string): ITask[] => {
-    const result: ITask[] = extractJsonDataFromMd(content)
+    const result: ITask[] = extractJsonDataFromMd(content);
     if (!result) {
         return [];
     }
     return result;
-}
+};
 
 export const parseNextTask = (tasks: ITask[]): any => {
     if (tasks && tasks.length > 0)
         return tasks.find(p => p.status === 'pending');
     return null;
-}
+};
 
 export function extractField(filed: string, text: string) {
     const reasonMatch = text.match(new RegExp(`${filed}: (.*?)$`, 'i'));
@@ -67,7 +67,7 @@ export function extractField(filed: string, text: string) {
 }
 
 export const parseTaskResult = (input: string): { status: 'successfully' | 'failed', reason?: string, result?: string } => {
-    const content = removeMentions(input)
+    const content = removeMentions(input);
     // if (content.includes('successfully')) {
     //     const result = extractField('result', content);
     //     return {
@@ -80,13 +80,13 @@ export const parseTaskResult = (input: string): { status: 'successfully' | 'fail
         return {
             status: 'failed',
             reason
-        }
+        };
     }
     return {
         status: 'successfully',
         result: content
-    }
-}
+    };
+};
 
 export const buildCreateTaskPrompt = (objective: string, dataset: string, plugins: IChatPlugin[]): IMessageBody => {
     const skill_descriptions = plugins.filter(p => includes.includes(p.action)).map((p, i) => {
@@ -98,8 +98,8 @@ export const buildCreateTaskPrompt = (objective: string, dataset: string, plugin
         ${objective}
         [EXAMPLE TASKLIST]
         ${JSON.stringify(examples, null, 2)}
-        `
-    }).join('/n')
+        `;
+    }).join('/n');
     // const example_tasklist = JSON.stringify(taskExamples.examples, null, 2);
     const content = template(taskCreatePrompt, {
         objective,
@@ -111,6 +111,6 @@ export const buildCreateTaskPrompt = (objective: string, dataset: string, plugin
     return {
         role: 'system',
         content
-    }
-}
+    };
+};
 

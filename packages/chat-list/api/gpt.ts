@@ -1,16 +1,16 @@
-import { IGptService } from '../types/api/gpt'
+import { IGptService } from '../types/api/gpt';
 import { IChatBody, IChatResult, ICompletionsBody, IEmbeddingsBody } from 'chat-list/types/chat';
 import api from '.';
 import { IGetImagesOptions } from 'chat-list/types/image';
 import { getApiConfig } from 'chat-list/local/local';
-import * as openai from 'chat-list/service/open-ai'
+import * as openai from 'chat-list/service/open-ai';
 
 class GptServiceMock implements IGptService {
     speechToText: (value: string) => Promise<string>;
     embeddings = async (body: IEmbeddingsBody) => {
         const result = await api.embeddings({
             body
-        })
+        });
         return result;
     };
     chat: (chatBody: IChatBody, callback?: (done: boolean, result: IChatResult, stop: () => void) => void) => Promise<IChatResult> = async (chatBody: IChatBody, callback) => {
@@ -37,7 +37,7 @@ class GptServiceMock implements IGptService {
             return api.generateImages(body);
         }
         return openai.generateImages(body);
-    }
+    };
     addModel = (model: string, provider?: string) => {
         return api.addModel({ model, provider });
     };

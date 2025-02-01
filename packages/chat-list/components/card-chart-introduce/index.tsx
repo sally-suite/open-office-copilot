@@ -5,7 +5,7 @@ import {
   CardContent,
   // RadioGroup,
 } from "chat-list/components/ui/card";
-import { RadioGroup, RadioGroupItem } from 'chat-list/components/ui/radio-group'
+import { RadioGroup, RadioGroupItem } from 'chat-list/components/ui/radio-group';
 import ReactMarkdown from 'react-markdown';
 import indroduce from './indroduce.md';
 import { template } from 'chat-list/utils';
@@ -75,7 +75,7 @@ export default React.memo(function CardSelectChartEngine(
                     className="mx-1 cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     htmlFor={`x-${value}}`}>{label}</label>
                 </div>
-              )
+              );
             })
           }
         </RadioGroup>

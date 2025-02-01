@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
 interface ICardDownLoadProps {
     files: File[];
@@ -15,14 +15,14 @@ export default function CardCreate(props: ICardDownLoadProps) {
         return {
             url: URL.createObjectURL(file),
             name: file.name
-        }
+        };
     }));
     const load = () => {
         lk.current.querySelector('a').click();
-    }
+    };
     useEffect(() => {
         load();
-    }, [])
+    }, []);
     return (
         <div ref={lk} className='flex flex-col markdown bubble text'>
             {

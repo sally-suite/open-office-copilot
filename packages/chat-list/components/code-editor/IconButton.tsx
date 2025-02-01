@@ -24,7 +24,7 @@ export default function IconButton(props: IIconButtonProps) {
   };
   useEffect(() => {
     setLoading(defautLoading);
-  }, [defautLoading])
+  }, [defautLoading]);
   return (
     <button
       className={`flex flex-row items-center text-sm ${className}`}

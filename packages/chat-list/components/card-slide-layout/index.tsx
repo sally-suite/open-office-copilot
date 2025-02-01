@@ -16,30 +16,30 @@ interface ICardLayoutProps {
 const list = ['4:3', '16:9'];
 export default function CardLayout(props: ICardLayoutProps) {
     const { elements } = props;
-    const [ratio, setRatio] = useState('4:3')
+    const [ratio, setRatio] = useState('4:3');
     const onInsert = () => {
-        console.log('insert')
-    }
+        console.log('insert');
+    };
     const renderElement = (item: ILayoutElement) => {
         if (item.type === 'title') {
             return (
                 <h1 className='text-xl h-full flex flex-row items-center '>{item.title}</h1>
-            )
+            );
         } else if (item.type == 'text') {
-            return <p >{item.text}</p>
+            return <p >{item.text}</p>;
         } else if (item.type == 'list') {
             return (
                 <ol >
                     {item.list.map((item, index) => {
-                        return <li key={index}>{item}</li>
+                        return <li key={index}>{item}</li>;
                     })}
                 </ol>
-            )
+            );
         } else if (item.type == 'image') {
-            return <img src={item.image} alt="" />
+            return <img src={item.image} alt="" />;
         }
         return null;
-    }
+    };
     // 获取窗口的宽度，除以960，得到比例值
     const rate = (window.innerWidth - 24) / 960;
 
@@ -64,7 +64,7 @@ export default function CardLayout(props: ICardLayoutProps) {
                             }} >
                                 {renderElement(item)}
                             </div>
-                        )
+                        );
                     })}
                 </div>
                 <div className='mt-1'>
@@ -78,13 +78,13 @@ export default function CardLayout(props: ICardLayoutProps) {
                                         ratio == item ? "bg-primary text-white" : ""
                                     )}
                                         onClick={() => {
-                                            console.log(item)
-                                            setRatio(item)
+                                            console.log(item);
+                                            setRatio(item);
                                         }}
                                     >
                                         {item}
                                     </div>
-                                )
+                                );
                             })
                         }
                     </div>

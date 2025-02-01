@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import IconButton from '../icon-button';
 import { LineChart } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
@@ -13,7 +13,7 @@ export default function Image(props: any) {
     const [loading, setLoading] = useState(true);
     const [hover, setHover] = useState(false);
     const [error, setError] = useState('');
-    const [hasVision] = useState(plugins.some(p => p.action === 'vision'))
+    const [hasVision] = useState(plugins.some(p => p.action === 'vision'));
     const { t } = useTranslation();
 
     const onAnalyze = async () => {
@@ -23,23 +23,23 @@ export default function Image(props: any) {
             // plg['sourceImages'] = [props.src];
             // setMode('custom');
             // setPlugin(plg)
-            const file = await base64ToFile(props.src, 'image.png')
-            setFileList([file])
-            setText('@Vision ')
+            const file = await base64ToFile(props.src, 'image.png');
+            setFileList([file]);
+            setText('@Vision ');
         }
 
-    }
+    };
 
     const onMouseEnter = () => {
-        setHover(true)
-    }
+        setHover(true);
+    };
     const onMouseLeave = () => {
-        setHover(false)
-    }
+        setHover(false);
+    };
     const onError = (e: Error) => {
-        setError(e.message)
-        setLoading(false)
-    }
+        setError(e.message);
+        setLoading(false);
+    };
 
 
     return (
@@ -77,5 +77,5 @@ export default function Image(props: any) {
             }
 
         </div>
-    )
+    );
 }

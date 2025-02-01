@@ -9,11 +9,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import { DEFAULT_MODEL, MODEL_LIST, VISION_MODEL_LIST } from 'chat-list/config/llm';
 import { GptModel } from "chat-list/types/chat";
 import { USER_SET_GEMINI_API_KEY, USER_SET_MODEL_API_BASE_URL, USER_SET_MODEL_API_KEY } from 'chat-list/config/openai';
-import userApi from '@api/user'
-import gptApi from '@api/gpt'
+import userApi from '@api/user';
+import gptApi from '@api/gpt';
 import { cn } from "chat-list/lib/utils";
-import ModelSetting from 'chat-list/components/model-setting'
-import { Plus, Settings } from "lucide-react"
+import ModelSetting from 'chat-list/components/model-setting';
+import { Plus, Settings } from "lucide-react";
 
 import { getApiConfig, getLocalStore, setApiConfig, setProvider } from "chat-list/local/local";
 // import useUserState from "chat-list/hook/useUserState";
@@ -34,7 +34,7 @@ interface IModelSelectProps {
 
 export const getModelList = memoize((version: 'free' | 'pro' | 'basic' | 'standard' | string) => {
     if (!version) {
-        return MODEL_LIST.filter(item => item.value == DEFAULT_MODEL)
+        return MODEL_LIST.filter(item => item.value == DEFAULT_MODEL);
     }
 
     return MODEL_LIST;
@@ -43,7 +43,7 @@ export const getModelList = memoize((version: 'free' | 'pro' | 'basic' | 'standa
 const getUserModels = async () => {
     const list = await gptApi.getModels();
     return list;
-}
+};
 
 interface IModel {
     id?: string, value: string, name: string, custom?: boolean, provider?: string
@@ -56,7 +56,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
 
     const [models, setModels] = useState<IModel[]>([]);
     const [modelMap, setModelMap] = useState<{ [x: string]: string }>({});
-    const [isAlert, setIsAlert] = useState(false)
+    const [isAlert, setIsAlert] = useState(false);
     const [isEdit, setIsEdit] = useState(true);
     const apiLocalKey = provider ? `${USER_SET_MODEL_API_KEY}_${model}_${provider}` : `${USER_SET_MODEL_API_KEY}_${model}`;
     const apiBaseUrlKey = provider ? `${USER_SET_MODEL_API_BASE_URL}_${model}_${provider}` : `${USER_SET_MODEL_API_BASE_URL}_${model}`;
@@ -67,13 +67,13 @@ export const ModelSelect = (props: IModelSelectProps) => {
 
     const onOpen = (open: boolean) => {
         setOpen(open);
-    }
+    };
 
     const onValueChange = async (value: string) => {
 
         if (value === 'new-model') {
             setIsEdit(false);
-            setOpen(true)
+            setOpen(true);
             return;
         }
 
@@ -94,34 +94,34 @@ export const ModelSelect = (props: IModelSelectProps) => {
         setCustom(custom);
 
         onChange(model as GptModel, provider);
-    }
+    };
     const onModelChange = async ({ model, apiKey, baseUrl, provider }: { model: string, apiKey: string, baseUrl: string, provider: string }) => {
         if (!provider) {
             if (model.startsWith('gpt')) {
                 models.filter(p => p.value.startsWith('gpt')).forEach(async ({ value }) => {
                     await setApiConfig(value, apiKey, baseUrl);
-                })
+                });
                 setOpen(false);
                 return;
             }
             if (model.startsWith('claude')) {
                 models.filter(p => p.value.startsWith('claude')).forEach(async ({ value }) => {
                     await setApiConfig(value, apiKey, baseUrl);
-                })
+                });
                 setOpen(false);
                 return;
             }
             if (model == 'o1-mini') {
                 models.filter(p => p.value.startsWith('o1-mini')).forEach(async ({ value }) => {
                     await setApiConfig(value, apiKey, baseUrl);
-                })
+                });
                 setOpen(false);
                 return;
             }
             if (model == 'deepseek-chat') {
                 models.filter(p => p.value.startsWith('deepseek')).forEach(async ({ value }) => {
                     await setApiConfig(value, apiKey, baseUrl);
-                })
+                });
                 setOpen(false);
                 return;
             }
@@ -140,7 +140,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
         await setApiConfig(m, apiKey, baseUrl, provider);
         await gptApi.addModel(m, provider || '');
         const list = await loadModels();
-        setModels(list)
+        setModels(list);
         initModelMap(list);
         setModel(model as GptModel);
         setProvider(provider);
@@ -149,14 +149,14 @@ export const ModelSelect = (props: IModelSelectProps) => {
 
         setOpen(false);
 
-    }
+    };
     const onConfirm = () => {
         setIsAlert(false);
-    }
+    };
     const onRemove = async (model: string, provider: string) => {
-        await gptApi.removeModel(model, provider)
+        await gptApi.removeModel(model, provider);
         const list = await loadModels();
-        setModels(list)
+        setModels(list);
         initModelMap(list);
         setOpen(false);
 
@@ -171,7 +171,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
             onChange(DEFAULT_MODEL, '');
         }
 
-    }
+    };
     const setDefaultModel = async (list: IModel[]) => {
         if (list.length == 0) {
             setModel(DEFAULT_MODEL);
@@ -188,22 +188,22 @@ export const ModelSelect = (props: IModelSelectProps) => {
             tarModel = list[0];
 
         }
-        console.log('default model', tarModel)
+        console.log('default model', tarModel);
         setModel(tarModel.value as GptModel);
         setProvider(tarModel.provider);
         const custom = !MODEL_LIST.some(p => p.value == tarModel.value && provider == '');
         setCustom(custom);
 
-    }
+    };
     const initModelMap = async (modelList: { value: string, name: string }[]) => {
         const map = modelList.reduce((prev, cur) => {
             return {
                 ...prev,
                 [cur.value]: cur.name,
-            }
+            };
         }, {});
         setModelMap(map);
-    }
+    };
 
     const loadModels = async () => {
         try {
@@ -216,8 +216,8 @@ export const ModelSelect = (props: IModelSelectProps) => {
                         name: item,
                         custom: false,
                         provider: ''
-                    }
-                })
+                    };
+                });
             }
             const list = await getUserModels();
             if (list) {
@@ -228,7 +228,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
                         value: item.model,
                         name: item.model,
                         provider: item.provider
-                    }
+                    };
                 });
                 const sysList = modelList.map((item) => {
                     return {
@@ -237,22 +237,22 @@ export const ModelSelect = (props: IModelSelectProps) => {
                         value: item.value,
                         name: item.name,
                         provider: ''
-                    }
-                })
+                    };
+                });
                 modelList = sysList.concat(ls);
             }
             return modelList;
         } catch (e) {
             return [];
         }
-    }
+    };
     const renderModelList = () => {
         if (plugin.models && plugin.models.length > 0) {
             return plugin.models.map((item) =>
                 <SelectItem hideIndicator={true} key={item} className="h-6 cursor-pointer" value={item}>
                     {item}
                 </SelectItem>
-            )
+            );
         }
         return models.map((item) =>
             <SelectItem hideIndicator={true} key={item.id} className="h-auto cursor-pointer" value={item.id}>
@@ -278,7 +278,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
                                             {label}
                                         </Badge>
 
-                                    )
+                                    );
                                 })
                             }
                         </div>
@@ -294,17 +294,17 @@ export const ModelSelect = (props: IModelSelectProps) => {
                     )
                 }
             </SelectItem>
-        )
-    }
+        );
+    };
 
     const initModelList = async () => {
         setLoading(true);
         const list = await loadModels();
-        setModels(list)
+        setModels(list);
         setDefaultModel(list);
         initModelMap(list);
         setLoading(false);
-    }
+    };
     const selectedModel = useMemo(() => {
         return provider ? `${model}_${provider}` : model;
     }, [model, provider]);
@@ -314,7 +314,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
             return;
         }
         initModelList();
-    }, [user?.version, user?.isAuthenticated])
+    }, [user?.version, user?.isAuthenticated]);
 
     if (loading) {
         return null;
@@ -350,7 +350,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
                         className="h-4 w-4 ml-1 cursor-pointer shrink-0"
                         onClick={() => {
                             setIsEdit(true);
-                            onOpen(true)
+                            onOpen(true);
                         }}
                     />
                 )
@@ -361,7 +361,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
                         className="h-4 w-4 ml-1 cursor-pointer shrink-0"
                         onClick={() => {
                             setIsEdit(false);
-                            setOpen(true)
+                            setOpen(true);
                         }}
                     />
                 )
@@ -387,7 +387,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
                         showClose={false}
                         onConfirm={onConfirm}
                         onClose={() => {
-                            setIsAlert(false)
+                            setIsAlert(false);
                         }}
                         confirmText="Ok"
                     >
@@ -405,7 +405,7 @@ export const ModelSelect = (props: IModelSelectProps) => {
             }
         </div>
 
-    )
-}
+    );
+};
 
 export default ModelSelect;

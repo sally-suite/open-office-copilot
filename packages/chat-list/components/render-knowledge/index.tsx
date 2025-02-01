@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import { Textarea } from 'chat-list/components/ui/textarea';
 import Button from 'chat-list/components/button';
 import Markdown from 'chat-list/components/markdown';
 import gptApi from '@api/gpt';
 import { searchIndex } from 'chat-list/utils/vertor';
-import { getValues } from 'chat-list/service/sheet'
+import { getValues } from 'chat-list/service/sheet';
 import VectorCard from 'chat-list/components/card-vector';
-import toast from 'chat-list/components/ui/use-toast'
+import toast from 'chat-list/components/ui/use-toast';
 import Loading from '../loading';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { ChatContext } from 'chat-list/store/chatContext';
 
 export interface IVisionRenderProps {
@@ -26,7 +26,7 @@ export default function KnowledgeRender() {
     const [alert, setAlert] = useState({
         visible: false,
         content: ''
-    })
+    });
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputValue(e.target.value);
     };
@@ -35,7 +35,7 @@ export default function KnowledgeRender() {
         // const titles = ['chunk', 'vector'];
         const values = await getValues();
         if (values.length <= 1 || !values[0].includes('vector')) {
-            toast.fail(t('knowledge:no_vector_alert'))
+            toast.fail(t('knowledge:no_vector_alert'));
             return;
         }
         const titles = values[0];
@@ -46,13 +46,13 @@ export default function KnowledgeRender() {
         const vectorIndex = titles.indexOf('vector');
         const rows = values.slice(1);
         const indexs = searchIndex(tarVertor, rows.map(v => JSON.parse(v[vectorIndex])));
-        console.log('indexs', indexs)
+        console.log('indexs', indexs);
         const contents = indexs.map(i => rows[i][0]);
         const contenStr = contents.join('\n');
         // return content;
         // parseDocument(files[0])
         // const msg = convertMessage(inputValue, images);
-        const content = `You need answer user's quesiton base on reference content.\n[reference]\n${contenStr}\nuser's quesiton :${inputValue}`
+        const content = `You need answer user's quesiton base on reference content.\n[reference]\n${contenStr}\nuser's quesiton :${inputValue}`;
         const reuslt = await chat({
             model: 'gpt-3.5-turbo',
             messages: [{
@@ -60,9 +60,9 @@ export default function KnowledgeRender() {
                 content
             }]
         });
-        const message = `${reuslt.content}\n\nReference:${indexs.map(i => `[${i + 2}]`).join(',')}`
+        const message = `${reuslt.content}\n\nReference:${indexs.map(i => `[${i + 2}]`).join(',')}`;
         setResult(message);
-    }
+    };
 
     const checkVector = async () => {
         // const titles = ['chunk', 'vector'];
@@ -73,18 +73,18 @@ export default function KnowledgeRender() {
             setAlert({
                 visible: true,
                 content: t('knowledge:no_vector_alert')
-            })
+            });
         } else {
             setAlert({
                 visible: true,
                 content: t('knowledge:build_by_file_or_sheet')
-            })
+            });
         }
         setLoading(false);
-    }
+    };
     useEffect(() => {
         checkVector();
-    }, [])
+    }, []);
     return (
         <div className="flex flex-col p-1">
             {

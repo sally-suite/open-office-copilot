@@ -3,7 +3,7 @@ import CodeEditor from '@uiw/react-codemirror';
 
 // import { javascript } from '@codemirror/lang-javascript';
 import { githubLight, githubDark } from '@uiw/codemirror-theme-github';
-import { basicLight } from '@uiw/codemirror-theme-basic'
+import { basicLight } from '@uiw/codemirror-theme-basic';
 import Console from './Console';
 import IconButton from './IconButton';
 import CopyButton from './CopyButton';
@@ -16,10 +16,10 @@ import { Recorder } from 'chat-list/components/composer/Composer/Recorder';
 import { useTranslation } from 'react-i18next';
 import IconSvg from 'chat-list/components/icon';
 import { python } from '@codemirror/lang-python';
-import Folder from './Folder'
-import FileSelector from 'chat-list/components/file-selector'
+import Folder from './Folder';
+import FileSelector from 'chat-list/components/file-selector';
 import { clearFolder, prepareFolder, writeFile } from 'chat-list/tools/sheet/python/util';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import useChatState from 'chat-list/hook/useChatState';
 // import { editFunction } from '../service/edit';
 // import return1 from '../data/return1.md';
@@ -63,7 +63,7 @@ function App({
   const [actionState, setActionState] = useState<IActionState>(null);
   const [waitting, setWaitting] = useState(false);
   const [mode, setMode] = useState<'input' | 'output' | 'code'>('code');
-  const [status, setStatus] = useState<'running' | 'stop'>('stop')
+  const [status, setStatus] = useState<'running' | 'stop'>('stop');
   const inputFolder = useRef(null);
   const outputFolder = useRef(null);
   const editorRef = useRef(null);
@@ -140,7 +140,7 @@ function App({
       }
       setEditorCode(resultCode);
       if (onUndo) {
-        await onUndo(action)
+        await onUndo(action);
       } else {
         await executeCode(resultCode);
       }
@@ -258,18 +258,18 @@ function App({
   // 执行代码的函数
   const executeCode = async (editorCode: string) => {
     try {
-      setStatus('running')
+      setStatus('running');
       const result = await onRun?.(editorCode);
       if (result) {
         appendLog(`Script run result:\n${typeof result == 'object' ? JSON.stringify(result) : result}.`, LogType.info);
       } else {
         appendLog(`Script run finished.`, LogType.info);
       }
-      setStatus('stop')
+      setStatus('stop');
     } catch (error) {
       appendLog(error.message, LogType.error);
     } finally {
-      setStatus('stop')
+      setStatus('stop');
     }
   };
 
@@ -285,11 +285,11 @@ function App({
 
   const onRecorderOutput = (text: string) => {
     setInput(input + text);
-  }
+  };
 
   const onClearInput = () => {
-    setInput('')
-  }
+    setInput('');
+  };
   // const toggleMode = (mode) => {
   //   setMode(mode === 'code' ? 'output' : 'code');
   // }
@@ -298,25 +298,25 @@ function App({
     await prepareFolder(['/input'], false);
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const buffer = await blobToArrayBuffer(file)
+      const buffer = await blobToArrayBuffer(file);
       const uint8View = new Uint8Array(buffer);
-      await writeFile(`/input/${file.name}`, uint8View)
+      await writeFile(`/input/${file.name}`, uint8View);
     }
     if (inputFolder.current) {
       await inputFolder.current.refresh();
     }
-  }
+  };
 
   const clearOutput = async () => {
     await clearFolder('/output');
     if (outputFolder.current) {
       outputFolder.current.refresh();
     }
-  }
+  };
 
   const insertToCell = async () => {
-    await sheetApi.setFormula(`SL.PY("${editorCode}")`)
-  }
+    await sheetApi.setFormula(`SL.PY("${editorCode}")`);
+  };
 
   useEffect(() => {
     // console.log(editorCode);
@@ -340,11 +340,11 @@ function App({
         } else {
           return arg;
         }
-      }).filter(p => !!p)
+      }).filter(p => !!p);
       appendLog(texts.join(' '), LogType.info);
       // log(...args);
       if (args) {
-        console.info(...args)
+        console.info(...args);
       }
 
     };
@@ -355,11 +355,11 @@ function App({
         } else {
           return arg;
         }
-      })
+      });
       appendLog(texts.join(' '), LogType.error);
       // error(...args);
       if (args) {
-        console.info(...args)
+        console.info(...args);
       }
     };
     return () => {

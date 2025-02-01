@@ -1,7 +1,7 @@
 
 import sheet from '@api/sheet';
 // import second from 'tes'
-import instruction from './instruction.md'
+import instruction from './instruction.md';
 import { ITool } from 'chat-list/types/plugin';
 import { arrayToMarkdownTable, getFunc } from 'chat-list/utils';
 import { getValues } from 'chat-list/service/sheet';
@@ -15,7 +15,7 @@ export const main = async ({ script, table_name }: { script: string, table_name?
     await sheet.setValues(funResult, name);
     const result = arrayToMarkdownTable(funResult);
     return result;
-}
+};
 
 export default {
     name: 'create-by-condition',

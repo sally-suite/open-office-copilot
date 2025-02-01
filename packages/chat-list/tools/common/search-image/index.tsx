@@ -13,7 +13,7 @@ export const func = async ({ input, num = 5, context }: { input: string, num: nu
 
     const targets = results.filter(p => p.imageUrl);
     if (targets.length == 0) {
-        return 'Search result is empty'
+        return 'Search result is empty';
     }
     const content = results.map(({ title, imageUrl }) => {
         return `![${title}](${imageUrl})`;
@@ -27,8 +27,8 @@ export const func = async ({ input, num = 5, context }: { input: string, num: nu
     // });
 
     // return JSON.stringify(images, null, 2);
-    return `The pictures has been shown to the user. You don't have to return it, Tell the user to select the picture aboved to insert into the document.`
-}
+    return `The pictures has been shown to the user. You don't have to return it, Tell the user to select the picture aboved to insert into the document.`;
+};
 
 export default {
     type: 'function',

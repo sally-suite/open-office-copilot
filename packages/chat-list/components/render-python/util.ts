@@ -1,20 +1,20 @@
-import { arrayToMarkdownTable, buildChatMessage, extractCodeFromMd, template } from 'chat-list/utils'
-import updatePrompt from './prompts/update.md'
-import createPrompt from './prompts/create.md'
+import { arrayToMarkdownTable, buildChatMessage, extractCodeFromMd, template } from 'chat-list/utils';
+import updatePrompt from './prompts/update.md';
+import createPrompt from './prompts/create.md';
 
-import { chat } from 'chat-list/service/message'
-import { IMessageBody } from 'chat-list/types/chat'
-import { initEnv, writeFile, createXlsxFile, prepareFolder, runFunction, listFiles, readXlsxFileToJson, readFileToBase64Image, runFunctionWithLog } from 'chat-list/tools/sheet/python/util'
-import image from 'chat-list/utils/image'
+import { chat } from 'chat-list/service/message';
+import { IMessageBody } from 'chat-list/types/chat';
+import { initEnv, writeFile, createXlsxFile, prepareFolder, runFunction, listFiles, readXlsxFileToJson, readFileToBase64Image, runFunctionWithLog } from 'chat-list/tools/sheet/python/util';
+import image from 'chat-list/utils/image';
 
 export const editFunction = async (sheetInfo: string, input: string) => {
     const prompt = template(createPrompt, {
         sheetInfo,
-    })
+    });
     const context: IMessageBody = {
         role: 'system',
         content: prompt
-    }
+    };
     const result = await chat({
         messages: [
             context,
@@ -24,19 +24,19 @@ export const editFunction = async (sheetInfo: string, input: string) => {
             }
         ],
         temperature: 0.5
-    })
-    return extractCodeFromMd(result.content)
-}
+    });
+    return extractCodeFromMd(result.content);
+};
 
 export const createFunction = async (sheetInfo: string, input: string, oldCode: string) => {
     const prompt = template(createPrompt, {
         code: oldCode,
         sheetInfo,
-    })
+    });
     const context: IMessageBody = {
         role: 'system',
         content: prompt
-    }
+    };
     const result = await chat({
         messages: [
             context,
@@ -46,9 +46,9 @@ export const createFunction = async (sheetInfo: string, input: string, oldCode: 
             }
         ],
         temperature: 0.5
-    })
-    return extractCodeFromMd(result.content)
-}
+    });
+    return extractCodeFromMd(result.content);
+};
 
 export const runScript = async (script: string) => {
     try {
@@ -80,14 +80,14 @@ export const runScript = async (script: string) => {
             if (ext === 'xlsx') {
                 const datas = await readXlsxFileToJson(path);
                 const markTable = datas.map(({ data }) => {
-                    return `${arrayToMarkdownTable(data)}`
+                    return `${arrayToMarkdownTable(data)}`;
                 }).join('\n');
 
                 return `${result}\n${markTable}`;
             } else if (ext === 'png' || ext == 'jpeg') {
                 // render image
-                const base64Image = await readFileToBase64Image(path)
-                const url = image.set(base64Image)
+                const base64Image = await readFileToBase64Image(path);
+                const url = image.set(base64Image);
                 const msg = `${result}\n\n${fileName}\n![${fileName}](${url})`;
 
                 return msg;
@@ -103,4 +103,4 @@ export const runScript = async (script: string) => {
         console.error(e);
         return `Script run failed, Exception:${e.message}`;
     }
-}
+};

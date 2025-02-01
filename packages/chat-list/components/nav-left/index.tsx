@@ -5,7 +5,7 @@ import useUserState from 'chat-list/hook/useUserState';
 import { X } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
 import { IChatPlugin } from 'chat-list/types/plugin';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import Tooltip from '../tooltip';
 import Avatar from '../avatars';
 import { cn } from 'chat-list/lib/utils';
@@ -33,16 +33,16 @@ const LeftNavigation = (props: ILeftNavigationProps) => {
         }
         setMode(plg.action, 'chat');
         // setPlugin(plg)
-        navigate(`/${plg.action}`)
-        onOpen?.(false)
-    }
+        navigate(`/${plg.action}`);
+        onOpen?.(false);
+    };
 
     const back = () => {
         window.location.href = "/";
-    }
+    };
     const profile = () => {
         window.location.href = "/profile";
-    }
+    };
 
     return (
         <div className="flex flex-col h-full overflow-y-auto w-auto">
@@ -94,7 +94,7 @@ const LeftNavigation = (props: ILeftNavigationProps) => {
 
                                 </div>
                             </Tooltip>
-                        )
+                        );
                     })}
                     <div className={cn(
                         'flex flex-row items-center h-16 w-16 justify-center hover:bg-gray-100 cursor-pointer '

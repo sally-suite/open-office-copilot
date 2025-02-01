@@ -45,7 +45,7 @@ const scrollToBottom = throttle((messagesEndRef: any, wrapper: any) => {
         });
     }
     return;
-}, 300)
+}, 300);
 
 
 const MessageList: React.FC<MessageListProps> = ({ className, onClear, messages, renderMessageContent }) => {
@@ -93,12 +93,12 @@ const MessageList: React.FC<MessageListProps> = ({ className, onClear, messages,
         setTimeout(() => {
             setShowBackBottom(false);
         }, 300);
-    }
+    };
 
     const clearMessages = () => {
         onClear?.();
         setShowBackBottom(false);
-    }
+    };
 
     useEffect(() => {
         // if (!wrapper.current) {
@@ -134,7 +134,7 @@ const MessageList: React.FC<MessageListProps> = ({ className, onClear, messages,
                 behavior: 'auto'
             });
         }
-    }, [])
+    }, []);
     return (
         <div className={cn('message-list pb-28 relative', className)} ref={wrapper} onScroll={handleScroll} >
             {messages.map((message, index) => (

@@ -18,9 +18,9 @@ export default function CodeCopyBtn(props: ICopyBtnProps) {
     // navigator.clipboard.writeText(children[0].props.children[0]);
     // navigator.clipboard.writeText(content);
     if (type === 'html') {
-      await copyByClipboard(content, content)
+      await copyByClipboard(content, content);
     } else {
-      await copyByClipboard(content)
+      await copyByClipboard(content);
     }
 
     setCopyOk(true);

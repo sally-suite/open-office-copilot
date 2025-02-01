@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Modal from 'chat-list/components/modal'
+import React, { useContext, useEffect, useState } from 'react';
+import Modal from 'chat-list/components/modal';
 import Tooltip from '../tooltip';
 import { Loader2 } from 'lucide-react';
 import { Input } from 'chat-list/components/ui/input';
@@ -7,14 +7,14 @@ import { getLicenseConfig, getToken, setLicenseConfig, setToken } from 'chat-lis
 // import userApi from '@api/user'
 import userApi from '@api/user';
 import { UserContext } from 'chat-list/store/userContext';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import useChatState from 'chat-list/hook/useChatState';
 import docApi from '@api/doc';
 import Button from '../button';
 
 const memStore = {
     init: false
-}
+};
 
 export default function LicenseSetting() {
     const { user, setUserState, loading: authLoading, checkLicense, openLogin: open, setOpenLogin: setOpen } = useContext(UserContext);
@@ -27,27 +27,27 @@ export default function LicenseSetting() {
     const onOpen = async () => {
         setOpen(true);
         await loadKey();
-    }
+    };
     const onConfirm = async () => {
         try {
-            setError('')
+            setError('');
             await checkLicense(licenseKey);
             setOpen(false);
         } catch (e) {
             setError(e.message);
         }
-    }
+    };
 
     const loadKey = async () => {
         setLoading(true);
         const LicenseKey = await getLicenseConfig();
         setLicenseKey(LicenseKey);
         setLoading(false);
-    }
+    };
 
     const onValueChange = (e: any) => {
         setLicenseKey(e.target.value);
-    }
+    };
     const signInBy = async (platfrom: 'azure-ad' | 'google') => {
         // const licenseKey = await getLicenseConfig();
         // appendMsg(buildChatMessage(<CardLicense licenseKey={licenseKey} />, 'card', 'assistant'))
@@ -58,25 +58,25 @@ export default function LicenseSetting() {
         // setLoading(false);
         // setOpen(true)
         const host = window.location.hostname;
-        setOpen(false)
+        setOpen(false);
         docApi.openDialog(`https://${host}/auth/add-on/callback/target?platform=${platfrom}`, {}, async (message) => {
-            const res = JSON.parse(message)
+            const res = JSON.parse(message);
             const licenseKey = res.key;
             const token = await userApi.login(licenseKey);
             // console.log(token)
             setToken(token);
-            await setLicenseConfig(licenseKey || '')
+            await setLicenseConfig(licenseKey || '');
             setUserState({
                 ...user,
                 isAuthenticated: true
-            })
+            });
             setOpen(false);
-        })
-    }
+        });
+    };
 
     const showSignIn = () => {
         setOpen(true);
-    }
+    };
 
     const checkKey = async () => {
         const token = await getToken();
@@ -88,14 +88,14 @@ export default function LicenseSetting() {
             memStore.init = true;
             // appendMsg(buildChatMessage(<CardLicense />, 'card', 'assistant'))
         }
-    }
+    };
 
 
     useEffect(() => {
         if (!authLoading) {
             checkKey();
         }
-    }, [authLoading])
+    }, [authLoading]);
     return (
         <>
             <Tooltip tip={t('common.login')}>
@@ -181,5 +181,5 @@ export default function LicenseSetting() {
                 </p>
             </Modal>
         </>
-    )
+    );
 }

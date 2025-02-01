@@ -1,5 +1,5 @@
 import { ISlideItem, Slide, SlideElement, TextBlock, Theme } from "chat-list/types/api/slide";
-import { titleFontSize } from './constants'
+import { titleFontSize } from './constants';
 
 
 export default function generateSlide(slideItem: ISlideItem, theme: Theme): Slide {

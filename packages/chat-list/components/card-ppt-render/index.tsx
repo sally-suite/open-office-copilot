@@ -12,13 +12,13 @@ const alignMap = {
     'left': 'flex-start',
     'center': 'center',
     'right': 'flex-end',
-}
+};
 
 const vAlignMap = {
     'top': 'flex-start',
     'middle': 'center',
     'bottom': 'flex-end',
-}
+};
 
 // 组件 props 类型
 interface SlideElementProps {
@@ -54,15 +54,15 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
             newMargin.push(newMargin.shift() as number);
             return {
                 padding: newMargin.map((m) => pTtoPx(m)).join('px ') + 'px'
-            }
+            };
         }
         return {
             padding: pTtoPx(margin) + 'px'
-        }
-    }
+        };
+    };
     const pTtoPx = (value: number) => value * 1.33;
 
-    let alignStyle = {}
+    let alignStyle = {};
 
     if (element?.style?.align) {
         alignStyle = {
@@ -70,7 +70,7 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
             // flexDirection: 'column',
             justifyContent: alignMap[element?.style?.align || 'left'],
             alignItems: vAlignMap[element?.style?.valign || 'middle'],
-        }
+        };
     }
 
 
@@ -111,7 +111,7 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
                         userSelect: 'none'
                     };
                     return <p key={index + block.text} style={textStyle} className='p-0 m-0'>{block.text}</p>;
-                })
+                });
                 return <div style={style} >{blocks}</div>;
             } else {
                 const padding = convertMarginToPad(element.style.margin);
@@ -157,7 +157,7 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
                     onClick={(e) => {
                         if (onSelectElement) {
                             e.stopPropagation();
-                            onSelectElement?.(element)
+                            onSelectElement?.(element);
                         }
                     }}
                 >
@@ -264,7 +264,7 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
                     onClick={(e) => {
                         if (onSelectElement) {
                             e.stopPropagation();
-                            onSelectElement?.(element)
+                            onSelectElement?.(element);
                         }
                     }}
                 >
@@ -277,7 +277,7 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
 };
 
 const SlidePage: React.FC<SlideProps> = ({ slide, onSelect, onSelectElement, onInsert, onChangeTemplate }) => {
-    const contianerRef = useRef(null)
+    const contianerRef = useRef(null);
     const { t } = useTranslation();
     const slideRef = useRef(null);
     const [elements, setElements] = useState([]);
@@ -306,40 +306,40 @@ const SlidePage: React.FC<SlideProps> = ({ slide, onSelect, onSelectElement, onI
         contianerRef.current.style.height = `${height * scaleX}px`;
         slideRef.current.style.transform = `scale(${scaleX})`;
         // slideRef.current.style.opacity = 1;
-    }
+    };
     const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
     const annimation = async () => {
         for (const element of slide.elements) {
-            await sleep(200)
+            await sleep(200);
             setElements(prevElements => [...prevElements, element]);
         }
-    }
+    };
     const init = async () => {
         if (animateRunning.current >= 2) {
-            setElements(slide.elements)
+            setElements(slide.elements);
             return;
         } else if (animateRunning.current == 1) {
             return;
         }
-        animateRunning.current = 1
+        animateRunning.current = 1;
         await annimation();
         animateRunning.current = 2;
-    }
+    };
     const onSelectSlide: React.MouseEventHandler<HTMLDivElement> = (e) => {
         e.stopPropagation();
         e.preventDefault();
-        onSelect?.(slide)
-    }
+        onSelect?.(slide);
+    };
 
     const onInsertSlide = async (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        e.stopPropagation()
-        await onInsert?.(slide)
-    }
+        e.stopPropagation();
+        await onInsert?.(slide);
+    };
 
     const onUpdateTemp = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.stopPropagation();
-        onChangeTemplate?.(slide)
-    }
+        onChangeTemplate?.(slide);
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -358,8 +358,8 @@ const SlidePage: React.FC<SlideProps> = ({ slide, onSelect, onSelectElement, onI
     }, []);
 
     useEffect(() => {
-        init()
-    }, [slide])
+        init();
+    }, [slide]);
 
     // useEffect(() => {
     //     if (animateRunning.current) {
@@ -382,7 +382,7 @@ const SlidePage: React.FC<SlideProps> = ({ slide, onSelect, onSelectElement, onI
                         key={index}
                         element={element}
                         onSelectElement={() => {
-                            onSelectElement?.(element, index)
+                            onSelectElement?.(element, index);
                         }}
                     />
                 ))}
@@ -439,10 +439,10 @@ export const PPTPreview: React.FC<PPTRendererProps> = ({ slides, onSelectSlide, 
                     key={index}
                     slide={slide}
                     onSelect={() => {
-                        onSelectSlide?.(slide, index)
+                        onSelectSlide?.(slide, index);
                     }}
                     onSelectElement={(element, i) => {
-                        onSelectElement?.(element, index, i)
+                        onSelectElement?.(element, index, i);
                     }}
                 />
             ))}

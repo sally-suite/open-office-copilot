@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { USER_SET_MODEL_API_KEY, USER_SET_MODEL_API_BASE_URL } from 'chat-list/config/openai';
 import { GptModel } from 'chat-list/types/chat';
 import useLocalStore from './useLocalStore';
@@ -45,20 +45,20 @@ export default function useModel(): IUseModel {
     const setCurrentModel = async (model: GptModel) => {
         await setModel(model);
         setModelToLocal(model);
-    }
+    };
     const setCurrentProvider = async (provider: string) => {
         await setProvider(provider);
         setProviderToLocal(provider);
-    }
+    };
     const init = async () => {
         const model = await getModel();
         const provider = await getProvider();
         setModelToLocal(model);
         setProviderToLocal(provider);
-    }
+    };
     useEffect(() => {
-        init()
-    }, [])
+        init();
+    }, []);
     return {
         provider,
         model,
@@ -68,5 +68,5 @@ export default function useModel(): IUseModel {
         setProvider: setCurrentProvider,
         setApiKey,
         setBaseUrl
-    }
+    };
 }

@@ -1,4 +1,4 @@
-import sheeApi from '@api/sheet'
+import sheeApi from '@api/sheet';
 import { chat, chatByPrompt } from 'chat-list/service/message';
 import { getValues } from 'chat-list/service/sheet';
 import { extractJsonDataFromMd, isTwoDimensionalArray, template } from '../utils';
@@ -25,13 +25,13 @@ export async function translateSheetByGoogle(sourceLanguage: string, targetLangu
         );
         const value = JSON.parse(translatedCSV);
         if (!mode || mode == 'overwrite') {
-            await sheeApi.setValuesByRange(value, row + i, col, 1, colNum)
+            await sheeApi.setValuesByRange(value, row + i, col, 1, colNum);
         } else {
             if (!isActive) {
                 await sheeApi.initSheet(name, [], { active: true });
                 isActive = true;
             }
-            await sheeApi.setValuesByRange(value, row + i, col, 1, colNum)
+            await sheeApi.setValuesByRange(value, row + i, col, 1, colNum);
         }
     }
 }
@@ -114,7 +114,7 @@ export async function translateSheetByGpt(
         // 这句有bug，帮我修复
         const rowData = values.slice(i, i + batch);
 
-        console.log(rowData)
+        console.log(rowData);
         const messages: any = buildTransLateMessages(
             rowData,
             sourceLanguage,
@@ -126,7 +126,7 @@ export async function translateSheetByGpt(
             temperature: 0.5,
         });
         const data = extractJsonDataFromMd(result.content);
-        console.log(data)
+        console.log(data);
         if (!data) {
             continue;
         }
@@ -143,15 +143,15 @@ export async function translateSheetByGpt(
 
         if (isTwoDimensionalArray(value)) {
             if (!mode || mode == 'overwrite') {
-                console.log(value, row + i, col, value.length, value[0].length)
-                await sheeApi.setValuesByRange(value, row + i, col, value.length, value[0].length)
+                console.log(value, row + i, col, value.length, value[0].length);
+                await sheeApi.setValuesByRange(value, row + i, col, value.length, value[0].length);
             } else {
                 if (!isActive) {
                     await sheeApi.initSheet(name, [], { active: true });
                     isActive = true;
                 }
-                console.log(value, row + i, col, value.length, value[0].length)
-                await sheeApi.setValuesByRange(value, row + i, col, value.length, value[0].length)
+                console.log(value, row + i, col, value.length, value[0].length);
+                await sheeApi.setValuesByRange(value, row + i, col, value.length, value[0].length);
             }
         }
     }
@@ -163,23 +163,23 @@ export const translate = async (params: {
     isTranslate: boolean,
 }, callback?: (done: boolean, result: IChatResult, stop: () => void) => void) => {
     const { text, language, tone, isTranslate, } = params;
-    let transDataPrompt = `You are a world class Translation Specialists.`
+    let transDataPrompt = `You are a world class Translation Specialists.`;
 
     const selectText = text ? `\n<text>\n${text}\n</text>` : '';
 
-    transDataPrompt += `\n\n${selectText}`
+    transDataPrompt += `\n\n${selectText}`;
 
     if (isTranslate) {
-        transDataPrompt += `\n\nTranslate the text in XML tag <text></text> into ${language} language in a ${tone} tone,Translate strictly from the text without expanding it, retaining the original format,output result without tag.`
+        transDataPrompt += `\n\nTranslate the text in XML tag <text></text> into ${language} language in a ${tone} tone,Translate strictly from the text without expanding it, retaining the original format,output result without tag.`;
     }
 
     const result = await chatByPrompt(null, transDataPrompt, {
         temperature: 0.7,
         stream: true
-    }, callback)
+    }, callback);
     return result?.content;
     // callback(true, { content: `$${text}$` }, () => void 0);
-}
+};
 
 
 export const improveWriting = async (params: {
@@ -191,34 +191,34 @@ export const improveWriting = async (params: {
     grammar?: boolean
 }, callback?: (done: boolean, result: IChatResult, stop: () => void) => void) => {
     const { text, language, tone, isTranslate = false, expand = false, emoji = false, grammar = false } = params;
-    let transDataPrompt = `You are a writer, You need to perform the following tasks and follow the rules to process the text entered by the user, and output result.`
+    let transDataPrompt = `You are a writer, You need to perform the following tasks and follow the rules to process the text entered by the user, and output result.`;
 
     const rule = `
 <RULES>
 - If no language is specified, then use the same language of user input text
-- Don't use double quotes for output`
+- Don't use double quotes for output`;
 
     let task = '<TASKS>';
 
     if (isTranslate) {
-        task += `\n- Translate the text into ${language} language with a ${tone} tone.`
+        task += `\n- Translate the text into ${language} language with a ${tone} tone.`;
     }
     if (expand) {
-        task += `\n- Make the text user input longer.`
+        task += `\n- Make the text user input longer.`;
     }
 
     if (emoji) {
-        task += `\n- Add appropriate emoji to the text.`
+        task += `\n- Add appropriate emoji to the text.`;
     }
     if (grammar) {
-        task += `\n- Corrects grammatical and spelling errors.`
+        task += `\n- Corrects grammatical and spelling errors.`;
     }
 
-    transDataPrompt += `\n\n${task}`
+    transDataPrompt += `\n\n${task}`;
 
-    transDataPrompt += `\n\n${rule}`
+    transDataPrompt += `\n\n${rule}`;
 
-    transDataPrompt += `\n\nUSER INPUT:\n${text}`
+    transDataPrompt += `\n\nUSER INPUT:\n${text}`;
 
     transDataPrompt += `\n\nOutput result directly, Don't output the task execution process.`;
 
@@ -227,11 +227,11 @@ export const improveWriting = async (params: {
     const result = await chatByPrompt('', transDataPrompt, {
         temperature: 0.5,
         stream: true
-    }, callback)
+    }, callback);
 
     return result?.content;
     // callback(true, { content: `$${text}$` }, () => void 0);
-}
+};
 
 
 

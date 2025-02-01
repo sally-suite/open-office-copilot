@@ -5,7 +5,7 @@ export interface IChatWithPromptOptions {
 }
 
 // 'bubble','radar', 'scatter', 'doughnut','bar3d',
-export const ChartTypes = ['bar', 'line', 'pie', 'area', 'scatter']
+export const ChartTypes = ['bar', 'line', 'pie', 'area', 'scatter'];
 
 export interface ISlideItem {
     type?: 'cover' | 'catalog' | 'overview' | 'slide' | 'section' | 'end' | 'list' | 'table' | 'chart',

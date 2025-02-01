@@ -27,7 +27,7 @@ const DraggableElement: React.FC<{
   useEffect(() => {
     if (isDragging) {
       const handleDrag = (e: MouseEvent) => {
-        console.log('=====')
+        console.log('=====');
         onDrag(element.id, { x: e.movementX, y: e.movementY });
       };
       const handleDragEnd = () => {
@@ -65,7 +65,7 @@ const Canvas: React.FC<CanvasProps> = ({ slide, onSelectElement, onUpdateElement
   const ptToPx = useCallback((pt: number) => pt * 1.33333, []);
 
   const handleDrag = (elementId: string, delta: { x: number; y: number }) => {
-    console.log('====')
+    console.log('====');
     setDraggedElements(prev => {
       const oldDelta = prev[elementId] || { x: 0, y: 0 };
       return {
@@ -76,7 +76,7 @@ const Canvas: React.FC<CanvasProps> = ({ slide, onSelectElement, onUpdateElement
         }
       };
     });
-  }
+  };
 
   const handleDragEnd = useCallback((elementId: string) => {
     const updatedElement = slide.elements.find(el => el.id === elementId);

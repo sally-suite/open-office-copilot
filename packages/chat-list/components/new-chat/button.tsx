@@ -1,6 +1,6 @@
-import React from 'react'
-import useChatState from 'chat-list/hook/useChatState'
-import { useTranslation } from 'react-i18next'
+import React from 'react';
+import useChatState from 'chat-list/hook/useChatState';
+import { useTranslation } from 'react-i18next';
 import { cn } from 'chat-list/lib/utils';
 import Button from '../button';
 
@@ -22,5 +22,5 @@ export default function index() {
 
         </div>
 
-    )
+    );
 }

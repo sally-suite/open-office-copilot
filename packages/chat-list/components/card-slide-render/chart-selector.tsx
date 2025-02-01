@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 // import colorConfig from './data/theme.json';
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTitle,
-} from "chat-list/components/ui/sheet"
+} from "chat-list/components/ui/sheet";
 import { ChartTypes } from 'chat-list/types/api/slide';
 import { generateEChartsOption, renderEChart } from 'chat-list/utils/chart';
 import { Theme } from 'chat-list/types/api/slide';
@@ -23,12 +23,12 @@ interface ChartSelectorProps {
 
 export default function ChartSelector(props: ChartSelectorProps) {
     const { title, open, onClose, data, onSelect, theme } = props;
-    const [side, setSide] = useState<'bottom' | 'right'>('bottom')
+    const [side, setSide] = useState<'bottom' | 'right'>('bottom');
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
     const onSelectChart = (chartType: string) => {
-        onSelect?.(chartType)
-    }
+        onSelect?.(chartType);
+    };
 
     const resizePanel = () => {
         // 判断屏幕宽度
@@ -37,7 +37,7 @@ export default function ChartSelector(props: ChartSelectorProps) {
         } else {
             setSide('bottom');
         }
-    }
+    };
 
     const init = () => {
         setLoading(true);
@@ -58,14 +58,14 @@ export default function ChartSelector(props: ChartSelectorProps) {
         });
         setImages(imgs);
         setLoading(false);
-    }
+    };
 
     useEffect(() => {
         if (!open) {
             return;
         }
         init();
-    }, [open])
+    }, [open]);
 
 
     useEffect(() => {
@@ -121,7 +121,7 @@ export default function ChartSelector(props: ChartSelectorProps) {
                                                 <img src={images[i]} className=' w-full rounded-sm' alt="" />
                                             </div>
                                         </div>
-                                    )
+                                    );
                                 })
                             }
                         </div>
@@ -129,5 +129,5 @@ export default function ChartSelector(props: ChartSelectorProps) {
                 }
             </SheetContent>
         </Sheet>
-    )
+    );
 }

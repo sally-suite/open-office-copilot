@@ -21,7 +21,7 @@ import TransStyleList from "../trans-style-list";
 import { ILangItem } from "types/translate";
 import { ArrowUpDown } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import useChatState from "chat-list/hook/useChatState";
 
 
@@ -148,7 +148,7 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
                       engineOptions.map((opt) => {
                         return (
                           <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                        )
+                        );
                       })
                     }
                   </SelectContent>
@@ -169,7 +169,7 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
                 transModeOptions.map((opt) => {
                   return (
                     <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                  )
+                  );
                 })
               }
             </SelectContent>

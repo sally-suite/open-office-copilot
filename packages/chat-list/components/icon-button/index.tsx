@@ -1,5 +1,5 @@
 import { Loader2, LucideIcon } from 'lucide-react';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Tooltip from 'chat-list/components/tooltip';
 import { cn } from 'chat-list/lib/utils';
 
@@ -31,8 +31,8 @@ export default function IconButton(props: IconButtonProps) {
         }
     };
     useEffect(() => {
-        setWaiting(loading)
-    }, [loading])
+        setWaiting(loading);
+    }, [loading]);
     const Icon: any = icon;
     const child = (
         <span
@@ -52,7 +52,7 @@ export default function IconButton(props: IconButtonProps) {
                 <span className='ml-1 whitespace-nowrap overflow-hidden text-ellipsis'>{children}</span>
             }
         </span>
-    )
+    );
     if (!title) {
         return child;
     }
@@ -60,5 +60,5 @@ export default function IconButton(props: IconButtonProps) {
         <Tooltip tip={title}>
             {child}
         </Tooltip>
-    )
+    );
 }

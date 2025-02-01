@@ -1,11 +1,11 @@
 import { ISlideItem, Slide, Theme } from "chat-list/types/api/slide";
-import { titleFontSize, contentY } from './constants'
+import { titleFontSize, contentY } from './constants';
 
 const gapConfig: any = {
     2: 0.4,
     3: 0.3,
     4: 0.2,
-}
+};
 
 export default function render(data: ISlideItem, theme: Theme): Slide {
 
@@ -34,7 +34,7 @@ export default function render(data: ISlideItem, theme: Theme): Slide {
             width: 11,
             height: 0.8,
         },
-    })
+    });
     const top = contentY;
     const imageHeight = 3.1;
     data.image.forEach((item, i) => {
@@ -50,8 +50,8 @@ export default function render(data: ISlideItem, theme: Theme): Slide {
                 width: itemWidth,
                 height: imageHeight,
             },
-        })
-    })
+        });
+    });
     const titleHeight = 0.5;
     const titleMarginTop = 0.2;
     const titleY = imageHeight + top + titleMarginTop;
@@ -74,7 +74,7 @@ export default function render(data: ISlideItem, theme: Theme): Slide {
                 width: itemWidth,
                 height: titleHeight,
             },
-        })
+        });
         elements.push({
             type: 'text',
             content: item.description,
@@ -91,8 +91,8 @@ export default function render(data: ISlideItem, theme: Theme): Slide {
                 width: itemWidth,
                 height: 1,
             },
-        })
-    })
+        });
+    });
 
     return {
         id: 'slide1',

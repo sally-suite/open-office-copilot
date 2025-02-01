@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import docApi from '@api/slide';
 import { useTranslation } from 'react-i18next';
-import { Presentation, TextCursorInput, X } from 'lucide-react'
+import { Presentation, TextCursorInput, X } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
 
 let timer: any;
 export default function index() {
     const { t } = useTranslation();
     const { dataContext, setDataContext, messages } = useChatState();
-    const [slides, setSlides] = useState([])
+    const [slides, setSlides] = useState([]);
     const [text, setText] = useState('');
     const lastText = useRef({ text: '' });
     const updateContext = async () => {
@@ -49,18 +49,18 @@ export default function index() {
         lastText.current.text = data;
         setText(selectedText);
         setDataContext(data);
-    }
+    };
     const loopSelectedText = () => {
         timer = setTimeout(async () => {
             updateContext();
             await loopSelectedText();
-        }, 1000)
+        }, 1000);
         return timer;
-    }
+    };
 
     const onDeselect = async () => {
-        setDataContext('')
-    }
+        setDataContext('');
+    };
 
     // useEffect(() => {
     //     loopSelectedText();
@@ -76,7 +76,7 @@ export default function index() {
             lastText.current.text = '';
             updateContext();
         }
-    }, [messages])
+    }, [messages]);
 
     if (!dataContext) {
         return null;
@@ -112,5 +112,5 @@ export default function index() {
                 <X height={16} width={16} className='text-gray-500' />
             </span>
         </div>
-    )
+    );
 }

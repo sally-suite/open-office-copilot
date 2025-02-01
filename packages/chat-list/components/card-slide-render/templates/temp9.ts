@@ -22,7 +22,7 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
                 width,
                 height,
             },
-        })
+        });
     } else {
         elements.push({
             type: 'image',
@@ -35,7 +35,7 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
                 width,
                 height,
             },
-        })
+        });
     }
 
     if (data.title) {
@@ -68,7 +68,7 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
                     margin: [10, 10, 10, 10],
                 }
             }
-        ]
+        ];
 
         elements.push(
             {
@@ -112,4 +112,4 @@ export default {
     render,
     name: 'One image with text',
     image: true,
-}
+};

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import CodeEditor from 'chat-list/components/code-editor';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 
 // import { extractCodeFromMd } from 'chat-list/utils'
 // import functionEditPrompt from './prompts/v1.md'
@@ -8,7 +8,7 @@ import docApi from '@api/doc'
 import { editFunction } from './edit';
 import { getSessionStore } from 'chat-list/local/session';
 import Header from 'chat-list/components/header';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 export default function CoderRender() {
     const [editorCode, setEditorCode] = useState(getSessionStore('javascript-code') || ''); // 初始化代码
@@ -23,7 +23,7 @@ export default function CoderRender() {
         // setExecutionResult(result);
     };
     const codeCompletion = async (code: string, input: string) => {
-        console.log(code, input)
+        console.log(code, input);
         return await editFunction('', input);
     };
     const onUndo = async () => {
@@ -33,13 +33,13 @@ export default function CoderRender() {
         // const newHistory = history.slice(0, history.length - 1);
         // setHistory(newHistory);
         // console.log('undo')
-    }
+    };
     const pushHistory = async () => {
         // TODO
-    }
+    };
     const onBack = () => {
-        navigate('/')
-    }
+        navigate('/');
+    };
     return (
         <div className='flex flex-col w-full h-screen'>
             <Header title='Javascript' onBack={onBack} />

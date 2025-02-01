@@ -40,11 +40,11 @@ export const main: ITool['func'] = async ({
             }) as SearchResult[];
             const msg = buildChatMessage(<CardSearch results={results} />, 'card', 'assistant');
             appendMsg(msg);
-            key = results.map(p => p.url).join(',')
-            return results.map(r => (r.content || r.snippet)).join('\n')
-        }))
-        text += ps.join('\n')
-        console.log(text)
+            key = results.map(p => p.url).join(',');
+            return results.map(r => (r.content || r.snippet)).join('\n');
+        }));
+        text += ps.join('\n');
+        console.log(text);
 
     } catch (e) {
         return "Searching for web content failed, please try another web link.";
@@ -59,8 +59,8 @@ export const main: ITool['func'] = async ({
     } else {
         result = text;
     }
-    return result
-}
+    return result;
+};
 
 export default {
     "name": "chat_with_site",

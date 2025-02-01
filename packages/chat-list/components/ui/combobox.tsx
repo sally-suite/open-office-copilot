@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Check, ChevronsUpDown } from "lucide-react"
-import { cn } from "chat-list/lib/utils"
-import { Button } from "chat-list/components/ui/button"
+import * as React from "react";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "chat-list/lib/utils";
+import { Button } from "chat-list/components/ui/button";
 import {
     Command,
     CommandEmpty,
@@ -11,12 +11,12 @@ import {
     CommandInput,
     CommandItem,
     CommandList,
-} from "chat-list/components/ui/command"
+} from "chat-list/components/ui/command";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "chat-list/components/ui/popover"
+} from "chat-list/components/ui/popover";
 
 interface ComboboxProps {
     options: {
@@ -36,11 +36,11 @@ const Combobox: React.FC<ComboboxProps> = ({
     placeholder = "Select option...",
     children
 }) => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false);
 
     const selectedText = value
         ? options.find((option) => option.value === value)?.text
-        : placeholder
+        : placeholder;
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -72,8 +72,8 @@ const Combobox: React.FC<ComboboxProps> = ({
                                     key={option.value}
                                     value={option.value}
                                     onSelect={(currentValue) => {
-                                        onChange(currentValue === value ? "" : currentValue)
-                                        setOpen(false)
+                                        onChange(currentValue === value ? "" : currentValue);
+                                        setOpen(false);
                                     }}
                                 >
                                     {option.text}
@@ -90,7 +90,7 @@ const Combobox: React.FC<ComboboxProps> = ({
                 </Command>
             </PopoverContent>
         </Popover>
-    )
-}
+    );
+};
 
-export default Combobox
+export default Combobox;

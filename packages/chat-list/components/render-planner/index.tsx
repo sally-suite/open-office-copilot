@@ -1,18 +1,18 @@
-import PlanEditor from './TaskList'
+import PlanEditor from './TaskList';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useParams, useNavigate } from 'react-router-dom';
 import PlanList from './PlanList';
 import TaskList from './TaskList';
-import ChatPanel from 'chat-list/components/chat-panel'
+import ChatPanel from 'chat-list/components/chat-panel';
 import Header from '../header';
-import { PlanProvider } from './planContext'
+import { PlanProvider } from './planContext';
 
 const App: React.FC = () => {
     const location = useLocation();
     const params = useParams();
     const navigate = useNavigate();
-    console.log(location)
-    console.log(params)
+    console.log(location);
+    console.log(params);
     return (
         <PlanProvider>
             <div className='flex flex-row h-screen'>

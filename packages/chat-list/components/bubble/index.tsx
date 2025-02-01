@@ -14,5 +14,5 @@ export default React.memo(function Bubble(props: BubbleProps) {
       {content && <p>{content}</p>}
       {children}
     </div>
-  )
-}) 
+  );
+}); 

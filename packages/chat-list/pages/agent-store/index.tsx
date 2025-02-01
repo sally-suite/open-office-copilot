@@ -1,6 +1,6 @@
 // src/components/AgentStore.js
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import prompts from 'chat-list/data/prompts/en-US.json'
+import prompts from 'chat-list/data/prompts/en-US.json';
 import Button from 'chat-list/components/button';
 import lunr from 'lunr';
 import Loading from 'chat-list/components/loading';
@@ -11,47 +11,47 @@ import { cn } from 'chat-list/lib/utils';
 const AgentStore = () => {
     const [waiting, setWaiting] = useState(true);
     const [keyword, setKeyword] = useState('');
-    const [matchs, setMatchs] = useState([])
-    const [showState, setShowState] = useState<{ [x: string]: boolean }>({})
+    const [matchs, setMatchs] = useState([]);
+    const [showState, setShowState] = useState<{ [x: string]: boolean }>({});
     const index = useRef(null);
     const search = useCallback(debounce((keyword: string) => {
-        onSearch(keyword)
-    }, 500), [])
+        onSearch(keyword);
+    }, 500), []);
     const onSearch = (keyword: string) => {
         const results = index.current.search(keyword);
-        setMatchs(results.map((item: any) => prompts[item.ref]))
-    }
+        setMatchs(results.map((item: any) => prompts[item.ref]));
+    };
     const onKeywordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setKeyword(e.target.value)
+        setKeyword(e.target.value);
         search(e.target.value);
-    }
+    };
     const onShowMore = (id: string) => {
         setShowState({
             ...showState,
             [id]: !showState[id]
-        })
-    }
+        });
+    };
     const init = () => {
-        setWaiting(true)
+        setWaiting(true);
         const idx = lunr(function () {
-            this.ref('id')
-            this.field('act')
-            this.field('prompt')
+            this.ref('id');
+            this.field('act');
+            this.field('prompt');
             prompts.forEach((item, i) => {
                 this.add({
                     "id": i,
                     "act": item.act,
                     "prompt": item.prompt
-                })
-            })
+                });
+            });
 
-        })
+        });
         index.current = idx;
-        setWaiting(false)
-    }
+        setWaiting(false);
+    };
     useEffect(() => {
-        init()
-    }, [])
+        init();
+    }, []);
     // console.log(showState)
     return (
         <div className="container mx-auto p-4 h-screen overflow-auto">
@@ -88,7 +88,7 @@ const AgentStore = () => {
                                 </div>
                                 <Button className=" text-white px-2 py-2 rounded">Install</Button>
                             </div>
-                        )
+                        );
                     })
                 }
                 {
@@ -108,12 +108,12 @@ const AgentStore = () => {
                                 </div>
                                 <Button className=" text-white px-2 py-2 rounded">Install</Button>
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
         </div>
     );
-}
+};
 
 export default AgentStore;

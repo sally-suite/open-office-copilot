@@ -1,7 +1,8 @@
-import * as React from "react"
-import * as SwitchPrimitives from "@radix-ui/react-switch"
+/* eslint-disable react/prop-types */
+import * as React from "react";
+import * as SwitchPrimitives from "@radix-ui/react-switch";
 
-import { cn } from "chat-list/lib/utils"
+import { cn } from "chat-list/lib/utils";
 
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
@@ -21,7 +22,7 @@ const Switch = React.forwardRef<
       )}
     />
   </SwitchPrimitives.Root>
-))
-Switch.displayName = SwitchPrimitives.Root.displayName
+));
+Switch.displayName = SwitchPrimitives.Root.displayName;
 
-export { Switch }
+export { Switch };

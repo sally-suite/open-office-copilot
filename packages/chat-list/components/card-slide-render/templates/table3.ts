@@ -69,8 +69,8 @@ export async function render(slideItem: ISlideItem, theme: Theme): Promise<Slide
                         bold: i == 0,
                         color: theme.colors.body,
                     }
-                }
-            })
+                };
+            });
         }) as unknown as ITableCell[][];
 
         elements.push({

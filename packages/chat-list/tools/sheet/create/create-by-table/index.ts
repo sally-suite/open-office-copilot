@@ -1,13 +1,13 @@
 
 import sheetApi from '@api/sheet';
 // import second from 'tes'
-import instruction from './instruction.md'
+import instruction from './instruction.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { arrayToMarkdownTable, buildChatMessage } from 'chat-list/utils';
 import { Sender } from 'chat-list/types/message';
 import { FieldConfig } from 'chat-list/types/field';
 import { DataValidationColConfig } from 'chat-list/types/api/sheet';
-import { Grid3X3 } from 'lucide-react'
+import { Grid3X3 } from 'lucide-react';
 import { generateTable } from './util';
 import { getValues } from 'chat-list/service/sheet';
 
@@ -65,12 +65,12 @@ export const func = async ({ table_creation_requirements = '', context }: ICreat
     }
 
     const result = `${sheetName}\n${arrayToMarkdownTable(values)}`;
-    context.appendMsg(buildChatMessage(result, 'text', 'assistant'))
+    context.appendMsg(buildChatMessage(result, 'text', 'assistant'));
 
     // return `The table ${sheetName} has been created.\n${result}`
-    return `Task done, The table ${sheetName} has been created.`
+    return `Task done, The table ${sheetName} has been created.`;
 
-}
+};
 
 export default {
     name: 'generate_table',

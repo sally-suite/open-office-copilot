@@ -6,15 +6,15 @@ import { IChatMessage } from 'chat-list/types/message';
 import CardChart from 'chat-list/components/card-chart';
 import { FunctionCall } from 'chat-list/types/chat';
 import { PieChart } from 'lucide-react';
-import instruction from './promps/instruction.md'
-import introduce from './promps/introduce.md'
-import description from './promps/description.md'
+import instruction from './promps/instruction.md';
+import introduce from './promps/introduce.md';
+import description from './promps/description.md';
 import { getSheetInfo } from 'chat-list/service/sheet';
-import ChartRender from 'chat-list/components/render-chart'
+import ChartRender from 'chat-list/components/render-chart';
 import i18n from 'chat-list/locales/i18n';
 
 export class CreateChart extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('sheet.agent.chart', 'Chart')
+  name = i18n.t('sheet.agent.chart', 'Chart');
   icon = PieChart;
   action = 'chart';
   shortDescription = i18n.t('sheet.agent.chart.short_description', "Create charts by your requirements.");
@@ -38,8 +38,8 @@ export class CreateChart extends ChatPluginBase implements IChatPlugin {
   };
   tools = ['add_chart', 'recommend_charts'];
   injectContext = async () => {
-    return await getSheetInfo()
-  }
+    return await getSheetInfo();
+  };
   transferGoogleChart = async (functionCall: FunctionCall) => {
     try {
       const options = JSON.parse(functionCall.arguments);
@@ -53,8 +53,8 @@ export class CreateChart extends ChatPluginBase implements IChatPlugin {
     }
   };
   render = () => {
-    return <ChartRender />
-  }
+    return <ChartRender />;
+  };
 }
 
 export default new CreateChart();

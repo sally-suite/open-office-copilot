@@ -1,9 +1,9 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { IChatMessage } from 'chat-list/types/message';
-import dayjs from 'dayjs'
-import api from '@api/index'
+import dayjs from 'dayjs';
+import api from '@api/index';
 import { StockData } from 'chat-list/types/stock';
 import { base64ToFile, buildChatMessage } from 'chat-list/utils';
 import { analyzeIndicator } from './util';
@@ -24,10 +24,10 @@ export const func = async ({ crypto_ticker, timespan, user_requirement, context 
             to: dayjs(new Date()).format('YYYY-MM-DD')
         }) as StockData[];
         if (result.length == 0) {
-            return `Failed to request stock price data, confirm that the stock code ${crypto_ticker} is correct and retry!`
+            return `Failed to request stock price data, confirm that the stock code ${crypto_ticker} is correct and retry!`;
         }
     } catch (e) {
-        return `Failed to request stock price data, confirm that the stock code ${crypto_ticker} is correct and retry!`
+        return `Failed to request stock price data, confirm that the stock code ${crypto_ticker} is correct and retry!`;
     }
 
     async function analyze(base64: string) {
@@ -48,33 +48,33 @@ export const func = async ({ crypto_ticker, timespan, user_requirement, context 
             const content = res.content;
             if (res.content) {
                 if (!isAppend) {
-                    resMsg.content = content
+                    resMsg.content = content;
                     appendMsg(resMsg);
                     isAppend = true;
                 } else {
-                    resMsg.content = content
-                    updateMsg(resMsg._id, resMsg)
+                    resMsg.content = content;
+                    updateMsg(resMsg._id, resMsg);
                 }
             }
             if (done) {
                 if (res.content) {
-                    resMsg.content = content
-                    updateMsg(resMsg._id, resMsg)
+                    resMsg.content = content;
+                    updateMsg(resMsg._id, resMsg);
                 }
                 isAppend = false;
                 resMsg = buildChatMessage(content, 'text', 'assistant');
             }
-        })
+        });
         return resMsg;
     }
     async function addToMyStock(code: string) {
         const list: string[] = await getLocalStore('my-crypto-list') || [];
         if (!list.includes(code)) {
-            setLocalStore('my-crypto-list', list.concat(code))
+            setLocalStore('my-crypto-list', list.concat(code));
         }
     }
     const option = buildChartOption(result, { zoom: false });
-    const base64 = renderEChart(option)
+    const base64 = renderEChart(option);
     addToMyStock(crypto_ticker);
 
     const res = await analyze(base64);
@@ -95,7 +95,7 @@ export const func = async ({ crypto_ticker, timespan, user_requirement, context 
     // appendMsg(msg);
 
     return res;
-}
+};
 export default {
     type: 'function',
     name: 'analyze_crypto_indicators',

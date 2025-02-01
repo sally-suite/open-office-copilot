@@ -4,17 +4,17 @@ import {
     // RadioGroup,
 } from "chat-list/components/ui/card";
 
-import React, { useState } from 'react'
-import Button from '../button'
+import React, { useState } from 'react';
+import Button from '../button';
 import { getHeaderList } from 'chat-list/service/sheet';
 import { chatByPrompt } from 'chat-list/service/message';
-import recoQuestionsPrompt from './temps/recommend-questions.md'
+import recoQuestionsPrompt from './temps/recommend-questions.md';
 import { buildChatMessage, extractJsonDataFromMd, template } from 'chat-list/utils';
 import useChatState from 'chat-list/hook/useChatState';
 import useUserState from 'chat-list/hook/useUserState';
 import i18n from 'chat-list/locales/i18n';
 import { useTranslation } from 'react-i18next';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import Loading from "../loading";
 
 const memStore: any = {
@@ -22,7 +22,7 @@ const memStore: any = {
     status: 'uncheck',
     heads: [],
     questions: []
-}
+};
 
 type CheckStatus = 'uncheck' | 'running' | 'success' | 'failed' | 'suggest';
 interface ICardCheckHeaderProps {
@@ -40,25 +40,25 @@ export default function CardCheckHeader(props: ICardCheckHeaderProps) {
     const { t } = useTranslation(['base']);
 
     const recommendQuestion = async (heads: string[]): Promise<string[]> => {
-        const headStr = heads.join(',')
+        const headStr = heads.join(',');
         const templ = template(recoQuestionsPrompt, {
             lang: i18n.resolvedLanguage
-        })
+        });
         const result = await chatByPrompt(templ, `Table headers:${headStr}`);
         const data = extractJsonDataFromMd(result.content);
 
         if (plugins.find(p => p.action == 'analyst')) {
             if (data?.questions && data?.questions.length > 2) {
-                data.questions[2] = `@Analyst ${data?.questions[2]}`
+                data.questions[2] = `@Analyst ${data?.questions[2]}`;
             }
         }
 
-        return data?.questions || []
-    }
+        return data?.questions || [];
+    };
 
     const checkContext = async () => {
         try {
-            setQuestions([])
+            setQuestions([]);
             const { row, col, colNum, rowNum } = await sheetApi.getRowColNum();
             if (row == 1 && col == 1 && colNum == 1 && rowNum == 1) {
                 setStatus('uncheck');
@@ -67,39 +67,39 @@ export default function CardCheckHeader(props: ICardCheckHeaderProps) {
             const heads = await getHeaderList();
             if (heads.length <= 0 || (heads.filter(p => !p).length / heads.length) >= 0.5) {
                 setStatus('failed');
-                return
+                return;
             } else {
                 setStatus('success');
             }
-            setHeads(heads)
+            setHeads(heads);
         } catch (e) {
             setStatus('failed');
         }
-    }
+    };
 
     const onSendQuest = (quest: string) => {
         sendMsg(buildChatMessage(quest, 'text', 'user', { name: user.username }));
         // setOpen(false);
-    }
+    };
     const onClose = () => {
-        newChat()
-    }
+        newChat();
+    };
     const suggest = async () => {
         const quests = await recommendQuestion(heads);
         if (quests && quests.length > 0) {
-            setStatus('suggest')
+            setStatus('suggest');
             setQuestions(quests);
             // setOpen(true);
         } else {
             setStatus('success');
         }
-    }
+    };
 
     const checkHeader = async () => {
         // setOpen(false);
         await checkContext();
         // setOpen(true);
-    }
+    };
 
     memStore.questions = questions;
     if (status === 'uncheck') {
@@ -176,7 +176,7 @@ export default function CardCheckHeader(props: ICardCheckHeaderProps) {
                                         >
                                             {i + 1}.{' '}{item}
                                         </div>
-                                    )
+                                    );
                                 })
                             }
                         </>

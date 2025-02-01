@@ -9,7 +9,7 @@ import {
 import Button from '../button';
 import sheetApi from '@api/sheet';
 import { setChartEditValue } from 'chat-list/local/session';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 import { Loader2 } from 'lucide-react';
 import { renderEChart } from 'chat-list/utils/chart';
 

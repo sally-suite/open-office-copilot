@@ -1,11 +1,11 @@
-import mammoth from 'mammoth'
+import mammoth from 'mammoth';
 // import pdfjsLib from 'pdfjsLib';
 // import pdfjsLib from 'pdfjs-dist'
-import { blobToBase64, blobToBase64Image } from './common';
+import { blobToBase64Image } from './common';
 // import second from 'pdfjs-dist'
 // import { addIndex } from 'chat-list/service/search';
 // import parseImage from './image';
-import image from './image'
+import image from './image';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
@@ -71,8 +71,7 @@ export function parseWord(file: File): Promise<string> {
         const fileReader = new FileReader();
 
         fileReader.onload = async function (e) {
-            console.log('==========')
-            debugger;
+
             const result = await mammoth.extractRawText({ arrayBuffer: e.target.result });
             resolve(result.value);
         };
@@ -97,9 +96,9 @@ export function parseText(file: File): Promise<string> {
 
 export const parseImage = async (file: File) => {
     const base64 = await blobToBase64Image(file);
-    const url = image.set(base64, file.name)
-    return `![${file.name}](${url})`
-}
+    const url = image.set(base64, file.name);
+    return `![${file.name}](${url})`;
+};
 
 // Function to handle file input and dispatch parsing based on file type
 export function parseDocument(file: File): Promise<string> {
@@ -109,7 +108,7 @@ export function parseDocument(file: File): Promise<string> {
     if (file.type === 'application/pdf') {
         return parsePDF(file);
     } else if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-        return parseWord(file)
+        return parseWord(file);
     } else if (file.type === 'text/plain' || file.type == "") {
         return parseText(file);
         // console.error('Unsupported file type');
@@ -129,24 +128,24 @@ export const parseDocuments = async (files: File[], onSuccess?: (file: File, ind
         const file = files[i];
         const text = await parseDocument(file);
         if (text) {
-            (file as any)['content'] = text
+            (file as any)['content'] = text;
             // const chunks = chunkText(text, 1000)
         }
-        await onSuccess?.(file, i)
+        await onSuccess?.(file, i);
 
     }
     const content = files.filter((p: any) => p['content']).map((file: any) => {
-        return `# File Name: ${file.name}\n\nFile Content:\n\n${file['content']}`
+        return `# File Name: ${file.name}\n\nFile Content:\n\n${file['content']}`;
     }).join('\n');
     return content;
-}
+};
 
 export const parseDocContents = async (files: File[]) => {
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const text = await parseDocument(file);
         if (text) {
-            (file as any)['content'] = text
+            (file as any)['content'] = text;
             // const chunks = chunkText(text, 1000)
         }
     }
@@ -154,9 +153,9 @@ export const parseDocContents = async (files: File[]) => {
         return {
             name: f.name,
             content: f['content']
-        }
-    })
-}
+        };
+    });
+};
 
 
 // export async function parseAndIndex(files: File[], onSuccess?: (file: File, index: number) => void) {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { AlertCircle, CheckCircle2, Loader2 } from 'lucide-react';
 
 interface IToolMessageProps {
@@ -33,5 +33,5 @@ export default function ToolMessage(props: IToolMessageProps) {
                 {content}
             </span>
         </div>
-    )
+    );
 }

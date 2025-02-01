@@ -14,7 +14,7 @@ import {
   SHEET_CHAT_TRANSLATE_STYLE,
 } from "chat-list/config/translate";
 import TransStyleList from "../trans-style-list";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { ArrowUpDown } from "lucide-react";
 
 export type ILangItem = {
@@ -110,7 +110,7 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
               engineOptions.map((opt) => {
                 return (
                   <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
-                )
+                );
               })
             }
           </SelectContent>

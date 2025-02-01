@@ -3,12 +3,12 @@
 
 
 import { ITool } from 'chat-list/types/plugin';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 export const main: ITool['func'] = async (): Promise<any> => {
     const text = await docApi.getDocumentContent();
     return text;
 
-}
+};
 
 export default {
     "name": "get_page_content",

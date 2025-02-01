@@ -1,7 +1,7 @@
-import { ChatContext } from 'chat-list/store/chatContext'
-import React, { useContext, useState } from 'react'
+import { ChatContext } from 'chat-list/store/chatContext';
+import React, { useContext, useState } from 'react';
 import CodeEditor from 'chat-list/components/code-editor';
-import slideApi from '@api/slide'
+import slideApi from '@api/slide';
 
 // import { extractCodeFromMd } from 'chat-list/utils'
 // import functionEditPrompt from './prompts/v1.md'
@@ -46,7 +46,7 @@ export default function CoderRender() {
 
     const onUndo = async () => {
         return;
-    }
+    };
 
 
     return (

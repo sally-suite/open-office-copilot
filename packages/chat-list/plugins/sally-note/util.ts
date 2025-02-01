@@ -1,6 +1,6 @@
 import { chat } from 'chat-list/service/message';
-import promptSetting from './prompt'
-import docApi from '@api/doc'
+import promptSetting from './prompt';
+import docApi from '@api/doc';
 import { IChatBody, IChatResult } from 'chat-list/types/chat';
 
 export type PromptType = keyof typeof promptSetting;
@@ -9,7 +9,7 @@ export const callPrompt = async (code: PromptType, options: Partial<IChatBody> =
     const prompt = promptSetting[code];
     const text = await docApi.getSelectedText();
     if (!text) {
-        throw new Error('Please select text')
+        throw new Error('Please select text');
     }
     const result = await chat({
         temperature: 0.8,
@@ -25,4 +25,4 @@ export const callPrompt = async (code: PromptType, options: Partial<IChatBody> =
         ...options
     }, callback);
     return result?.content;
-}
+};

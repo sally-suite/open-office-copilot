@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import { Globe, Globe2 } from 'lucide-react'
+import React, { useState } from 'react';
+import { Globe, Globe2 } from 'lucide-react';
 
-import sheetApi from '@api/sheet'
-import docApi from '@api/doc'
-import slideApi from '@api/slide'
+import sheetApi from '@api/sheet';
+import docApi from '@api/doc';
+import slideApi from '@api/slide';
 
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuTrigger,
-} from "chat-list/components/ui/dropdown-menu"
+} from "chat-list/components/ui/dropdown-menu";
 
 
 import { useTranslation } from 'react-i18next';
-import { languages } from 'chat-list/locales/i18n'
-import useChatState from 'chat-list/hook/useChatState'
+import { languages } from 'chat-list/locales/i18n';
+import useChatState from 'chat-list/hook/useChatState';
 export default function index() {
     const { platform, docType } = useChatState();
 
@@ -25,13 +25,13 @@ export default function index() {
         if (platform === 'google') {
             if (docType === 'sheet') {
                 // console.log('showSidePanel', docType)
-                await sheetApi.showSidePanel('sheet-chat', 'sheet')
+                await sheetApi.showSidePanel('sheet-chat', 'sheet');
             } else if (docType === 'doc') {
                 // console.log('showSidePanel', docType)
-                await docApi.showSidePanel('doc-chat', 'doc')
+                await docApi.showSidePanel('doc-chat', 'doc');
             } else if (docType === 'slide') {
                 // console.log('showSidePanel', docType)
-                await slideApi.showSidePanel('slide-chat', 'doc')
+                await slideApi.showSidePanel('slide-chat', 'doc');
             } else if (docType === 'chat') {
                 // console.log('showSidePanel', docType)
                 window.location.reload();
@@ -39,7 +39,7 @@ export default function index() {
         } else {
             window.location.reload();
         }
-    }
+    };
     return (
         <>
             <DropdownMenu>
@@ -60,12 +60,12 @@ export default function index() {
                                         (languages as any)[key].base.name || ''
                                     }
                                 </DropdownMenuCheckboxItem>
-                            )
+                            );
                         })
                     }
                 </DropdownMenuContent >
             </DropdownMenu>
         </>
 
-    )
+    );
 }

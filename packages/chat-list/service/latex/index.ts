@@ -90,7 +90,7 @@ export const tools = [
         "prompt": "Check if this LaTeX code follows best practices: \n\n{{selection}}",
         "description": "Verify LaTeX format"
     }
-]
+];
 
 
 export const writing = async (text: string, prompt: string, callback?: (done: boolean, result: IChatResult, stop: () => void) => void) => {
@@ -101,12 +101,12 @@ export const writing = async (text: string, prompt: string, callback?: (done: bo
 
     const input = template(prompt, {
         selection: text
-    })
+    });
 
     const result = await chatByPrompt("", input, {
         temperature: 0.7,
         stream: true
-    }, callback)
+    }, callback);
 
     return result;
-}
+};

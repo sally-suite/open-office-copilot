@@ -1,8 +1,8 @@
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import { Grid3X3, RefreshCw } from 'lucide-react';
-import Button from '../button'
-import sheetApi from '@api/sheet'
+import Button from '../button';
+import sheetApi from '@api/sheet';
 import { cn } from 'chat-list/lib/utils';
 import useChatState from 'chat-list/hook/useChatState';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +13,7 @@ const memStore: any = {
     status: 'uncheck',
     heads: [],
     questions: []
-}
+};
 
 
 export default function CheckContext({ className = '' }: { className?: string }) {
@@ -26,7 +26,7 @@ export default function CheckContext({ className = '' }: { className?: string })
 
     const checkContext = async () => {
         try {
-            setStatus('running')
+            setStatus('running');
             // setQuestions([]);
             // const sheetInfo = await sheetApi.getSheetInfo();
             // const currentSheet = sheetInfo.sheetInfo.find(p => p.sheetName == sheetInfo.current)
@@ -43,18 +43,18 @@ export default function CheckContext({ className = '' }: { className?: string })
 
             lastAddress.current.address = address;
             setAddress(address);
-            setDataContext(JSON.stringify(sheetInfo, null, 2))
+            setDataContext(JSON.stringify(sheetInfo, null, 2));
 
             setStatus('success');
 
         } catch (e) {
-            console.log(e.message)
+            console.log(e.message);
             setStatus('failed');
             // appendMsg(buildChatMessage(<CardCheckHeader status={'failed'} heads={[]} />, 'card', 'assistant'));
         } finally {
             setStatus('success');
         }
-    }
+    };
 
     const initEvent = async () => {
         return sheetApi?.registSelectEvent?.(async ({ _address, values }) => {
@@ -68,21 +68,21 @@ export default function CheckContext({ className = '' }: { className?: string })
             const address = sheetInfo.activeRange;
 
             if (lastAddress.current.address == address) {
-                setStatus('success')
+                setStatus('success');
                 return;
             }
 
             lastAddress.current.address = address;
             setAddress(address);
-            setDataContext(JSON.stringify(sheetInfo, null, 2))
-        })
-    }
+            setDataContext(JSON.stringify(sheetInfo, null, 2));
+        });
+    };
     const checkHeader = async () => {
         await checkContext();
-    }
+    };
     const updateContext = async () => {
         try {
-            setStatus('running')
+            setStatus('running');
             // const address = await sheetApi.getRangeA1Notation();
 
             const sheetInfo = await sheetApi.getSheetInfo();
@@ -93,23 +93,23 @@ export default function CheckContext({ className = '' }: { className?: string })
             const address = sheetInfo.activeRange;
 
             if (lastAddress.current.address == address) {
-                setStatus('success')
+                setStatus('success');
                 return;
             }
 
             lastAddress.current.address = address;
-            setAddress(address)
-            setDataContext(JSON.stringify(sheetInfo, null, 2))
-            setStatus('success')
+            setAddress(address);
+            setDataContext(JSON.stringify(sheetInfo, null, 2));
+            setStatus('success');
         } finally {
-            setStatus('success')
+            setStatus('success');
         }
-    }
+    };
     const init = async () => {
         await updateContext();
         const unregist = await initEvent();
         return unregist;
-    }
+    };
 
     useEffect(() => {
         const unregist = init();
@@ -117,10 +117,10 @@ export default function CheckContext({ className = '' }: { className?: string })
             if (unregist) {
                 unregist.then((unreg: any) => {
                     unreg?.();
-                })
+                });
             }
-        }
-    }, [])
+        };
+    }, []);
 
 
     useEffect(() => {
@@ -128,7 +128,7 @@ export default function CheckContext({ className = '' }: { className?: string })
             lastAddress.current.address = '';
             updateContext();
         }
-    }, [messages])
+    }, [messages]);
 
     if (!dataContext) {
         return null;
@@ -157,7 +157,7 @@ export default function CheckContext({ className = '' }: { className?: string })
                 )} />
             </div>
         </div >
-    )
+    );
     // return (
     //     <div className={cn('flex flex-col items-start p-0 relative', className)}>
     //         <div className='flex flex-row items-center'>

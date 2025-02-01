@@ -92,8 +92,8 @@ export const buildPluginFunctions = memoize((plugins: IChatPlugin[]) => {
         "required": [
         ]
       }
-    }
-  })
+    };
+  });
 });
 
 export const buildPluginTools = memoize((plugins: IChatPlugin[]) => {
@@ -116,7 +116,7 @@ export const buildPluginTools = memoize((plugins: IChatPlugin[]) => {
           ]
         }
       }
-    }
-  })
+    };
+  });
 });
 

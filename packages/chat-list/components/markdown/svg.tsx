@@ -1,12 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import IconButton from '../icon-button';
-import { svgAsPng } from 'chat-list/utils'
+import { svgAsPng } from 'chat-list/utils';
 import useChatState from 'chat-list/hook/useChatState';
 import sheetApi from '@api/sheet';
 import docApi from '@api/doc';
-import slideApi from '@api/slide'
+import slideApi from '@api/slide';
 import { FileOutput } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +15,7 @@ export default function Svg(props: any) {
     const { docType } = useChatState();
     const container = useRef<HTMLElement>(null);
     const [imageData, setImageData] = useState({});
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(false);
     const { t } = useTranslation();
 
     const onInsert = async () => {
@@ -33,15 +33,15 @@ export default function Svg(props: any) {
                 dataUrl: data,
                 width,
                 height
-            })
+            });
             dataUrl = data;
         }
         if (docType === 'sheet') {
-            await sheetApi.insertImage(dataUrl, width, height, title, description)
+            await sheetApi.insertImage(dataUrl, width, height, title, description);
         } else if (docType === 'doc') {
-            await docApi.insertImage(dataUrl, width, height, title, description)
+            await docApi.insertImage(dataUrl, width, height, title, description);
         } else if (docType === 'slide') {
-            await slideApi.insertImage(dataUrl, width, height, title, description)
+            await slideApi.insertImage(dataUrl, width, height, title, description);
         }
     };
     const initImage = async () => {
@@ -55,20 +55,20 @@ export default function Svg(props: any) {
                 dataUrl,
                 width,
                 height
-            })
+            });
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
-    }
+    };
     const onMouseEnter = () => {
-        setShowMenu(true)
-    }
+        setShowMenu(true);
+    };
     const onMouseLeave = () => {
-        setShowMenu(false)
-    }
+        setShowMenu(false);
+    };
     useEffect(() => {
         initImage();
-    }, [])
+    }, []);
     return (
 
         <div className='flex flex-row items-start justify-center relative ' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -103,5 +103,5 @@ export default function Svg(props: any) {
             }
         </div>
 
-    )
+    );
 }

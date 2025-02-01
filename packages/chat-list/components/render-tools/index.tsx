@@ -1,5 +1,5 @@
-import useChatState from 'chat-list/hook/useChatState'
-import React, { useEffect, useState } from 'react'
+import useChatState from 'chat-list/hook/useChatState';
+import React, { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { ToolFunction } from 'chat-list/types/chat';
 import { Textarea } from '../ui/textarea';
@@ -9,13 +9,13 @@ import { buildChatMessage, snakeToWords } from 'chat-list/utils';
 import { IChatMessage } from 'chat-list/types/message';
 
 import ReactMarkdown from 'chat-list/components/markdown';
-import CardProgress from 'chat-list/components/card-progress'
+import CardProgress from 'chat-list/components/card-progress';
 import Bubble from 'chat-list/components/bubble';
 
-import FilesCard from 'chat-list/components/card-files'
+import FilesCard from 'chat-list/components/card-files';
 import MessageList from 'chat-list/components/message-list';
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
 
 export default function ToolsRender({ className = '' }: { className: string }) {
@@ -23,9 +23,9 @@ export default function ToolsRender({ className = '' }: { className: string }) {
     const [input, setInput] = useState('');
     const [tools, setTools] = useState<ToolFunction[]>([]);
     const { t } = useTranslation(['base']);
-    const [result, setResult] = useState('')
+    const [result, setResult] = useState('');
     const onCall = async (tool: ToolFunction) => {
-        resetList([])
+        resetList([]);
         // console.log('TODO')
         // const res = await plugin.callTool(buildChatMessage(input, 'text', 'user'), tool.function.name, (content: string) => {
         //     setResult(content);
@@ -36,13 +36,13 @@ export default function ToolsRender({ className = '' }: { className: string }) {
         plugin.onReceive(buildChatMessage(input, 'text', 'user'), {
             tools: [tool],
             stream: true
-        })
-    }
+        });
+    };
     const init = () => {
         const { tools } = plugin.buildAllTools();
         setTools(tools);
-        resetList([])
-    }
+        resetList([]);
+    };
 
     function renderMessageContent(msg: IChatMessage) {
 
@@ -65,13 +65,13 @@ export default function ToolsRender({ className = '' }: { className: string }) {
         if (type === 'file') {
             contentNode = (
                 <FilesCard files={files} />
-            )
+            );
         }
 
         if (type === 'parts') {
             contentNode = (
                 <FilesCard text={text} files={files} title='' />
-            )
+            );
         }
 
         if (msg?.from?.icon) {
@@ -79,7 +79,7 @@ export default function ToolsRender({ className = '' }: { className: string }) {
                 <div className=' w-full overflow-hidden'>
                     {contentNode}
                 </div>
-            )
+            );
         }
         return contentNode;
     }
@@ -87,9 +87,9 @@ export default function ToolsRender({ className = '' }: { className: string }) {
     useEffect(() => {
         init();
         return () => {
-            resetList([])
-        }
-    }, [])
+            resetList([]);
+        };
+    }, []);
     return (
         <div className={cn('flex flex-col w-full p-1 overflow-auto', className)}>
             <Textarea rows={3} className='h-20' value={input} placeholder={t('common.tool_placeholder')} onChange={(e) => setInput(e.target.value)}></Textarea>
@@ -106,7 +106,7 @@ export default function ToolsRender({ className = '' }: { className: string }) {
                                 }
                             </Button>
 
-                        )
+                        );
                     })
                 }
             </div>
@@ -116,5 +116,5 @@ export default function ToolsRender({ className = '' }: { className: string }) {
                 renderMessageContent={renderMessageContent}
             />
         </div>
-    )
+    );
 }

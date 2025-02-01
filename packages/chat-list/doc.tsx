@@ -4,7 +4,7 @@ import React from 'react';
 import Main from './main';
 import { createRoot } from 'react-dom/client';
 import { plugins } from 'chat-list/plugins/doc';
-import { init } from 'chat-list/service/log'
+import { init } from 'chat-list/service/log';
 
 export const render = () => {
   init();

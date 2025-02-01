@@ -1,7 +1,7 @@
-import { chatByPrompt, chatByTemplate } from 'chat-list/service/message'
-import cataLogPrompt from './prompts/create-catalog.md'
-import createPagePrompt from './prompts/create-page.md'
-import { blobToBase64, extractJsonDataFromMd, template } from 'chat-list/utils'
+import { chatByPrompt, chatByTemplate } from 'chat-list/service/message';
+import cataLogPrompt from './prompts/create-catalog.md';
+import createPagePrompt from './prompts/create-page.md';
+import { blobToBase64, extractJsonDataFromMd, template } from 'chat-list/utils';
 import api from "@api/index";
 import { ImageSearchResult, SearchResult } from 'chat-list/types/search';
 
@@ -34,9 +34,9 @@ export const generateCatalog = async (input: string, language: string): Promise<
         temperature: 0.8,
         max_tokens: 3000,
         // response_format: { "type": "json_object" },
-    })
-    return extractJsonDataFromMd(result.content)
-}
+    });
+    return extractJsonDataFromMd(result.content);
+};
 
 
 export interface ISlidePage {
@@ -60,9 +60,9 @@ export const generatePage = async (title: string, description: string, catalog: 
         temperature: 0.8,
         max_tokens: 3000,
         // response_format: { "type": "json_object" },
-    })
-    return extractJsonDataFromMd(result?.content)
-}
+    });
+    return extractJsonDataFromMd(result?.content);
+};
 
 
 export const searchContent = async (keyword: string) => {
@@ -71,11 +71,11 @@ export const searchContent = async (keyword: string) => {
     }) as SearchResult[];
     const targets = results.filter(p => p.content);
     if (targets.length == 0) {
-        return ''
+        return '';
     }
     const reply = targets.map((item) => {
-        return `## ${item.title}\n\n${item.content}`
+        return `## ${item.title}\n\n${item.content}`;
     }).join('\n\n');
 
     return reply;
-}
+};

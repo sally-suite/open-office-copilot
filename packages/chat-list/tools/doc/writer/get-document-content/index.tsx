@@ -3,7 +3,7 @@
 
 
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 import { searchStore } from 'chat-list/utils/vertor';
 import { IChatMessage } from 'chat-list/types/message';
 import { buildChatMessage } from 'chat-list/utils';
@@ -53,7 +53,7 @@ export const main: ITool['func'] = async ({
     //     result = text;
     // }
     return `# Reference:\n\n` + text;
-}
+};
 
 export default {
     "name": "get_document_content",

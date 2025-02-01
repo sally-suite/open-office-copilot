@@ -1,17 +1,17 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { AlertCircle, Check, CheckCircle2, ChevronRight, Loader2, PlusCircle, XCircle } from 'lucide-react';
-import Button from '../button'
+import Button from '../button';
 import { getHeaderList } from 'chat-list/service/';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 import { chatByPrompt, getModel } from 'chat-list/service/message';
-import recoQuestionsPrompt from './temps/recommend-questions.md'
+import recoQuestionsPrompt from './temps/recommend-questions.md';
 import { buildChatMessage, columnNum2letter, extractJsonDataFromMd, parseCellAddress, template } from 'chat-list/utils';
 import {
     HoverCard,
     HoverCardContent,
     HoverCardTrigger,
-} from "chat-list/components/ui/hover-card"
+} from "chat-list/components/ui/hover-card";
 
 import { cn } from 'chat-list/lib/utils';
 import useChatState from 'chat-list/hook/useChatState';
@@ -21,40 +21,40 @@ import { useTranslation } from 'react-i18next';
 export default function CheckContext({ className = '' }: { className?: string }) {
     const [status, setStatus] = useState<'uncheck' | 'running' | 'success' | 'failed'>('success');
     const [message, setMessage] = useState('');
-    const [selectedText, setSelectedText] = useState('')
+    const [selectedText, setSelectedText] = useState('');
     const { sendMsg, setDataContext } = useChatState();
     const { user } = useUserState();
     const { t } = useTranslation(['base']);
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
 
     const checkContext = async () => {
         try {
-            setStatus('running')
+            setStatus('running');
             setOpen(false);
-            const selected = await docApi.getSelectedText()
-            const content = selected ? `User selected text:\n${selected}` : ''
+            const selected = await docApi.getSelectedText();
+            const content = selected ? `User selected text:\n${selected}` : '';
             setSelectedText(selected);
-            setDataContext(content)
-            setStatus('success')
+            setDataContext(content);
+            setStatus('success');
             setOpen(true);
         } catch (e) {
             setStatus('failed');
             setMessage('Please retry');
         }
-    }
+    };
     const onToggle = () => {
         setOpen(!open);
-    }
+    };
     const onShowPop = () => {
         if (status == 'success') {
-            setOpen(true)
+            setOpen(true);
         } else if (status === 'failed') {
-            setOpen(true)
+            setOpen(true);
         }
-    }
+    };
     useEffect(() => {
         // checkContext();
-    }, [])
+    }, []);
     return null;
     // return (
     //     <div className={cn('flex flex-col items-start p-0 relative', className)}>

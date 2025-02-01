@@ -1,6 +1,6 @@
 
 import { Presentation } from 'chat-list/types/api/slide';
-import pptxgen from 'pptxgenjs'
+import pptxgen from 'pptxgenjs';
 
 export function generatePPT(pptStructure: Presentation) {
     const pres = new pptxgen();
@@ -51,8 +51,8 @@ export function generatePPT(pptStructure: Presentation) {
                                     paraSpaceBefore: block.style.spaceBefore || 0,
                                     lineSpacing: block.style.lineSpacing,
                                 }
-                            }
-                        })
+                            };
+                        });
                         slide.addText(textBlocks, {
                             shape: element.shapeName || 'rect',
                             placeholder: element.placeholder || 'Title',
@@ -123,7 +123,7 @@ export function generatePPT(pptStructure: Presentation) {
                             transparency: element.style?.fill?.transparency || 0,
                         },
                         rectRadius: element.style.rectRadius || 0,
-                    })
+                    });
                     break;
 
                 case 'chart':

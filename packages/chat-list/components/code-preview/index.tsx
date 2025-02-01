@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import CodeEditor from 'chat-list/components/code-editor/python';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import { getSheetInfo, getValues } from 'chat-list/service/sheet';
 import { editFunction, createFunction } from './util';
 import { createXlsxFile, extractPackageNames, pipInstall, prepareFolder, runScript, writeFile } from 'chat-list/tools/sheet/python/util';
 
 import { initEnv } from 'chat-list/tools/sheet/python/util';
-import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { cn } from 'chat-list/lib/utils';
 import Loading from 'chat-list/components/loading';
 
@@ -29,7 +29,7 @@ export default function PythonEditor({ code }: { code?: string }) {
         if (script.startsWith('!') || script.startsWith('pip')) {
             // input is "!pip install numpy",write code to extract package name
             const packages = extractPackageNames(script);
-            console.log('packages', packages)
+            console.log('packages', packages);
             if (packages && packages.length > 0) {
                 try {
                     await pipInstall(packages);
@@ -65,15 +65,15 @@ export default function PythonEditor({ code }: { code?: string }) {
         const newHistory = history.slice(0, history.length - 1);
         setHistory(newHistory);
         // console.log('undo')
-    }
+    };
     const pushHistory = async () => {
         const values = await getValues();
         setHistory(history.concat([values]));
-    }
+    };
     const onBack = () => {
         // navigate to back
         navigate(-1);
-    }
+    };
     const initData = async () => {
         await prepareFolder(['/input', '/output'], false);
 
@@ -83,18 +83,18 @@ export default function PythonEditor({ code }: { code?: string }) {
         }
 
         await writeFile('/input/data.xlsx', wboutArrayBuffer);
-    }
+    };
     const init = async () => {
         setLoading(true);
         setMessage(t('init_python'));
-        await initEnv()
+        await initEnv();
         setMessage(t('prepare_data'));
         await initData();
         setLoading(false);
-    }
+    };
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     if (loading) {
         return (

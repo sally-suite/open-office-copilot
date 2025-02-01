@@ -1,7 +1,7 @@
 import React from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
 interface IToolListProps {
     introduction: string;
@@ -18,7 +18,7 @@ export default function ToolList(props: IToolListProps) {
         const tip = t(`tool:${id}.tip`, '');
         setPlaceholder(tip);
         setAgentTools([{ id, name: id, enable: true }]);
-    }
+    };
 
     return (
         <div className='flex flex-col text-sm'>
@@ -39,11 +39,11 @@ export default function ToolList(props: IToolListProps) {
                             >
                                 {t(`tool:${id}`)}
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
         </div>
 
-    )
+    );
 }

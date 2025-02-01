@@ -21,8 +21,8 @@ export const func = async ({ active_sheet, script, explain, context }: { active_
     appendMsg(resMsg);
 
     const wboutArrayBuffer = await createXlsxFile(active_sheet);
-    await prepareFolder(['/input'], false)
-    await prepareFolder(['/output'], true)
+    await prepareFolder(['/input'], false);
+    await prepareFolder(['/output'], true);
     await writeFile('/input/data.xlsx', wboutArrayBuffer);
     const result = await runFunction(code, 'main');
     const fileData = await readFilesToData('/output');
@@ -37,7 +37,7 @@ export const func = async ({ active_sheet, script, explain, context }: { active_
         context?.appendMsg(resMsg);
     }
     return 'Task completed, let user check result and update data to sheet.';
-}
+};
 
 export default {
     type: 'function',

@@ -92,13 +92,13 @@ export const buildChartOption = (stockData: StockData[] = [], options = { zoom: 
         const item = stockData[i];
         categoryData.push(dayjs(item.t).format('YYYY-MM-DD'));
         values.push([item.o, item.c, item.l, item.h]);
-        volumes.push([i, item.v, item.o > item.c ? 1 : -1])
+        volumes.push([i, item.v, item.o > item.c ? 1 : -1]);
     }
     const data = {
         categoryData,
         values,
         volumes
-    }
+    };
     const prices = values.map(item => item[1]);
     const { macd, signal, histogram } = calculateMACD(prices, 12, 26, 9);
     const rsi = calculateRSI(prices, 14);
@@ -110,7 +110,7 @@ export const buildChartOption = (stockData: StockData[] = [], options = { zoom: 
         xAxisIndex: 1,
         yAxisIndex: 1,
         data: data.volumes
-    }]
+    }];
     // if (indicator == 'macd') {
     techCharts = techCharts.concat([
         { name: 'MACD', type: 'line', data: macd, yAxisIndex: 2, xAxisIndex: 2, showSymbol: false, },
@@ -134,13 +134,13 @@ export const buildChartOption = (stockData: StockData[] = [], options = { zoom: 
         { name: 'K', type: 'line', data: kdj.K, yAxisIndex: 3, xAxisIndex: 3, showSymbol: false, },
         { name: 'D', type: 'line', data: kdj.D, yAxisIndex: 3, xAxisIndex: 3, showSymbol: false, },
         { name: 'J', type: 'line', data: kdj.J, yAxisIndex: 3, xAxisIndex: 3, showSymbol: false, }
-    ])
+    ]);
     // } else if (indicator === 'rsi') {
     techCharts = techCharts.concat([
         { name: 'RSI', type: 'line', data: rsi, yAxisIndex: 4, xAxisIndex: 4, showSymbol: false, },
         { name: 'Overbought', type: 'line', data: Array(prices.length).fill(70), yAxisIndex: 4, xAxisIndex: 4, showSymbol: false, lineStyle: { type: 'dashed', color: 'red', width: 1 } },
         { name: 'Oversold', type: 'line', data: Array(prices.length).fill(30), yAxisIndex: 4, xAxisIndex: 4, showSymbol: false, lineStyle: { type: 'dashed', color: 'green', width: 1 } }
-    ])
+    ]);
     // }
     const option = {
         animation: false,
@@ -406,6 +406,6 @@ export const buildChartOption = (stockData: StockData[] = [], options = { zoom: 
             },
             ...techCharts
         ]
-    }
-    return option
-}
+    };
+    return option;
+};

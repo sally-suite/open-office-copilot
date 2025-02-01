@@ -4,12 +4,12 @@ import sheetApi from '@api/sheet';
 import docApi from '@api/doc';
 
 import colors, { themes } from 'chat-list/data/templates/colors';
-import Modal from 'chat-list/components/modal'
+import Modal from 'chat-list/components/modal';
 import useChatState from 'chat-list/hook/useChatState';
 import { ListEnd, Palette, Sheet } from 'lucide-react';
 import IconButton from '../icon-button';
 import { cn } from 'chat-list/lib/utils';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
 interface IPreviewProps {
   data: string[][];

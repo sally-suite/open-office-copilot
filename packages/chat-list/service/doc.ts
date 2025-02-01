@@ -1,7 +1,7 @@
 import { IMessageBody, IModelOption, Role } from "types/chat";
-import docApi from '@api/doc'
-import sheetApi from '@api/sheet'
-import { chat } from './message'
+import docApi from '@api/doc';
+import sheetApi from '@api/sheet';
+import { chat } from './message';
 import { template } from "../utils";
 
 export const chatWithPrompt = async (messages: IMessageBody[], options: IModelOption): Promise<string> => {
@@ -15,14 +15,14 @@ export const chatWithPrompt = async (messages: IMessageBody[], options: IModelOp
             role: 'system' as Role,
             content,
         },
-    ])
+    ]);
     const result = await chat({
         messages: msgs,
         temperature,
     });
 
     return result.content;
-}
+};
 
 const transDocPrompt = `
 I need you to translate input text to {{targetLanguage}} in a {{style}} style,output new text.
@@ -52,6 +52,6 @@ export const translateDocByGoogle = async (sourceLanguage: string, targetLanguag
     const text = await docApi.getSelectedText();
     const result = sheetApi.translateText(text, sourceLanguage, targetLanguage);
     return result;
-}
+};
 
 

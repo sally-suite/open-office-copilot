@@ -1,10 +1,10 @@
 import { ChatState, ITool } from "chat-list/types/plugin";
 import instruction from './promps/instruction.md';
-import scriptDescription from './promps/script-description.md'
+import scriptDescription from './promps/script-description.md';
 // import { publish } from 'chat-list/msb/public'
 import sheetApi from '@api/sheet';
 import { buildChatMessage } from "chat-list/utils";
-import { Code } from 'lucide-react'
+import { Code } from 'lucide-react';
 /**
  * Code generation and run it in Google Apps Script
  */
@@ -15,14 +15,14 @@ export const func = async ({ script, explain, context }: { script: string, expla
         context.appendMsg(resMsg);
         const result = await sheetApi.runScript(script);
         if (result) {
-            return `Task done, the script execution result is ${JSON.stringify(result)}.`
+            return `Task done, the script execution result is ${JSON.stringify(result)}.`;
         }
         return 'Task done, script run completed.';
 
     } else {
         return `Sorry! I can't generate the script code`;
     }
-}
+};
 
 export default {
     type: 'function',

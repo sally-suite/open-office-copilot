@@ -1,17 +1,17 @@
 import React from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 
 import useLocalStore from 'chat-list/hook/useLocalStore';
 
 
 export default function ToolList() {
 
-    const { value: list, setValue: setList } = useLocalStore<string[]>('my-stock-list', ['AAPL'])
+    const { value: list, setValue: setList } = useLocalStore<string[]>('my-stock-list', ['AAPL']);
     const { setText } = useChatState();
 
     const onSelect = (id: string) => {
         setText('Help me analyze the technical indicators of stock ' + id);
-    }
+    };
 
     if (list.length == 0) {
         return null;
@@ -33,11 +33,11 @@ export default function ToolList() {
                             >
                                 {id}
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
         </div>
 
-    )
+    );
 }

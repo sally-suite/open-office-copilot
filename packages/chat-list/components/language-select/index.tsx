@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Modal from 'chat-list/components/modal'
+import Modal from 'chat-list/components/modal';
 import { ILangItem } from 'chat-list/types/translate';
-import { useTranslation } from 'react-i18next'
-import { languages } from 'chat-list/locales/i18n'
+import { useTranslation } from 'react-i18next';
+import { languages } from 'chat-list/locales/i18n';
 import useChatState from 'chat-list/hook/useChatState';
 import useLocalStore from 'chat-list/hook/useLocalStore';
-import sheetApi from '@api/sheet'
-import docApi from '@api/doc'
-import slideApi from '@api/slide'
+import sheetApi from '@api/sheet';
+import docApi from '@api/doc';
+import slideApi from '@api/slide';
 
 interface LanguageListProps {
   value?: string;
@@ -39,13 +39,13 @@ export default function LanguageList(props: LanguageListProps) {
     if (platform === 'google') {
       if (docType === 'sheet') {
         // console.log('showSidePanel', docType)
-        await sheetApi.showSidePanel('sheet-chat', 'sheet')
+        await sheetApi.showSidePanel('sheet-chat', 'sheet');
       } else if (docType === 'doc') {
         // console.log('showSidePanel', docType)
-        await docApi.showSidePanel('doc-chat', 'doc')
+        await docApi.showSidePanel('doc-chat', 'doc');
       } else if (docType === 'slide') {
         // console.log('showSidePanel', docType)
-        await slideApi.showSidePanel('slide-chat', 'slide')
+        await slideApi.showSidePanel('slide-chat', 'slide');
       }
     } else {
       window.location.reload();
@@ -84,7 +84,7 @@ export default function LanguageList(props: LanguageListProps) {
                 {/* <span className='text-sm'>{t(`language:${key || "-"}`)}</span>
                 <span className='text-xs text-gray-600'>{(languages as any)[key].base.name || ''}</span> */}
               </div>
-            )
+            );
           })
         }
       </div>

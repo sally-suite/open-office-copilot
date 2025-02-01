@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Modal from 'chat-list/components/modal'
+import Modal from 'chat-list/components/modal';
 import { LANGUAGE_MAP } from 'chat-list/data/translate/languages';
 import { ILangItem } from 'chat-list/types/translate';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { cn } from 'chat-list/lib/utils';
 interface LanguageListProps {
   languages?: ILangItem[];

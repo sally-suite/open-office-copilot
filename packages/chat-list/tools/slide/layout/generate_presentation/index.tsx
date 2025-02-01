@@ -1,10 +1,10 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import CardSlideLayout from 'chat-list/components/card-slide-layout';
 import { buildChatMessage, getImgSize } from 'chat-list/utils';
-import api from '@api/slide'
-import imageStore from 'chat-list/utils/image'
+import api from '@api/slide';
+import imageStore from 'chat-list/utils/image';
 import React from 'react';
 // import creaetLayoutPrompt from './prompts/create-layout.md'
 // import { chatByPrompt } from 'chat-list/service/message';
@@ -39,23 +39,23 @@ export const func = async ({ title, text, list, image_url, notes, context }: { t
                 src: imgUrl,
                 width: 250,
                 height: h
-            }
+            };
         } catch (e) {
             imgdata = {
                 src: imgUrl,
                 width: 250,
                 height: 250
-            }
+            };
         }
 
     }
-    await api.createPage(title, text, list, imgdata as any, notes)
+    await api.createPage(title, text, list, imgdata as any, notes);
     const ls = list.map((item) => {
-        return `- ${item}`
+        return `- ${item}`;
     }).join('\n');
-    const img = `![${title}](${image_url})`
-    return `title:${title}\n\ntext:${text}\n\nlist:\n${ls}\n\nimage:${img}\n\nnotes:\n${notes}`
-}
+    const img = `![${title}](${image_url})`;
+    return `title:${title}\n\ntext:${text}\n\nlist:\n${ls}\n\nimage:${img}\n\nnotes:\n${notes}`;
+};
 
 export default {
     type: 'function',

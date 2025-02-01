@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonProps } from 'chat-list/components/ui/button'
+import { Button, ButtonProps } from 'chat-list/components/ui/button';
 import { Loader2, LucideIcon } from 'lucide-react';
 import { cn } from 'chat-list/lib/utils';
 
@@ -29,8 +29,8 @@ export default function index(props: ILogButton) {
     }
   };
   useEffect(() => {
-    setWaiting(loading)
-  }, [loading])
+    setWaiting(loading);
+  }, [loading]);
   const Icon = icon;
   return (
     <Button

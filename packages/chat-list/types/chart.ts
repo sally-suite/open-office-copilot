@@ -29,8 +29,8 @@ export const ChartTypeKeys: Record<string, string> = ChartTypes.reduce((pre, k) 
     return {
         ...pre,
         [k]: `Charts.ChartType.${k.toUpperCase()}`
-    }
-}, {})
+    };
+}, {});
 
 export enum ChartEngine {
     ECHARTS = 'echarts',
@@ -44,4 +44,4 @@ export const ChartNames = {
     'echarts': "ECharts",
     'google': "Google Chart",
     'office': "Office Chart",
-}
+};

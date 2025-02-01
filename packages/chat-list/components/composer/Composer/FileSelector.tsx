@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 import { LucideIcon, Paperclip } from 'lucide-react';
-import Modal from 'chat-list/components/modal'
+import Modal from 'chat-list/components/modal';
 interface IFileSelectorProps {
     icon?: LucideIcon;
     config?: {
@@ -23,21 +23,21 @@ function buildFileAccept(accept: any) {
         config = Object.assign(config, {
             'image/png': ['.png'],
             'image/jpeg': ['.jpg', '.jpeg'],
-        })
+        });
     }
     if (accept?.text) {
         config = Object.assign(config, {
             'text/pdf': ['.pdf'],
             'text/plain': ['.txt', '.csv', '.md'],
             'application/msword': ['.doc', '.docx'],
-        })
+        });
     }
     if (accept?.xlsx) {
         config = Object.assign(config, {
             'text/plain': ['.csv'],
             'pplication/vnd.ms-excel': ['.xls'],
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
-        })
+        });
     }
     return config;
 }
@@ -49,8 +49,8 @@ function bytesToMegabytes(bytes: number) {
 
 const FileSelector = (props: IFileSelectorProps) => {
     const { config, icon = Paperclip, onSelect } = props;
-    const [open, setOpen] = useState(false)
-    const [rejectedFiles, setRejectedFiles] = useState([] as FileRejection[])
+    const [open, setOpen] = useState(false);
+    const [rejectedFiles, setRejectedFiles] = useState([] as FileRejection[]);
     // const onDrop = (acceptedFiles: File[]) => {
     //     // 处理文件上传逻辑，可以使用 fetch 或其他方式发送文件到服务器
     //     // console.log('上传的文件:', acceptedFiles);
@@ -60,14 +60,14 @@ const FileSelector = (props: IFileSelectorProps) => {
     const { getRootProps, getInputProps } = useDropzone({
         accept: buildFileAccept(config.accept),
         onDrop: (acceptedFiles: File[]) => {
-            onSelect?.(acceptedFiles)
+            onSelect?.(acceptedFiles);
         },
         onDropRejected: (rejectedFiles: FileRejection[]) => {
             // console.log('Rejected files: ', rejectedFiles, event);
             // rejectedFiles.map(p => p.errors[0].message)
             // toast.show('')
             setRejectedFiles(rejectedFiles);
-            setOpen(true)
+            setOpen(true);
         },
         maxSize: maxSize,
         maxFiles: config.maxFiles || 9,
@@ -115,7 +115,7 @@ const FileSelector = (props: IFileSelectorProps) => {
                                         {fi.errors[0].code == 'file-too-large' ? `File size is over ${bytesToMegabytes(maxSize)} MB` : ''}
                                     </div>
                                 </div>
-                            )
+                            );
                         })
                     }
                 </div>

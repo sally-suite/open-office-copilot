@@ -6,7 +6,7 @@ import {
     // RadioGroup,
 } from "chat-list/components/ui/card";
 import { SearchResult } from 'chat-list/types/search';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
 interface ICardFormulaInfoProps {
     results: SearchResult[]
@@ -30,7 +30,7 @@ export default function CardSearch(props: ICardFormulaInfoProps) {
                                     {result.snippet}
                                 </div>
                             </a>
-                        )
+                        );
                     })
                 }
             </CardContent>

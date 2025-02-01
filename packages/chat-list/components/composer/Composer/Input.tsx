@@ -89,17 +89,17 @@ const TextInput = React.forwardRef<InputRef, InputProps>(function Input(props, r
                 inputRef.current.style.height = inputRef.current.scrollHeight + 'px';
             }
         } else {
-            inputRef.current.style.height = 'auto'
+            inputRef.current.style.height = 'auto';
             inputRef.current.rows = rows;
         }
 
 
-    }, [inputValue])
+    }, [inputValue]);
     useEffect(() => {
         if (!rest.disabled) {
             inputRef.current.focus();
         }
-    }, [rest.disabled])
+    }, [rest.disabled]);
     return (
         <div className="flex flex-col">
             {multiline ? (

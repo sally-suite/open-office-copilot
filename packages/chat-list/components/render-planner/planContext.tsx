@@ -18,37 +18,37 @@ const PlanContext = createContext<IPlanContextState>(null);
 const PlanProvider = ({ children }: any) => {
   const [loading, setLoading] = useState(true);
   const [plans, setPlans] = useState<IPlan[]>([]);
-  const [plan, setPlan] = useState(null)
+  const [plan, setPlan] = useState(null);
   const loadPlans = async () => {
     // setLoading(true);
     const list = await userApi.getPlanList();
     setPlans(list);
     // setLoading(true);
-  }
+  };
   const getPlan = async (id: string) => {
     // setLoading(true);
     const plan = await userApi.getPlan(id);
     return plan;
     // setLoading(true);
-  }
+  };
   const addPlan = async (plan: IPlan) => {
     await userApi.addPlan({
       name: plan.name,
       tasks: plan.tasks
     });
     await loadPlans();
-  }
+  };
   const removePlan = async (id: string) => {
     await userApi.removePlan(id);
     await loadPlans();
-  }
+  };
   useEffect(() => {
     loadPlans();
-  }, [])
+  }, []);
 
   useEffect(() => {
-    console.log('first')
-  }, [])
+    console.log('first');
+  }, []);
 
   return (
     <PlanContext.Provider value={{

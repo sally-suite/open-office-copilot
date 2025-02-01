@@ -1,11 +1,11 @@
 import useUserState from 'chat-list/hook/useUserState';
-import React from 'react'
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     HoverCard,
     HoverCardContent,
     HoverCardTrigger,
-} from "chat-list/components/ui/hover-card"
+} from "chat-list/components/ui/hover-card";
 import { cn } from 'chat-list/lib/utils';
 import { formatNumber, formatNumberWithCommas } from 'chat-list/utils';
 // import { PointConfig } from 'chat-list/config/price';
@@ -21,7 +21,7 @@ const versions: any = {
     "chrome": "Chrome",
     "outook": "Outook",
     "flex": "Flex"
-}
+};
 
 export default function PriceCard() {
     const { t } = useTranslation('base');
@@ -41,7 +41,7 @@ export default function PriceCard() {
             <a href='https://www.sally.bot/profile' target='_blank' rel="noreferrer" className='text-xs rounded-full border py-[2px] px-2 cursor-pointer'>
                 {user.version.toUpperCase()}
             </a>
-        )
+        );
     }
 
     return (
@@ -81,5 +81,5 @@ export default function PriceCard() {
                 }
             </HoverCardContent>
         </HoverCard>
-    )
+    );
 }

@@ -1,12 +1,12 @@
 import { ChatPluginBase, IChatPlugin } from "chat-list/types/plugin";
 import { IChatMessage } from "chat-list/types/message";
 import { IMessageBody } from "chat-list/types/chat";
-import instruction from './promps/instruction.md'
+import instruction from './promps/instruction.md';
 import CardFormulaInfo from "chat-list/components/card-sheet-info";
 import React from "react";
 import i18n from 'chat-list/locales/i18n';
 import sallyPng from 'chat-list/assets/img/sally-32.png';
-import CardIntroduce from 'chat-list/components/card-introduce'
+import CardIntroduce from 'chat-list/components/card-introduce';
 import { dataRangeAnalyzeMixin } from '../_mixins/sheet';
 import ContextSheet from "chat-list/components/context-sheet";
 import { ISheetInfo } from "chat-list/types/api/sheet";
@@ -19,15 +19,15 @@ export class Main extends ChatPluginBase implements IChatPlugin {
   model = {
     prompt: ``,
     temperature: 0.7
-  }
+  };
   action = "sally";
   placeholder = i18n.t('sheet.agent.sally.placeholder', "Chat with me Or @ agent to help you.");
   shortDescription = "";
   description = "Your AI Assistant, help you edit sheet, powered by GPT or Gemini.";
   instruction = instruction;
   introduce = () => {
-    return <CardIntroduce />
-  }
+    return <CardIntroduce />;
+  };
   fileConfig = {
     accept: {
       text: true,
@@ -102,9 +102,9 @@ export class Main extends ChatPluginBase implements IChatPlugin {
       this.context.appendMsg(this.buildChatMessage(
         <CardFormulaInfo onSubmit={(content) => {
           resolve(content);
-        }} />, 'card'))
-    })
-  }
+        }} />, 'card'));
+    });
+  };
   tools = ['generate_table', 'complete_table', 'generate_function', 'generate_pivot_table', 'code_interpreter'];
   agents = ['intelligent', 'translate', 'vision', 'coder', 'python'];
   // injectContext = async () => {
@@ -117,8 +117,8 @@ export class Main extends ChatPluginBase implements IChatPlugin {
     const sheetInfo: ISheetInfo = JSON.parse(context);
     return (
       <ContextSheet address={sheetInfo.activeRange} />
-    )
-  }
+    );
+  };
   onReceive = async (message: IChatMessage) => {
     const { setTyping } = this.context;
     setTyping(true);
@@ -131,7 +131,7 @@ export class Main extends ChatPluginBase implements IChatPlugin {
       await (this as any).showSheetInfo(message);
       return;
     }
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
 }
 export default new Main(dataRangeAnalyzeMixin);

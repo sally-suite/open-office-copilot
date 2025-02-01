@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Modal from 'chat-list/components/modal'
+import React, { useEffect, useState } from 'react';
+import Modal from 'chat-list/components/modal';
 import { ChevronsUpDown, Loader2, Trash } from 'lucide-react';
 import { Input } from 'chat-list/components/ui/input';
 import { USER_SET_MODEL_API_KEY } from 'chat-list/config/openai';
@@ -65,10 +65,10 @@ export default function ModelSetting(props: IModelSettingProps) {
         model: value.model,
         baseUrl: value.baseUrl,
         apiKey: ''
-    })
+    });
     const [provider, setProvider] = useState(null);
-    const [models, setModels] = useState<Model[]>([])
-    const [openSelectModel, setOpenSelectModel] = useState(false)
+    const [models, setModels] = useState<Model[]>([]);
+    const [openSelectModel, setOpenSelectModel] = useState(false);
 
     const [loading, setLoading] = useState(false);
     const modelKey = `${USER_SET_MODEL_API_KEY}_${setting.model}`;
@@ -90,14 +90,14 @@ export default function ModelSetting(props: IModelSettingProps) {
             ...setting,
             baseUrl: result.baseUrl
         });
-    }
+    };
     const handleRemove = async () => {
         onClear();
         if (onRemove) {
             await onRemove(setting.model, setting.provider);
         }
 
-    }
+    };
 
     const onClear = async () => {
         setLocalStore(modelKey, '');
@@ -106,7 +106,7 @@ export default function ModelSetting(props: IModelSettingProps) {
         await clear();
         setSetting({ ...setting, apiKey: '', baseUrl: '', model: '' });
         // setOpen(false);
-    }
+    };
 
     // const loadKey = async () => {
     //     setLoading(true);
@@ -117,7 +117,7 @@ export default function ModelSetting(props: IModelSettingProps) {
 
     const onValueChange = (name: string, e: any) => {
         setSetting({ ...setting, [name]: e.target.value });
-    }
+    };
 
     const onProviderChange = async (value: any) => {
 
@@ -139,11 +139,11 @@ export default function ModelSetting(props: IModelSettingProps) {
         //     return;
         // }
         // loadModel(value);
-    }
+    };
 
     const onModelChange = (value: any) => {
         setSetting({ ...setting, 'model': value });
-    }
+    };
 
     const handleClickOutside = (event: React.MouseEvent) => {
         const commandPanel = document.getElementById('model_panel');
@@ -157,7 +157,7 @@ export default function ModelSetting(props: IModelSettingProps) {
         //     provider
         // })
         const list = await getModels(setting.baseUrl, setting.apiKey);
-        console.log(list)
+        console.log(list);
         const options = list.data.map((item: any) => {
             return {
                 value: item.id,
@@ -165,17 +165,17 @@ export default function ModelSetting(props: IModelSettingProps) {
                 context_length: item?.context_length,
                 pricing: item?.pricing
 
-            }
-        })
-        setModels(options)
+            };
+        });
+        setModels(options);
         setLoading(false);
-    }
+    };
 
     const onLoadModels = async () => {
         await loadModel(provider.id);
         setOpenSelectModel(true);
 
-    }
+    };
 
     useEffect(() => {
         if (!open) {
@@ -191,7 +191,7 @@ export default function ModelSetting(props: IModelSettingProps) {
                 apiKey,
                 custom,
                 provider: result.id
-            })
+            });
 
             setProvider(result);
 
@@ -205,12 +205,12 @@ export default function ModelSetting(props: IModelSettingProps) {
                 apiKey,
                 custom,
                 provider: 'custom'
-            })
+            });
 
             setProvider('custom');
         }
 
-    }, [open, value])
+    }, [open, value]);
 
     return (
         <Modal
@@ -238,7 +238,7 @@ export default function ModelSetting(props: IModelSettingProps) {
                                         <SelectItem key={item.id} value={item.id} className='hover:bg-gray-100 cursor-pointer'>
                                             {item.name}
                                         </SelectItem>
-                                    )
+                                    );
                                 })
                             }
                         </SelectContent>
@@ -397,5 +397,5 @@ export default function ModelSetting(props: IModelSettingProps) {
                 </div>
             </div>
         </Modal>
-    )
+    );
 }

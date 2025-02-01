@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../header';
-import TaskList from './TaskList'
+import TaskList from './TaskList';
 interface PlanDetailParams {
     id: string;
 }

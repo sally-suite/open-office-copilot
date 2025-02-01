@@ -1,7 +1,7 @@
-import { extractMentions, uuid } from '../utils/common'
+import { extractMentions, uuid } from '../utils/common';
 
 
-import { ChatMessageType, IChatMessage, Sender } from '../types/message'
+import { ChatMessageType, IChatMessage, Sender } from '../types/message';
 import { Role } from '../types/chat';
 export class MentionedMessage implements IChatMessage {
     content: string;
@@ -53,7 +53,7 @@ class MentionedMessageBus {
     private subscriptions: Record<string, SubscribeItem[]> = {};
 
     constructor() {
-        this.queue = {}
+        this.queue = {};
         this.subscriptions = {};
     }
 
@@ -106,7 +106,7 @@ class MentionedMessageBus {
             mentions = extractMentions(content).filter(x => this.senders.has(x)).map(x => x.toLowerCase());
             if (mentions.length > 1) {
                 // if mentions > 1, send to leader to make task plan
-                mentions = ['flow']
+                mentions = ['flow'];
             }
             message = new MentionedMessage(uuid(), content, type, sender, role, mentions);
         } else {
@@ -228,7 +228,7 @@ class MentionedMessageBus {
     async unsubscribe(topic: string, callback?: MessageCallback): Promise<void> {
         if (this.subscriptions[topic]) {
             if (callback) {
-                this.subscriptions[topic] = this.subscriptions[topic].filter(p => p.callback !== callback)
+                this.subscriptions[topic] = this.subscriptions[topic].filter(p => p.callback !== callback);
             } else {
                 this.subscriptions[topic] = [];
             }

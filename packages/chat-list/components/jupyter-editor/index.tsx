@@ -111,7 +111,7 @@ function App({
       }
       setEditorCode(resultCode);
       if (onUndo) {
-        await onUndo(action)
+        await onUndo(action);
       } else {
         await executeCode(resultCode);
       }
@@ -257,11 +257,11 @@ function App({
 
   const onRecorderOutput = (text: string) => {
     setInput(input + text);
-  }
+  };
 
   const onClearInput = () => {
-    setInput('')
-  }
+    setInput('');
+  };
 
   useEffect(() => {
     // console.log(editorCode);
@@ -355,7 +355,7 @@ function App({
                       />
                     </div>
 
-                  )
+                  );
                 } else if (block.type === 'markdown') {
 
                   return (
@@ -367,7 +367,7 @@ function App({
                         {block.content}
                       </Markdown>
                     </div>
-                  )
+                  );
                 }
               })
             }

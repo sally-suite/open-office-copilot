@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 
-import { useTranslation } from 'react-i18next'
-import promptSetting from 'chat-list/plugins/sally-slide/prompt'
+import { useTranslation } from 'react-i18next';
+import promptSetting from 'chat-list/plugins/sally-slide/prompt';
 import CardTranslate from 'chat-list/components/card-translate-doc';
 import { buildChatMessage } from 'chat-list/utils';
-import api from '@api/slide'
+import api from '@api/slide';
 import commonApi from "@api/index";
-import gpt from '@api/gpt'
+import gpt from '@api/gpt';
 import Avatar from '../avatars';
 
 import { chatByPrompt } from 'chat-list/service/message';
@@ -19,36 +19,36 @@ import { useNavigate } from 'react-router-dom';
 const AGENTS: { [x: string]: string[] } = {
     google: ['vision', 'uml', 'formula', 'python'],
     office: ['vision', 'uml', 'formula', 'python']
-}
+};
 
 export default function ToolList() {
     const { t } = useTranslation(['base', 'tool']);
     const { plugin, platform, plugins, setMode, setAgentTools, chat, appendMsg, setTyping, setPlaceholder, showMessage } = useChatState();
-    const [agents, setAgents] = useState([])
+    const [agents, setAgents] = useState([]);
     const navigate = useNavigate();
 
     const onSelect = (id: string) => {
         const tip = t(`tool:${id}.tip`, '');
         setPlaceholder(tip);
         setAgentTools([{ id, name: id, enable: true }]);
-    }
+    };
 
     const onSelectAgent = (plg: IChatPlugin) => {
         // const plg = plugins.find(p => p.action == agent);
         // setPlugin(plg)
         setMode(plg.action, plg.mode || 'chat');
-        navigate(`/${plg.action}`)
-    }
+        navigate(`/${plg.action}`);
+    };
 
     const init = () => {
         const map = AGENTS[platform] || [];
         const agents = plugins?.filter(p => map.includes(p.action));
         setAgents(agents);
-    }
+    };
 
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     return (
         <div className='flex flex-col text-sm mb-96'>
@@ -66,7 +66,7 @@ export default function ToolList() {
                             >
                                 {t(`tool:${id}`)}
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
@@ -96,11 +96,11 @@ export default function ToolList() {
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
         </div>
 
-    )
+    );
 }

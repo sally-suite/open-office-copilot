@@ -4,14 +4,14 @@ import { IChatMessage } from "chat-list/types/message";
 import React from "react";
 import { buildCreateTaskPrompt, parseTaskList } from "./util";
 import { ITask } from "chat-list/types/task";
-import CardTaskList from 'chat-list/components/card-tasks/plan-tasks'
-import CardProgress from 'chat-list/components/card-tasks/progress'
-import { shortTermMemory } from 'chat-list/utils/chat'
+import CardTaskList from 'chat-list/components/card-tasks/plan-tasks';
+import CardProgress from 'chat-list/components/card-tasks/progress';
+import { shortTermMemory } from 'chat-list/utils/chat';
 import { Waypoints } from "lucide-react";
-import introduce from './promps/introduce.md'
-import CardConfirm from 'chat-list/components/card-confirm'
+import introduce from './promps/introduce.md';
+import CardConfirm from 'chat-list/components/card-confirm';
 import instruction from './promps/instruction.md';
-import FlowRender from 'chat-list/components/render-planner'
+import FlowRender from 'chat-list/components/render-planner';
 import AgentSelector from 'chat-list/components/agent-selector';
 /**
  * Main service, task split ,plan
@@ -34,7 +34,7 @@ export class Main extends ChatPluginBase implements IChatPlugin {
       element: <AgentSelector onChange={(agents: IChatPlugin[]) => {
         this.colAgents = agents;
       }} />,
-    }]
+    }];
     // return [] as QuickReplyItem[];
   };
   onSend = (input: IChatMessage) => {
@@ -93,22 +93,22 @@ export class Main extends ChatPluginBase implements IChatPlugin {
       this.step = 0;
       this.context.setTyping(false);
     }
-  }
+  };
   updateTaskStatus = async (id: number, status: ITask['status']) => {
     const task = this.taskList.find(t => t.id === id);
     if (task) {
       task.status = status;
       // this.sendMsg(this.buildChatMessage(<CardProgress tasks={this.taskList} />, 'card'));
     }
-  }
+  };
   confirmTasks = async (tasks: ITask[], input: string) => {
     this.context.appendMsg(this.buildChatMessage(
       <CardTaskList
         plan={input}
         tasks={tasks}
       />, 'card'
-    ))
-  }
+    ));
+  };
   onReceive = async (message: IChatMessage) => {
     const { content: input } = message;
     const plugins = this.colAgents;
@@ -120,8 +120,8 @@ export class Main extends ChatPluginBase implements IChatPlugin {
     return;
   };
   render = () => {
-    return <FlowRender />
-  }
+    return <FlowRender />;
+  };
 }
 
 export default new Main();

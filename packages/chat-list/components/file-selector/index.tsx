@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { FileRejection, useDropzone } from 'react-dropzone';
 import { LucideIcon, Paperclip } from 'lucide-react';
-import Modal from 'chat-list/components/modal'
+import Modal from 'chat-list/components/modal';
 interface IFileSelectorProps {
     icon?: LucideIcon;
     config?: {
@@ -24,29 +24,29 @@ function buildFileAccept(accept: any) {
         config = Object.assign(config, {
             'image/png': ['.png'],
             'image/jpeg': ['.jpg', '.jpeg'],
-        })
+        });
     }
     if (accept?.text) {
         config = Object.assign(config, {
             'text/pdf': ['.pdf'],
             'text/plain': ['.txt', '.csv', '.md'],
             'application/msword': ['.doc', '.docx'],
-        })
+        });
     }
     if (accept?.xlsx) {
         config = Object.assign(config, {
             'text/plain': ['.csv'],
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
             'application/vnd.ms-excel': ['.xls']
-        })
+        });
     }
     return config;
 }
 
 const FileSelector = (props: IFileSelectorProps) => {
     const { config, icon = Paperclip, children, onSelect } = props;
-    const [open, setOpen] = useState(false)
-    const [rejectedFiles, setRejectedFiles] = useState([] as FileRejection[])
+    const [open, setOpen] = useState(false);
+    const [rejectedFiles, setRejectedFiles] = useState([] as FileRejection[]);
     // const onDrop = (acceptedFiles: File[]) => {
     //     // 处理文件上传逻辑，可以使用 fetch 或其他方式发送文件到服务器
     //     // console.log('上传的文件:', acceptedFiles);
@@ -56,14 +56,14 @@ const FileSelector = (props: IFileSelectorProps) => {
     const { getRootProps, getInputProps } = useDropzone({
         accept: buildFileAccept(config.accept),
         onDrop: (acceptedFiles: File[]) => {
-            onSelect?.(acceptedFiles)
+            onSelect?.(acceptedFiles);
         },
         onDropRejected: (rejectedFiles: FileRejection[]) => {
             // console.log('Rejected files: ', rejectedFiles, event);
             // rejectedFiles.map(p => p.errors[0].message)
             // toast.show('')
             setRejectedFiles(rejectedFiles);
-            setOpen(true)
+            setOpen(true);
         },
         maxSize: config.maxSize || 2 * 1014 * 1024,
         maxFiles: config.maxFiles || 9,
@@ -116,7 +116,7 @@ const FileSelector = (props: IFileSelectorProps) => {
                                     </div>
                                     <div className=' text-red-500 pl-4'>{fi.errors[0].message}</div>
                                 </div>
-                            )
+                            );
                         })
                     }
                 </div>

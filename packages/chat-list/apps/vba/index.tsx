@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { createRoot } from 'react-dom/client';
 import { plugins } from './plugins';
-import { init } from 'chat-list/service/log'
+import { init } from 'chat-list/service/log';
 import ChatList from 'chat-list/components/chat-list';
 import { UserProvider } from 'chat-list/store/userContext';
 import { ChatProvider } from 'chat-list/store/chatContext';
@@ -83,8 +83,8 @@ export default function Main({ docType, plugins }: IMainProps) {
             {
               !wellcome && (
                 <Wellcome onStart={() => {
-                  setLocalStore('sheet-chat-wellcome', '1')
-                  setWellcome('1')
+                  setLocalStore('sheet-chat-wellcome', '1');
+                  setWellcome('1');
                 }} />
               )
             }

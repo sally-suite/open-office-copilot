@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Modal from 'chat-list/components/modal'
+import React, { useContext, useEffect, useState } from 'react';
+import Modal from 'chat-list/components/modal';
 import Tooltip from '../tooltip';
 import { Loader2 } from 'lucide-react';
 import { Input } from 'chat-list/components/ui/input';
 import { getLicenseConfig, getToken } from 'chat-list/local/local';
 // import userApi from '@api/user'
 import { UserContext } from 'chat-list/store/userContext';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import Button from '../button';
 
 const memStore = {
     init: false
-}
+};
 
 export default function LicenseSetting() {
     const { loading: authLoading, checkLicense, openLogin: open, setOpenLogin: setOpen } = useContext(UserContext);
@@ -22,29 +22,29 @@ export default function LicenseSetting() {
     const { t } = useTranslation('base');
     const onConfirm = async () => {
         try {
-            setError('')
+            setError('');
             await checkLicense(licenseKey);
             setOpen(false);
         } catch (e) {
             setError(e.message);
         }
 
-    }
+    };
 
     const loadKey = async () => {
         setLoading(true);
         const LicenseKey = await getLicenseConfig();
         setLicenseKey(LicenseKey);
         setLoading(false);
-    }
+    };
 
     const onValueChange = (e: any) => {
         setLicenseKey(e.target.value);
-    }
+    };
 
     const showSignIn = () => {
         setOpen(true);
-    }
+    };
 
     const checkKey = async () => {
         const token = await getToken();
@@ -56,13 +56,13 @@ export default function LicenseSetting() {
             memStore.init = true;
             // appendMsg(buildChatMessage(<CardLicense />, 'card', 'assistant'))
         }
-    }
+    };
 
     useEffect(() => {
         if (!authLoading) {
             checkKey();
         }
-    }, [authLoading])
+    }, [authLoading]);
     return (
         <>
             <Tooltip tip={t('common.login')}>
@@ -119,5 +119,5 @@ export default function LicenseSetting() {
                 </p>
             </Modal>
         </>
-    )
+    );
 }

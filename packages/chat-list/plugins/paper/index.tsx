@@ -38,11 +38,11 @@ export class Paper extends ChatPluginBase implements IChatPlugin {
       //   code: 'test2',
       //   name: 'test2'
       // }
-    ]
+    ];
   };
   onQuickReply = async (item: QuickReplyItem) => {
     // const { appendMsg, showMessage } = this.context;
-  }
+  };
   onSend = (input: IChatMessage) => {
     // 用户发送的消息，拦截，自定义一些操作
     return input;
@@ -66,12 +66,12 @@ export class Paper extends ChatPluginBase implements IChatPlugin {
       return;
     }
 
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
   render() {
     return (
       <CardPapers papers={[]} />
-    )
+    );
   }
 }
 

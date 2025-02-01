@@ -4,17 +4,17 @@ import {
     CardContent,
     // RadioGroup,
 } from "chat-list/components/ui/card";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import useChatState from 'chat-list/hook/useChatState';
 import Markdown from '../markdown';
 
 export default function CardContext() {
     const { t } = useTranslation(['sheet']);
-    const [display, setDisplay] = useState(false)
+    const [display, setDisplay] = useState(false);
     const { dataContext } = useChatState();
     const toggleDisplay = () => {
-        setDisplay(!display)
-    }
+        setDisplay(!display);
+    };
     return (
         <Card className="w-full">
             <CardContent className=" flex flex-row flex-wrap justify-center">

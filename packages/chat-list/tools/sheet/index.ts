@@ -18,6 +18,6 @@ import intelligent from './intelligent';
 
 export const toolList: ITool[][] = [
     create, chart, func, pivot, intelligent, codeInterpreter, pythonInterpreter
-]
+];
 
 export default toolList;

@@ -1,7 +1,7 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import api from '@api/slide'
+import api from '@api/slide';
 import { generateCatalog, generatePage } from './util';
 import { ISlideItem } from 'chat-list/types/api/slide';
 // import pptData from './ppt.json'
@@ -10,7 +10,7 @@ import CardSlideImages from 'chat-list/components/card-slide-images';
 import React from 'react';
 // import imageStore from 'chat-list/utils/image'
 import { IChatMessage } from 'chat-list/types/message';
-import { searchStore } from 'chat-list/utils/vertor'
+import { searchStore } from 'chat-list/utils/vertor';
 
 // import creaetLayoutPrompt from './prompts/create-layout.md'
 // import { chatByPrompt } from 'chat-list/service/message';
@@ -32,12 +32,12 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
         fileId = 'input-message';
         fileContent = message.content;
     }
-    const catalog = await generateCatalog(reference + '\n\n' + fileContent, pageNum, language)
+    const catalog = await generateCatalog(reference + '\n\n' + fileContent, pageNum, language);
     // const catalog = pptData;
-    console.log('catelog', catalog)
+    console.log('catelog', catalog);
     const title = catalog.title_slide?.title;
     const subTitle = catalog.title_slide?.subtitle;
-    const slides = catalog.contents_slide?.slides || []
+    const slides = catalog.contents_slide?.slides || [];
 
     if (page_num > 3) {
         await api.generateSlide([{
@@ -48,26 +48,26 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
             type: 'overview',
             title: title,
             text: catalog.overview_slide?.content
-        }])
+        }]);
     }
 
     let slideElements: ISlideItem[] = [];
     for (let i = 0; i < slides.length; i++) {
-        setTyping(true)
+        setTyping(true);
         const item = slides[i];
         try {
             let refer = fileContent;
             if (fileId && fileContent && fileContent.length > 1000) {
-                const result = await searchStore(fileId, fileContent, item.description, 3)
+                const result = await searchStore(fileId, fileContent, item.description, 3);
                 refer = result.join('\n');
             }
             const page = await generatePage(item.title, item.description, refer, language);
-            let images: string[] = []
+            let images: string[] = [];
             if (is_add_image) {
-                images = await searchImage(page.image_search_keywords, 4)
-                appendMsg(buildChatMessage(<CardSlideImages title={page.title} images={images} />, 'card', 'assistant'))
+                images = await searchImage(page.image_search_keywords, 4);
+                appendMsg(buildChatMessage(<CardSlideImages title={page.title} images={images} />, 'card', 'assistant'));
             }
-            setTyping(true)
+            setTyping(true);
             let size;
             let imageBase64;
             for (let i = 0; i < images.length; i++) {
@@ -75,8 +75,8 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                 if (!image) {
                     continue;
                 }
-                size = await getImgSize(image)
-                imageBase64 = image
+                size = await getImgSize(image);
+                imageBase64 = image;
                 break;
             }
             slideElements.push({
@@ -90,7 +90,7 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                     width: size?.width,
                     height: size?.height
                 }
-            })
+            });
             if (slideElements.length >= 2) {
                 await api.generateSlide(slideElements);
                 slideElements = [];
@@ -116,7 +116,7 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
     }
     return `Task completed,tell user to use designer of Powerpoint to make it more attractive, and the Presentation is AI-generated and is not guaranteed to be accurate, so please be sure to proofread.`;
 
-}
+};
 
 export default {
     type: 'function',

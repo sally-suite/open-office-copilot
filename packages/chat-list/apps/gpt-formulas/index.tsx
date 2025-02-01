@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { useTranslation } from 'react-i18next'
-import { ArrowLeft } from 'lucide-react'
+import { useTranslation } from 'react-i18next';
+import { ArrowLeft } from 'lucide-react';
 import sheetApi from '@api/sheet';
 import CopyButton from 'chat-list/components/copy-button';
 import 'chat-list/assets/css/global.css';
@@ -11,11 +11,11 @@ import 'chat-list/assets/css/editor.less';
 import 'chat-list/assets/css/markdown.less';
 
 
-const GOOGLE_GPT_FUNCTIONS_EXAMPLE = [`=SALLY_GPT3("What's your name?")`, `=SALLY_GPT4(A2,"Generate proposals ...")`]
-const GOOGLE_GPT_FUNCTIONS = ['SALLY_GPT3', 'SALLY_GPT4']
+const GOOGLE_GPT_FUNCTIONS_EXAMPLE = [`=SALLY_GPT3("What's your name?")`, `=SALLY_GPT4(A2,"Generate proposals ...")`];
+const GOOGLE_GPT_FUNCTIONS = ['SALLY_GPT3', 'SALLY_GPT4'];
 
-const OFFICE_GPT_FUNCTIONS_EXAMPLE = [`=SL.GPT3("What's your name?")`, `=SL.GPT4(A2,"Generate proposals ...")`]
-const OFFICE_GPT_FUNCTIONS = ['SL.GPT3', 'SL.GPT4']
+const OFFICE_GPT_FUNCTIONS_EXAMPLE = [`=SL.GPT3("What's your name?")`, `=SL.GPT4(A2,"Generate proposals ...")`];
+const OFFICE_GPT_FUNCTIONS = ['SL.GPT3', 'SL.GPT4'];
 
 const GPT_FUNCTION: { [x: string]: { name: string, functions: string[], examples: string[] } } = {
     google: {
@@ -28,15 +28,15 @@ const GPT_FUNCTION: { [x: string]: { name: string, functions: string[], examples
         functions: OFFICE_GPT_FUNCTIONS,
         examples: OFFICE_GPT_FUNCTIONS_EXAMPLE
     }
-}
+};
 
 export default function GPTFormulas() {
     const { t } = useTranslation(['base', 'tool']);
     const platform = 'office';
-    const formula = GPT_FUNCTION[platform] || GPT_FUNCTION['google']
+    const formula = GPT_FUNCTION[platform] || GPT_FUNCTION['google'];
     const onSelectFunction = async (index: number) => {
-        await sheetApi.insertText(formula.examples[index])
-    }
+        await sheetApi.insertText(formula.examples[index]);
+    };
     return (
         <div className='w-full p-2'>
             <p className='text-base mt-3 mb-1'>
@@ -61,12 +61,12 @@ export default function GPTFormulas() {
                                 </p>
                             </div>
 
-                        )
+                        );
                     })
                 }
             </div>
         </div>
-    )
+    );
 }
 
 

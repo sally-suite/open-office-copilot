@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Modal from 'chat-list/components/modal'
+import Modal from 'chat-list/components/modal';
 import { TRANSLATE_STYLE } from "chat-list/data/translate/languages";
 import { ITransStyle } from "chat-list/types/translate";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 interface ITransStyleProps {
   value: string;
   placeholder?: string;

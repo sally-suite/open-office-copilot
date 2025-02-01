@@ -14,10 +14,10 @@ import { getLocalStore } from 'chat-list/local/local';
 import sheetApi from '@api/sheet';
 import { PieChart } from 'lucide-react';
 import image from 'chat-list/utils/image';
-import { getValues } from 'chat-list/service/sheet'
+import { getValues } from 'chat-list/service/sheet';
 import { renderEChart } from 'chat-list/utils/chart';
-import instruction from './promps/instruction.md'
-import introduce from './promps/introduce.md'
+import instruction from './promps/instruction.md';
+import introduce from './promps/introduce.md';
 export class CreateChart extends ChatPluginBase implements IChatPlugin {
   name = 'Create Chart';
   icon = PieChart;
@@ -94,7 +94,7 @@ export class CreateChart extends ChatPluginBase implements IChatPlugin {
     const copy = JSON.parse(JSON.stringify(data));
     const option = fun(copy);
     return option;
-  }
+  };
 
   transferEChart = async (content: string, onRender?: (base64: string) => void) => {
     // GPT发送的消息，拦截，自定义一些操作
@@ -193,7 +193,7 @@ export class CreateChart extends ChatPluginBase implements IChatPlugin {
     // }
     const chartResult = await this.buildByGoogleChart(message, false);
     if (chartResult) {
-      const url = image.set(chartResult.chartImageUrl)
+      const url = image.set(chartResult.chartImageUrl);
       const msg = `
 Ok, Here is ${chartResult.title} chart :
 
@@ -201,9 +201,9 @@ Ok, Here is ${chartResult.title} chart :
 
 `;
       this.context.appendMsg(this.buildChatMessage(msg, 'text', message.from.name, 'assistant'));
-      return this.buildChatMessage('Create chart successfully.', 'text', message.from.name, 'assistant')
+      return this.buildChatMessage('Create chart successfully.', 'text', message.from.name, 'assistant');
     } else {
-      return this.buildChatMessage('Create chart failed.', 'text', message.from.name, 'assistant')
+      return this.buildChatMessage('Create chart failed.', 'text', message.from.name, 'assistant');
     }
 
     // }

@@ -1,11 +1,11 @@
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import { Grid3X3, RefreshCw } from 'lucide-react';
-import Button from '../button'
+import Button from '../button';
 import { cn } from 'chat-list/lib/utils';
 import useChatState from 'chat-list/hook/useChatState';
 import { useTranslation } from 'react-i18next';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import './index.less';
 import IconButton from '../icon-button';
 
@@ -14,7 +14,7 @@ const memStore: any = {
     status: 'uncheck',
     heads: [],
     questions: []
-}
+};
 let timer: NodeJS.Timeout;
 export default function CheckContext({ className = '' }: { className?: string }) {
     const [status, setStatus] = useState<'uncheck' | 'running' | 'success' | 'failed' | 'suggest'>(memStore.status);
@@ -27,27 +27,27 @@ export default function CheckContext({ className = '' }: { className?: string })
     const updateContext = async () => {
 
         try {
-            setStatus('running')
+            setStatus('running');
             const address = await sheetApi.getRangeA1Notation();
             if (lastAddress.current.address == address) {
-                setStatus('success')
+                setStatus('success');
                 return;
             }
 
             lastAddress.current.address = address;
-            setAddress(address)
+            setAddress(address);
 
             const sheetInfo = await sheetApi.getSheetInfo();
             // const sheetInfo = await sheetApi.getSheetInfo();
-            setDataContext(JSON.stringify(sheetInfo, null, 2))
-            setStatus('success')
+            setDataContext(JSON.stringify(sheetInfo, null, 2));
+            setStatus('success');
         } catch (e) {
             setStatus('failed');
             // appendMsg(buildChatMessage(<CardCheckHeader status={'failed'} heads={[]} />, 'card', 'assistant'));
         } finally {
             setStatus('success');
         }
-    }
+    };
 
     const loopAddress = async () => {
         timer = setTimeout(async () => {
@@ -59,7 +59,7 @@ export default function CheckContext({ className = '' }: { className?: string })
             const address = await sheetApi.getRangeA1Notation();
             // const address = sheetInfo.activeRange;
             if (lastAddress.current.address == address) {
-                await loopAddress()
+                await loopAddress();
                 return;
             }
             lastAddress.current.address = address;
@@ -67,33 +67,33 @@ export default function CheckContext({ className = '' }: { className?: string })
 
             const sheetInfo = await sheetApi.getSheetInfo();
             // const sheetInfo = await sheetApi.getSheetInfo();
-            setDataContext(JSON.stringify(sheetInfo, null, 2))
-            await loopAddress()
-        }, 1000)
-    }
+            setDataContext(JSON.stringify(sheetInfo, null, 2));
+            await loopAddress();
+        }, 1000);
+    };
     const init = async () => {
         // if (!memStore.init) {
         //     memStore.init = true;
         //     // await getAddress();
 
         // }
-        await loopAddress()
-    }
+        await loopAddress();
+    };
     useEffect(() => {
         init();
         return () => {
             if (timer) {
-                clearTimeout(timer)
+                clearTimeout(timer);
             }
-        }
-    }, [])
+        };
+    }, []);
 
     useEffect(() => {
         if (messages.length == 0) {
             lastAddress.current.address = '';
             updateContext();
         }
-    }, [messages])
+    }, [messages]);
 
     if (!dataContext) {
         return null;
@@ -122,5 +122,5 @@ export default function CheckContext({ className = '' }: { className?: string })
                 )} />
             </div>
         </div >
-    )
+    );
 }

@@ -3,7 +3,7 @@
 
 
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 import { buildTransLateDocMessages } from 'chat-list/service/doc';
 import { IChatResult, IMessageBody } from 'chat-list/types/chat';
 import { buildChatMessage } from 'chat-list/utils';
@@ -34,13 +34,13 @@ export const main: ITool['func'] = async ({ target_language, tone, content, cont
             isAppend = true;
         } else {
             resMsg.content = res.content;
-            context.updateMsg(resMsg._id, resMsg)
+            context.updateMsg(resMsg._id, resMsg);
         }
     });
 
     return 'I have completed translation task. tell user check and insert result to document. ';
 
-}
+};
 
 export default {
     "name": "translate_doc",

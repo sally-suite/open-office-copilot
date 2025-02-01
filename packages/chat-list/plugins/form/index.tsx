@@ -7,9 +7,9 @@ import { ModeType } from 'chat-list/types/edit';
 import FormatCreate from 'chat-list/components/card-format';
 import { LayoutList } from 'lucide-react';
 import instruction from './prompts/instruction.md';
-import introduce from './prompts/introduce.md'
+import introduce from './prompts/introduce.md';
 import i18n from 'chat-list/locales/i18n';
-import FormRender from 'chat-list/components/render-form'
+import FormRender from 'chat-list/components/render-form';
 
 export class FormSheet extends ChatPluginBase implements IChatPlugin {
   name = i18n.t('sheet.agent.form', 'Form');
@@ -56,7 +56,7 @@ export class FormSheet extends ChatPluginBase implements IChatPlugin {
   currentCode = '';
   tools: any = [];
   render() {
-    return <FormRender />
+    return <FormRender />;
   }
 }
 

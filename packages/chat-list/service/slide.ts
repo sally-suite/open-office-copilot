@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { Presentation, Slide } from 'chat-list/types/api/slide';
-import pptxgen from 'pptxgenjs'
+import pptxgen from 'pptxgenjs';
 
 export async function generatePPT(data: Presentation): Promise<string> {
     const pptStructure = JSON.parse(JSON.stringify(data));
@@ -53,8 +53,8 @@ export async function generatePPT(data: Presentation): Promise<string> {
                                     lineSpacing: block.style.lineSpacing,
                                     fill: block.style.fill || null,
                                 }
-                            }
-                        })
+                            };
+                        });
                         slide.addText(textBlocks, {
                             shape: element.shapeName || 'rect',
                             placeholder: element.placeholder || 'Title',
@@ -135,7 +135,7 @@ export async function generatePPT(data: Presentation): Promise<string> {
                         //     color: '000000',
                         //     blur: 4
                         // }
-                    })
+                    });
                     break;
                 case 'table':
                     // eslint-disable-next-line no-case-declarations
@@ -154,13 +154,13 @@ export async function generatePPT(data: Presentation): Promise<string> {
                         },
                         fontSize: 16,
                         color: element.style.color,
-                    })
+                    });
                     break;
                 case 'chart':
                     // const theme = pptStructure.theme;
                     // eslint-disable-next-line no-case-declarations
                     const bgcolor = element.style.fill?.color.replace('#', '');
-                    console.log(bgcolor)
+                    console.log(bgcolor);
                     // eslint-disable-next-line no-case-declarations
                     const title = element.data[0].name;
                     slide.addChart(element.chartType as any,
@@ -232,7 +232,7 @@ export async function generatePPT(data: Presentation): Promise<string> {
 
     const result = await pres.write({
         outputType: 'base64'
-    })
+    });
 
     return result as string;
 
@@ -279,8 +279,8 @@ export async function generateSlides(slides: Slide[]) {
                                     lineSpacing: block.style.lineSpacing,
                                     fill: block.style.fill || null,
                                 }
-                            }
-                        })
+                            };
+                        });
                         slide.addText(textBlocks, {
                             shape: element.shapeName || 'rect',
                             placeholder: element.placeholder || 'Title',
@@ -353,7 +353,7 @@ export async function generateSlides(slides: Slide[]) {
                             transparency: element.style?.fill?.transparency || 0,
                         },
                         rectRadius: element.style.rectRadius || 0,
-                    })
+                    });
                     break;
                 case 'table':
                     // eslint-disable-next-line no-case-declarations
@@ -373,13 +373,13 @@ export async function generateSlides(slides: Slide[]) {
                         // },
                         fontSize: 16,
                         color: element.style.color,
-                    })
+                    });
                     break;
                 case 'chart':
                     // const theme = pptStructure.theme;
                     // eslint-disable-next-line no-case-declarations
                     const bgcolor = element.style.fill?.color.replace('#', '');
-                    console.log(bgcolor)
+                    console.log(bgcolor);
                     // eslint-disable-next-line no-case-declarations
                     const tittleEle = slideData.elements.find(p => p.type == 'title');
                     slide.addChart(element.chartType as any,
@@ -445,7 +445,7 @@ export async function generateSlides(slides: Slide[]) {
 
     const result = await pres.write({
         outputType: 'base64'
-    })
+    });
 
     return result as string;
 }

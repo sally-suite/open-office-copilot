@@ -1,7 +1,7 @@
 import { chatByPrompt } from '../message';
 import { IChatResult } from 'chat-list/types/chat';
 import api from "@api/index";
-import gpt from '@api/gpt'
+import gpt from '@api/gpt';
 
 import { Heading, ImagePlus, ListEnd, Maximize2, Minimize2, Pen, SmilePlus, SpellCheck2, Wand2, Table, Sparkles, Star } from 'lucide-react';
 import { ImageSearchResult } from 'chat-list/types/search';
@@ -123,7 +123,7 @@ export const tools = [
         tip: 'Generate images for selected text',
         icon: Sparkles
     }
-]
+];
 
 
 
@@ -207,33 +207,33 @@ export const options = [
         tip: 'Generate images for selected text',
         icon: Sparkles
     }
-]
+];
 
 export const writing = async (text: string, prompt: string, callback?: (done: boolean, result: IChatResult, stop: () => void) => void) => {
     // const prompt = (prompts as any)[code];
     if (!text) {
         return;
     }
-    const input = `${prompt}\n\nUSER INPUT:\n${text}\n\nOUTPUT:`
+    const input = `${prompt}\n\nUSER INPUT:\n${text}\n\nOUTPUT:`;
 
     const result = await chatByPrompt("", input, {
         temperature: 0.7,
         stream: true
-    }, callback)
+    }, callback);
 
     return result;
-}
+};
 
 export const searchImage = async (text: string): Promise<string> => {
     if (!text) {
         return;
     }
-    const input = `Help me generate image search keywords,only output keywords\n\nUSER INPUT:\n${text}\n\nOUTPUT:`
+    const input = `Help me generate image search keywords,only output keywords\n\nUSER INPUT:\n${text}\n\nOUTPUT:`;
 
     const result = await chatByPrompt("", input, {
         temperature: 0.7,
         stream: false
-    })
+    });
     const keywords = result.content;
     const results = await api.searchImages({
         keyword: keywords,
@@ -245,7 +245,7 @@ export const searchImage = async (text: string): Promise<string> => {
     }).join('\n\n');
 
     return keywords + '\n\n' + content;
-}
+};
 
 export const generateImage = async (prompt: string): Promise<string> => {
     if (!prompt) {
@@ -259,14 +259,14 @@ export const generateImage = async (prompt: string): Promise<string> => {
         response_format: 'url'
     });
     if (result?.data?.[0].b64_json) {
-        const content = `![image](data:image/png;base64,${result.data[0].b64_json})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`
+        const content = `![image](data:image/png;base64,${result.data[0].b64_json})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`;
         return content;
     } if (result?.data?.[0].url) {
-        const content = `![image](${result.data[0].url})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`
+        const content = `![image](${result.data[0].url})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`;
         return content;
     } else {
         return 'Task failed';
     }
-}
+};
 
 export default writing;

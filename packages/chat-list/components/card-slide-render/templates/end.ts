@@ -1,5 +1,5 @@
 import { ISlideItem, Slide, SlideElement, TextBlock, Theme } from "chat-list/types/api/slide";
-import { titleFontSize } from './constants'
+import { titleFontSize } from './constants';
 
 
 export async function render(slideItem: ISlideItem, theme: Theme): Promise<Slide> {
@@ -37,4 +37,4 @@ export default {
     render,
     name: 'End',
     image: false,
-}
+};

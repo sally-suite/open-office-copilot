@@ -1,12 +1,12 @@
 import { ISlideItem, Slide, SlideElement, Theme } from "chat-list/types/api/slide";
-import { titleFontSize, contentY } from './constants'
+import { titleFontSize, contentY } from './constants';
 import { corpImageByRatio } from "chat-list/utils";
 
 const gapConfig: any = {
     2: 0.4,
     3: 0.3,
     4: 0.2,
-}
+};
 
 export async function render(data: ISlideItem, theme: Theme): Promise<Slide> {
     const elements: SlideElement[] = [];
@@ -34,7 +34,7 @@ export async function render(data: ISlideItem, theme: Theme): Promise<Slide> {
             width: 11,
             height: 0.8,
         },
-    })
+    });
     const top = contentY;
     const imageHeight = 2.6;
     const len = Math.min(data.image.length, data.list.length);
@@ -44,7 +44,7 @@ export async function render(data: ISlideItem, theme: Theme): Promise<Slide> {
         const item = data.image[i];
         let img;
         if (item) {
-            img = await corpImageByRatio(item.src, radio, itemWidth * 96, 'cover')
+            img = await corpImageByRatio(item.src, radio, itemWidth * 96, 'cover');
         }
 
         elements.push({
@@ -58,7 +58,7 @@ export async function render(data: ISlideItem, theme: Theme): Promise<Slide> {
                 width: itemWidth,
                 height: imageHeight,
             },
-        })
+        });
     }
     // data?.image?.forEach((item, i) => {
     //     const x = 0.5 + i * (itemWidth + gap);
@@ -98,7 +98,7 @@ export async function render(data: ISlideItem, theme: Theme): Promise<Slide> {
                 width: itemWidth,
                 height: titleHeight,
             },
-        })
+        });
         elements.push({
             type: 'text',
             content: item.description,
@@ -116,8 +116,8 @@ export async function render(data: ISlideItem, theme: Theme): Promise<Slide> {
                 width: itemWidth,
                 height: 2,
             },
-        })
-    })
+        });
+    });
 
     return {
         id: 'slide1',
@@ -134,4 +134,4 @@ export default {
     render,
     name: 'Column with image',
     image: true,
-}
+};

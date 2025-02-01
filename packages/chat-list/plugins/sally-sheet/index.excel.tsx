@@ -1,6 +1,6 @@
 import { ChatPluginBase, IChatPlugin } from "chat-list/types/plugin";
 import { IChatMessage, QuickReplyItem } from "chat-list/types/message";
-import instruction from './promps/instruction.md'
+import instruction from './promps/instruction.md';
 import React from "react";
 import i18n from 'chat-list/locales/i18n';
 import sallyPng from 'chat-list/assets/img/sally-32.png';
@@ -14,14 +14,14 @@ import { ISheetInfo } from "chat-list/types/api/sheet";
  */
 export class Main extends ChatPluginBase implements IChatPlugin {
   constructor(...mixins: any[]) {
-    super(...mixins)
+    super(...mixins);
   }
   name = "Sally";
   icon = sallyPng;
   model = {
     prompt: ``,
     temperature: 0.7
-  }
+  };
   action = "sally";
   placeholder = i18n.t('sheet.agent.sally.placeholder', "Chat with me Or @ agent to help you.");
   shortDescription = "";
@@ -29,8 +29,8 @@ export class Main extends ChatPluginBase implements IChatPlugin {
   instruction = instruction;
   // introduce = introduce;
   introduce = () => {
-    return <CardIntroduce />
-  }
+    return <CardIntroduce />;
+  };
   fileConfig = {
     accept: {
       text: true,
@@ -93,7 +93,7 @@ export class Main extends ChatPluginBase implements IChatPlugin {
       //   code: 'test',
       //   name: 'test'
       // }
-    ]
+    ];
 
     // return [];
   };
@@ -232,8 +232,8 @@ export class Main extends ChatPluginBase implements IChatPlugin {
     const sheetInfo: ISheetInfo = JSON.parse(context);
     return (
       <ContextSheet address={sheetInfo.activeRange} />
-    )
-  }
+    );
+  };
   // getTableImage: () => Promise<any>;
   // analyzeDataRange: (content: string) => Promise<void>;
   // showSheetInfo: (message: IChatMessage) => void;
@@ -253,7 +253,7 @@ export class Main extends ChatPluginBase implements IChatPlugin {
         return;
       }
     }
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
 }
 export default new Main(dataRangeAnalyzeMixin);

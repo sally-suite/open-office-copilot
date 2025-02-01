@@ -4,12 +4,12 @@ import docApi from '@api/doc';
 import slideApi from '@api/slide';
 import emailApi from '@api/email';
 import colors, { themes } from 'chat-list/data/templates/colors';
-import Modal from 'chat-list/components/modal'
+import Modal from 'chat-list/components/modal';
 import useChatState from 'chat-list/hook/useChatState';
 import { Grid3X3, ListEnd, Palette, Sheet, Layers3, Copy, Check } from 'lucide-react';
 import IconButton from '../icon-button';
 import { cn } from 'chat-list/lib/utils';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import XLSX from 'xlsx';
 import { ITableOption } from 'chat-list/types/api/sheet';
 import { copyByClipboard } from 'chat-list/utils';
@@ -134,10 +134,10 @@ export default React.memo(function Table({
       theme,
       ...colors[colorIndex],
     });
-  }
+  };
   const onAppend = async () => {
-    await sheetApi.appendRows(convertToArray(false))
-  }
+    await sheetApi.appendRows(convertToArray(false));
+  };
   const onSelectTheme = (index: number) => {
     setColor(index);
     const config = colors[index];
@@ -152,14 +152,14 @@ export default React.memo(function Table({
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "SheetJS.xlsx");
-  }
+  };
   const copyTable = async () => {
     setCopyOk(true);
     copyByClipboard('', table.current.outerHTML);
     setTimeout(() => {
       setCopyOk(false);
     }, 1000);
-  }
+  };
 
   useEffect(() => {
     setTableStyle(colors[0]);
@@ -172,7 +172,7 @@ export default React.memo(function Table({
           {children}
         </table>
       </div>
-    )
+    );
   }
   return (
     <>

@@ -62,7 +62,7 @@ const ScreenshotComponent = (props: IScreenShotProps) => {
         setIsCapturing(false);
         setSelection(null);
         setConfirming(false);
-    }
+    };
     const handleConfirm = () => {
         // 使用 requestAnimationFrame 或 setTimeout 来避免 ResizeObserver 的问题
         requestAnimationFrame(() => {
@@ -82,7 +82,7 @@ const ScreenshotComponent = (props: IScreenShotProps) => {
                 setIsCapturing(false);
                 setSelection(null);
                 setConfirming(false);
-                onScreenshot?.(base64Image)
+                onScreenshot?.(base64Image);
             });
         });
     };

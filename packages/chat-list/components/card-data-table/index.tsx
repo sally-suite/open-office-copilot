@@ -18,7 +18,7 @@ interface ICardConfirmProps {
 
 export function CardDataTable(props: ICardConfirmProps) {
     const { sheetName, dataRange, values = [], onScreenshot } = props;
-    const [imgData, setImgData] = useState('')
+    const [imgData, setImgData] = useState('');
     const table = useRef(null);
 
     useEffect(() => {
@@ -26,10 +26,10 @@ export function CardDataTable(props: ICardConfirmProps) {
             html2canvas(table.current).then(canvas => {
                 const base64 = canvas.toDataURL();
                 setImgData(base64);
-                onScreenshot(base64)
-            })
+                onScreenshot(base64);
+            });
         }
-    }, [])
+    }, []);
     return (
         <Card className="w-card">
             <CardContent>

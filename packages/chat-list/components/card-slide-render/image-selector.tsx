@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import themes from 'chat-list/data/slides/theme.json'
+import React, { useEffect, useState } from 'react';
+import themes from 'chat-list/data/slides/theme.json';
 import fontConfig from 'chat-list/data/slides/font.json';
 // import colorConfig from './data/theme.json';
-import Tooltip from 'chat-list/components/tooltip'
+import Tooltip from 'chat-list/components/tooltip';
 import { useTranslation } from 'react-i18next';
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTitle,
-} from "chat-list/components/ui/sheet"
+} from "chat-list/components/ui/sheet";
 import useChatState from 'chat-list/hook/useChatState';
 import { cn } from 'chat-list/lib/utils';
-import Cropper from 'react-easy-crop'
+import Cropper from 'react-easy-crop';
 import Button from '../button';
 import { ChevronDown, ChevronLeft } from 'lucide-react';
 import { Slider } from '../ui/slider';
@@ -34,35 +34,35 @@ export default function ThemeSelector(props: ImageSelectorProps) {
     const { docType, platform } = useChatState();
     const [type, setType] = useState<'list' | 'corp'>('list');
     const [currentImage, setCurrentImage] = useState('');
-    const [crop, setCrop] = useState({ x: 0, y: 0 })
+    const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(0.5);
-    const [tarImage, setTarImage] = useState('')
+    const [tarImage, setTarImage] = useState('');
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
     const { t } = useTranslation();
     const onCropComplete = async (croppedArea: any, croppedAreaPixels: any) => {
         setCroppedAreaPixels(croppedAreaPixels);
-    }
+    };
     const onSelectImage = (img: string) => {
         setCurrentImage(img);
         setType('corp');
-    }
+    };
     const onConfirm = async () => {
         const imgBase64 = await proxyImage(currentImage);
         const { x, y, height, width } = croppedAreaPixels;
         const result = await cropImage(imgBase64, width, height, x, y);
-        onSelect?.(result)
+        onSelect?.(result);
 
-    }
+    };
     const onBack = () => {
-        setType('list')
-        setCurrentImage('')
-    }
+        setType('list');
+        setCurrentImage('');
+    };
     useEffect(() => {
         if (open) {
-            setType('list')
+            setType('list');
         }
-    }, [open])
+    }, [open]);
     return (
         <Sheet open={open} onOpenChange={(open: boolean) => {
             if (!open) {
@@ -107,12 +107,12 @@ export default function ThemeSelector(props: ImageSelectorProps) {
                                                     item.images.map((image, index) => {
                                                         return (
                                                             <img key={index} src={image} className='w-full object-contain rounded-[4px] cursor-pointer' onClick={onSelectImage.bind(null, image)} />
-                                                        )
+                                                        );
                                                     })
                                                 }
                                             </div>
                                         </div>
-                                    )
+                                    );
                                 })
                             }
                         </div>
@@ -151,7 +151,7 @@ export default function ThemeSelector(props: ImageSelectorProps) {
                                     step={0.1}
                                     className={cn("w-full")}
                                     onValueChange={(e) => {
-                                        setZoom(e[0])
+                                        setZoom(e[0]);
                                     }}
                                 />
                             </div>
@@ -166,5 +166,5 @@ export default function ThemeSelector(props: ImageSelectorProps) {
 
             </SheetContent>
         </Sheet>
-    )
+    );
 }

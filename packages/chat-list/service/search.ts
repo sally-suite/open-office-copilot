@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 // 创建一个 Lunr.js 索引
 
 import { chunkText } from 'chat-list/utils/file';
@@ -22,12 +23,12 @@ export const buildStore = () => {
     return store;
   }
   idx = lunr(function () {
-    this.ref('name')
-    this.field('content')
+    this.ref('name');
+    this.field('content');
     store = this;
   });
   return store;
-}
+};
 
 export const addIndex = (name: string, chunks: any[]) => {
   // 添加文档到索引
@@ -39,14 +40,14 @@ export const addIndex = (name: string, chunks: any[]) => {
     });
   });
   // 
-}
+};
 
 export const search = (keyword: string, content: string) => {
   // 执行搜索
   const chunks = chunkText(content, 1000);
   const idx = lunr(function () {
-    this.ref('id')
-    this.field('content')
+    this.ref('id');
+    this.field('content');
     chunks.forEach((content, i) => {
       this.add({
         id: i,
@@ -55,9 +56,9 @@ export const search = (keyword: string, content: string) => {
     });
   });
   const results: any[] = idx.search(keyword);
-  const list = results.slice(0, 3).map((p: any) => chunks[p.ref])
+  const list = results.slice(0, 3).map((p: any) => chunks[p.ref]);
   return list.join('\n');
-}
+};
 
 
 

@@ -3,16 +3,16 @@ import React, {
     useContext,
 } from 'react';
 import { ChatContext } from 'chat-list/store/chatContext';
-import { UserContext } from 'chat-list/store/userContext'
+import { UserContext } from 'chat-list/store/userContext';
 import ModelSelect from 'chat-list/components/model-select';
 import { GptModel } from 'chat-list/types/chat';
-import Tooltip from 'chat-list/components/tooltip'
-import Modal from 'chat-list/components/modal'
+import Tooltip from 'chat-list/components/tooltip';
+import Modal from 'chat-list/components/modal';
 
-import LicenseSetting from 'chat-list/components/license-setting'
-import LanguageSwitch from 'chat-list/components/language-switch'
+import LicenseSetting from 'chat-list/components/license-setting';
+import LanguageSwitch from 'chat-list/components/language-switch';
 import { useTranslation } from 'react-i18next';
-import PriceCard from 'chat-list/components/price-card'
+import PriceCard from 'chat-list/components/price-card';
 import Loading from '../loading';
 import { Headphones } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -26,19 +26,19 @@ export default function index() {
         open: false,
         title: '',
         content: null
-    })
+    });
     // const haveSetOpenAIKey = getLocalStore(USER_SET_OPENAI_API_KEY);
     const onModelChange = (value: GptModel, provider: string) => {
         // console.log(value)
-        setModel(value)
-        setProvider(provider)
-    }
+        setModel(value);
+        setProvider(provider);
+    };
     const onAlertClose = () => {
-        setAlert({ open: false, title: '', content: '' })
-    }
+        setAlert({ open: false, title: '', content: '' });
+    };
     const onFeedback = () => {
-        navigate(`/eric`)
-    }
+        navigate(`/eric`);
+    };
     return (
         <div className='flex flex-row px-1 pb-1 justify-between items-center text-gray-500'>
             <div className='flex flex-row items-center'>
@@ -79,5 +79,5 @@ export default function index() {
                 {alert.content}
             </Modal>
         </div>
-    )
+    );
 }

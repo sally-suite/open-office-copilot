@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import { Card, CardTitle, CardContent, CardActions } from '../ui/card';
 import Button from '../button';
 import { Loader2 } from 'lucide-react';
@@ -7,7 +7,7 @@ import { getLicenseConfig, setLicenseConfig, setToken } from 'chat-list/local/lo
 // import userApi from '@api/user'
 import userApi from '@api/user';
 import { UserContext } from 'chat-list/store/userContext';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import useChatState from 'chat-list/hook/useChatState';
 import { buildChatMessage } from 'chat-list/utils';
 
@@ -34,27 +34,27 @@ export default function CardLicense(props: ICardLicenseProps = { licenseKey: '' 
             const token = await userApi.login(licenseKey);
             // console.log(token)
             setToken(token);
-            await setLicenseConfig(licenseKey || '')
+            await setLicenseConfig(licenseKey || '');
             setUserState({
                 isAuthenticated: true
-            })
-            appendMsg(buildChatMessage('Set Access Key successfully!', 'text', 'assistant'))
+            });
+            appendMsg(buildChatMessage('Set Access Key successfully!', 'text', 'assistant'));
         } catch (e) {
             setError(e.message);
         }
-    }
+    };
 
     const onClear = async () => {
         setToken('');
-        setLicenseKey('')
-        await setLicenseConfig('')
-        appendMsg(buildChatMessage('Clear Access Key successfully!', 'text', 'assistant'))
+        setLicenseKey('');
+        await setLicenseConfig('');
+        appendMsg(buildChatMessage('Clear Access Key successfully!', 'text', 'assistant'));
 
-    }
+    };
 
     const onValueChange = (e: any) => {
         setLicenseKey(e.target.value);
-    }
+    };
 
     return (
         <Card className="w-full">
@@ -98,5 +98,5 @@ export default function CardLicense(props: ICardLicenseProps = { licenseKey: '' 
                 </Button>
             </CardActions>
         </Card>
-    )
+    );
 }

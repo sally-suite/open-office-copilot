@@ -1,5 +1,5 @@
 import { setSessionStore, getSessionStore } from 'chat-list/local/session';
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react';
 
 export default function useLocalStore(key: string, defaultValue?: any) {
     const currentValue = useMemo(() => {
@@ -9,9 +9,9 @@ export default function useLocalStore(key: string, defaultValue?: any) {
     const [value, setValue] = useState(val);
 
     const setLocalValue = (value: any) => {
-        setSessionStore(key, value)
-        setValue(value)
-    }
+        setSessionStore(key, value);
+        setValue(value);
+    };
     useEffect(() => {
         const currentValue = getSessionStore(key);
         const val = (typeof currentValue === 'undefined' || currentValue == null) ? defaultValue : currentValue;
@@ -20,5 +20,5 @@ export default function useLocalStore(key: string, defaultValue?: any) {
     return {
         value,
         setValue: setLocalValue
-    }
+    };
 }

@@ -7,5 +7,5 @@ export default function Sally({ ...props }) {
         <IconImage src={sallyPng} className='h-6 w-6' {...props} >
 
         </IconImage>
-    )
+    );
 }

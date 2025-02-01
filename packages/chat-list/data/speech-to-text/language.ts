@@ -11,4 +11,4 @@ export default [
     { "value": "ru-RU", "text": "Russian (Russia)", "translatedText": "Русский (Россия)" },
     { "value": "pt-BR", "text": "Portuguese (Brazil)", "translatedText": "Português (Brasil)" },
     { "value": "ko-KR", "text": "Korean (South Korea)", "translatedText": "한국어 (대한민국)" }
-]
+];

@@ -23,7 +23,7 @@ import { ModeType } from 'chat-list/types/edit';
 import { getLocalStore, setLocalStore } from 'chat-list/local/local';
 import FormatCreate from 'chat-list/components/card-format';
 import { FileEdit } from 'lucide-react';
-import { getValues } from 'chat-list/service/sheet'
+import { getValues } from 'chat-list/service/sheet';
 
 // import returnFuncion from './prompts/return.md';
 
@@ -220,14 +220,14 @@ export class EditSheet extends ChatPluginBase implements IChatPlugin {
     this.shortTermMemory.push({
       role: message.role,
       content: `Refer to the most recent update result to complete this requirement:${message.content}`,
-    })
+    });
 
     const { content } = await this.context.chat({ messages: this.shortTermMemory, temperature: 0 });
 
     this.shortTermMemory.push({
       role: 'assistant',
       content
-    })
+    });
     const newMsg = await this.transferForData(this.buildChatMessage(content));
     this.sendMsg(newMsg);
     this.context.setTyping(false);
@@ -243,9 +243,9 @@ export class EditSheet extends ChatPluginBase implements IChatPlugin {
       this.shortTermMemory.push({
         role: message.role,
         content: `Requirements:${message.content}`,
-      })
+      });
     } else {
-      this.shortTermMemory.push(buildFunctionUpdateMessage(this.currentCode, message.content))
+      this.shortTermMemory.push(buildFunctionUpdateMessage(this.currentCode, message.content));
     }
 
     const { content } = await this.context.chat({ messages: this.shortTermMemory, temperature: 0 });
@@ -264,7 +264,7 @@ export class EditSheet extends ChatPluginBase implements IChatPlugin {
       await sheetApi.setValues(value);
     }
     this.modeCache = '';
-    this.sendTaskSuccessMsg('', message.from)
+    this.sendTaskSuccessMsg('', message.from);
   };
   handleByMode = async (mode: ModeType, message: IChatMessage) => {
     if (mode === 'data') {
@@ -290,7 +290,7 @@ export class EditSheet extends ChatPluginBase implements IChatPlugin {
 
     // if message from leader, need to auto update sheet data,and return successfully message
     if (message?.role === 'assistant') {
-      await this.handleFromLeader(this.modeCache, message)
+      await this.handleFromLeader(this.modeCache, message);
     } else {
       await this.handleByMode(this.modeCache, message);
     }

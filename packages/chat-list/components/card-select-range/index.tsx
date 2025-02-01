@@ -6,7 +6,7 @@ import {
   CardActions,
   // RadioGroup,
 } from "chat-list/components/ui/card";
-import { RadioGroup, RadioGroupItem } from 'chat-list/components/ui/radio-group'
+import { RadioGroup, RadioGroupItem } from 'chat-list/components/ui/radio-group';
 import Button from '../button';
 import sheetApi from '@api/sheet';
 import { ModeType } from 'chat-list/types/edit';
@@ -35,7 +35,7 @@ export default function CardSelectRange(
   };
   const options = [{ label: 'Auto', value: 'auto' },
   { label: 'Data', value: 'data' },
-  { label: 'Function', value: 'function' }]
+  { label: 'Function', value: 'function' }];
   return (
     <Card className="w-card">
       <CardTitle>Edit Sheet</CardTitle>
@@ -52,7 +52,7 @@ export default function CardSelectRange(
                       className="mx-1 cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       htmlFor={`x-${value}}`}>{label}</label>
                   </div>
-                )
+                );
               })
             }
           </RadioGroup>

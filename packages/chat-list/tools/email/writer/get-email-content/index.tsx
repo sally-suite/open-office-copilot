@@ -3,8 +3,8 @@
 
 
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import descriptiont from './description.md'
-import docApi from '@api/email'
+import descriptiont from './description.md';
+import docApi from '@api/email';
 import { IChatMessage } from 'chat-list/types/message';
 // import { chatByPrompt } from 'chat-list/service/message';
 
@@ -17,7 +17,7 @@ export const main: ITool['func'] = async ({ message, context }: { message: IChat
         return `No email content is selected, tell user to  select email content.`;
     }
     return `Email content:\n\n ${history}`;
-}
+};
 
 export default {
     "name": "get_email_content",

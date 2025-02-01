@@ -2,7 +2,7 @@ import { ChatPluginBase, IChatPlugin } from 'chat-list/types/plugin';
 import { IChatMessage } from 'chat-list/types/message';
 import i18n from 'chat-list/locales/i18n';
 import instruction from './prompt/instruction.md';
-import CardIntroduce from 'chat-list/components/card-tools'
+import CardIntroduce from 'chat-list/components/card-tools';
 import React from 'react';
 
 export class Start extends ChatPluginBase implements IChatPlugin {
@@ -15,8 +15,8 @@ export class Start extends ChatPluginBase implements IChatPlugin {
   description = "Generate article for you";
   // introduce = i18n.t('common.wellcome_message', `Hi! I'm Sally, How can I assist you today?`);
   introduce = () => {
-    return <CardIntroduce introduction={''} />
-  }
+    return <CardIntroduce introduction={''} />;
+  };
   instruction = instruction;
   fileConfig = {
     accept: {
@@ -58,8 +58,8 @@ export class Start extends ChatPluginBase implements IChatPlugin {
         return msg;
       }
     }
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
 }
 
 export default new Start();

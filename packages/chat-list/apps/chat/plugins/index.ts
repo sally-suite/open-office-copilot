@@ -1,6 +1,6 @@
 
-import Python from 'chat-list/plugins/python'
-import Vision from 'chat-list/plugins/vision'
+import Python from 'chat-list/plugins/python';
+import Vision from 'chat-list/plugins/vision';
 // import Analyst from 'chat-list/plugins/analyst-v2'
 // import Planner from 'chat-list/plugins/planner'
 // import Formula from 'chat-list/plugins/formula';
@@ -12,7 +12,7 @@ import PowerPoint from 'chat-list/plugins/presentation';
 import Word from 'chat-list/plugins/article';
 import Jupyter from 'chat-list/plugins/jupyter';
 import Uml from 'chat-list/plugins/uml';
-import Image from 'chat-list/plugins/image'
+import Image from 'chat-list/plugins/image';
 import Eric from 'chat-list/plugins/eric';
 import Claude from 'chat-list/plugins/claude';
 

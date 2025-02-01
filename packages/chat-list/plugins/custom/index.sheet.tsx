@@ -5,7 +5,7 @@ import { ISheetInfo } from "chat-list/types/api/sheet";
 import ContextSheet from "chat-list/components/context-sheet";
 import React from "react";
 import { IChatMessage } from "chat-list/types/message";
-import CardUpload from 'chat-list/components/card-upload'
+import CardUpload from 'chat-list/components/card-upload';
 import { dataRangeAnalyzeMixin } from '../_mixins/sheet';
 
 /**
@@ -21,7 +21,7 @@ export class CustomAgent extends ChatPluginBase implements IChatPlugin {
     this.agents = [];
     this.instruction = agent.instruction || '';
     this.description = agent.description || '';
-    this.introduce = agent.introduce || `Hi,I'm ${this.name},How can I assistant you?`
+    this.introduce = agent.introduce || `Hi,I'm ${this.name},How can I assistant you?`;
     this.dataAsContext = agent.dataAsContext;
     this.action = this.name;
     this.isCustom = true;
@@ -31,23 +31,23 @@ export class CustomAgent extends ChatPluginBase implements IChatPlugin {
     const sheetInfo: ISheetInfo = JSON.parse(context);
     return (
       <ContextSheet address={sheetInfo.activeRange} />
-    )
-  }
+    );
+  };
   initialize = false;
   uploadFile = async (): Promise<File> => {
     const { appendMsg, setMode } = this.context;
     return new Promise((resolve, reject) => {
       appendMsg(this.buildChatMessage(<CardUpload onUpload={async (files) => {
-        window.INPUT_EXCEL_FILE = files[0]
+        window.INPUT_EXCEL_FILE = files[0];
         // const wboutArrayBuffer = await window.INPUT_EXCEL_FILE.arrayBuffer();
         // await prepareFolder(['/input'], false)
         // await prepareFolder(['/output'], true)
         // await writeFile('/input/data.xlsx', new Uint8Array(wboutArrayBuffer));
         // setMode('custom');
-        resolve(files[0])
-      }} />, 'card'))
-    })
-  }
+        resolve(files[0]);
+      }} />, 'card'));
+    });
+  };
   onReceive = async (message: IChatMessage) => {
     const { setTyping } = this.context;
     if (!message.content) {
@@ -60,8 +60,8 @@ export class CustomAgent extends ChatPluginBase implements IChatPlugin {
       await (this as any).showSheetInfo(message);
       return;
     }
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
   // tools = tools;
   // injectContext = async () => {
   //   const { docType } = this.context;

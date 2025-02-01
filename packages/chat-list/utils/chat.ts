@@ -44,9 +44,9 @@ export const buildChatMessage = (
     } else if (type === 'text') {
         text = content as string;
     } else if (type === 'file') {
-        files = content as File[]
+        files = content as File[];
     } else if (type === 'card') {
-        card = content as React.ReactNode
+        card = content as React.ReactNode;
     }
 
     return {
@@ -60,9 +60,9 @@ export const buildChatMessage = (
         role,
         from,
         mentions: mentions || []
-    }
+    };
 
-}
+};
 
 let memory: IMessageBody[] = [];
 export const shortTermMemory = {
@@ -70,7 +70,7 @@ export const shortTermMemory = {
         if (Array.isArray(msg)) {
             memory = memory.concat(msg);
         } else {
-            memory.push(msg)
+            memory.push(msg);
         }
     },
     list(): IMessageBody[] {
@@ -82,7 +82,7 @@ export const shortTermMemory = {
     length() {
         return memory.length;
     }
-}
+};
 export class summaryMemory<T> extends Array<T> {
     push(element: T): number {
 

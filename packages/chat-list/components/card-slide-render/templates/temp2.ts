@@ -1,17 +1,17 @@
 import { ISlideItem, Slide, SlideElement, Theme } from "chat-list/types/api/slide";
-import { titleFontSize, contentY } from './constants'
+import { titleFontSize, contentY } from './constants';
 
 const gapConfig: any = {
     2: 0.4,
     3: 0.3,
     4: 0.2,
-}
+};
 
 const marginConfig: any = {
     2: 20,
     3: 15,
     4: 10,
-}
+};
 
 export function render(data: ISlideItem, theme: Theme): Slide {
     const elements: SlideElement[] = [];
@@ -127,8 +127,8 @@ export function render(data: ISlideItem, theme: Theme): Slide {
                     height: 2,
                 },
             }
-        )
-    })
+        );
+    });
 
     return {
         id: 'slide1',
@@ -145,4 +145,4 @@ export default {
     render,
     name: 'Column Card',
     image: false,
-}
+};

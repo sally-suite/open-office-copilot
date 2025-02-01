@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import sheetApi from '@api/sheet'
+import React, { useEffect, useState } from 'react';
+import sheetApi from '@api/sheet';
 import { getHeaderList } from 'chat-list/service/sheet';
 import { Textarea } from 'chat-list/components/ui/textarea';
 import Button from 'chat-list/components/button';
@@ -7,23 +7,23 @@ import Markdown from 'chat-list/components/markdown';
 import CardSheetInfo, { FormulaInfo } from 'chat-list/components/card-sheet-info/form';
 import { numberToLetter, parseCellAddress } from 'chat-list/utils';
 import Loading from '../loading';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { chatByPrompt } from 'chat-list/service/message';
-import writeFunctionPrompt from './prompts/function'
+import writeFunctionPrompt from './prompts/function';
 
 export default function CoderRender() {
     const { t } = useTranslation(['vba']);
     const [inputValue, setInputValue] = useState('');
     const [formValue, setFormValue] = useState<FormulaInfo>({});
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
-    const [result, setResult] = useState('')
+    const [result, setResult] = useState('');
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
     const onFormChange = (formValue: FormulaInfo) => {
-        setFormValue(formValue)
-    }
+        setFormValue(formValue);
+    };
 
     const buildContext = async () => {
         const sheet = await sheetApi.getSheetInfo();
@@ -33,9 +33,9 @@ export default function CoderRender() {
         const headStart = (formValue.header.range || formValue.dataRangeCells).split(':')[0];
         const headRange = parseCellAddress(headStart);
         const headers = formValue.header.names.map((h, i) => {
-            const letter = numberToLetter(headRange.column + i)
-            return `${h}<${letter}${headRange.row}>`
-        }).join(' , ')
+            const letter = numberToLetter(headRange.column + i);
+            return `${h}<${letter}${headRange.row}>`;
+        }).join(' , ');
 
         const context = `
 Here is the information about sheet:
@@ -50,7 +50,7 @@ Information about data range:
 3. Is header in data range: ${formValue.headerInDataRange}
 `;
         return context;
-    }
+    };
 
     const generate = async () => {
         const dataContext = await buildContext();
@@ -76,12 +76,12 @@ Information about data range:
             },
             dataRangeCells,
             headerInDataRange: 'Yes'
-        })
+        });
         setLoading(false);
-    }
+    };
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     return (
         <div className="p-2 flex flex-col mx-auto mt-2">

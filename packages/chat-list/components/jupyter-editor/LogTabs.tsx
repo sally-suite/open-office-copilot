@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LogType } from "chat-list/types/log";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
 interface ILogTabsProps {
   onChange: (type: string) => void;

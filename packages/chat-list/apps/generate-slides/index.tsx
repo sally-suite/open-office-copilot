@@ -4,12 +4,12 @@ import React, { useEffect, useState } from 'react';
 
 import { createRoot } from 'react-dom/client';
 import { plugins } from 'chat-list/plugins/slide';
-import { init } from 'chat-list/service/log'
+import { init } from 'chat-list/service/log';
 import { UserProvider } from 'chat-list/store/userContext';
 import { ChatProvider } from 'chat-list/store/chatContext';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import 'chat-list/components/icon/svg-icons-register';
-import Wellcome from 'chat-list/components/wellcome'
+import Wellcome from 'chat-list/components/wellcome';
 import 'chat-list/assets/css/global.css';
 import 'chat-list/assets/css/common.less';
 
@@ -20,7 +20,7 @@ import { Toaster } from "chat-list/components/ui/toaster";
 import { TooltipProvider } from 'chat-list/components/ui/tooltip';
 import 'chat-list/locales/i18n';
 import { useTranslation } from 'react-i18next';
-import GenerateSlides from 'chat-list/pages/generate-slides'
+import GenerateSlides from 'chat-list/pages/generate-slides';
 const router = createMemoryRouter(
   [
 
@@ -68,8 +68,8 @@ export default function Main({ docType, plugins }: IMainProps) {
             {
               !wellcome && (
                 <Wellcome onStart={() => {
-                  setLocalStore('sheet-chat-wellcome', '1')
-                  setWellcome('1')
+                  setLocalStore('sheet-chat-wellcome', '1');
+                  setWellcome('1');
                 }} />
               )
             }

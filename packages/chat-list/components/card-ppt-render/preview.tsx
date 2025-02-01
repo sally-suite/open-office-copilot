@@ -8,13 +8,13 @@ const alignMap = {
     'left': 'flex-start',
     'center': 'center',
     'right': 'flex-end',
-}
+};
 
 const vAlignMap = {
     'top': 'flex-start',
     'middle': 'center',
     'bottom': 'flex-end',
-}
+};
 
 // 组件 props 类型
 interface SlideElementProps {
@@ -46,22 +46,22 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
             newMargin.push(newMargin.shift() as number);
             return {
                 padding: newMargin.map((m) => pTtoPx(m)).join('px ') + 'px'
-            }
+            };
         }
         return {
             padding: pTtoPx(margin) + 'px'
-        }
-    }
+        };
+    };
     const pTtoPx = (value: number) => value * 1.33;
 
-    let alignStyle = {}
+    let alignStyle = {};
 
     if (element?.style?.align) {
         alignStyle = {
             display: 'flex',
             justifyContent: alignMap[element?.style?.align || 'left'],
             alignItems: vAlignMap[element?.style?.valign || 'middle'],
-        }
+        };
     }
 
 
@@ -100,7 +100,7 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
                         opacity: (1 - (block.style?.fill?.transparency / 100)) || 1,
                     };
                     return <p key={index} style={textStyle} className='p-0 m-0'>{block.text}</p>;
-                })
+                });
                 return <div style={style} >{blocks}</div>;
             } else {
                 const padding = convertMarginToPad(element.style.margin);
@@ -232,7 +232,7 @@ const SlideEle: React.FC<SlideElementProps> = ({ element, onSelectElement }) => 
 };
 
 const SlidePage: React.FC<SlideProps> = ({ slide, onSelect, onSelectElement }) => {
-    const contianerRef = useRef(null)
+    const contianerRef = useRef(null);
     const slideRef = useRef(null);
     const [elements, setElements] = useState([]);
     const width = 1276.8;
@@ -258,33 +258,33 @@ const SlidePage: React.FC<SlideProps> = ({ slide, onSelect, onSelectElement }) =
         contianerRef.current.style.height = `${height * scaleX}px`;
         slideRef.current.style.transform = `scale(${scaleX})`;
         // slideRef.current.style.opacity = 1;
-    }
+    };
     const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
     const annimation = async () => {
         for (const element of slide.elements) {
-            await sleep(300)
+            await sleep(300);
             setElements(prevElements => [...prevElements, element]);
         }
-    }
+    };
     const init = async () => {
         // if (elements.length == 0) {
         //     annimation();
         // } else {
         //     // 
         // }
-        setElements(slide.elements)
-    }
+        setElements(slide.elements);
+    };
     const onSelectSlide = () => {
-        onSelect?.(slide)
-    }
+        onSelect?.(slide);
+    };
 
     useEffect(() => {
         resizeSlide();
-    }, [])
+    }, []);
 
     useEffect(() => {
-        init()
-    }, [slide.elements])
+        init();
+    }, [slide.elements]);
 
     return (
         <div ref={contianerRef}
@@ -297,7 +297,7 @@ const SlidePage: React.FC<SlideProps> = ({ slide, onSelect, onSelectElement }) =
             <div ref={slideRef} style={slideStyle} className=' border-4 absolute top-0 left-0 transform origin-top-left hover:cursor-pointer shadow-xl hover:shadow-2xl select-none'>
                 {elements.map((element, index) => (
                     <SlideEle key={index} element={element} onSelectElement={() => {
-                        onSelectElement?.(element, index)
+                        onSelectElement?.(element, index);
                     }} />
                 ))}
             </div>
@@ -313,7 +313,7 @@ export const PPTPreview: React.FC<PPTRendererProps> = ({ slides, onSelectSlide, 
                     key={index}
                     slide={slide}
                     onSelect={() => {
-                        onSelectSlide?.(slide, index)
+                        onSelectSlide?.(slide, index);
                     }}
                 />
             ))}

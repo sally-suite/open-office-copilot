@@ -77,15 +77,15 @@ export const chat = async (body: any) => {
             "X-Title": "Sally",
         },
         body: JSON.stringify(body)
-    })
+    });
     if (!response.ok) {
-        fail(`Request failed with status ${response.status}`)
+        fail(`Request failed with status ${response.status}`);
         throw new Error(`Request failed with status ${response.status}`);
     }
     const result = await response.json();
     // console.log(result)
     return result;
-}
+};
 
 export const models = async (apiHost: string, apiKey: string) => {
     const key = apiKey;
@@ -97,17 +97,17 @@ export const models = async (apiHost: string, apiKey: string) => {
             "HTTP-Referer": "https://www.sally.bot",
             "X-Title": "Sally",
         }
-    })
-    console.log(response)
+    });
+    console.log(response);
     // check status
     if (!response.ok) {
-        fail(`Request failed with status ${response.status}`)
+        fail(`Request failed with status ${response.status}`);
         throw new Error(`Request failed with status ${response.status}`);
     }
     const result = await response.json();
     // console.log(result)
     return result;
-}
+};
 
 export const chatStream = async (body: any, callback: any) => {
     const { apiKey, apiHost } = await getApiConfig();
@@ -123,7 +123,7 @@ export const chatStream = async (body: any, callback: any) => {
             "X-Title": "Sally",
         },
         body: JSON.stringify(body)
-    })
+    });
     // const result = await response.json();
     if (!response.ok) {
         fail(`Request failed with status ${response.status}`);
@@ -136,7 +136,7 @@ export const chatStream = async (body: any, callback: any) => {
     const stop = () => {
         done = true;
         controller.abort();
-    }
+    };
     const res: any = { content: '', tool_calls: [] };
     const lines = [];
     for await (const line of makeTextSteamLineIterator(reader)) {
@@ -151,7 +151,7 @@ export const chatStream = async (body: any, callback: any) => {
         const data = JSON.parse(json);
         // lines.push(json)
         if (data.choices && data.choices.length > 0) {
-            const choice = data.choices[0]
+            const choice = data.choices[0];
             const content = choice.delta?.content;
             const toolCalls = choice.delta?.tool_calls;
             if (content !== undefined && content != null) {
@@ -174,7 +174,7 @@ export const chatStream = async (body: any, callback: any) => {
         });
     }
     return res;
-}
+};
 export const embeddings = async (body: IEmbeddingsBody) => {
     const { apiKey, apiHost } = await getApiConfig();
     const key = apiKey;
@@ -187,14 +187,14 @@ export const embeddings = async (body: IEmbeddingsBody) => {
             "X-Title": "Sally",
         },
         body: JSON.stringify(body)
-    })
+    });
     if (!response.ok) {
         throw new Error(`Request failed with status ${response.status}`);
     } else {
         const result = await response.json();
         return result.data[0].embedding;
     }
-}
+};
 
 export const generateImages = async (body: any) => {
 
@@ -209,8 +209,8 @@ export const generateImages = async (body: any) => {
             "X-Title": "Sally",
         },
         body: JSON.stringify(body)
-    })
+    });
     const result = await response.json();
     // console.log(result)
     return result;
-}
+};

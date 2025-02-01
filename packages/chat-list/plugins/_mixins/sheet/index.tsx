@@ -90,7 +90,7 @@ export const dataRangeAnalyzeMixin = {
                         await resolve({ file, address, sheetName: currentSheet.sheetName });
                     }} />
                 , 'card', '', 'assistant'));
-        })
+        });
     },
     /**
      * use in add-on
@@ -112,7 +112,7 @@ export const dataRangeAnalyzeMixin = {
                 address,
                 sheetName,
                 input
-            })
+            });
             setTyping(true);
             const newMsg = buildChatMessage('', 'text', 'assistant');
             await chatWithImage(file, prompt, async (done, result) => {
@@ -125,16 +125,16 @@ export const dataRangeAnalyzeMixin = {
                     isAppend = true;
                 } else {
                     newMsg.content = result.content;
-                    updateMsg(newMsg._id, newMsg)
+                    updateMsg(newMsg._id, newMsg);
                 }
                 if (done) {
                     newMsg.content = result.content;
                     const addr = extractCodeFromMd(result.content);
 
                     await sheetApi.activeSheet(sheetName, addr.replace(/[\r\n]/g, ''));
-                    updateMsg(newMsg._id, newMsg)
+                    updateMsg(newMsg._id, newMsg);
                 }
-            })
+            });
         }
     },
     /**
@@ -169,15 +169,15 @@ export const dataRangeAnalyzeMixin = {
                         isAppend = true;
                     } else {
                         newMsg.content = result.content;
-                        updateMsg(newMsg._id, newMsg)
+                        updateMsg(newMsg._id, newMsg);
                     }
                     if (done) {
                         newMsg.content = result.content;
-                        updateMsg(newMsg._id, newMsg)
-                        resolve(result.content)
+                        updateMsg(newMsg._id, newMsg);
+                        resolve(result.content);
                     }
-                })
-            })
+                });
+            });
         }
     },
     showSheetInfo: async function (message: any) {
@@ -204,9 +204,9 @@ export const dataRangeAnalyzeMixin = {
             const toolList = agentTools.map((item) => {
                 const tool = tools.find(p => p.name == item.id);
                 // return { name: snakeToWords(tool.name), description: tool.description }
-                return `tool_name:${snakeToWords(tool.name)}\ntool_description:\n"""\n${tool.description}\n"""`
-            })
-            this.push({ role: 'user', content: (message.context || '') + '\n\n' + message.content })
+                return `tool_name:${snakeToWords(tool.name)}\ntool_description:\n"""\n${tool.description}\n"""`;
+            });
+            this.push({ role: 'user', content: (message.context || '') + '\n\n' + message.content });
             const newMsg = this.buildChatMessage('', 'text', message.to, 'assistant');
             let isAppend = false;
             const understand = understandPrompt;
@@ -222,20 +222,20 @@ export const dataRangeAnalyzeMixin = {
                 if (!isAppend) {
                     isAppend = true;
                     newMsg.content = result.content;
-                    appendMsg(newMsg)
+                    appendMsg(newMsg);
                 } else {
                     newMsg.content = result.content;
                     updateMsg(newMsg._id, newMsg);
                 }
-            })
-            this.push({ role: 'assistant', content: result.content })
+            });
+            this.push({ role: 'assistant', content: result.content });
             const confirmMsg = buildChatMessage(
                 <CardConfirm content=""
                     okText={i18n.t('base:common.confirm', "Confirm")}
                     onOk={() => {
-                        sendMsg(buildChatMessage(i18n.t('base:common.yes', "Yes"), 'text', 'user'))
+                        sendMsg(buildChatMessage(i18n.t('base:common.yes', "Yes"), 'text', 'user'));
                         setTimeout(() => {
-                            deleteMsg(confirmMsg._id)
+                            deleteMsg(confirmMsg._id);
                         }, 500);
                     }}
                     cancelText={i18n.t('base:common.reslect_and_confirm', "Reselect and Confirm")}
@@ -243,8 +243,8 @@ export const dataRangeAnalyzeMixin = {
                         newChat();
                         this.showSheetInfo(message);
                     }}
-                />, 'card', 'user')
-            appendMsg(confirmMsg)
+                />, 'card', 'user');
+            appendMsg(confirmMsg);
             return;
         }
     },
@@ -261,19 +261,19 @@ export const dataRangeAnalyzeMixin = {
             // response_format: {
             //     type: "json_object"
             // }
-        })
-        const result = extractJsonDataFromMd(res.content) as { type: '1' | '2' | '3' }
+        });
+        const result = extractJsonDataFromMd(res.content) as { type: '1' | '2' | '3' };
         if (result) {
             return result.type;
         }
-        return '3'
+        return '3';
     },
     introduceCapabilities: async function (message: any) {
         const { appendMsg, updateMsg, agentTools, tools } = this.context as ChatState;
         const toolList = agentTools.map((item) => {
             const tool = tools.find(p => p.name == item.id);
-            return { name: snakeToWords(tool.name), description: tool.description }
-        })
+            return { name: snakeToWords(tool.name), description: tool.description };
+        });
         const newMsg = this.buildChatMessage('', 'text', message.to, 'assistant');
         let isAppend = false;
         await chatByTemplate(introducePrompt, {
@@ -289,12 +289,12 @@ export const dataRangeAnalyzeMixin = {
                 if (!isAppend) {
                     isAppend = true;
                     newMsg.content = result.content;
-                    appendMsg(newMsg)
+                    appendMsg(newMsg);
                 } else {
                     newMsg.content = result.content;
                     updateMsg(newMsg._id, newMsg);
                 }
             }
-        )
+        );
     }
-}
+};

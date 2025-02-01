@@ -3,8 +3,8 @@ import { ChatPluginBase, IChatPlugin, ITool } from 'chat-list/types/plugin';
 import { IChatMessage } from 'chat-list/types/message';
 import sheetApi from '@api/sheet';
 import { Filter } from 'lucide-react';
-import instruction from './prompts/instruction.md'
-import description from './prompts/description.md'
+import instruction from './prompts/instruction.md';
+import description from './prompts/description.md';
 import { getSheetInfo } from 'chat-list/service/sheet';
 import i18n from 'chat-list/locales/i18n';
 export class EditSheet extends ChatPluginBase implements IChatPlugin {
@@ -30,8 +30,8 @@ export class EditSheet extends ChatPluginBase implements IChatPlugin {
     return input;
   };
   injectContext = async () => {
-    return await getSheetInfo()
-  }
+    return await getSheetInfo();
+  };
   tools = ['filter_by_condition'];
   // onReceive = async (message: IChatMessage) => {
   //   const { setTyping } = this.context;

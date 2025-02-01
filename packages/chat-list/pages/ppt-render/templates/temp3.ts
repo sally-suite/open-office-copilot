@@ -1,5 +1,5 @@
 import { ISlideItem, Slide, SlideElement, TextBlock, Theme } from "chat-list/types/api/slide";
-import { titleFontSize, contentY } from './constants'
+import { titleFontSize, contentY } from './constants';
 
 
 export default function generateSlide(slideItem: ISlideItem, theme: Theme): Slide {
@@ -70,7 +70,7 @@ export default function generateSlide(slideItem: ISlideItem, theme: Theme): Slid
                         fontFamily: theme.fonts.body,
                     }
                 }
-            )
+            );
         });
 
         elements.push({

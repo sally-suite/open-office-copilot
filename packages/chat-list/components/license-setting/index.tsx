@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Modal from 'chat-list/components/modal'
+import React, { useContext, useEffect, useState } from 'react';
+import Modal from 'chat-list/components/modal';
 import Tooltip from '../tooltip';
 import { Loader2 } from 'lucide-react';
 import { Input } from 'chat-list/components/ui/input';
 import { getToken } from 'chat-list/local/local';
 // import userApi from '@api/user'
 import { UserContext } from 'chat-list/store/userContext';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import docApi from '@api/doc';
 import Button from '../button';
 import { cn } from 'chat-list/lib/utils';
@@ -14,7 +14,7 @@ import Loading from '../loading';
 
 const memStore = {
     init: false
-}
+};
 
 export default function LicenseSetting({ className = '' }: { className?: string }) {
     const { loading: authLoading, user, checkLicense, openLogin: open, setOpenLogin: setOpen } = useContext(UserContext);
@@ -25,19 +25,19 @@ export default function LicenseSetting({ className = '' }: { className?: string 
     const { t } = useTranslation('base');
     const onConfirm = async () => {
         try {
-            setError('')
-            await checkLicense(licenseKey)
+            setError('');
+            await checkLicense(licenseKey);
             setOpen(false);
         } catch (e) {
             setError(e.message);
         }
 
-    }
+    };
 
 
     const onValueChange = (e: any) => {
         setLicenseKey(e.target.value);
-    }
+    };
     const signInBy = async (platfrom: 'azure-ad' | 'google') => {
         // const licenseKey = await getLicenseConfig();
         // appendMsg(buildChatMessage(<CardLicense licenseKey={licenseKey} />, 'card', 'assistant'))
@@ -48,18 +48,18 @@ export default function LicenseSetting({ className = '' }: { className?: string 
         // setLoading(false);
         // setOpen(true)
         const host = window.location.hostname;
-        setOpen(false)
+        setOpen(false);
         docApi.openDialog(`https://${host}/auth/add-on/callback/target?platform=${platfrom}`, {}, async (message) => {
-            const res = JSON.parse(message)
+            const res = JSON.parse(message);
             const licenseKey = res.key;
-            await checkLicense(licenseKey)
+            await checkLicense(licenseKey);
             setOpen(false);
-        })
-    }
+        });
+    };
 
     const showSignIn = () => {
         setOpen(true);
-    }
+    };
 
     const checkKey = async () => {
         const token = await getToken();
@@ -71,20 +71,20 @@ export default function LicenseSetting({ className = '' }: { className?: string 
             memStore.init = true;
             // appendMsg(buildChatMessage(<CardLicense />, 'card', 'assistant'))
         }
-    }
+    };
 
 
     useEffect(() => {
         if (!authLoading) {
             checkKey();
         }
-    }, [authLoading])
+    }, [authLoading]);
 
 
     if (authLoading) {
         return (
             <Loading className='h-6 w-6' />
-        )
+        );
     }
 
     if (user?.isAuthenticated) {
@@ -92,7 +92,7 @@ export default function LicenseSetting({ className = '' }: { className?: string 
             <a href='https://www.sally.bot/profile' target='_blank' rel="noreferrer" className={cn('text-xs rounded-full border px-2 cursor-pointer', className)}>
                 {user.version.toUpperCase()}
             </a>
-        )
+        );
     }
 
     return (
@@ -179,5 +179,5 @@ export default function LicenseSetting({ className = '' }: { className?: string 
                 </p>
             </Modal>
         </>
-    )
+    );
 }

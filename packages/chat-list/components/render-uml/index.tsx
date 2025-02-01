@@ -1,11 +1,11 @@
-import { ChatContext } from 'chat-list/store/chatContext'
-import React, { useContext, useEffect, useState } from 'react'
+import { ChatContext } from 'chat-list/store/chatContext';
+import React, { useContext, useEffect, useState } from 'react';
 import CodeEditor from 'chat-list/components/code-editor/mark';
 import { getValues } from 'chat-list/service/sheet';
-import Markdown from 'chat-list/components/markdown'
+import Markdown from 'chat-list/components/markdown';
 // import uml from './prompts/uml.md'
 import { editFunction } from './edit';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 import Loading from '../loading';
 import ErrorBoundary from 'chat-list/components/error-boundary';
 
@@ -13,9 +13,9 @@ export default function CoderRender() {
     const { plugin, chat } = useContext(ChatContext);
     const [editorCode, setEditorCode] = useState(''); // 初始化代码
     const [history, setHistory] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
     const onCodeChange = (code: string) => {
-        console.log(code)
+        console.log(code);
         setEditorCode(code);
     };
     // const editFunction = async (sheetInfo: string, input: string) => {
@@ -43,7 +43,7 @@ export default function CoderRender() {
         // setExecutionResult(result);
     };
     const codeCompletion = async (code: string, input: string) => {
-        console.log(code, input)
+        console.log(code, input);
         return await editFunction(code, input);
     };
     const onUndo = async () => {
@@ -55,11 +55,11 @@ export default function CoderRender() {
         // const newHistory = history.slice(0, history.length - 1);
         // setHistory(newHistory);
         // console.log('undo')
-    }
+    };
     const pushHistory = async () => {
         const values = await getValues();
         setHistory(history.concat([values]));
-    }
+    };
     const renderPerview = (code: string) => {
         return (
             <ErrorBoundary>
@@ -67,16 +67,16 @@ export default function CoderRender() {
                     {code}
                 </Markdown>
             </ErrorBoundary>
-        )
-    }
+        );
+    };
 
     const initCode = async () => {
         try {
-            setLoading(true)
+            setLoading(true);
             if (plugin.code) {
                 setEditorCode(plugin.code);
                 plugin.code = '';
-                return
+                return;
             }
             const info = await docApi.getSelectedImageInfo();
             if (info) {
@@ -93,23 +93,23 @@ export default function CoderRender() {
             }
             const result = await editFunction('', text);
             setEditorCode(result);
-            setLoading(false)
+            setLoading(false);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
 
-    }
+    };
 
     useEffect(() => {
-        initCode()
-    }, [])
+        initCode();
+    }, []);
 
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center h-full">
                 <Loading />
             </div>
-        )
+        );
     }
     return (
         <CodeEditor

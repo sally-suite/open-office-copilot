@@ -18,25 +18,25 @@ interface ICardImagesProps {
 
 export default function CardSlideImages(props: ICardImagesProps) {
     const { title, images } = props;
-    const [list, setList] = useState(images)
+    const [list, setList] = useState(images);
     const { platform } = useChatState();
 
     const insert = async (index: number) => {
         const imgUrl = list[index];
         if (platform === 'office') {
-            const base64 = await proxyImage(imgUrl)
-            const size = await getImgSize(base64)
+            const base64 = await proxyImage(imgUrl);
+            const size = await getImgSize(base64);
             await slideApi.insertImage(base64, size.width, size.height);
         } else if (platform === 'google') {
-            const base64 = await proxyImage(imgUrl)
-            const size = await getImgSize(base64)
+            const base64 = await proxyImage(imgUrl);
+            const size = await getImgSize(base64);
             await slideApi.insertImage(base64, size.width, size.height);
         }
 
-    }
+    };
     const onRemove = (url: string) => {
         setList(list.filter((item) => item !== url));
-    }
+    };
     if (!list || list.length == 0) {
         return null;
     }
@@ -56,7 +56,7 @@ export default function CardSlideImages(props: ICardImagesProps) {
                                 </IconButton>
                                 <img style={{ width: '100%', height: 'auto' }} src={item} alt={title} onError={onRemove.bind(null, item)} ></img>
                             </div>
-                        )
+                        );
                     })}
                 </div>
             </CardContent>

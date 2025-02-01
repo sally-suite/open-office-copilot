@@ -5,13 +5,13 @@ const gapConfig: any = {
     2: 0.4,
     3: 0.3,
     4: 0.2,
-}
+};
 
 const marginConfig: any = {
     2: 15,
     3: 10,
     4: 5,
-}
+};
 
 const positionConfig: any = {
     2: [
@@ -54,7 +54,7 @@ const positionConfig: any = {
             height: 3.675,
         }
     ]
-}
+};
 
 export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
     const elements: SlideElement[] = [];
@@ -95,7 +95,7 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
                     width: pos.width,
                     height: pos.height,
                 },
-            })
+            });
             continue;
         }
         const ratio = pos.width / pos.height;
@@ -111,7 +111,7 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
                 width: pos.width,
                 height: pos.height,
             },
-        })
+        });
 
     }
 
@@ -145,7 +145,7 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
                     margin: [10, 10, 10, 10],
                 }
             }
-        ]
+        ];
 
         elements.push(
             {
@@ -188,4 +188,4 @@ export default {
     render,
     name: 'Three images with text',
     image: true,
-}
+};

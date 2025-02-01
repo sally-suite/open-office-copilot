@@ -1,4 +1,4 @@
-import { gen } from 'chat-list/utils/api'
+import { gen } from 'chat-list/utils/api';
 import api from './api';
 
 export type IAPIKeys = keyof typeof api;

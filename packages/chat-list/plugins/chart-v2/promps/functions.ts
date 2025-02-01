@@ -1,5 +1,5 @@
-import { ChartTypes } from 'chat-list/types/chart'
-import { ToolFunction } from 'chat-list/types/chat'
+import { ChartTypes } from 'chat-list/types/chart';
+import { ToolFunction } from 'chat-list/types/chat';
 
 export default function funcs(titles: string[]): ToolFunction[] {
     return [
@@ -41,5 +41,5 @@ export default function funcs(titles: string[]): ToolFunction[] {
             }
         }
 
-    ]
+    ];
 }

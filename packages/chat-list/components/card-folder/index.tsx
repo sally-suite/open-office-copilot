@@ -20,16 +20,16 @@ export const FolderList = ({ folders, expand }: { folders: string[], expand?: bo
                 folders.map((path) => {
                     return (
                         <Folder key={path} folder={path} folderName={path.substring(1)} expand={expand} />
-                    )
+                    );
                 })
             }
         </div>
-    )
-}
+    );
+};
 
 export default function CardFolder(props: ICardFilterProps) {
     const { folders = [], expand = false } = props;
-    console.log(expand)
+    console.log(expand);
     const { t } = useTranslation(['coder']);
 
     return (
@@ -39,5 +39,5 @@ export default function CardFolder(props: ICardFilterProps) {
                 <FolderList folders={folders} expand={expand} />
             </CardContent>
         </Card>
-    )
+    );
 }

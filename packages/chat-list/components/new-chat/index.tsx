@@ -1,7 +1,7 @@
 import useChatState from 'chat-list/hook/useChatState';
 import Tooltip from 'chat-list/components/tooltip';
-import React from 'react'
-import { useTranslation } from 'react-i18next'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { MessageSquarePlus } from 'lucide-react';
 export default function index() {
     const { t } = useTranslation(['base']);
@@ -20,5 +20,5 @@ export default function index() {
                 )
             }
         </div>
-    )
+    );
 }

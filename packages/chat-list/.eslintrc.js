@@ -18,5 +18,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   ignorePatterns: ['./*.js'],
-  rules: {},
+  rules: {
+    semi: ['error', 'always'],
+  },
 };

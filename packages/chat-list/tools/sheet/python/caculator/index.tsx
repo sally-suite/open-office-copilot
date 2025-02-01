@@ -21,8 +21,8 @@ export const func = async ({ active_sheet, script, explain, context }: { active_
     appendMsg(resMsg);
 
     const wboutArrayBuffer = await createXlsxFile(active_sheet);
-    await prepareFolder(['/input'], false)
-    await prepareFolder(['/output'], true)
+    await prepareFolder(['/input'], false);
+    await prepareFolder(['/output'], true);
     await writeFile('/input/data.xlsx', wboutArrayBuffer);
     const result = await runFunction(code, 'main');
     const fileData = await readFilesToData('/output');
@@ -35,11 +35,11 @@ export const func = async ({ active_sheet, script, explain, context }: { active_
         const { name, content } = fileContents[i];
         const resMsg = buildChatMessage(`**${name}**\n\n${content}\n\n`, 'text');
         context?.appendMsg(resMsg);
-        allResults += `**${name}**\n\n${content}\n\n`
+        allResults += `**${name}**\n\n${content}\n\n`;
     }
     return `Task completed, here is execution result:\n\n${allResults}`;
 
-}
+};
 
 export default {
     type: 'function',

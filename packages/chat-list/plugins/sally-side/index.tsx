@@ -2,7 +2,7 @@ import { ChatPluginBase, IChatPlugin } from 'chat-list/types/plugin';
 import { IChatMessage } from 'chat-list/types/message';
 import i18n from 'chat-list/locales/i18n';
 import instruction from './prompt/instruction.md';
-import CardIntroduce from 'chat-list/components/card-introduce'
+import CardIntroduce from 'chat-list/components/card-introduce';
 import React from 'react';
 // import docApi from '@api/doc'
 import sallyPng from 'chat-list/assets/img/sally-32.png';
@@ -16,8 +16,8 @@ export class Sally extends ChatPluginBase implements IChatPlugin {
   description = "";
   // introduce = i18n.t('common.wellcome_message', `Hi! I'm Sally, How can I assist you today?`);
   introduce = () => {
-    return <CardIntroduce />
-  }
+    return <CardIntroduce />;
+  };
   instruction = instruction;
   fileConfig = {
     accept: {
@@ -48,7 +48,7 @@ export class Sally extends ChatPluginBase implements IChatPlugin {
   onQuickReply = async (item: QuickReplyItem) => {
     // const { appendMsg } = this.context;
     // appendMsg(this.buildChatMessage(mark, 'text'))
-  }
+  };
   tools: any[] = ['search', 'search_news', 'search_images', 'create_images', 'get_page_content'];
   agents: any[] = [];
   // injectContext = async () => {
@@ -75,8 +75,8 @@ export class Sally extends ChatPluginBase implements IChatPlugin {
         return msg;
       }
     }
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
 }
 
 export default new Sally();

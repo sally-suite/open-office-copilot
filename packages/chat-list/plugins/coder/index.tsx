@@ -8,7 +8,7 @@ import CoderRender from 'chat-list/components/render-coder';
 import { getSheetInfo } from "chat-list/service/sheet";
 import description from './promps/description.md';
 import i18n from 'chat-list/locales/i18n';
-import GSPng from 'chat-list/assets/img/gs-32.png'
+import GSPng from 'chat-list/assets/img/gs-32.png';
 import { dataRangeAnalyzeMixin } from '../_mixins/sheet';
 import { ISheetInfo } from "chat-list/types/api/sheet";
 import ContextSheet from "chat-list/components/context-sheet";
@@ -17,7 +17,7 @@ import ContextSheet from "chat-list/components/context-sheet";
  * Code generation and run it in Google Apps Script
  */
 export class Code extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('sheet.agent.coder', 'Coder')
+  name = i18n.t('sheet.agent.coder', 'Coder');
   icon = GSPng;
   // model = null;
   action = "coder";
@@ -37,14 +37,14 @@ export class Code extends ChatPluginBase implements IChatPlugin {
     if (quickReply.code == 'editor') {
       context.setMode(this.action, 'custom');
     }
-  }
+  };
   tools = ['code_interpreter'];
   renderMessageContext = (context: string) => {
     const sheetInfo: ISheetInfo = JSON.parse(context);
     return (
       <ContextSheet address={sheetInfo.activeRange} />
-    )
-  }
+    );
+  };
   analyzeDataRange: (content: string) => Promise<void>;
   showSheetInfo: (message: IChatMessage) => void;
   // onReceive = async (message: IChatMessage) => {
@@ -63,8 +63,8 @@ export class Code extends ChatPluginBase implements IChatPlugin {
   render = () => {
     return (
       <CoderRender />
-    )
-  }
+    );
+  };
 }
 
 export default new Code(dataRangeAnalyzeMixin);

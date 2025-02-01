@@ -3,15 +3,15 @@ import { ChatPluginBase, IChatPlugin } from 'chat-list/types/plugin';
 import { QuickReplyItem } from 'chat-list/types/message';
 import introduce from './prompts/introduce.md';
 import sheetApi from '@api/sheet';
-import instruction from './prompts/instruction.md'
-import description from './prompts/description.md'
+import instruction from './prompts/instruction.md';
+import description from './prompts/description.md';
 import { getSheetInfo } from 'chat-list/service/sheet';
 import FunctionRender from 'chat-list/components/render-function';
 import i18n from 'chat-list/locales/i18n';
-import formula from 'chat-list/assets/img/sigma.png'
+import formula from 'chat-list/assets/img/sigma.png';
 
 export class WriteFunction extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('sheet.agent.function', 'Generate Formula')
+  name = i18n.t('sheet.agent.function', 'Generate Formula');
   icon = formula;
   mode = 'custom';
   action = 'function';
@@ -34,11 +34,11 @@ export class WriteFunction extends ChatPluginBase implements IChatPlugin {
     }
   };
   injectContext = async () => {
-    return await getSheetInfo()
-  }
+    return await getSheetInfo();
+  };
   render = () => {
-    return <FunctionRender />
-  }
+    return <FunctionRender />;
+  };
 }
 
 export default new WriteFunction();

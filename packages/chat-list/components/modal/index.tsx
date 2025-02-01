@@ -8,7 +8,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "chat-list/components/ui/dialog"
+} from "chat-list/components/ui/dialog";
 import Button from '../button';
 
 interface IModalProps {
@@ -37,7 +37,7 @@ export default function index(props: IModalProps) {
         if (!open) {
             onClose?.();
         }
-    }
+    };
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             {/* <DialogTrigger>{title}</DialogTrigger> */}
@@ -79,5 +79,5 @@ export default function index(props: IModalProps) {
             </DialogContent>
         </Dialog>
 
-    )
+    );
 }

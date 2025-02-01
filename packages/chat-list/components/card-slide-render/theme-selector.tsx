@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import themes from 'chat-list/data/slides/theme.json'
+import React, { useEffect, useState } from 'react';
+import themes from 'chat-list/data/slides/theme.json';
 import fontConfig from 'chat-list/data/slides/font.json';
 // import colorConfig from './data/theme.json';
-import Tooltip from 'chat-list/components/tooltip'
+import Tooltip from 'chat-list/components/tooltip';
 import { useTranslation } from 'react-i18next';
 
 
@@ -34,7 +34,7 @@ export default function ThemeSelector(props: ThemeSelectorProps) {
     const { value, onChange } = props;
     const { i18n } = useTranslation();
     const fonts = (fontConfig as any)[i18n.resolvedLanguage] || fontConfig['en-US'];
-    const [selectedTheme, setSelectedTheme] = useState<number>(0)
+    const [selectedTheme, setSelectedTheme] = useState<number>(0);
 
     const onSelect = (index: any) => {
         const theme = themes[index];
@@ -50,19 +50,19 @@ export default function ThemeSelector(props: ThemeSelectorProps) {
                     body: ff?.web?.body || '',
                 },
             }
-        }
-        setSelectedTheme(index)
-        onChange?.(tarTheme)
-    }
+        };
+        setSelectedTheme(index);
+        onChange?.(tarTheme);
+    };
 
     useEffect(() => {
         if (value) {
-            const i = themes.findIndex((p) => p.name == value)
-            onSelect(i)
+            const i = themes.findIndex((p) => p.name == value);
+            onSelect(i);
         } else {
-            onSelect(0)
+            onSelect(0);
         }
-    }, [])
+    }, []);
 
     return (
         <div className=" bg-white ">
@@ -87,7 +87,7 @@ export default function ThemeSelector(props: ThemeSelectorProps) {
                                 </div>
                             </Tooltip>
 
-                        )
+                        );
                     })}
                 </div>
             </div>
@@ -104,5 +104,5 @@ export default function ThemeSelector(props: ThemeSelectorProps) {
                 ))}
             </div> */}
         </div>
-    )
+    );
 }

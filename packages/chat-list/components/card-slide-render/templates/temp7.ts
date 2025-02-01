@@ -1,18 +1,18 @@
 import { ISlideItem, Slide, SlideElement, Theme } from "chat-list/types/api/slide";
-import { titleFontSize, contentY } from './constants'
+import { titleFontSize, contentY } from './constants';
 import { corpImageByRatio } from "chat-list/utils";
 
 const gapConfig: any = {
     2: 0.4,
     3: 0.3,
     4: 0.2,
-}
+};
 
 const marginConfig: any = {
     2: 15,
     3: 10,
     4: 5,
-}
+};
 
 export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
     const elements: SlideElement[] = [];
@@ -23,7 +23,7 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
     const margin = marginConfig[data.list.length] || 10;
     // const w = width - 5 - 0.5 * 2;
     const itemWidth = width - 5 - gap * 2;
-    const itemHeight = (height - 2) / data.list.length
+    const itemHeight = (height - 2) / data.list.length;
     const left = 5 + gap;
     elements.push({
         type: 'title',
@@ -128,7 +128,7 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
                     height: 2,
                 },
             }
-        )
+        );
         return elements;
     }
     if (data.list.length <= 3) {
@@ -136,21 +136,21 @@ export async function render(data: ISlideItem, theme?: Theme): Promise<Slide> {
             // const left = 1 + (index * itemWidth);
             const top = contentY + (index * itemHeight);
             const eles: any = renderItem(item, index, left, top, 6);
-            elements.push(...eles)
-        })
+            elements.push(...eles);
+        });
     } else {
         data.list.forEach((item, index) => {
             if (index % 2 == 0) {
                 const top = contentY + (index * itemHeight);
                 const eles: any = renderItem(item, index, left, top, itemWidth / 2 * 0.8);
-                elements.push(...eles)
+                elements.push(...eles);
             } else {
                 const left = 5.5 + gap + itemWidth / 2 * 0.8;
                 const top = contentY + ((index - 1) * itemHeight);
                 const eles: any = renderItem(item, index, left, top, itemWidth / 2 * 0.8);
-                elements.push(...eles)
+                elements.push(...eles);
             }
-        })
+        });
     }
 
     if (data.image && data.image.length > 0) {
@@ -191,4 +191,4 @@ export default {
     name: 'Left image with column',
     image: true,
     imageRatio: 0.7,
-}
+};

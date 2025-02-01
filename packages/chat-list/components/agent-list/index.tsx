@@ -15,9 +15,9 @@ export default function AgentList(props: IAgentListProps) {
     const onSelect = (plg: IChatPlugin) => {
 
         if (onAgentSelect) {
-            onAgentSelect(plg)
+            onAgentSelect(plg);
         }
-    }
+    };
     return (
         <div className='flex flex-col p-2 pt-0 space-y-1 w-full'>
             {plugins.map((item) => {
@@ -37,8 +37,8 @@ export default function AgentList(props: IAgentListProps) {
                             )
                         }
                     </div>
-                )
+                );
             })}
         </div>
-    )
+    );
 }

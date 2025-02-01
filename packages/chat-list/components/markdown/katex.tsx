@@ -1,5 +1,5 @@
 import useChatState from 'chat-list/hook/useChatState';
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cn } from 'chat-list/lib/utils';
 import docApi from '@api/doc';
@@ -10,7 +10,7 @@ import html2canvas from 'html2canvas';
 export default function Katex(props: any) {
     const { className, ...rest } = props;
     const { docType } = useChatState();
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(false);
 
     const { t } = useTranslation();
     const containerRef = useRef(null);
@@ -22,26 +22,26 @@ export default function Katex(props: any) {
         const mark = annotationNode.textContent;
         await docApi.insertText(`$$${mark}$$`, {
             type: 'text'
-        })
+        });
     };
     const onInsertSlide = async () => {
         const html = containerRef.current.querySelector('.katex-html');
-        console.log(html)
+        console.log(html);
         html2canvas(html).then(function (canvas) {
             // 将canvas转换为图像并显示
             // const img = document.createElement('img');
             const base64 = canvas.toDataURL();
-            console.log(base64)
+            console.log(base64);
             // document.getElementById('image-container').appendChild(img);
             slideApi.insertImage(base64);
         });
-    }
+    };
     const onMouseEnter = () => {
-        setShowMenu(true)
-    }
+        setShowMenu(true);
+    };
     const onMouseLeave = () => {
-        setShowMenu(false)
-    }
+        setShowMenu(false);
+    };
     return (
         <span ref={containerRef}
             className={
@@ -74,5 +74,5 @@ export default function Katex(props: any) {
                 )
             }
         </span>
-    )
+    );
 }

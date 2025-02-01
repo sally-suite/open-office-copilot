@@ -1,7 +1,7 @@
 import useChatState from 'chat-list/hook/useChatState';
 import { cn } from 'chat-list/lib/utils';
-import { X } from "lucide-react"
-import React, { useState, useEffect } from 'react'
+import { X } from "lucide-react";
+import React, { useState, useEffect } from 'react';
 
 export default function RenderPreview() {
     const { preview, setPreview } = useChatState();
@@ -40,5 +40,5 @@ export default function RenderPreview() {
                 {showContent && preview?.component}
             </div>
         </div>
-    )
+    );
 }

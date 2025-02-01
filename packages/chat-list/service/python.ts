@@ -8,7 +8,7 @@ const installPackages = async (pyodide: any) => {
     const micropip = pyodide.pyimport("micropip");
     await micropip.install(['pandas', 'matplotlib', 'numpy']);
     installed = true;
-}
+};
 
 export const runPython = async (code: string, params?: any) => {
     const pyodide = await loadPyodide();
@@ -21,6 +21,6 @@ export const runPython = async (code: string, params?: any) => {
         return res;
     }
     const result = pyodide.globals.get("main")(params);
-    console.log(result)
+    console.log(result);
     return result;
-}
+};

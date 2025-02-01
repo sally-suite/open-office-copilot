@@ -1,5 +1,5 @@
 import { chunkText } from "./file";
-import gptApi from '@api/gpt'
+import gptApi from '@api/gpt';
 
 const vectorStore = new Map<string, { vectors: number[][], chunks: string[] }>();
 
@@ -53,7 +53,7 @@ export const createStore = async (fileId: string, text: string,) => {
             model: 'text-embedding-ada-002',
             input: chunks[j]
         });
-        values.push(result)
+        values.push(result);
     }
 
     vectorStore.set(fileId, {
@@ -61,14 +61,14 @@ export const createStore = async (fileId: string, text: string,) => {
         chunks: chunks
     });
     return vectorStore.get(fileId);
-}
+};
 
 export const searchStore = async (fileId: string, fileContent: string, query: string, k = 3) => {
     try {
 
 
         if (!vectorStore.has(fileId)) {
-            await createStore(fileId, fileContent)
+            await createStore(fileId, fileContent);
         }
         if (vectorStore.has(fileId)) {
             const { vectors, chunks } = vectorStore.get(fileId);
@@ -76,7 +76,7 @@ export const searchStore = async (fileId: string, fileContent: string, query: st
                 const targetVector = await gptApi.embeddings({
                     model: 'text-embedding-ada-002',
                     input: query
-                })
+                });
                 const indexs = searchIndex(targetVector, vectors, k);
 
                 return chunks.filter((_, i) => indexs.includes(i));
@@ -87,4 +87,4 @@ export const searchStore = async (fileId: string, fileContent: string, query: st
         console.error(error);
         return [];
     }
-}
+};

@@ -180,4 +180,4 @@ export const TRANSLATE_STYLE = [
 export const getLanguage = (value: string) => {
   const lang = LANGUAGE_MAP.find(item => item.value === value);
   return lang?.text || value;
-}
+};

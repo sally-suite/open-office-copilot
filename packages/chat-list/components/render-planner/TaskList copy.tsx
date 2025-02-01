@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TaskItem from './TaskItem';
-import IconButton from 'chat-list/components/icon-button'
+import IconButton from 'chat-list/components/icon-button';
 import { Plus } from 'lucide-react';
 import { uuid } from 'chat-list/utils';
 

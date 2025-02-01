@@ -14,7 +14,7 @@ export const VersionModelMapping: any = {
     'standard': ['gpt-4o-mini', 'gpt-4o', 'o1-mini', 'deepseek-chat', 'claude-3.5-haiku'],
     'pro': ['gpt-4o-mini', 'gpt-4o', 'o1-mini', 'claude-3.5-sonnet', 'deepseek-chat', 'claude-3.5-haiku'],
     'flex': []
-}
+};
 
 export const ModelTip: any = {
     'gpt-4o-mini': ['TRIAL', 'Fast+'],
@@ -23,7 +23,7 @@ export const ModelTip: any = {
     'o1-mini': ['STANDARD+', 'Slow'],
     'claude-3.5-sonnet': ['PRO', 'Slow'],
     'claude-3.5-haiku': ['STANDARD+', 'Slow'],
-}
+};
 
 export const ModelIcon: any = {
     'gpt-4o-mini': openaiLogo,
@@ -32,13 +32,13 @@ export const ModelIcon: any = {
     'o1-mini': openaiLogo,
     'claude-3.5-sonnet': claudeLogo,
     'claude-3.5-haiku': claudeLogo,
-}
+};
 
 export const NotSupportToolCallModel: { [x: string]: boolean } = {
     'claude-3.5-sonnet': true,
     'claude-3.5-haiku': true,
     // 'deepseek-chat': true,
-}
+};
 
 export const IsSupportToolCallModel = (model = '') => {
     const name = model.toLowerCase();
@@ -46,7 +46,7 @@ export const IsSupportToolCallModel = (model = '') => {
         return true;
     }
     return false;
-}
+};
 
 export const Providers = [
 
@@ -87,11 +87,11 @@ export const Providers = [
         baseUrl: 'https://api.deepseek.com',
         siteUrl: 'https://platform.deepseek.com/',
     }
-]
+];
 
 export const ProvidersMap = Providers.reduce((acc: any, cur: any) => {
     return {
         ...acc,
         [cur.id]: cur
-    }
-}, {})
+    };
+}, {});

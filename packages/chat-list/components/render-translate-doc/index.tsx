@@ -3,13 +3,13 @@ import toast from "chat-list/components/ui/use-toast";
 import Setting, { ILangItem } from './setting';
 import useChatState from 'chat-list/hook/useChatState';
 import { buildTransLateDocMessages, translateDocByGoogle } from 'chat-list/service/doc';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 import { IMessageBody } from 'chat-list/types/chat';
 import Markdown from '../markdown';
 
 export default React.memo(function CardTranslate() {
   const { chat, platform } = useChatState();
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState('');
 
   async function translateDocByGpt(sourceLanguage: string, targetLanguage: string, mode: string, style: string) {
     const text = await docApi.getSelectedText();
@@ -28,7 +28,7 @@ export default React.memo(function CardTranslate() {
       if (!result || !result.content) {
         return;
       }
-      setResult(result.content)
+      setResult(result.content);
     });
   }
 

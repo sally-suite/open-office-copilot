@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Textarea } from 'chat-list/components/ui/textarea';
 import Button from 'chat-list/components/button';
-import { getValuesByRange } from 'chat-list/service/sheet'
+import { getValuesByRange } from 'chat-list/service/sheet';
 import Loading from '../loading';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { ChatContext } from 'chat-list/store/chatContext';
 import toast from '../ui/use-toast';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import {
   Card,
   CardContent,
@@ -18,9 +18,9 @@ import Progress from 'chat-list/components/progress';
 import { IMessageBody } from 'chat-list/types/chat';
 import { letter2columnNum } from 'chat-list/utils';
 import { template } from 'chat-list/utils';
-import { getValues } from 'chat-list/service/sheet'
+import { getValues } from 'chat-list/service/sheet';
 // import { chatByPrompt } from 'chat-list/service/message';
-import ColumnSelect from 'chat-list/components/column-select'
+import ColumnSelect from 'chat-list/components/column-select';
 import Markdown from 'chat-list/components/markdown';
 import { Info, XCircle } from 'lucide-react';
 import useLocalStore from 'chat-list/hook/useLocalStore';
@@ -41,21 +41,21 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
   const [inputValue, setInputValue] = useState(requirements);
   const [promptTemplate, setTemplate] = useState('');
   const [loading, setLoading] = useState(false);
-  const [fillColumn, setFillColumn] = useState(column)
-  const [progress, setProgress] = useState(0)
-  const [rowData, setRowData] = useState([])
-  const [titles, setTitles] = useState([])
-  const [testResult, setTestResult] = useState('')
+  const [fillColumn, setFillColumn] = useState(column);
+  const [progress, setProgress] = useState(0);
+  const [rowData, setRowData] = useState([]);
+  const [titles, setTitles] = useState([]);
+  const [testResult, setTestResult] = useState('');
   const { value: showDesc, setValue: setShowDesc } = useLocalStore('sally-generate-prompt-by-row', true);
   const running = useRef(false);
   const buildTemplate = (titles: string[]) => {
     const content = titles.filter(p => p).map((title) => {
-      return `${title}:\n{{${title}}}`
+      return `${title}:\n{{${title}}}`;
     }).join('\n\n');
 
-    const temp = `# User Requirement\n${inputValue || t('enter_requirement', "Enter your requirement.")}\n\n# Context Information\n${content}`
+    const temp = `# User Requirement\n${inputValue || t('enter_requirement', "Enter your requirement.")}\n\n# Context Information\n${content}`;
     return temp;
-  }
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
   };
@@ -78,16 +78,16 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
         return {
           ...pre,
           [title]: row[n]
-        }
-      }, {})
+        };
+      }, {});
       const prompt = template(promptTemplate, {
         requirement: inputValue || t('enter_requirement', "Enter your requirement."),
         ...data
-      })
-      prompts.push(prompt)
+      });
+      prompts.push(prompt);
     }
     return prompts;
-  }
+  };
   const applyPromptByRow = async (requirements: string, column: string) => {
     setProgress(0);
     // const firtRow = await getValuesByRange('1:1');
@@ -112,13 +112,13 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
         return {
           ...pre,
           [title]: row[n]
-        }
-      }, {})
+        };
+      }, {});
       const prompt = template(promptTemplate, {
         requirement: requirements,
         ...data
-      })
-      prompts.push(prompt)
+      });
+      prompts.push(prompt);
     }
 
     const columnNum = letter2columnNum(column) + 1;
@@ -131,7 +131,7 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
       const messages: IMessageBody[] = [{
         role: 'user',
         content: prompt,
-      }]
+      }];
       const cellValue = await getValuesByRange(startRow + m, columnNum, 1, 1);
       if (cellValue[0][0]) {
         setProgress(Math.floor((m + 1) / prompts.length * 100));
@@ -150,17 +150,17 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
         setProgress(Math.floor((m + 1) / prompts.length * 100));
       }
     }
-  }
+  };
 
   const ask = async () => {
     // const titles = ['chunk', 'vector'];
     if (!fillColumn) {
-      toast.show('Please input the column to which the result will be populated.')
+      toast.show('Please input the column to which the result will be populated.');
       return;
     }
     running.current = true;
-    await applyPromptByRow(inputValue, fillColumn)
-  }
+    await applyPromptByRow(inputValue, fillColumn);
+  };
   const testPrompt = async () => {
     setTestResult('');
     const prompts = buildPrompt([rowData], titles);
@@ -168,7 +168,7 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
     const messages: IMessageBody[] = [{
       role: 'user',
       content: prompt,
-    }]
+    }];
     const { apiKey } = await getApiConfig();
     const { content } = await chat({
       messages,
@@ -176,34 +176,34 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
       model: apiKey ? undefined : 'gpt-4o-mini'
     });
     setTestResult(content);
-  }
+  };
   const renderPreview = () => {
 
     const prompts = buildPrompt([rowData], titles);
-    return prompts[0]
-  }
+    return prompts[0];
+  };
   const stop = () => {
     // TODO
     running.current = false;
-  }
+  };
   const onClose = () => {
     setShowDesc(false);
-  }
+  };
   const init = async () => {
     // const titles = ['chunk', 'vector'];
     setLoading(true);
-    const values = await getValues(2)
+    const values = await getValues(2);
     const titles = values[0];
     const firtRow = values?.[1] || [];
     const temp = buildTemplate(titles);
-    setTemplate(temp)
+    setTemplate(temp);
     setRowData(firtRow);
     setTitles(titles);
     setLoading(false);
-  }
+  };
   useEffect(() => {
     init();
-  }, [])
+  }, []);
   return (
     <div className=" w-full flex flex-col h-full p-1">
       <div className="flex flex-col ">
@@ -311,7 +311,7 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
       </div>
     </div>
   );
-}
+};
 export default function CardPrompt(props: ICardPrompByRowProps) {
   const { requirements, column } = props;
   const { t } = useTranslation(['intelligent']);

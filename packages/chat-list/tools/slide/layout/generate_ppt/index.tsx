@@ -1,15 +1,15 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import CardSlideLayout from 'chat-list/components/card-slide-layout';
 import { buildChatMessage } from 'chat-list/utils';
-import api from '@api/slide'
+import api from '@api/slide';
 import React from 'react';
 // import creaetLayoutPrompt from './prompts/create-layout.md'
 // import { chatByPrompt } from 'chat-list/service/message';
 // import { template } from 'chat-list/utils';
 export const func = async ({ title, sub_title, description, pages, context }: { title: string, sub_title: string, description: string, pages: any[], context: ChatState }) => {
-    const { appendMsg } = context
+    const { appendMsg } = context;
 
     // const prompt = template(creaetLayoutPrompt, {
     //     user_input: content,
@@ -22,7 +22,7 @@ export const func = async ({ title, sub_title, description, pages, context }: { 
     // appendMsg(buildChatMessage(<CardSlideLayout elements={elements} />, 'card', 'assistant'));
     // const items = elements.reduce(() => { })
     return JSON.stringify(pages, null, 2);
-}
+};
 
 export default {
     type: 'function',

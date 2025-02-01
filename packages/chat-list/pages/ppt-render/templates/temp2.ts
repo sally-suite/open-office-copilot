@@ -1,5 +1,5 @@
 import { ISlideItem, Slide, SlideElement, Theme } from "chat-list/types/api/slide";
-import { titleFontSize, contentY } from './constants'
+import { titleFontSize, contentY } from './constants';
 
 const slide = {
     id: 'slide1',
@@ -239,19 +239,19 @@ const slide = {
             },
         },
     ],
-}
+};
 
 const gapConfig: any = {
     2: 0.4,
     3: 0.3,
     4: 0.2,
-}
+};
 
 const marginConfig: any = {
     2: 20,
     3: 15,
     4: 10,
-}
+};
 
 export default function render(data: ISlideItem, theme: Theme): Slide {
     const elements: SlideElement[] = [];
@@ -364,8 +364,8 @@ export default function render(data: ISlideItem, theme: Theme): Slide {
                     height: 1.2,
                 },
             }
-        )
-    })
+        );
+    });
 
     return {
         id: 'slide1',

@@ -3,7 +3,7 @@ import {
     Tooltip,
     TooltipContent,
     TooltipTrigger,
-} from "chat-list/components/ui/tooltip"
+} from "chat-list/components/ui/tooltip";
 
 export interface ITooltipProps {
     tip: string | React.ReactNode;
@@ -36,6 +36,6 @@ export const TooltipComponent = (props: ITooltipProps) => {
             </TooltipContent>
         </Tooltip>
     );
-}
+};
 
 export default TooltipComponent;

@@ -1,7 +1,6 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import api from '@api/slide'
 import { generateCatalog, generatePage } from './util';
 import { ISlideItem } from 'chat-list/types/api/slide';
 // import pptData from './ppt.json'
@@ -10,9 +9,7 @@ import CardSlideImages from 'chat-list/components/card-slide-images';
 import React from 'react';
 // import imageStore from 'chat-list/utils/image'
 import { IChatMessage } from 'chat-list/types/message';
-import { searchStore } from 'chat-list/utils/vertor'
-import catelog from './prompts/catelog.json';
-import CardSlideRender from 'chat-list/components/card-slide-render'
+import CardSlideRender from 'chat-list/components/card-slide-render';
 // import creaetLayoutPrompt from './prompts/create-layout.md'
 // import { chatByPrompt } from 'chat-list/service/message';
 // import { template } from 'chat-list/utils';
@@ -33,11 +30,10 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
         fileId = 'input-message';
         fileContent = message.content;
     }
-    const catalog = await generateCatalog(reference + '\n\n' + fileContent, pageNum, language)
+    const catalog = await generateCatalog(reference + '\n\n' + fileContent, pageNum, language);
     // const catalog = pptData;
-    console.log('catelog', catalog)
-    debugger;
-    const title = catalog.title
+    console.log('catelog', catalog);
+    const title = catalog.title;
     const subTitle = catalog.subtitle;
     const sections = catalog.sections;
 
@@ -62,10 +58,10 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
         type: 'overview',
         title: title,
         text: catalog.overview
-    })
+    });
 
     for (let i = 0; i < sections.length; i++) {
-        setTyping(true)
+        setTyping(true);
         const item = sections[i];
         try {
             const refer = fileContent;
@@ -78,23 +74,23 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                 return {
                     title: p.title,
                     description: ''
-                }
+                };
             });
             slideElements.push({
                 type: 'section',
                 title: slide.title,
                 text: slide.description,
                 list: sections,
-            })
+            });
             const pages = slide.slides;
             for (let j = 0; j < pages.length; j++) {
                 const page = pages[j];
-                let images: string[] = []
+                let images: string[] = [];
                 if (is_add_image) {
-                    images = await searchImage(page.image_search_keywords, 4)
-                    appendMsg(buildChatMessage(<CardSlideImages title={page.title} images={images} />, 'card', 'assistant'))
+                    images = await searchImage(page.image_search_keywords, 4);
+                    appendMsg(buildChatMessage(<CardSlideImages title={page.title} images={images} />, 'card', 'assistant'));
                 }
-                setTyping(true)
+                setTyping(true);
                 let size;
                 const imageList = [];
                 let n = 0;
@@ -103,8 +99,8 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                     if (!image) {
                         continue;
                     }
-                    size = await getImgSize(image)
-                    imageList.push({ src: image, width: size?.width, height: size?.height })
+                    size = await getImgSize(image);
+                    imageList.push({ src: image, width: size?.width, height: size?.height });
                     n += 1;
                     if (n >= 3) {
                         break;
@@ -116,7 +112,7 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                     list: page.list,
                     notes: page.speaker_notes,
                     image: imageList
-                })
+                });
                 // if (slideElements.length >= 2) {
                 //     await api.generateSlide(slideElements);
                 //     slideElements = [];
@@ -137,8 +133,7 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
         //         company: 'Your Company',
         //     }
         // });
-        console.log('slideElements', slideElements)
-        debugger;
+        console.log('slideElements', slideElements);
         const msg = buildChatMessage(
             <CardSlideRender
                 slideData={slideElements}
@@ -148,7 +143,7 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                     author: 'Your Name',
                     company: 'Your Company',
                 }} />
-            , 'card', 'assistant')
+            , 'card', 'assistant');
         appendMsg(msg);
     }
     if (platform === 'google') {
@@ -164,7 +159,7 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
     }
     return `Task completed,tell user to use designer of Powerpoint to make it more attractive, and the Presentation is AI-generated and is not guaranteed to be accurate, so please be sure to proofread.`;
 
-}
+};
 
 export default {
     type: 'function',

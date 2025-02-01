@@ -18,9 +18,9 @@ interface ICardFormulaProps {
 
 export default function CardScript(props: ICardFormulaProps) {
   const { script, onComplete, onError } = props;
-  const { setPlugin, plugins, setMode } = useContext(ChatContext)
+  const { setPlugin, plugins, setMode } = useContext(ChatContext);
   const [value, setValue] = useState(script || '');
-  const [running, setRunning] = useState(false)
+  const [running, setRunning] = useState(false);
   const onRun = async () => {
     try {
       setRunning(true);
@@ -30,14 +30,14 @@ export default function CardScript(props: ICardFormulaProps) {
     } catch (e) {
       onError?.(e);
     }
-  }
+  };
   const onEdit = () => {
     // setValue(script);
     const plg = plugins.find(p => p.action == 'coder');
     plg.code = value;
-    setMode(plg.action, 'custom')
-    setPlugin(plg)
-  }
+    setMode(plg.action, 'custom');
+    setPlugin(plg);
+  };
 
   return (
     <Card className="w-full">

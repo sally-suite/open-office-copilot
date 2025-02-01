@@ -11,7 +11,7 @@ import { IPlanTask } from 'chat-list/types/user';
 import IconButton from '../icon-button';
 
 const TaskList: React.FC = () => {
-    const [name, setName] = useState('')
+    const [name, setName] = useState('');
     const [tasks, setTasks] = useState<IPlanTask[]>([]);
     const { addPlan, getPlan, plan } = useContext(PlanContext);
 
@@ -36,22 +36,22 @@ const TaskList: React.FC = () => {
             tasks
         });
         navigate(-1);
-    }
+    };
     const loadPlan = async (id: string) => {
         const result = await getPlan(id);
-        console.log(result)
+        console.log(result);
         setName(result.name);
         setTasks(result.tasks);
-    }
+    };
     useEffect(() => {
         if (id) {
             loadPlan(id);
         }
-    }, [])
+    }, []);
     return (
         <div className="container mx-auto p-0">
             <Header title={id ? "Edit Plan" : "Add Plan"} onBack={() => {
-                navigate(-1)
+                navigate(-1);
             }} />
             <div className='p-1 px-2 flex flex-row justify-start space-x-1 mt-1'>
                 <Button icon={Save} variant='default' size='sm' className='px-0 w-auto text-sm' onClick={onSave}>

@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Textarea } from 'chat-list/components/ui/textarea';
 import Button from 'chat-list/components/button';
 import Markdown from 'chat-list/components/markdown';
-import FileSelector from 'chat-list/components/file-selector'
+import FileSelector from 'chat-list/components/file-selector';
 import { IMessageBody } from 'chat-list/types/chat';
 import useLocalStore from 'chat-list/hook/useLocalStore';
 import { Trash2, File, Image, ShieldAlert, XCircle } from "lucide-react";
 import { chunkText, parseDocument } from 'chat-list/utils/file';
 import gptApi from '@api/gpt';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import { searchIndex } from 'chat-list/utils/vertor';
-import { getValues } from 'chat-list/service/sheet'
+import { getValues } from 'chat-list/service/sheet';
 import { chat } from 'chat-list/service/message';
 import { Alert, AlertDescription, AlertTitle } from "chat-list/components/ui/alert";
 import VectorCard from 'chat-list/components/card-vector';
-import toast from 'chat-list/components/ui/use-toast'
+import toast from 'chat-list/components/ui/use-toast';
 import Loading from '../loading';
 export interface IVisionRenderProps {
     images: string[];
@@ -30,7 +30,7 @@ export default function ChatSheetRender() {
     const [alert, setAlert] = useState({
         visible: false,
         content: ''
-    })
+    });
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInputValue(e.target.value);
     };
@@ -39,7 +39,7 @@ export default function ChatSheetRender() {
         // const titles = ['chunk', 'vector'];
         const values = await getValues();
         if (values.length <= 1 || !values[0].includes('vector')) {
-            toast.fail('No vector information is found in the current sheet, you can either upload a file, or select the key columns to build the vector.')
+            toast.fail('No vector information is found in the current sheet, you can either upload a file, or select the key columns to build the vector.');
             return;
         }
         const titles = values[0];
@@ -50,13 +50,13 @@ export default function ChatSheetRender() {
         const vectorIndex = titles.indexOf('vector');
         const rows = values.slice(1);
         const indexs = searchIndex(tarVertor, rows.map(v => JSON.parse(v[vectorIndex])));
-        console.log('indexs', indexs)
+        console.log('indexs', indexs);
         const contents = indexs.map(i => rows[i][0]);
         const contenStr = contents.join('\n');
         // return content;
         // parseDocument(files[0])
         // const msg = convertMessage(inputValue, images);
-        const content = `You need answer user's quesiton base on reference content.\n[reference]\n${contenStr}\nuser's quesiton :${inputValue}`
+        const content = `You need answer user's quesiton base on reference content.\n[reference]\n${contenStr}\nuser's quesiton :${inputValue}`;
         const reuslt = await chat({
             model: 'gpt-3.5-turbo',
             messages: [{
@@ -64,9 +64,9 @@ export default function ChatSheetRender() {
                 content
             }]
         });
-        const message = `${reuslt.content}\n\nReference:${indexs.map(i => `[${i + 2}]`).join(',')}`
+        const message = `${reuslt.content}\n\nReference:${indexs.map(i => `[${i + 2}]`).join(',')}`;
         setResult(message);
-    }
+    };
 
     const checkVector = async () => {
         // const titles = ['chunk', 'vector'];
@@ -77,18 +77,18 @@ export default function ChatSheetRender() {
             setAlert({
                 visible: true,
                 content: 'No vector information is found in the current sheet, you can either upload a file, or select the key columns to build the vector.'
-            })
+            });
         } else {
             setAlert({
                 visible: true,
                 content: 'You can either upload a file, or select the key columns to build the vector.'
-            })
+            });
         }
         setLoading(false);
-    }
+    };
     useEffect(() => {
         checkVector();
-    }, [])
+    }, []);
     return (
         <div className="flex flex-col p-2">
             {

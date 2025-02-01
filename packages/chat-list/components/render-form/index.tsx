@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { ApplyPromptByRowForm } from 'chat-list/components/card-prompt-by-row'
-import sheetApi from '@api/sheet'
+import React, { useEffect, useState } from 'react';
+import { ApplyPromptByRowForm } from 'chat-list/components/card-prompt-by-row';
+import sheetApi from '@api/sheet';
 import Button from '../button';
-import data from './data.json'
+import data from './data.json';
 import { extractCodeFromMd, extractJsonDataFromMd, letter2columnNum, numberToLetter, template } from 'chat-list/utils';
 import {
     Select,
@@ -10,10 +10,10 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "chat-list/components/ui/select"
+} from "chat-list/components/ui/select";
 import { getHeaderList, getValues } from 'chat-list/service/sheet';
 import useChatState from 'chat-list/hook/useChatState';
-import row2FormTemplete from './prompts/v1.md'
+import row2FormTemplete from './prompts/v1.md';
 import temp from './temp.json';
 import { Table } from './table';
 import { cn } from 'chat-list/lib/utils';
@@ -23,8 +23,8 @@ export default function IntelligentRender() {
     const [sheets, setSheets] = useState([]);
     const [sampleSheet, setSampleSheet] = useState('');
     const [dataSheet, setDataSheet] = useState('');
-    const [datasetAddress, setDatasetAddress] = useState('')
-    const [headers, setHeaders] = useState([])
+    const [datasetAddress, setDatasetAddress] = useState('');
+    const [headers, setHeaders] = useState([]);
     const [targetSheetName, setTargetSheetName] = useState('');
     const [formTemplate, setFormTemplate] = useState([]);
     const [templateSheetList, setTemplateSheetList] = useState([]);
@@ -32,10 +32,10 @@ export default function IntelligentRender() {
 
     const onvertToForm = async () => {
         // const address = await sheetApi.getRangeA1Notation();
-        console.log(dataSheet)
+        console.log(dataSheet);
         const rawValues = await sheetApi.getValuesByRange(datasetAddress, 0, 0, 0, dataSheet);
-        const dataValues = JSON.parse(rawValues) as string[][]
-        console.log(dataValues)
+        const dataValues = JSON.parse(rawValues) as string[][];
+        console.log(dataValues);
         // const headers = dataValues[0];
         // 根据表头和行数据，构建每一行的表单数据，
         const dataSource = dataValues.slice(1);
@@ -43,17 +43,17 @@ export default function IntelligentRender() {
         const jsonTemplate = await getValues(0, templateSheet, { range: 'all' });
 
         const addressInfo = await sheetApi.getRowColNum(dataSheet, datasetAddress);
-        console.log(addressInfo)
+        console.log(addressInfo);
         const tarSheetColNum = headers.indexOf(targetSheetName);
         for (let i = 0; i < dataSource.length; i++) {
-            console.log(`sheet${i}`)
+            console.log(`sheet${i}`);
             const tarSheetName = await sheetApi.copySheet(templateSheet, dataSource[i][tarSheetColNum] || `sheet${i}`);
             const tarSheetInfo = await sheetApi.getRowColNum(tarSheetName);
 
             for (let n = 0; n < jsonTemplate.length; n++) {
                 for (let m = 0; m < jsonTemplate[n].length; m++) {
                     if (jsonTemplate[n][m] && jsonTemplate[n][m].length > 0) {
-                        console.log(jsonTemplate[n][m])
+                        console.log(jsonTemplate[n][m]);
                         const tempValue: string = jsonTemplate[n][m];
                         if (tempValue.includes('{{')) {
                             // 通过正则 从val的{{vaue}} 提取value值
@@ -65,9 +65,9 @@ export default function IntelligentRender() {
                             if (col < 0) {
                                 continue;
                             }
-                            const address = `${numberToLetter(addressInfo.col + col)}${addressInfo.row + i + 1}`
+                            const address = `${numberToLetter(addressInfo.col + col)}${addressInfo.row + i + 1}`;
                             console.log([[`=${dataSheet}!${address}`]], tarSheetInfo.row + n, tarSheetInfo.col + m, 1, 1, tarSheetName);
-                            await sheetApi.setValuesByRange([[`=${dataSheet}!${address}`]], tarSheetInfo.row + n, tarSheetInfo.col + m, 1, 1, tarSheetName)
+                            await sheetApi.setValuesByRange([[`=${dataSheet}!${address}`]], tarSheetInfo.row + n, tarSheetInfo.col + m, 1, 1, tarSheetName);
                         }
                     }
                 }
@@ -75,7 +75,7 @@ export default function IntelligentRender() {
         }
 
 
-    }
+    };
     const buildFormTemplate = async () => {
         const values = await getValues(0, sampleSheet);
         // const address = await sheetApi.getRangeA1Notation();
@@ -87,7 +87,7 @@ export default function IntelligentRender() {
             return head;
         });
         const formData = normalHeaders.map((header) => {
-            return `${header}:{{${header}}}`
+            return `${header}:{{${header}}}`;
         }).join('\n');
 
         const jsonTemplate = temp;// await createNewSheet(JSON.stringify(values), formData);
@@ -99,11 +99,11 @@ export default function IntelligentRender() {
         for (let n = 0; n < jsonTemplate.length; n++) {
             for (let m = 0; m < jsonTemplate[n].length; m++) {
                 if (jsonTemplate[n][m] && jsonTemplate[n][m].length > 0) {
-                    console.log(jsonTemplate[n][m])
+                    console.log(jsonTemplate[n][m]);
                     const tempValue = jsonTemplate[n][m] as string;
                     if (tempValue.includes('{{')) {
-                        console.log(tempValue, tarSheetInfo.row + n, tarSheetInfo.col + m, 1, 1, templateSheetName)
-                        await sheetApi.setValuesByRange([[tempValue]], tarSheetInfo.row + n, tarSheetInfo.col + m, 1, 1, templateSheetName)
+                        console.log(tempValue, tarSheetInfo.row + n, tarSheetInfo.col + m, 1, 1, templateSheetName);
+                        await sheetApi.setValuesByRange([[tempValue]], tarSheetInfo.row + n, tarSheetInfo.col + m, 1, 1, templateSheetName);
                     }
                 }
             }
@@ -112,12 +112,12 @@ export default function IntelligentRender() {
         const result = await sheetApi.getSheetInfo();
         setTemplateSheetList(result.sheets);
         setTemplateSheet(templateSheetName);
-    }
+    };
     const createNewSheet = async (samplateData: string, formData: string) => {
         const prompt = template(row2FormTemplete, {
             samplate_data: samplateData,
             form_data: formData
-        })
+        });
         const result = await chat({
             messages: [
                 {
@@ -131,7 +131,7 @@ export default function IntelligentRender() {
             // response_format: { "type": "json_object" },
         });
         const content = result.content;
-        console.log(content)
+        console.log(content);
         const jsonData = extractJsonDataFromMd(content);
         if (jsonData.table && Array.isArray(jsonData.table)) {
             return jsonData.table;
@@ -139,17 +139,17 @@ export default function IntelligentRender() {
         if (Array.isArray(jsonData)) {
             return jsonData;
         }
-    }
+    };
     const onValueChange = (value: string) => {
         setSampleSheet(value);
-    }
+    };
     const onTarSheetChange = (value: string) => {
-        setTargetSheetName(value)
-    }
+        setTargetSheetName(value);
+    };
     const onTempSheetChange = (value: string) => {
-        sheetApi.activeSheet(value)
-        setTemplateSheet(value)
-    }
+        sheetApi.activeSheet(value);
+        setTemplateSheet(value);
+    };
     const handleDataChange = (rowIndex: number, cellIndex: number, value: string | number) => {
         const newData = [...formTemplate];
         newData[rowIndex][cellIndex] = value;
@@ -158,23 +158,23 @@ export default function IntelligentRender() {
     const onInsert = async (head: string) => {
         // console.log(head)
         // await sheetApi.setValues([[`{{${head}}}`]])
-        await sheetApi.insertText(`{{${head}}}`)
-    }
+        await sheetApi.insertText(`{{${head}}}`);
+    };
     const init = async () => {
         const result = await sheetApi.getSheetInfo();
-        setDataSheet(result.current)
+        setDataSheet(result.current);
         const address = await sheetApi.getRangeA1Notation(result.current);
-        console.log(address)
-        setDatasetAddress(address)
-        setSheets(result.sheets)
-        setTemplateSheetList(result.sheets)
+        console.log(address);
+        setDatasetAddress(address);
+        setSheets(result.sheets);
+        setTemplateSheetList(result.sheets);
         const heads = await getHeaderList();
         const normalHeaders = heads.map((header) => {
             const head = header.replace(/[\r\n\s]+/g, '');
             return head;
         });
         setHeaders(normalHeaders);
-    }
+    };
 
     // useEffect(() => {
     //     init();
@@ -226,7 +226,7 @@ export default function IntelligentRender() {
                                                 <SelectItem key={i} value={sheet}>
                                                     {sheet}
                                                 </SelectItem>
-                                            )
+                                            );
                                         })
                                     }
                                 </SelectContent>
@@ -242,7 +242,7 @@ export default function IntelligentRender() {
                                         <Button key={i} variant='secondary' className='sm:w-auto' onClick={onInsert.bind(null, head)}>
                                             {head}
                                         </Button>
-                                    )
+                                    );
                                 })
                             }
                         </div>
@@ -259,7 +259,7 @@ export default function IntelligentRender() {
                                                 <SelectItem key={i} value={head}>
                                                     {head}
                                                 </SelectItem>
-                                            )
+                                            );
                                         })
                                     }
                                 </SelectContent>

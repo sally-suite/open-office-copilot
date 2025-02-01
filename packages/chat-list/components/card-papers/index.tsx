@@ -1,12 +1,12 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "chat-list/components/ui/dialog"
-import { Button } from "chat-list/components/ui/button"
-import api from '@api/index'
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "chat-list/components/ui/dialog";
+import { Button } from "chat-list/components/ui/button";
+import api from '@api/index';
 import { Input } from '../ui/input';
 import { Loader2, Quote, Search } from 'lucide-react';
 import docApi from '@api/doc';
 import { Footnote, PublicationInfo } from 'chat-list/types/api/doc';
-import placeholder from './placeholder.json'
+import placeholder from './placeholder.json';
 import { useTranslation } from 'react-i18next';
 import { chatByPrompt, chatByTemplate } from 'chat-list/service/message';
 import addCitationPrompt from './add_citation.md';
@@ -61,7 +61,7 @@ interface CitationModalProps {
 }
 
 function extractFootnoteInfo(data: SearchPaperResult): Footnote {
-    console.log(data)
+    console.log(data);
     // 提取作者信息
     const authors = data?.publication_info?.authors ?
         data.publication_info?.authors?.map(author => {
@@ -123,17 +123,17 @@ const CitationModal: React.FC<CitationModalProps> = ({ type, isOpen, onClose, on
                 </div>
             </DialogContent>
         </Dialog>
-    )
-}
+    );
+};
 
 const PaperCache = new Map<string, SearchPaperResult[]>();
 
 export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const [selectedPaper, setSelectedPaper] = useState<SearchPaperResult | null>(null)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPaper, setSelectedPaper] = useState<SearchPaperResult | null>(null);
     const [citations, setCitations] = useState([]);
-    const [links, setLinks] = useState([])
-    const [citaMap, setCitaMap] = useState<any>({})
+    const [links, setLinks] = useState([]);
+    const [citaMap, setCitaMap] = useState<any>({});
     const [searchTerm, setSearchTerm] = useState('');
     const [paperList, setPaperList] = useState<SearchPaperResult[]>(papers || []);
     const [citaions, setCitaions] = useState([]);
@@ -144,33 +144,33 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
     const lastText = useRef({ text: '' });
     const [text, setText] = useState('');
     const { t } = useTranslation();
-    const [type, setType] = useState<"footnote" | "cite" | ''>('')
+    const [type, setType] = useState<"footnote" | "cite" | ''>('');
     const openModal = useCallback((paper: SearchPaperResult) => {
-        setSelectedPaper(paper)
-        setIsModalOpen(true)
-    }, [])
+        setSelectedPaper(paper);
+        setIsModalOpen(true);
+    }, []);
 
     const addCite = async (paper: SearchPaperResult) => {
         if (!citaMap[paper.result_id]) {
             const result = await api.getCitation({
                 cites_id: paper.result_id
-            })
+            });
             setCitations(result.citations);
-            setLinks(result.links)
+            setLinks(result.links);
             setCitaMap({
                 ...citaMap,
                 [paper.result_id]: {
                     citations: result.citations,
                     links: result.links
                 }
-            })
+            });
         } else {
             setCitations(citaMap[paper.result_id].citations);
-            setLinks(citaMap[paper.result_id].links)
+            setLinks(citaMap[paper.result_id].links);
         }
-        setType('cite')
-        openModal(paper)
-    }
+        setType('cite');
+        openModal(paper);
+    };
 
     const addFootnote = async (paper: SearchPaperResult) => {
         // if (!citaMap[paper.result_id]) {
@@ -191,16 +191,16 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
         //     setLinks(citaMap[paper.result_id].links)
         // }
         const footnote = extractFootnoteInfo(paper);
-        console.log(footnote)
+        console.log(footnote);
         await docApi.insertFootnote(footnote);
         // setType('footnote')
         // openModal(paper)
-    }
+    };
 
     const closeModal = useCallback(() => {
-        setIsModalOpen(false)
-        setSelectedPaper(null)
-    }, [])
+        setIsModalOpen(false);
+        setSelectedPaper(null);
+    }, []);
 
     const handleCitationSelect = async (citation: Citation) => {
         // 这里应该调用实际的API来将引用插入Word文档
@@ -212,25 +212,25 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
         // }, 1000)
         await docApi.insertText(citation.snippet, { type: 'text' });
 
-    }
+    };
 
     const searchPapers = async (keyword: string) => {
         setPaperList([]);
-        setLoadingPaper(true)
+        setLoadingPaper(true);
         if (PaperCache.has(keyword)) {
             setPaperList(PaperCache.get(keyword) as SearchPaperResult[]);
-            setLoadingPaper(false)
+            setLoadingPaper(false);
         } else {
             const result = await api.searchPapers({
                 keyword
-            })
+            });
             PaperCache.set(keyword, result);
             setPaperList(result);
-            setLoadingPaper(false)
+            setLoadingPaper(false);
         }
         // 这里可以添加额外的搜索逻辑，如果需要的话
-        console.log(`Searching for: ${searchTerm}`)
-    }
+        console.log(`Searching for: ${searchTerm}`);
+    };
     const handleSearch = async () => {
         setCitaions([]);
         setLoadingCitation(true);
@@ -244,15 +244,15 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
             const content = result.content;
             const foot = extractJsonDataFromMd(content);
             const footNotes = foot.footnotes;
-            console.log(footNotes)
+            console.log(footNotes);
             setCitaions(footNotes);
             setCurrentCitation(0);
-            setLoadingCitation(false)
+            setLoadingCitation(false);
             searchPapers(footNotes[0].title);
         } else {
             searchPapers(searchTerm);
         }
-    }
+    };
 
     const renderItem = (paper: any) => {
         return (
@@ -291,8 +291,8 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
                     </Button>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     // // 模拟引用数据
     // const mockCitations: Citation[] = [
@@ -306,7 +306,7 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
 
     const updateContext = async () => {
         const selectedText = await docApi.getSelectedText();
-        console.log(selectedText)
+        console.log(selectedText);
         // let data = '';
         // if (selectedText) {
         //     data += `${selectedText}`;
@@ -314,7 +314,7 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
         setText(selectedText);
         setSearchTerm(selectedText);
         // setDataContext(data);
-    }
+    };
 
 
     useEffect(() => {
@@ -343,12 +343,12 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
         });
         return () => {
             unregist?.();
-        }
-    }, [])
+        };
+    }, []);
 
     useEffect(() => {
         updateContext();
-    }, [])
+    }, []);
 
     return (
         <div className="container mx-auto p-0 flex flex-col h-full overflow-auto">
@@ -440,7 +440,7 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
                     )
                 }
                 {!loadingPaper && paperList.map((paper) => {
-                    return renderItem(paper)
+                    return renderItem(paper);
                 })}
             </div>
             <CitationModal
@@ -452,5 +452,5 @@ export default function PaperList({ papers }: { papers: SearchPaperResult[] }) {
                 links={links}
             />
         </div>
-    )
+    );
 }

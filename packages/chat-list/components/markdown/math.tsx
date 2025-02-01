@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import IconButton from '../icon-button';
-import { svgToImage } from 'chat-list/utils'
+import { svgToImage } from 'chat-list/utils';
 import useChatState from 'chat-list/hook/useChatState';
 import sheetApi from '@api/sheet';
 import docApi from '@api/doc';
@@ -24,13 +24,13 @@ export default function MathMark(props: any) {
             const rect = svg.getBoundingClientRect();
             width = rect.width;
             height = rect.height;
-            dataUrl = await svgToImage(svg)
+            dataUrl = await svgToImage(svg);
         }
 
         if (docType === 'sheet') {
-            await sheetApi.insertImage(dataUrl, width, height)
+            await sheetApi.insertImage(dataUrl, width, height);
         } else {
-            await docApi.insertImage(dataUrl, width, height)
+            await docApi.insertImage(dataUrl, width, height);
         }
     };
     const initImage = async () => {
@@ -38,16 +38,16 @@ export default function MathMark(props: any) {
         const rect = svg.getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
-        const imageData = await svgToImage(svg)
+        const imageData = await svgToImage(svg);
         setImageData({
             dataUrl: imageData,
             width,
             height
-        })
-    }
+        });
+    };
     useEffect(() => {
         initImage();
-    }, [])
+    }, []);
     return (
 
         <div className='flex flex-row items-center'>
@@ -81,5 +81,5 @@ export default function MathMark(props: any) {
 
 
 
-    )
+    );
 }

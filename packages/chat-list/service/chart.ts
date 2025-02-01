@@ -1,4 +1,4 @@
-import { ChartTypes } from 'chat-list/types/chart'
+import { ChartTypes } from 'chat-list/types/chart';
 // import { matchTextWithWeight } from 'chat-list/utils/search';
 
 export const search = (input: string) => {

@@ -7,7 +7,7 @@ import VbaRender from 'chat-list/components/render-vba';
 // import { tools } from 'chat-list/tools/sheet/coder';
 import description from './promps/description.md';
 import i18n from 'chat-list/locales/i18n';
-import vbaPng from 'chat-list/assets/img/vba-32.png'
+import vbaPng from 'chat-list/assets/img/vba-32.png';
 import { dataRangeAnalyzeMixin } from '../_mixins/sheet';
 import ContextSheet from "chat-list/components/context-sheet";
 import { ISheetInfo } from "chat-list/types/api/sheet";
@@ -42,8 +42,8 @@ export class Code extends ChatPluginBase implements IChatPlugin {
     const sheetInfo: ISheetInfo = JSON.parse(context);
     return (
       <ContextSheet address={sheetInfo.activeRange} />
-    )
-  }
+    );
+  };
   // onReceive = async (message: IChatMessage) => {
   //   const { setTyping } = this.context;
   //   if (!message.content) {
@@ -58,8 +58,8 @@ export class Code extends ChatPluginBase implements IChatPlugin {
   //   return await super.onReceive(message)
   // }
   render = () => {
-    return <VbaRender />
-  }
+    return <VbaRender />;
+  };
 }
 
 export default new Code(dataRangeAnalyzeMixin);

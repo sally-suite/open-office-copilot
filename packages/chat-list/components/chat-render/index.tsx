@@ -3,27 +3,27 @@ import React, { useCallback, useContext, useEffect } from 'react';
 import { ChatMessageType, IChatMessage } from 'chat-list/types/message';
 import Composer from 'chat-list/components/composer';
 import ReactMarkdown from 'chat-list/components/markdown';
-import CardProgress from 'chat-list/components/card-progress'
+import CardProgress from 'chat-list/components/card-progress';
 import { ChatContext } from '../../store/chatContext';
 import Bubble from 'chat-list/components/bubble';
 
-import { buildChatMessage } from 'chat-list/utils'
-import FilesCard from 'chat-list/components/card-files'
+import { buildChatMessage } from 'chat-list/utils';
+import FilesCard from 'chat-list/components/card-files';
 import MessageList from 'chat-list/components/message-list';
 import ChatFooter from 'chat-list/components/chat-footer';
 import { cn } from 'chat-list/lib/utils';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../loading-logo';
-import ErrorBoundary from 'chat-list/components/error-boundary'
+import ErrorBoundary from 'chat-list/components/error-boundary';
 import { pageView } from 'chat-list/service/log';
-import CheckContext from 'chat-list/components/check-context'
+import CheckContext from 'chat-list/components/check-context';
 import SelectText from 'chat-list/components/selected-text';
 import Header from '../header';
-import Avatar from 'chat-list/components/avatars'
+import Avatar from 'chat-list/components/avatars';
 import ChatHeader from '../chat-header';
 import ToolList from 'chat-list/components/tool-list';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import LanguageSelect from '../language-select';
 import Message from '../message';
 import EricPromote from '../eric-promo';
@@ -36,7 +36,7 @@ interface IChatListProps {
 
 const App = (props: IChatListProps) => {
   const { className } = props;
-  const { t } = useTranslation('base')
+  const { t } = useTranslation('base');
 
   // const [mode, setMode] = useState<ModeType>('chat-list')
   const navigate = useNavigate();
@@ -84,13 +84,13 @@ const App = (props: IChatListProps) => {
     if (type === 'file') {
       contentNode = (
         <FilesCard files={files} />
-      )
+      );
     }
 
     if (type === 'parts') {
       contentNode = (
         <FilesCard text={text} files={files} title='' />
-      )
+      );
     }
 
     if (msg.context) {
@@ -99,7 +99,7 @@ const App = (props: IChatListProps) => {
           {plugin.renderMessageContext(msg.context)}
           {contentNode}
         </div>
-      )
+      );
     }
 
     if (msg?.from?.icon) {
@@ -110,13 +110,13 @@ const App = (props: IChatListProps) => {
           </div>
           {contentNode}
         </div>
-      )
+      );
     }
     return contentNode;
   }
   const onSendMsg = useCallback(async (type: ChatMessageType, content: string) => {
-    await sendMsg(buildChatMessage(content, type as ChatMessageType, 'user', { name: user.username }))
-  }, [sendMsg])
+    await sendMsg(buildChatMessage(content, type as ChatMessageType, 'user', { name: user.username }));
+  }, [sendMsg]);
 
   const renderIntroduction = () => {
     let content: string | React.ReactNode = "";
@@ -132,32 +132,32 @@ const App = (props: IChatListProps) => {
           <Avatar icon={plugin.icon} name={plugin.name} />
           <ReactMarkdown showTableMenu={false} copyContentBtn={false} className="bubble text">{(content || text) + ''}</ReactMarkdown>
         </div>
-      )
+      );
     }
     return (
       <div className='message-list flex-1 flex flex-col overflow-auto p-2 '>
         <Avatar icon={plugin.icon} name={plugin.name} />
         {content}
       </div>
-    )
-  }
+    );
+  };
   const onClearMessage = () => {
     newChat();
-  }
+  };
 
   const gotoSetting = () => {
-    navigate(`/setting/${plugin.id}`)
-  }
+    navigate(`/setting/${plugin.id}`);
+  };
 
   function renderInputContext() {
     if (docType == 'doc' || docType == 'slide' || docType == 'side') {
       return (
         <SelectText />
-      )
+      );
     } else if (docType == 'sheet') {
       return (
         <CheckContext />
-      )
+      );
     }
     return null;
   }
@@ -207,8 +207,8 @@ const App = (props: IChatListProps) => {
         <div className={cn('flex flex-col h-screen bg-white', className)}>
           <Header
             onBack={() => {
-              navigate(`/`)
-              setMode(plugin.action, 'chat')
+              navigate(`/`);
+              setMode(plugin.action, 'chat');
             }} >
             <Avatar icon={plugin.icon} name={plugin.name} />
           </Header>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import CodeEditor from 'chat-list/components/code-editor';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import { getSheetInfo, getValues } from 'chat-list/service/sheet';
 
 // import { extractCodeFromMd } from 'chat-list/utils'
@@ -9,7 +9,7 @@ import { getSheetInfo, getValues } from 'chat-list/service/sheet';
 import { editFunction } from './edit';
 import { getSessionStore } from 'chat-list/local/session';
 import Header from 'chat-list/components/header';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 export default function CoderRender() {
     const [editorCode, setEditorCode] = useState(getSessionStore('javascript-code') || ''); // 初始化代码
@@ -25,7 +25,7 @@ export default function CoderRender() {
         // setExecutionResult(result);
     };
     const codeCompletion = async (code: string, input: string) => {
-        console.log(code, input)
+        console.log(code, input);
         const sheetInfo = await getSheetInfo();
         return await editFunction(sheetInfo, input);
     };
@@ -38,14 +38,14 @@ export default function CoderRender() {
         const newHistory = history.slice(0, history.length - 1);
         setHistory(newHistory);
         // console.log('undo')
-    }
+    };
     const pushHistory = async () => {
         const values = await getValues();
         setHistory(history.concat([values]));
-    }
+    };
     const onBack = () => {
-        navigate('/')
-    }
+        navigate('/');
+    };
     return (
         <div className='flex flex-col w-full h-screen'>
             <Header title='Javascript' onBack={onBack} />

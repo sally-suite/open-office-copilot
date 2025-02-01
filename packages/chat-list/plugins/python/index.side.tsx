@@ -1,6 +1,6 @@
 import { ChatPluginBase, IChatPlugin } from "chat-list/types/plugin";
 import { IChatMessage } from "chat-list/types/message";
-import introduce from './promps/introduce.md'
+import introduce from './promps/introduce.md';
 import React from "react";
 import instruction from './promps/instruction.md';
 import PythonRender from 'chat-list/components/render-python';
@@ -15,7 +15,7 @@ import avatarPng from 'chat-list/assets/img/python-32.png';
  * Code generation and run it in Google Apps Script
  */
 export class Code extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('sheet.agent.python', 'Python')
+  name = i18n.t('sheet.agent.python', 'Python');
   icon = avatarPng;
   // model = null;
   action = "python";
@@ -52,14 +52,14 @@ export class Code extends ChatPluginBase implements IChatPlugin {
   tools = ['pip_install', 'python_interpreter'];
   agents = ['analyst'];
   injectContext = async () => {
-    return await getSheetInfo()
-  }
-  initialize = false
+    return await getSheetInfo();
+  };
+  initialize = false;
   async onReceive(message: IChatMessage, options?: { stream: boolean; }): Promise<any> {
     const { showMessage } = this.context;
     const { type, files } = message;
     if (type == 'parts') {
-      window.INPUT_EXCEL_FILE = files[0]
+      window.INPUT_EXCEL_FILE = files[0];
     }
     if (!this.initialize) {
       const toolMsg = showMessage(i18n.t('python:init_env', 'Initializing Python environment.Please wait a moment.'));
@@ -68,13 +68,13 @@ export class Code extends ChatPluginBase implements IChatPlugin {
       this.initialize = true;
     }
 
-    return await super.onReceive(message, options)
+    return await super.onReceive(message, options);
   }
   render = () => {
     return (
       <PythonRender />
-    )
-  }
+    );
+  };
 }
 
 export default new Code();

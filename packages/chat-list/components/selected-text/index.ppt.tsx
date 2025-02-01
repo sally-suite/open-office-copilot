@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import docApi from '@api/slide';
 import { useTranslation } from 'react-i18next';
-import { Presentation, TextCursorInput, X } from 'lucide-react'
+import { Presentation, TextCursorInput, X } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
 
 
 export default function index() {
     const { t } = useTranslation();
     const { dataContext, setDataContext, messages } = useChatState();
-    const [slides, setSlides] = useState([])
+    const [slides, setSlides] = useState([]);
     const [text, setText] = useState('');
     const lastText = useRef({ text: '' });
     const updateContext = async () => {
@@ -34,7 +34,7 @@ export default function index() {
             // data += `SLIDES:\n\n${content}`;
             setSlides(selectSlides);
         }
-        console.log(slides)
+        console.log(slides);
         if (!selectedText && slides && slides.every(slide => Array.isArray(slide.texts) && slide.texts.every(text => text === ""))) {
             data = '';
         } else {
@@ -50,27 +50,27 @@ export default function index() {
         }
         lastText.current.text = data;
         setDataContext(data);
-    }
+    };
     const onDeselect = async () => {
-        setDataContext('')
-    }
+        setDataContext('');
+    };
     useEffect(() => {
         const unregist = docApi.registSelectEvent((text: string) => {
             updateContext();
-        })
+        });
         return () => {
             if (unregist) {
                 unregist();
             }
-        }
-    }, [])
+        };
+    }, []);
 
     useEffect(() => {
         if (messages.length == 0) {
             lastText.current.text = '';
             updateContext();
         }
-    }, [messages])
+    }, [messages]);
 
     if (!dataContext) {
         return;
@@ -107,5 +107,5 @@ export default function index() {
                 <X height={16} width={16} className='text-gray-500' />
             </span>
         </div>
-    )
+    );
 }

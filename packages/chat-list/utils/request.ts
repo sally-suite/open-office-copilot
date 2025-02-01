@@ -1,5 +1,5 @@
 import { SHEET_CHAT_API_KEY, SHEET_CHAT_SITE } from "chat-list/config/site";
-import { fail } from 'chat-list/components/ui/use-toast'
+import { fail } from 'chat-list/components/ui/use-toast';
 import { getToken } from "chat-list/local/local";
 
 
@@ -93,12 +93,12 @@ export class Request {
     return {
       url: fullUrl,
       config: mergedConfig
-    }
+    };
   }
   // 拦截请求，统一处理异常
   async interceptFetch(url: string, config: RequestConfig) {
     try {
-      const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config)
+      const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config);
       const response = await fetch(fullUrl, mergedConfig);
       if (!response.ok) {
         throw new ErrorWithCode(`Request failed with status ${response.status}`, response.status);
@@ -123,7 +123,7 @@ export class Request {
     }
   }
   async interceptFetchByStreamLine(url: string, config: StreamRequestConfig, callback?: StreamCallback) {
-    const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config)
+    const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config);
     try {
       const { parseChunk, ...rest } = mergedConfig as any;
       const controller = new AbortController();
@@ -143,7 +143,7 @@ export class Request {
       const stop = () => {
         done = true;
         controller.abort();
-      }
+      };
       const lines = [];
 
       for await (const line of makeTextSteamLineIterator(reader)) {
@@ -164,13 +164,13 @@ export class Request {
     } catch (error) {
       // 可以在这里处理异常，例如上报错误，显示错误提示等
       console.error('Request failed:', error);
-      console.log(error.stack)
+      console.log(error.stack);
       throw error;
     }
   }
 
   async interceptFetchByStream(url: string, config: StreamRequestConfig, callback?: StreamCallback) {
-    const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config)
+    const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config);
 
     try {
       const { parseChunk, ...rest } = mergedConfig as any;
@@ -192,7 +192,7 @@ export class Request {
       const stop = () => {
         done = true;
         controller.abort();
-      }
+      };
       let text = '';
       while (!done) {
         const { value, done: doneReading } = await reader.read();
@@ -224,7 +224,7 @@ export class Request {
     } catch (error) {
       // 可以在这里处理异常，例如上报错误，显示错误提示等
       console.error('Request failed:', error);
-      console.log(error.stack)
+      console.log(error.stack);
       throw error;
     }
   }
@@ -263,7 +263,7 @@ export class Request {
   }
   async fetch(url: string, config: RequestConfig) {
     try {
-      const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config)
+      const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config);
       const response = await fetch(fullUrl, {
         ...mergedConfig,
         method: "POST"
@@ -276,7 +276,7 @@ export class Request {
       // 可以在这里处理异常，例如上报错误，显示错误提示等
       console.log(url, error);
       console.error('Request failed:', error.message);
-      fail(error.message)
+      fail(error.message);
       throw error;
     }
   }

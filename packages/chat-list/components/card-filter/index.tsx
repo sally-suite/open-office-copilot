@@ -45,7 +45,7 @@ export default function CardFilter(props: ICardFilterProps) {
                   backgroundColor: color
                 }}
               />
-            )
+            );
           }
         )}
 
@@ -56,5 +56,5 @@ export default function CardFilter(props: ICardFilterProps) {
         </Button>
       </CardActions>
     </Card>
-  )
+  );
 }

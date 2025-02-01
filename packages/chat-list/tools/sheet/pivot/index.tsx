@@ -1,6 +1,6 @@
 
 import { ITool } from 'chat-list/types/plugin';
-import createPivotTable from './create-pivot-table'
+import createPivotTable from './create-pivot-table';
 export const tools: ITool[] = [
   createPivotTable
 ];

@@ -33,7 +33,7 @@ const WelcomePage = ({ onStart }: IWelcomePageProps) => {
             </p>
         </div>
     );
-}
+};
 
 export default WelcomePage;
 
@@ -42,14 +42,14 @@ export const withWellcome = (Element: any) => {
     return function Main(props: any) {
         const [wellcome, setWellcome] = useState(getLocalStore('sheet-chat-wellcome'));
         if (wellcome) {
-            return <Element {...props} />
+            return <Element {...props} />;
         }
 
         return (
             <WelcomePage onStart={() => {
-                setLocalStore('sheet-chat-wellcome', '1')
-                setWellcome('1')
+                setLocalStore('sheet-chat-wellcome', '1');
+                setWellcome('1');
             }} />
-        )
-    }
-}
+        );
+    };
+};

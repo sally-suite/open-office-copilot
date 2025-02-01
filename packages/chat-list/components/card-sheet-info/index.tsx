@@ -6,13 +6,13 @@ import {
   CardActions,
   // RadioGroup,
 } from "chat-list/components/ui/card";
-import Form, { FormulaInfo } from './form'
-import sheetApi from '@api/sheet'
+import Form, { FormulaInfo } from './form';
+import sheetApi from '@api/sheet';
 import { getHeaderList, getSheetInfo, getValues, getValuesByRange } from 'chat-list/service/sheet';
 import Loading from '../loading';
 import { arrayToMarkdownTable, columnNum2letter, numberToLetter, parseCellAddress } from 'chat-list/utils';
 import Button from '../button';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
 interface ICardFormulaInfoProps {
   onSubmit: (value: string) => void;
@@ -23,18 +23,18 @@ export default function CardFormulaInfo(props: ICardFormulaInfoProps) {
   const { t } = useTranslation(['sheet']);
 
   const [formValue, setFormValue] = useState<FormulaInfo>({});
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const onFormChange = (formValue: FormulaInfo) => {
-    setFormValue(formValue)
-  }
+    setFormValue(formValue);
+  };
   const onSubmitForm = async () => {
 
     const content = await getSheetInfo();
 
     onSubmit?.(content);
 
-  }
+  };
 
   return (
     <Card className="w-full">

@@ -20,14 +20,14 @@ const SUMMRIZE_FUNCTIONS = [
     'STDEVP',
     'VAR',
     'VARP'
-]
+];
 
 const SHOW_AS = [
     'DEFAULT',
     'PERCENT_OF_ROW_TOTAL',
     'PERCENT_OF_COLUMN_TOTAL',
     'PERCENT_OF_GRAND_TOTAL',
-]
+];
 
 interface IPivotTableParams {
     title?: string;
@@ -86,12 +86,12 @@ export async function func(agrs: IPivotTableParams = {}) {
         if (chart.title && chart.image) {
             const chartTitle = chart.title;
             const imgId = Math.random().toString(36).substring(2, 9);
-            const url = image.set(chart.image, `pivote.chart/${imgId}`)
+            const url = image.set(chart.image, `pivote.chart/${imgId}`);
             result += `\n\nHere is ${chartTitle} chart image: ![${chartTitle}](${url})`;
         }
 
         if (chart.values && chart.values.length > 0) {
-            result += `\n\nHere is summary table:\n\n${arrayToMarkdownTable(chart.values as any, true)}`
+            result += `\n\nHere is summary table:\n\n${arrayToMarkdownTable(chart.values as any, true)}`;
         }
         // context.appendMsg(buildChatMessage(result, 'text', 'assistant'));
         return "Task done," + result;

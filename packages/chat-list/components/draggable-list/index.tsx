@@ -16,7 +16,7 @@ export const SlideType: any = {
   list: <List className="h-4 w-4" />,
   table: <Grid3X3 className="h-4 w-4" />,
   chart: <LineChart className="h-4 w-4" />,
-}
+};
 interface DraggableItemProps {
   item: DraggableItem;
   index: number;
@@ -86,7 +86,7 @@ const DraggableListItem: React.FC<DraggableItemProps> = ({
       <div>
         <Select value={item.type}
           onValueChange={(value) => {
-            updateType(item.id, value)
+            updateType(item.id, value);
           }}>
           <SelectTrigger>
             <SelectValue >

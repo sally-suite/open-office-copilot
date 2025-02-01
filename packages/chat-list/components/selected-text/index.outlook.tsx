@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import docApi from '@api/doc';
-import { TextCursorInput, Mail, X } from 'lucide-react'
+import { TextCursorInput, Mail, X } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
 import { htmlToText } from 'chat-list/utils';
 interface ISelectedTextProps {
@@ -16,7 +16,7 @@ export default function index(props: ISelectedTextProps) {
     const onDeselect = async () => {
         await docApi.deselect();
         setDataContext('');
-    }
+    };
 
     const updateContext = async () => {
         const selectedText = await docApi.getSelectedText();
@@ -27,7 +27,7 @@ export default function index(props: ISelectedTextProps) {
 
         const data = htmlToText(selectedText);
         setDataContext(data);
-    }
+    };
 
     function registEvent() {
         return docApi.registSelectEvent((text: string, type: 'text' | 'email') => {
@@ -37,7 +37,7 @@ export default function index(props: ISelectedTextProps) {
             }
 
             lastText.current.text = text;
-            setType(type)
+            setType(type);
             setDataContext(text);
             onSelect?.(text);
 
@@ -60,7 +60,7 @@ export default function index(props: ISelectedTextProps) {
             lastText.current.text = '';
             updateContext();
         }
-    }, [messages])
+    }, [messages]);
 
     if (!dataContext) {
         return null;
@@ -85,5 +85,5 @@ export default function index(props: ISelectedTextProps) {
                 <X height={16} width={16} className='text-gray-500' />
             </span>
         </div>
-    )
+    );
 }

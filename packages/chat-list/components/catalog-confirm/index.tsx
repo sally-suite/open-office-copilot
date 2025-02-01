@@ -79,7 +79,7 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
     const [pageNum, setPageNum] = useState(5);
     const [language, setLanguage] = useState('');
     const [isAddImage, setIsAddImage] = useState<boolean>(addImages);
-    const [fileList, setFileList] = useState<File[]>([])
+    const [fileList, setFileList] = useState<File[]>([]);
     const msgRef = useRef(null);
     const referenceRef = useRef(null);
     const { t, i18n } = useTranslation(['base', 'tool']);
@@ -103,7 +103,7 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
         try {
             await generateSlide();
         } catch (error) {
-            console.log(error)
+            console.log(error);
         } finally {
             setTyping(false);
         }
@@ -115,7 +115,7 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
     };
     const regenerate = () => {
         setStatus('input');
-    }
+    };
     const generateOutline = async () => {
         if (!reference) {
             referenceRef.current.focus();
@@ -133,18 +133,18 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                 id: Date.now().toString() + Math.random(),
                 content: item.title,
                 type: item.type || 'list'
-            }
+            };
         });
         setCatalog(catalog);
         setChapters(chapters);
 
         setStatus('confirm');
-    }
+    };
     const renderSlide = (slideElements: ISlideItem[], slideImages: {
         title: string;
         images: string[];
     }[], title: string, subTitle: string, status: 'generating' | 'done' = 'generating') => {
-        console.log(slideElements, slideImages, title, subTitle, status)
+        console.log(slideElements, slideImages, title, subTitle, status);
         if (docType === 'chat') {
             setPreview({
                 title: title,
@@ -156,7 +156,7 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                         status={status}
                     />
                 )
-            })
+            });
         } else {
             if (!msgRef.current) {
                 msgRef.current = showMessage(
@@ -170,7 +170,7 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                             author: 'Your Name',
                             company: 'Your Company',
                         }} />
-                    , 'assistant', 'card')
+                    , 'assistant', 'card');
             } else {
                 msgRef.current.update(
                     <CardSlideRender
@@ -184,21 +184,21 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                             company: 'Your Company',
                         }}
                     />
-                )
+                );
             }
 
         }
-    }
+    };
     const generateSlide = async () => {
-        const title = catalog.title
+        const title = catalog.title;
         const subTitle = catalog.subtitle;
         const slides = chapters.map((chapter) => {
             return {
                 title: chapter.content,
                 description: '',
                 type: chapter.type
-            }
-        })
+            };
+        });
         let slideElements: ISlideItem[] = [];
         let slideImages: { title: string, images: string[] }[] = [];
         let coverImags: {
@@ -208,9 +208,9 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
         }[] = [];
         if (isAddImage) {
             // coverImags = await searchBase64Image(catalog.title, 4)
-            const images = await searchImage(catalog.title + ' png jpeg', 4)
+            const images = await searchImage(catalog.title + ' png jpeg', 4);
             // appendMsg(buildChatMessage(<CardSlideImages title={page.title} images={images} />, 'card', 'assistant'))
-            slideImages.push({ title: catalog.title, images })
+            slideImages.push({ title: catalog.title, images });
 
             coverImags = await getImageSizeByBatch(images.slice(0, 4));
         }
@@ -228,10 +228,10 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                 return {
                     title: item.title,
                     description: ''
-                }
+                };
             }),
             image: coverImags.slice(2, 4)
-        })
+        });
         setStatus('generating');
         setSlides(slideElements);
         setImages(slideImages);
@@ -252,11 +252,11 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                 //     refer = result.join('\n');
                 // }
                 const page = await generatePage(item.title, item.description, catalog.table_of_contents, allRefer, language, item.type);
-                console.log(page)
-                let images: string[] = []
+                console.log(page);
+                let images: string[] = [];
                 if (isAddImage && page.type == 'list') {
-                    images = await searchImage(page.image_search_keywords + ' png jpeg', 4)
-                    slideImages = slideImages.concat([{ title: page.title, images }])
+                    images = await searchImage(page.image_search_keywords + ' png jpeg', 4);
+                    slideImages = slideImages.concat([{ title: page.title, images }]);
                 }
                 // setTyping(true)
                 let imageList: any[] = [];
@@ -264,7 +264,7 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                     imageList = await getImageSizeByBatch(images.slice(0, 5));
                     if (imageList.length < 4) {
                         const others = await getImageSizeByBatch(images.slice(5, 10));
-                        imageList = imageList.concat(others)
+                        imageList = imageList.concat(others);
                     }
                 }
 
@@ -282,16 +282,16 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                                 src: item.src,
                                 width: item.width,
                                 height: item.height
-                            }
+                            };
                         })
                     }
-                ])
-                console.log(slideElements)
+                ]);
+                console.log(slideElements);
                 setSlides(slideElements);
                 setImages(slideImages);
                 // renderSlide(slideElements, slideImages, title, subTitle, 'generating')
             } catch (e) {
-                console.log(e)
+                console.log(e);
                 continue;
             }
         }
@@ -319,17 +319,17 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
         //         renderSlide(slideElements, slideImages, title, subTitle, 'done');
         //     }}>{i18n.t('coder:preview', 'Preview')}</Button>, 'card', 'assistant'))
         // }
-    }
+    };
 
     const onFileSelect = async (files: File[]) => {
         const oldFiles = fileList.filter((file: File) => !files.some((item: File) => item.name === file.name && item.size === file.size));
         const newFiles = oldFiles.concat(files);
         setFileList(newFiles);
-    }
+    };
     const onFileRemove = (index: number) => {
         const newFiles = fileList.filter((item, i) => i !== index);
         setFileList(newFiles);
-    }
+    };
 
     const init = () => {
         if (!catalog || !catalog.slides) {
@@ -340,19 +340,19 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                 id: Date.now().toString() + Math.random(),
                 content: item.title,
                 type: item.type || 'list'
-            }
+            };
         });
         setChapters(chapters);
         setStatus('confirm');
-    }
+    };
 
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     useEffect(() => {
-        onStatusChange?.(status)
-    }, [status])
+        onStatusChange?.(status);
+    }, [status]);
 
     return (
         <div className={cn('w-full h-full p-2 overflow-hidden', className)}>
@@ -412,7 +412,7 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
                             {t('common.add_mages', ' Add Images')}:
                         </div>
                         <RadioGroup orientation="horizontal" onValueChange={(e) => {
-                            return setIsAddImage(e === 'yes')
+                            return setIsAddImage(e === 'yes');
                         }} className='flex flex-row mt-2' defaultValue={isAddImage ? 'yes' : 'no'} >
                             <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="yes" id="yes" />

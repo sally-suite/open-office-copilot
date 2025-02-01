@@ -21,4 +21,4 @@ export const generateTable = async (table_requirements: string, refer_table: str
     });
     const table = extractJsonDataFromMd(result.content);
     return table;
-}
+};

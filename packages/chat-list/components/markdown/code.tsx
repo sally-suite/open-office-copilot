@@ -1,13 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react';
 import { Check, ChevronUp, Copy, Edit, FileOutput, Loader2, Play, } from 'lucide-react';
-import IconButton from 'chat-list/components/icon-button'
+import IconButton from 'chat-list/components/icon-button';
 
 import { buildChatMessage, copyByClipboard } from 'chat-list/utils';
 
 import { cn } from 'chat-list/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { setSessionStore } from 'chat-list/local/session';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 // import rehypeSanitize from 'rehype-sanitize'
 import { runFunction } from 'chat-list/tools/sheet/python/util';
 import useChatState from 'chat-list/hook/useChatState';
@@ -24,10 +24,10 @@ export const Code = (props: any) => {
 
     const lng = useMemo(() => {
         const codeClass = codeProps.className;
-        const match = /language-(\w+)/.exec(codeClass || '')
+        const match = /language-(\w+)/.exec(codeClass || '');
         const lng = match ? match[1] : '';
         return lng;
-    }, [])
+    }, []);
     const { docType, appendMsg, status, setPreview } = useChatState();
     const [copyOk, setCopyOk] = React.useState(false);
     const [running, setRunning] = useState(false);
@@ -45,7 +45,7 @@ export const Code = (props: any) => {
 
             let result;
             if (language === 'python') {
-                result = await runFunction(script, 'main')
+                result = await runFunction(script, 'main');
             } else {
                 if (docType === 'sheet') {
                     result = await sheetApi.runScript(script);
@@ -55,19 +55,19 @@ export const Code = (props: any) => {
             }
             // const result = await sheetApi.runScript(script);
             if (result) {
-                appendMsg(buildChatMessage(`Script run result:${JSON.stringify(result)}.`, 'text', 'assistant'))
+                appendMsg(buildChatMessage(`Script run result:${JSON.stringify(result)}.`, 'text', 'assistant'));
             } else {
-                appendMsg(buildChatMessage(`Script run finished.`, 'text', 'assistant'))
+                appendMsg(buildChatMessage(`Script run finished.`, 'text', 'assistant'));
             }
 
         } catch (e) {
             if (e) {
-                appendMsg(buildChatMessage(`Exception: ${e.message}`, 'text', 'assistant'))
+                appendMsg(buildChatMessage(`Exception: ${e.message}`, 'text', 'assistant'));
             }
         } finally {
             setRunning(false);
         }
-    }
+    };
     const onEdit = () => {
         // setValue(script);
         //通过正则，判断script的语言类型,是JavaScript，还是python
@@ -78,7 +78,7 @@ export const Code = (props: any) => {
         if (!language || language === 'javascript') {
             target = 'javascript';
         } else if (language === 'python') {
-            target = 'python'
+            target = 'python';
         }
         // web page show preview
         if (docType == 'chat') {
@@ -88,7 +88,7 @@ export const Code = (props: any) => {
                     component: (
                         <CodePreview key={script} code={script} />
                     )
-                })
+                });
             }
             return;
         }
@@ -107,7 +107,7 @@ export const Code = (props: any) => {
         // setMode('custom');
         // setPlugin(plg)
 
-    }
+    };
     const onInsertCell = async () => {
         if (docType === 'sheet') {
             await sheetApi.insertText(script);
@@ -131,7 +131,7 @@ export const Code = (props: any) => {
     const toogleExpand = () => {
         setExpand(!expand);
 
-    }
+    };
     // if (!copyCodeBtn) {
     //     return <pre className='bg-slate-700 p-1'>{children}</pre>;
     // }
@@ -143,18 +143,18 @@ export const Code = (props: any) => {
             tip = t('common.insert_to_sheet');
         }
         return tip;
-    }, [])
+    }, []);
     const init = () => {
         const { children, } = props;
         const codeProps = children[0].props;
         const codeClass = codeProps.className;
-        const match = /language-(\w+)/.exec(codeClass || '')
+        const match = /language-(\w+)/.exec(codeClass || '');
         const language = match ? match[1] : '';
         setLanguage(language);
         if (language && language == 'bash') {
             setExpand(true);
         }
-    }
+    };
 
     const renderTopbar = () => {
         return (
@@ -194,8 +194,8 @@ export const Code = (props: any) => {
                 >
                 </IconButton>
             </div>
-        )
-    }
+        );
+    };
     const renderToolbar = () => {
         return (
             <div className='flex flex-row mt-1 '>
@@ -260,8 +260,8 @@ export const Code = (props: any) => {
                     Save
                 </IconButton> */}
             </div>
-        )
-    }
+        );
+    };
 
     useEffect(() => {
         if (script !== prevContent) {
@@ -277,7 +277,7 @@ export const Code = (props: any) => {
 
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     return (
         <div

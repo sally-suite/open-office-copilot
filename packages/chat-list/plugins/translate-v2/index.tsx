@@ -8,12 +8,12 @@ import CardTranslateSet from 'chat-list/components/card-translate/setting';
 import introduce from './prompts/introduce.md';
 // import { Languages } from 'lucide-react';
 import instruction from './prompts/instruction.md';
-import TanslateRender from 'chat-list/components/render-translate'
+import TanslateRender from 'chat-list/components/render-translate';
 import i18n from 'chat-list/locales/i18n';
-import anatorPng from 'chat-list/assets/img/translator.png'
+import anatorPng from 'chat-list/assets/img/translator.png';
 
 export class TranslateSheet extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('sheet.agent.translate', 'Translate')
+  name = i18n.t('sheet.agent.translate', 'Translate');
   icon = anatorPng;
   action = 'translate';
   mode = 'custom';
@@ -54,7 +54,7 @@ export class TranslateSheet extends ChatPluginBase implements IChatPlugin {
   tools = ['translate_sheet'];
   render = () => {
     return <TanslateRender />;
-  }
+  };
 }
 
 export default new TranslateSheet();

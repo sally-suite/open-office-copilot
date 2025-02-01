@@ -1,7 +1,7 @@
 import React from 'react';
-import Icon from 'chat-list/components/icon'
+import Icon from 'chat-list/components/icon';
 import { capitalizeFirstLetter } from 'chat-list/utils';
-import Avatar from 'chat-list/components/avatars'
+import Avatar from 'chat-list/components/avatars';
 // Define the props for the ToolbarItem
 export interface ToolbarItemProps {
     type: string;
@@ -37,7 +37,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({ items, onClick }) => {
                             <div className="text-center mt-1 text-sm">{capitalizeFirstLetter(item.title)}</div>
                         </button>
                     </div>
-                )
+                );
             })}
         </div>
     );

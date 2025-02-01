@@ -3,7 +3,7 @@ import sheetApi from '@api/sheet';
 import image from 'chat-list/utils/image';
 import { ITool } from 'chat-list/types/plugin';
 import { buildChatMessage } from 'chat-list/utils';
-import CardChart from 'chat-list/components/card-chart'
+import CardChart from 'chat-list/components/card-chart';
 import React from 'react';
 let current = 0;
 
@@ -49,7 +49,7 @@ export async function addChart(agrs: any = {}) {
 
     let tarPosition = position;
     if (!tarPosition) {
-        tarPosition = positions[current]
+        tarPosition = positions[current];
         current++;
         if (current > positions.length - 1) {
             current = 0;
@@ -78,7 +78,7 @@ export async function addChart(agrs: any = {}) {
         // ));
         // console.log(chartImageUrl)
         const imgId = Math.random().toString(36).substring(2, 9);
-        const url = image.set(chartImageUrl, `google.chart/${imgId}`)
+        const url = image.set(chartImageUrl, `google.chart/${imgId}`);
         return `Here is ${title} chart image link: ![${title}](${url})\n${explanation}`;
     } catch (e) {
         throw new Error(`There are some errors when adding chart,errors:${e.message}`);

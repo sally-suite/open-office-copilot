@@ -7,7 +7,7 @@ import {
     // RadioGroup,
 } from "chat-list/components/ui/card";
 import { ITask } from "chat-list/types/task";
-import { CheckSquare, Square, XSquare } from 'lucide-react'
+import { CheckSquare, Square, XSquare } from 'lucide-react';
 import useLocalStore from "chat-list/hook/useLocalStore";
 import { SHEET_CHAT_TASK_AUTO_EXEC } from "chat-list/config/task";
 import Button from "chat-list/components/button";
@@ -23,7 +23,7 @@ interface ICardTasksProps {
 export const Status: any = {
     'uncheck': <Square height={20} width={20} />,
     'checked': <CheckSquare height={20} width={20} />
-}
+};
 
 const AutomaticExecutionOptions = [
     { label: "Auto", value: "auto" },
@@ -38,8 +38,8 @@ export default React.memo(function CardCreate(props: ICardTasksProps) {
         return {
             ...pre,
             [cur.id]: 'checked'
-        }
-    }, {}))
+        };
+    }, {}));
     const onOk = async () => {
         const list = tasks.filter(item => checkState[item.id] === 'checked');
         onConfirm?.(list);
@@ -48,20 +48,20 @@ export default React.memo(function CardCreate(props: ICardTasksProps) {
                 id: item.id + '',
                 text: `@${item.skill} ${item.task}`,
                 steps: []
-            }
-        })
+            };
+        });
         await addPlan({
             name: plan,
             tasks: ls
-        })
-    }
+        });
+    };
     const onChose = (item: ITask) => {
         setCheckState({
             ...checkState,
             [item.id]: checkState[item.id] === 'checked' ? 'uncheck' : 'checked'
         }
-        )
-    }
+        );
+    };
     return (
         <Card className=" w-card">
             <CardTitle>{title || 'Task List'}</CardTitle>
@@ -79,7 +79,7 @@ export default React.memo(function CardCreate(props: ICardTasksProps) {
 
                                     <span className="ml-2">{item.id}. @{item.skill} {item.task}</span>
                                 </li>
-                            )
+                            );
                         })}
                     </ol>
                 </div>

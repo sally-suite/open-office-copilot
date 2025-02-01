@@ -4,17 +4,17 @@ import { IChatMessage } from "chat-list/types/message";
 import React from "react";
 import { buildCreateTaskPrompt, parseNextTask, parseTaskList, parseTaskResult } from "./util";
 import { ITask } from "chat-list/types/task";
-import CardTaskList from 'chat-list/components/card-tasks/list'
-import CardProgress from 'chat-list/components/card-tasks/progress'
+import CardTaskList from 'chat-list/components/card-tasks/list';
+import CardProgress from 'chat-list/components/card-tasks/progress';
 import { SHEET_CHAT_TASK_AUTO_EXEC } from "chat-list/config/task";
 import { getLocalStore } from "chat-list/local/local";
-import { shortTermMemory } from 'chat-list/utils/chat'
+import { shortTermMemory } from 'chat-list/utils/chat';
 import { Waypoints } from "lucide-react";
-import introduce from './promps/introduce.md'
-import CardConfirm from 'chat-list/components/card-confirm'
-import { getHeaderList } from 'chat-list/service/sheet'
+import introduce from './promps/introduce.md';
+import CardConfirm from 'chat-list/components/card-confirm';
+import { getHeaderList } from 'chat-list/service/sheet';
 import instruction from './promps/instruction.md';
-import FlowRender from '../../components/render-planner'
+import FlowRender from '../../components/render-planner';
 /**
  * Main service, task split ,plan
  */
@@ -89,21 +89,21 @@ export class Main extends ChatPluginBase implements IChatPlugin {
       this.step = 0;
       this.context.setTyping(false);
     }
-  }
+  };
   updateTaskStatus = async (id: number, status: ITask['status']) => {
     const task = this.taskList.find(t => t.id === id);
     if (task) {
       task.status = status;
       // this.sendMsg(this.buildChatMessage(<CardProgress tasks={this.taskList} />, 'card'));
     }
-  }
+  };
   confirmTasks = async (tasks: ITask[]) => {
     const auto = getLocalStore(SHEET_CHAT_TASK_AUTO_EXEC);
     if (auto == 'auto') {
       this.round = tasks.length + 1;
       this.context.appendMsg(this.buildChatMessage(<CardTaskList
         tasks={tasks}
-      />, 'card'))
+      />, 'card'));
       // shortTermMemory.push({
       //   role: 'user',
       //   content: `Only need to excute tasks :\n ${JSON.stringify(tasks, null, 2)}`
@@ -129,9 +129,9 @@ export class Main extends ChatPluginBase implements IChatPlugin {
 
           this.nextTask(task);
         }}
-      />, 'card'))
+      />, 'card'));
     }
-  }
+  };
   onReceive = async (message: IChatMessage) => {
     const { content: input, role, from } = message;
     const plugins = this.context.plugins || [];
@@ -148,7 +148,7 @@ export class Main extends ChatPluginBase implements IChatPlugin {
       if (input && this.currentTask) {
         const result = parseTaskResult(input);
         if (result.status == 'successfully') {
-          this.updateTaskStatus(this.currentTask.id, 'done')
+          this.updateTaskStatus(this.currentTask.id, 'done');
           // shortTermMemory.push({
           //   role: 'user',
           //   content: `Execute task ${this.currentTask.id}:${this.currentTask.task} ${result.status}, the task is done.` + ((result.result ? `the task result is ${result.result}` : '') + ', return new task list.')
@@ -156,7 +156,7 @@ export class Main extends ChatPluginBase implements IChatPlugin {
           const task = parseNextTask(this.taskList);
           this.nextTask(task);
         } else {
-          this.updateTaskStatus(this.currentTask.id, 'failed')
+          this.updateTaskStatus(this.currentTask.id, 'failed');
           // shortTermMemory.push({
           //   role: 'user',
           //   content: `Execute task ${this.currentTask.id}:${this.currentTask.task}, the task executed failed, reason is ${result.reason}.`
@@ -187,8 +187,8 @@ export class Main extends ChatPluginBase implements IChatPlugin {
     return;
   };
   render = () => {
-    return <FlowRender />
-  }
+    return <FlowRender />;
+  };
 }
 
 export default new Main();

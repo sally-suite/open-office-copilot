@@ -1,5 +1,5 @@
 import { IUserOrderState } from 'chat-list/types/license';
-import { IUserService } from '../types/api/user'
+import { IUserService } from '../types/api/user';
 import { IApiLimit, IPlan, IUserMessage } from 'chat-list/types/user';
 import { IAgent } from 'chat-list/types/agent';
 import { IConversation } from 'chat-list/types/conversation';
@@ -13,31 +13,31 @@ class UserServiceMock implements IUserService {
     deductPoints?: (message: IUserMessage) => Promise<void>;
     getAgents = (params: { email: string, type: string }) => {
         return Promise.resolve({} as IAgent[]);
-    }
+    };
     addAgent = (agent: IAgent) => {
         return Promise.resolve();
-    }
+    };
     updateAgent = (agent: IAgent) => {
         return Promise.resolve();
-    }
+    };
     getAgent = (id: string) => {
         return Promise.resolve({} as IAgent);
-    }
+    };
     getPoints?: () => Promise<number>;
     getConversation = async (): Promise<IConversation[]> => {
-        return []
-    }
+        return [];
+    };
     addPlan = async (plan: IPlan) => {
-        return
+        return;
     };
     getPlan = async (id: string): Promise<IPlan> => {
         return null;
     };
     removePlan = async (id: string) => {
-        return
+        return;
     };
     getPlanList = async (): Promise<IPlan[]> => {
-        return
+        return;
     };
 }
 

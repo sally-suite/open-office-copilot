@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import sheetApi from '@api/sheet'
+import React, { useEffect, useState } from 'react';
+import sheetApi from '@api/sheet';
 import { Textarea } from 'chat-list/components/ui/textarea';
 import Button from 'chat-list/components/button';
 import Markdown from 'chat-list/components/markdown';
 import CardSheetInfo, { FormulaInfo } from 'chat-list/components/card-sheet-info/form';
 
 import Loading from '../loading';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { chatByPrompt } from 'chat-list/service/message';
-import writeFunctionPrompt from './prompts/function'
-import explainFunctionPrompt from './prompts/explain.md'
+import writeFunctionPrompt from './prompts/function';
+import explainFunctionPrompt from './prompts/explain.md';
 import { ScanSearch, Sigma } from 'lucide-react';
 
 export default function CoderRender() {
     const { t, i18n } = useTranslation(['function']);
     const [inputValue, setInputValue] = useState('');
     const [formValue, setFormValue] = useState<FormulaInfo>({});
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
-    const [result, setResult] = useState('')
+    const [result, setResult] = useState('');
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
     const onFormChange = (formValue: FormulaInfo) => {
-        setFormValue(formValue)
-    }
+        setFormValue(formValue);
+    };
 
     const buildContext = async () => {
         const sheet = await sheetApi.getSheetInfo();
@@ -39,7 +39,7 @@ ${JSON.stringify(sheet, null, 2)}
 IS HEADER IN DATA RANGE: ${formValue.headerInDataRange}
 `;
         return context;
-    }
+    };
 
     const generate = async () => {
         const dataContext = await buildContext();
@@ -64,19 +64,19 @@ IS HEADER IN DATA RANGE: ${formValue.headerInDataRange}
                 setResult(result.content);
             }
         });
-    }
+    };
     const init = async () => {
         setLoading(true);
         const dataRangeCells = await sheetApi.getRangeA1Notation();
         setFormValue({
             dataRangeCells,
             headerInDataRange: 'Yes'
-        })
+        });
         setLoading(false);
-    }
+    };
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     return (
         <div className="p-2 flex flex-col mx-auto mt-2">

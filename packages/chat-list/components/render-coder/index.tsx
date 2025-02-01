@@ -1,7 +1,7 @@
-import { ChatContext } from 'chat-list/store/chatContext'
-import React, { useContext, useState } from 'react'
+import { ChatContext } from 'chat-list/store/chatContext';
+import React, { useContext, useState } from 'react';
 import CodeEditor from 'chat-list/components/code-editor';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import { getSheetInfo, getValues } from 'chat-list/service/sheet';
 
 // import { extractCodeFromMd } from 'chat-list/utils'
@@ -41,7 +41,7 @@ export default function CoderRender() {
         // setExecutionResult(result);
     };
     const codeCompletion = async (code: string, input: string) => {
-        console.log(code, input)
+        console.log(code, input);
         const sheetInfo = await getSheetInfo();
         return await editFunction(sheetInfo, input);
     };
@@ -54,11 +54,11 @@ export default function CoderRender() {
         const newHistory = history.slice(0, history.length - 1);
         setHistory(newHistory);
         // console.log('undo')
-    }
+    };
     const pushHistory = async () => {
         const values = await getValues();
         setHistory(history.concat([values]));
-    }
+    };
 
     return (
         <CodeEditor

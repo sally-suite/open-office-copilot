@@ -1,6 +1,6 @@
 import { ChatPluginBase, IChatPlugin } from "chat-list/types/plugin";
 import instruction from './promps/instruction.md';
-import introduction from './promps/introduction.md'
+import introduction from './promps/introduction.md';
 import i18n from "chat-list/locales/i18n";
 import { template } from "chat-list/utils";
 import headset from 'chat-list/assets/img/headset.png';
@@ -19,14 +19,14 @@ export class Eric extends ChatPluginBase implements IChatPlugin {
     const text = i18n.t('agent:eric_introduction', introduction) as unknown as string;
     const content = template(text, {
       user_name: user.username
-    })
+    });
     return content;
-  }
+  };
   onReceive(message: IChatMessage, options: IChatOptions = { stream: true }): Promise<any> {
     return super.onReceive(message, {
       ...options,
       model: 'gpt-4o-mini'
-    })
+    });
   }
 }
 

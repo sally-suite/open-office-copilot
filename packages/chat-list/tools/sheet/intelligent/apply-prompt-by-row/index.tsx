@@ -1,32 +1,32 @@
 import { IMessageBody } from 'chat-list/types/chat';
-import instruction from './instruction.md'
+import instruction from './instruction.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { buildChatMessage, letter2columnNum } from 'chat-list/utils';
 import sheetApi from '@api/sheet';
 import { template } from 'chat-list/utils';
-import systemData from './row-prompt.md'
-import { getValues, getValuesByRange } from 'chat-list/service/sheet'
+import systemData from './row-prompt.md';
+import { getValues, getValuesByRange } from 'chat-list/service/sheet';
 import { getLocalStore } from 'chat-list/local/local';
-import CardPromptByRow from 'chat-list/components/card-prompt-by-row'
+import CardPromptByRow from 'chat-list/components/card-prompt-by-row';
 import React from 'react';
 
 const buildTemplate = (titles: string[]) => {
   const content = titles.filter(p => p).map((title) => {
-    return `[${title}]\n{${title}}`
+    return `[${title}]\n{${title}}`;
   }).join('\n\n');
 
-  const temp = `#User Requirement\n{requirement}\n\n# Context Information\n${content}`
+  const temp = `#User Requirement\n{requirement}\n\n# Context Information\n${content}`;
   return temp;
-}
+};
 
 export const buildDataModeSystemMessage = async (): Promise<string> => {
   const data = await getValues();
   const prompt = template(systemData, {
     tableData: JSON.stringify(data)
-  })
+  });
 
   return prompt;
-}
+};
 
 const applyPromptByRow = async (requirements: string, column: string, context: any) => {
   const firtRow = await getValuesByRange('1:1');
@@ -45,7 +45,7 @@ const applyPromptByRow = async (requirements: string, column: string, context: a
 
   const sheet = await sheetApi.getSheetInfo();
   const sheetName = sheet.current;
-  let prompTemplate = await getLocalStore('apply_prompt_by_row_' + sheetName)
+  let prompTemplate = await getLocalStore('apply_prompt_by_row_' + sheetName);
   if (!prompTemplate) {
     prompTemplate = buildTemplate(titles);
   }
@@ -60,14 +60,14 @@ const applyPromptByRow = async (requirements: string, column: string, context: a
       return {
         ...pre,
         [title]: row[n]
-      }
-    }, {})
+      };
+    }, {});
     // const prompt = `## User Requirement\n\n${requirements}## Context Information:\n${rowPrompt}`;
     const prompt = template(prompTemplate, {
       requirements,
       ...data
-    })
-    prompts.push(prompt)
+    });
+    prompts.push(prompt);
   }
 
   const columnNum = letter2columnNum(column);
@@ -77,8 +77,8 @@ const applyPromptByRow = async (requirements: string, column: string, context: a
     const messages: IMessageBody[] = [{
       role: 'user',
       content: prompt,
-    }]
-    const cellValue = await getValuesByRange(startRow + m, columnNum, 1, 1)
+    }];
+    const cellValue = await getValuesByRange(startRow + m, columnNum, 1, 1);
     if (cellValue[0][0]) {
       continue;
     }
@@ -86,7 +86,7 @@ const applyPromptByRow = async (requirements: string, column: string, context: a
     // console.log('setValuesByRange', [[content]], startRow + m, columnNum, 1, 1)
     await sheetApi.setValuesByRange([[content]], startRow + m, columnNum, 1, 1);
   }
-}
+};
 
 export const func = async ({ requirements, column, context, dataContext }: { requirements: string, column: string, context: ChatState, dataContext: string }) => {
   // console.log('apply_prompt_by_row', requirements, column);
@@ -95,14 +95,14 @@ export const func = async ({ requirements, column, context, dataContext }: { req
   // }
   // context.appendMsg(buildChatMessage(<CardPromptByRow requirements={requirements} column={column} />, 'card', 'assistant'))
   // return buildChatMessage("I've shown user a template for the prompt so you can let user check out and click confirm.", 'text', 'assistant')
-  return buildChatMessage(<CardPromptByRow requirements={requirements} column={column} />, 'card', 'assistant', null, [], "I've shown user a form,so you can let user check out and click confirm.")
+  return buildChatMessage(<CardPromptByRow requirements={requirements} column={column} />, 'card', 'assistant', null, [], "I've shown user a form,so you can let user check out and click confirm.");
   // try {
   //   await applyPromptByRow(requirements, column, context);
   //   return buildChatMessage(`All tasks have been completed and the sheet has been updated.`, 'text', 'assistant',);
   // } catch (err) {
   //   return buildChatMessage(`Exception:${err.message}`, 'text', 'assistant',);
   // }
-}
+};
 
 export default {
   type: 'function',

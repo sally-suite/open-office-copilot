@@ -3,7 +3,7 @@
 
 
 import { ITool } from 'chat-list/types/plugin';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 import { ChatState } from "chat-list/types/plugin";
 import { buildHtml } from 'chat-list/utils';
 
@@ -19,8 +19,8 @@ export const main: ITool['func'] = async ({ text, context }: { text: string, con
     } else {
         await docApi.insertText(text, { type: 'text' });
     }
-    return 'Task done.'
-}
+    return 'Task done.';
+};
 
 export default {
     "name": "insert_text",

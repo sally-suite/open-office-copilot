@@ -1,8 +1,8 @@
 // EmojiSelector.tsx
 import React, { useState, FC } from 'react';
-import data from '@emoji-mart/data'
+import data from '@emoji-mart/data';
 // import 'emoji-mart/css/emoji-mart.css';
-import Picker from '@emoji-mart/react'
+import Picker from '@emoji-mart/react';
 
 interface EmojiSelectorProps {
     value: string;

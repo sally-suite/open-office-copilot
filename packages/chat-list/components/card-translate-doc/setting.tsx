@@ -17,7 +17,7 @@ import {
   SHEET_CHAT_TRANSLATE_STYLE,
 } from "chat-list/config/translate";
 import TransStyleList from "../trans-style-list";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { ArrowUpDown } from "lucide-react";
 
 export type ILangItem = {

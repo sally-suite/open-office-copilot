@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import CardPPTRender from 'chat-list/components/card-ppt-render'
-import PPTPreview from 'chat-list/components/card-ppt-render/preview'
+import CardPPTRender from 'chat-list/components/card-ppt-render';
+import PPTPreview from 'chat-list/components/card-ppt-render/preview';
 
 import Button from 'chat-list/components/button';
 import { generatePPT } from 'chat-list/service/slide';
-import { getSlideTemplate, ITemplate } from './templates'
+import { getSlideTemplate, ITemplate } from './templates';
 // import sample from './data/sample.json';
 import { ISlideItem, Metadata, Slide, SlideElement, Theme } from 'chat-list/types/api/slide';
 import slideApi from '@api/slide';
@@ -16,14 +16,14 @@ import {
     SheetContent,
     SheetHeader,
     SheetTitle,
-} from "chat-list/components/ui/sheet"
+} from "chat-list/components/ui/sheet";
 import { corpImageByRatio, getImgSize } from 'chat-list/utils';
 import useChatState from 'chat-list/hook/useChatState';
 import { cn } from 'chat-list/lib/utils';
 import Loading from '../loading';
 import ImageSelector from './image-selector-v2';
 import { Download, FileOutput, Palette, Undo2 } from 'lucide-react';
-import ChartSelector from './chart-selector'
+import ChartSelector from './chart-selector';
 
 // const width = 1276.8;
 // const height = 720;
@@ -66,7 +66,7 @@ const SlideRender = (props: SlideRenderProps) => {
         },
         "headingClass": "font-light",
         "bodyClass": "font-normal"
-    })
+    });
     const [slideTemps, setSlideTemps] = useState([]);
     const [openTempWin, setOpenTempWin] = useState(false);
     const [selectedSlide, setSelectedSlide] = useState<ISlideItem>(null);
@@ -76,7 +76,7 @@ const SlideRender = (props: SlideRenderProps) => {
     const [imageIndex, setImageIndex] = useState(0);
     const [openImageWin, setOpenImageWin] = useState(false);
     const [chartIndex, setChartIndex] = useState(0);
-    const [openChartWin, setOpenChartWin] = useState(false)
+    const [openChartWin, setOpenChartWin] = useState(false);
     const [openThemeSelector, setOpenThemeSelector] = useState(false);
     const [loading, setLoading] = useState(false);
     const slidesRef = useRef(null);
@@ -115,7 +115,7 @@ const SlideRender = (props: SlideRenderProps) => {
             //     window.open(newBlob.url, '_blank');
             // }
         }
-    }
+    };
     const insert = async () => {
         const pages = await renderForNative(slideData, colors, fonts);
         if (platform == 'office') {
@@ -133,7 +133,7 @@ const SlideRender = (props: SlideRenderProps) => {
             }
         }
 
-    }
+    };
     const randomTemp = (type: string,) => {
         const templates = getSlideTemplate(type, isAddImage);
 
@@ -157,7 +157,7 @@ const SlideRender = (props: SlideRenderProps) => {
         //     temp = slides[i];
         // }
         // return temp;
-    }
+    };
 
     const onSelectSlide = async (slide: Slide, index: number) => {
         const selectedSlide = slideData[index];
@@ -200,7 +200,7 @@ const SlideRender = (props: SlideRenderProps) => {
         //         />
         //     )
         // })
-    }
+    };
     const onSelectElement = (element: SlideElement, slideIndex: number, elementIndex: number) => {
         // if (openImageWin) {
         //     setOpenImageWin(false);
@@ -220,7 +220,7 @@ const SlideRender = (props: SlideRenderProps) => {
             setOpenImageWin(true);
         } else if (element.type == 'chart') {
             const selectedSlide = slideData[slideIndex];
-            console.log(selectedSlide)
+            console.log(selectedSlide);
             setSelectedSlide(selectedSlide);
             setSelectedElement(element);
             setSelectedSlideIndex(slideIndex);
@@ -231,7 +231,7 @@ const SlideRender = (props: SlideRenderProps) => {
         }
 
 
-    }
+    };
     const onInsertSlide = async (slide: Slide, index: number) => {
         // console.log(slide)
         const page = await renderForSingle(index, colors, fonts);
@@ -247,11 +247,11 @@ const SlideRender = (props: SlideRenderProps) => {
         } else if (platform == 'google') {
             await slideApi.generateSlide([page]);
         }
-    }
+    };
     const onChangeTemplate = (slide: any, index: number) => {
 
         onSelectSlide(slide, index);
-    }
+    };
     const onSelectImage = async (image: string,) => {
         let tarImage = slideData[selectedSlideIndex].image[imageIndex];
         if (!tarImage) {
@@ -259,32 +259,32 @@ const SlideRender = (props: SlideRenderProps) => {
             tarImage = slideData[selectedSlideIndex].image[imageIndex];
         };
         tarImage.src = 'loading';
-        setSlideData([...slideData])
+        setSlideData([...slideData]);
         // setOpenImageWin(false);
 
         // await generate();
         // const imgBase64 = await proxyImage(image);
         renderSlide(slideData, temps, colors, fonts);
         setTimeout(async () => {
-            const img = await getImgSize(image)
+            const img = await getImgSize(image);
             tarImage.width = img.width;
             tarImage.height = img.height;
             tarImage.src = image;
-            setSlideData([...slideData])
+            setSlideData([...slideData]);
             renderSlide(slideData, temps, colors, fonts);
             setOpenImageWin(false);
-        }, 100)
+        }, 100);
 
 
-    }
+    };
 
     const onSelectChart = async (chartType: string) => {
         const tarChart = slideData[selectedSlideIndex].data[chartIndex];
         tarChart.chart_type = chartType;
-        setSlideData([...slideData])
+        setSlideData([...slideData]);
         renderSlide(slideData, temps, colors, fonts);
-        setOpenChartWin(false)
-    }
+        setOpenChartWin(false);
+    };
 
     const onThemeSelect = (theme: any, font: any) => {
         // console.log(theme, font)
@@ -292,20 +292,20 @@ const SlideRender = (props: SlideRenderProps) => {
         setColors(theme);
         setFonts(font);
         renderSlide(slideData, temps, theme, font);
-    }
+    };
     const onSelectSlideTemp = (slide: any, index: number) => {
         // console.log(selectedSlide, selectedSlideIndex, slide, index)
         setOpenTempWin(false);
 
         const ts = getSlideTemplate(selectedSlide.type, isAddImage);
         temps[selectedSlideIndex] = ts[index];
-        setTemps([...temps])
+        setTemps([...temps]);
         renderSlide(slideData, temps, colors, fonts);
-    }
+    };
     const renderSlide = async (slideData: ISlideItem[], temps: ITemplate[], colors: any, fonts: any) => {
         const pages = await Promise.all(temps.map(async (temp: any, index: number) => {
             try {
-                const option = tempOptions[index] || {}
+                const option = tempOptions[index] || {};
                 const render = temp.render;
                 const result = await render(slideData[index], {
                     colors: colors,
@@ -318,12 +318,12 @@ const SlideRender = (props: SlideRenderProps) => {
             }
         }));
         setPages(pages.filter(p => !!p));
-    }
+    };
 
     const renderForNative = async (slideData: any[], colors: any, fonts: any) => {
         const pages = await Promise.all(temps.map(async (temp: any, index: number) => {
             try {
-                const option = tempOptions[index] || {}
+                const option = tempOptions[index] || {};
                 const render = temp.render;
                 const result = await render(slideData[index], {
                     colors: colors,
@@ -336,11 +336,11 @@ const SlideRender = (props: SlideRenderProps) => {
             }
         }));
         return pages;
-    }
+    };
     const renderForSingle = async (index: number, colors: any, fonts: any) => {
         const temp = temps[index];
         const data = slideData[index];
-        const option = tempOptions[index] || {}
+        const option = tempOptions[index] || {};
         const render = temp.render;
         const result = await render(data, {
             colors: colors,
@@ -348,7 +348,7 @@ const SlideRender = (props: SlideRenderProps) => {
             ...option
         });
         return result;
-    }
+    };
 
     const init = async (slideData: ISlideItem[]) => {
         const templates = slideData.map((item, index) => {
@@ -356,12 +356,12 @@ const SlideRender = (props: SlideRenderProps) => {
                 return temps[index];
             }
             return randomTemp(item.type);
-        })
+        });
         // console.log(templates)
         const newTemps = templates.filter(p => !!p);
         const pages = await Promise.all(newTemps.map(async (temp: any, index: number) => {
             try {
-                const option = tempOptions[index] || {}
+                const option = tempOptions[index] || {};
                 const render = temp.render;
                 if (temp.image && temp.imageRatio) {
                     const img = slideData[index].image[0];
@@ -382,18 +382,18 @@ const SlideRender = (props: SlideRenderProps) => {
         }));
         setTemps(newTemps);
         setPages(pages.filter(p => !!p));
-    }
+    };
 
     useEffect(() => {
         init(defaultSlideData);
-    }, [defaultSlideData])
+    }, [defaultSlideData]);
 
     useEffect(() => {
-        setSlideData(defaultSlideData)
+        setSlideData(defaultSlideData);
         setTimeout(() => {
             slidesRef.current.scrollTop = slidesRef.current.scrollHeight;
-        }, 1000)
-    }, [defaultSlideData])
+        }, 1000);
+    }, [defaultSlideData]);
 
     return (
         <div className={cn(
@@ -437,7 +437,7 @@ const SlideRender = (props: SlideRenderProps) => {
                             )
                         }
                         <Button size='sm' icon={Palette} variant='outline' onClick={() => {
-                            setOpenThemeSelector(true)
+                            setOpenThemeSelector(true);
                         }}>
                             {t('common.theme')}
                         </Button>
@@ -459,7 +459,7 @@ const SlideRender = (props: SlideRenderProps) => {
             </div>
             <Sheet open={openTempWin} onOpenChange={(open) => {
                 if (!open) {
-                    setOpenTempWin(false)
+                    setOpenTempWin(false);
                 }
             }}>
                 {/* <SheetTrigger>Open</SheetTrigger> */}
@@ -500,7 +500,7 @@ const SlideRender = (props: SlideRenderProps) => {
                 onSelect={onSelectImage}
                 open={openImageWin}
                 onClose={() => {
-                    setOpenImageWin(false)
+                    setOpenImageWin(false);
                 }}
             />
 
@@ -511,7 +511,7 @@ const SlideRender = (props: SlideRenderProps) => {
                 }}
                 open={openThemeSelector}
                 onClose={() => {
-                    setOpenThemeSelector(false)
+                    setOpenThemeSelector(false);
                 }}
                 onChange={onThemeSelect}
             />
@@ -526,7 +526,7 @@ const SlideRender = (props: SlideRenderProps) => {
                 onSelect={onSelectChart}
                 open={openChartWin}
                 onClose={() => {
-                    setOpenChartWin(false)
+                    setOpenChartWin(false);
                 }}
             />
 

@@ -7,7 +7,7 @@ import { IChatPlugin } from 'chat-list/types/plugin';
 import Avatar from '../avatars';
 import { cn } from 'chat-list/lib/utils';
 import { useNavigate } from 'react-router-dom';
-import Tooltip from 'chat-list/components/tooltip'
+import Tooltip from 'chat-list/components/tooltip';
 
 const LeftNavigation = () => {
     const { user } = useUserState();
@@ -26,13 +26,13 @@ const LeftNavigation = () => {
             resetList([]);
         }
         setMode(plg.action, plg.mode || 'chat');
-        navigate(`/${plg.action}`)
+        navigate(`/${plg.action}`);
         setPlugin(plg);
-    }
+    };
 
     const onCreate = () => {
-        navigate('/create-agent')
-    }
+        navigate('/create-agent');
+    };
 
     return (
         <div className="flex flex-col h-full overflow-y-auto w-10 ">
@@ -74,7 +74,7 @@ const LeftNavigation = () => {
 
                             </Tooltip>
                         </div>
-                    )
+                    );
                 })}
 
                 <div className={cn(

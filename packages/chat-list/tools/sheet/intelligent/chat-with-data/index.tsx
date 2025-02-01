@@ -4,7 +4,7 @@ import description from './description.md';
 import sheetApi from '@api/sheet';
 import { arrayToMarkdownTable, buildChatMessage, extractJsonDataFromMd, template } from "chat-list/utils";
 import { chatByPrompt } from "chat-list/service/message";
-import answerDataTmp from './answer-data.md'
+import answerDataTmp from './answer-data.md';
 import { IChatMessage } from "chat-list/types/message";
 import { getValues } from "chat-list/service/sheet";
 
@@ -24,7 +24,7 @@ export const func = async ({ message, context }: { message: IChatMessage, contex
 
         }
         if (!values || values.length <= 0 || values.every(v => v.every(v => !v))) {
-            return 'No data found, tell user select a range of data, and can not select an entire column or row.'
+            return 'No data found, tell user select a range of data, and can not select an entire column or row.';
         }
         if (values.length > 100) {
             const address = await sheetApi.getRangeA1Notation();
@@ -41,12 +41,12 @@ export const func = async ({ message, context }: { message: IChatMessage, contex
                     formula = "SL.GPT3";
                 }
             }
-            return `There are too many rows of data, so we recommend using the function mode, you can input function like this \`=${formula}("${message.content}",${lt})\``
+            return `There are too many rows of data, so we recommend using the function mode, you can input function like this \`=${formula}("${message.content}",${lt})\``;
         }
         const prompt = template(answerDataTmp, {
             tableData: JSON.stringify(values),
             requirement: message.content
-        })
+        });
         const input = `USER REQUIREMENT:\n${message.content}`;
         let content = '';
         await chatByPrompt(prompt, input, { stream: true, temperature: 0.7 }, (done, result) => {
@@ -75,7 +75,7 @@ export const func = async ({ message, context }: { message: IChatMessage, contex
     } else {
         return `Sorry! I can't answer your qeustion.`;
     }
-}
+};
 
 export default {
     type: 'function',

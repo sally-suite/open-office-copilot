@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 
 import { createRoot } from 'react-dom/client';
 import { plugins } from 'chat-list/plugins/doc';
-import { init } from 'chat-list/service/log'
+import { init } from 'chat-list/service/log';
 import ChatList from 'chat-list/components/chat-list';
 import { UserProvider } from 'chat-list/store/userContext';
 import { ChatProvider } from 'chat-list/store/chatContext';
 import { createHashRouter, RouterProvider, createMemoryRouter } from 'react-router-dom';
 import 'chat-list/components/icon/svg-icons-register';
-import Wellcome from 'chat-list/components/wellcome'
+import Wellcome from 'chat-list/components/wellcome';
 import 'chat-list/assets/css/global.css';
 import 'chat-list/assets/css/common.less';
 import 'chat-list/assets/css/chatui-theme.less';

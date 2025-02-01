@@ -7,7 +7,7 @@
 // import translate from './translate';
 // import coder from './coder'
 import { ITool } from 'chat-list/types/plugin';
-import writeFunction from './write-function'
+import writeFunction from './write-function';
 export const tools: ITool[] = [
   writeFunction
 ];

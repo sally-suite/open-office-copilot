@@ -1,7 +1,7 @@
 import React from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { cn } from 'chat-list/lib/utils';
 import Avatar from '../avatars';
 import { useNavigate } from 'react-router-dom';
@@ -19,9 +19,9 @@ export default function ToolList(props: IToolListProps) {
     const navigate = useNavigate();
     const onSelect = (id: string) => {
 
-        navigate(`/${id}`)
+        navigate(`/${id}`);
 
-    }
+    };
 
     return (
         <div className='flex flex-col text-sm'>
@@ -52,12 +52,12 @@ export default function ToolList(props: IToolListProps) {
                                     {plg.shortDescription || plg.description}
                                 </div>
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
 
         </div>
 
-    )
+    );
 }

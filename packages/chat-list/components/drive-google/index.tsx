@@ -1,7 +1,7 @@
 // import gapi from 'gapi';
-import { LucideIcon } from 'lucide-react'
-import React, { useEffect } from 'react'
-import Icon from 'chat-list/components/icon'
+import { LucideIcon } from 'lucide-react';
+import React, { useEffect } from 'react';
+import Icon from 'chat-list/components/icon';
 import { base64ToFile } from 'chat-list/utils';
 import useChatState from 'chat-list/hook/useChatState';
 
@@ -28,7 +28,7 @@ const APP_ID = "502322973058";
 
 let tokenClient: any;
 let accessToken: any = null;
-let pickerInited = false;
+const pickerInited = false;
 let gisInited = false;
 
 let gapi: any;
@@ -104,7 +104,7 @@ export default function index(props: IGoogleDrive) {
                     reject(error);
                 })
                 .getOAuthToken();
-        })
+        });
     }
     /**
      *  Sign in the user upon button click.
@@ -162,7 +162,7 @@ export default function index(props: IGoogleDrive) {
     async function exportFileFromDrive(fileId: string, name: string, mimeType: string) {
         try {
             const url = `https://content.googleapis.com/drive/v3/files/${fileId}/export?mimeType=${encodeURIComponent(mimeType)}`;
-            const accessToken = gapi.auth.getToken().access_token
+            const accessToken = gapi.auth.getToken().access_token;
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
@@ -187,14 +187,14 @@ export default function index(props: IGoogleDrive) {
     async function exportFile(fileId: string, name: string, mimeType: string) {
         let exportMimeType: string = mimeType;
         if (mimeType === 'application/vnd.google-apps.document') {
-            exportMimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' // 'application/pdf';
+            exportMimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'; // 'application/pdf';
         } else if (mimeType === 'application/vnd.google-apps.spreadsheet') {
             exportMimeType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
         } else if (mimeType === 'application/vnd.google-apps.presentation') {
             exportMimeType = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
         }
         const file = await exportFileFromDrive(fileId, name, exportMimeType);
-        onSelect?.([file])
+        onSelect?.([file]);
 
     }
     async function getFileContent(fileId: string, name: string, mimeType: string) {
@@ -203,8 +203,8 @@ export default function index(props: IGoogleDrive) {
             alt: 'media'
         });
         const base64String = btoa(response.body);
-        const file = await base64ToFile(`data:${mimeType};base64,${base64String}`, name,)
-        onSelect?.([file])
+        const file = await base64ToFile(`data:${mimeType};base64,${base64String}`, name,);
+        onSelect?.([file]);
     }
     function loadScript(src: string) {
         return new Promise((resolve, reject) => {
@@ -223,21 +223,21 @@ export default function index(props: IGoogleDrive) {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
     const init = async () => {
         try {
-            await loadGapiScript()
+            await loadGapiScript();
             gapi = (window as any).gapi;
             gapiLoaded();
             gisLoaded();
         } catch (error) {
             console.error(error);
         }
-    }
+    };
     useEffect(() => {
         init();
-    }, [])
+    }, []);
     return (
         <Icon name='google-drive' height={18} width={18} onClick={handleAuthClick} />
-    )
+    );
 }

@@ -3,8 +3,8 @@
 
 
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import descriptiont from './description.md'
-import docApi from '@api/doc'
+import descriptiont from './description.md';
+import docApi from '@api/doc';
 import { IChatMessage } from 'chat-list/types/message';
 
 export const main: ITool['func'] = async ({ message, context }: { message: IChatMessage, context: ChatState }): Promise<any> => {
@@ -13,7 +13,7 @@ export const main: ITool['func'] = async ({ message, context }: { message: IChat
         return `No email history is selected, tell user to  select email history.`;
     }
     return text;
-}
+};
 
 export default {
     "name": "write_email",

@@ -11,11 +11,11 @@ import { blobToArrayBuffer, copyByClipboard, uuid } from 'chat-list/utils';
 import { cn } from 'chat-list/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { python } from '@codemirror/lang-python';
-import Folder from './Folder'
+import Folder from './Folder';
 import { clearFolder, prepareFolder, writeFile } from 'chat-list/tools/sheet/python/util';
 import Markdown, { replaceImageLinks } from "../markdown/plain";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
-import MarkEdit from './MarkEdit'
+import MarkEdit from './MarkEdit';
 // import { editFunction } from '../service/edit';
 // import return1 from '../data/return1.md';
 
@@ -91,7 +91,7 @@ function App({
         ...newCell
       }
     }));
-  }
+  };
   const removeCell = (id: string) => {
     setCurrentAction('');
     setCurrentCellIndex(-1);
@@ -102,7 +102,7 @@ function App({
       const { [id]: _, ...rest } = prev;
       return rest;
     });
-  }
+  };
   const addUndoActions = (action: ILog) => {
     setUndoActions((prevLogs) => [...prevLogs, action]);
   };
@@ -191,7 +191,7 @@ function App({
       type: 'markdown',
       content: 'Waitting',
       status: 'success',
-    })
+    });
     setInput('');
     try {
       if (!currentCell) {
@@ -201,12 +201,12 @@ function App({
             content: result,
             status: 'success',
             type: 'code'
-          })
+          });
         } else {
           updateCell(id, {
             content: 'No response',
             status: 'success',
-          })
+          });
         }
       } else if (actionState[currentCell].type === 'markdown') {
         const content = actionState[currentCell].content;
@@ -218,12 +218,12 @@ function App({
             content: result,
             result: execResult,
             type: 'code'
-          })
+          });
         } else {
           updateCell(id, {
             content: 'No response',
             status: 'success',
-          })
+          });
         }
 
       } else if (actionState[currentCell].type == 'code') {
@@ -237,12 +237,12 @@ function App({
             result: execResult,
             id: currentCell,
             type: 'code'
-          })
+          });
         } else {
           updateCell(id, {
             content: 'No response',
             status: 'success',
-          })
+          });
         }
       }
       // 设置 editorRef.current 的滚动条到最底部
@@ -250,13 +250,13 @@ function App({
         if (editorRef.current) {
           editorRef.current.scrollTop = editorRef.current.scrollHeight;
         }
-      }, 1000)
+      }, 1000);
 
     } catch (err) {
       updateCell(id, {
         content: err.message,
         status: 'error',
-      })
+      });
     } finally {
       setWaitting(false);
     }
@@ -279,21 +279,21 @@ function App({
   const executeCode = async (editorCode: string) => {
     try {
       await clearOutput();
-      setWaitting(true)
+      setWaitting(true);
       const result = await onRun?.(editorCode);
       if (result) {
         appendLog(`${typeof result == 'object' ? JSON.stringify(result) : result}`, LogType.info);
       } else {
         appendLog(`Script run finished.`, LogType.info);
       }
-      setWaitting(false)
+      setWaitting(false);
       await refreshOutput();
       return `${typeof result == 'object' ? JSON.stringify(result) : result}`;
     } catch (error) {
-      console.error(error)
+      console.error(error);
       appendLog(error.message, LogType.error);
     } finally {
-      setWaitting(false)
+      setWaitting(false);
     }
   };
   function generateIpynb(data: { result: string, code: string }[]) {
@@ -349,7 +349,7 @@ function App({
   }
 
   const runCode = async (id: string) => {
-    let currentId = id
+    let currentId = id;
     if (!id) {
       currentId = currentCell;
     }
@@ -362,13 +362,13 @@ function App({
       const result = await executeCode(code);
       addCodeLog(currentCell, result);
     }
-  }
+  };
   const removeCode = async () => {
     if (!currentCell) {
       return;
     }
     removeCell(currentCell);
-  }
+  };
   const onAddCell = (type: CellType) => {
 
     const id = uuid();
@@ -381,7 +381,7 @@ function App({
         code: '\n\n',
         result: ''
       },
-    })
+    });
     // 插入当前焦点cell的下面
     const index = cells.findIndex(cell => cell.id === currentCell);
     if (index !== -1) {
@@ -392,7 +392,7 @@ function App({
     // setCells([...cells, { id, type }]);
     setCurrentAction(id);
 
-  }
+  };
   function download(mark: string, filename = 'script.md') {
 
     const blob = new Blob([mark], { type: 'text/plain;charset=utf-8;' });
@@ -413,67 +413,67 @@ function App({
       if (type == 'code') {
         const code = actionState[p.id].code;
         const result = actionState[p.id].result;
-        return `\`\`\`python\n${code}\n\`\`\`\n\n${result}`
+        return `\`\`\`python\n${code}\n\`\`\`\n\n${result}`;
       } else if (type == 'markdown') {
-        return actionState[p.id].content
+        return actionState[p.id].content;
       }
     }).join('\n\n');
     const md = replaceImageLinks(mark);
     download(md);
-  }
+  };
   const downloadJupyter = () => {
     const list = cells.map((p) => {
       const type = actionState[p.id].type;
       if (type == 'code') {
         const code = actionState[p.id].code;
         const result = actionState[p.id].result;
-        return { code, result: replaceImageLinks(result) }
+        return { code, result: replaceImageLinks(result) };
       } else if (type == 'markdown') {
-        return { code: '', result: replaceImageLinks(actionState[p.id].content) }
+        return { code: '', result: replaceImageLinks(actionState[p.id].content) };
       }
     });
     const ipynb = generateIpynb(list);
     download(ipynb, 'note.ipynb');
-  }
+  };
   const copyMark = async () => {
     const mark = cells.map((p) => {
       const type = actionState[p.id].type;
       if (type == 'code') {
         const code = actionState[p.id].code || '';
         const result = actionState[p.id].result || '';
-        return `\`\`\`python\n${code}\n\`\`\`\n\n${result}`
+        return `\`\`\`python\n${code}\n\`\`\`\n\n${result}`;
       } else if (type == 'markdown') {
-        return actionState[p.id].content
+        return actionState[p.id].content;
       }
     }).join('\n\n');
     const md = replaceImageLinks(mark);
-    copyByClipboard(md)
-  }
+    copyByClipboard(md);
+  };
   const copyJupyter = () => {
     const list = cells.map((p) => {
       const type = actionState[p.id].type;
       if (type == 'code') {
         const code = actionState[p.id].code || '';
         const result = actionState[p.id].result || '';
-        return { code, result: replaceImageLinks(result) }
+        return { code, result: replaceImageLinks(result) };
       } else if (type == 'markdown') {
-        return { code: '', result: replaceImageLinks(actionState[p.id].content) }
+        return { code: '', result: replaceImageLinks(actionState[p.id].content) };
       }
     });
     const ipynb = generateIpynb(list);
     // download(ipynb, 'note.ipynb');
-    copyByClipboard(ipynb)
-  }
+    copyByClipboard(ipynb);
+  };
 
   const onSelectCodeblock = async (id: string) => {
-    const index = cells.findIndex(p => p.id == id)
+    const index = cells.findIndex(p => p.id == id);
     setCurrentCellIndex(index);
-    setCurrentAction(id)
-  }
+    setCurrentAction(id);
+  };
   const onDeselect = () => {
     setCurrentAction('');
     setCurrentCellIndex(-1);
-  }
+  };
   const onMarkChange = (id: string, content: string) => {
     setActionState({
       ...actionState,
@@ -482,12 +482,12 @@ function App({
         content
       },
     });
-  }
+  };
   const addCodeLog = async (id: string, log: string) => {
     if (!actionState) {
       return;
     }
-    let currentId = id
+    let currentId = id;
     if (!id) {
       currentId = currentCell;
     }
@@ -504,7 +504,7 @@ function App({
         result: log
       },
     });
-  }
+  };
   const saveToSheet = async () => {
     try {
       await onSaveToSheet?.();
@@ -517,21 +517,21 @@ function App({
 
   const onRecorderOutput = (text: string) => {
     setInput(input + text);
-  }
+  };
 
   const renderSelectedCodeBlock = () => {
     if (!currentCell) {
-      return 'No code selected'
+      return 'No code selected';
     }
     if (actionState[currentCell].type !== 'code') {
-      return 'No code selected'
+      return 'No code selected';
     }
-    return `[${(currentCellIndex + 1)} ]`
-  }
+    return `[${(currentCellIndex + 1)} ]`;
+  };
 
   const onClearInput = () => {
-    setInput('')
-  }
+    setInput('');
+  };
   // const toggleMode = (mode) => {
   //   setMode(mode === 'code' ? 'output' : 'code');
   // }
@@ -540,25 +540,25 @@ function App({
     await prepareFolder(['/input'], false);
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const buffer = await blobToArrayBuffer(file)
+      const buffer = await blobToArrayBuffer(file);
       const uint8View = new Uint8Array(buffer);
-      await writeFile(`/input/${file.name}`, uint8View)
+      await writeFile(`/input/${file.name}`, uint8View);
     }
     if (inputFolder.current) {
       await inputFolder.current.refresh();
     }
-  }
+  };
 
   const clearOutput = async () => {
     await clearFolder('/output');
     await refreshOutput();
-  }
+  };
 
   const refreshOutput = async () => {
     if (outputFolder.current) {
       outputFolder.current.refresh();
     }
-  }
+  };
 
   const init = () => {
     const log: ICell = {
@@ -574,7 +574,7 @@ function App({
     if (autoRun) {
       executeCode(editorCode);
     }
-  }
+  };
 
   useEffect(() => {
     // console.log(editorCode);
@@ -990,7 +990,7 @@ function App({
 
                         </div>
 
-                      )
+                      );
                     } else if (type === 'markdown') {
                       return (
                         <div key={action.id}
@@ -1012,7 +1012,7 @@ function App({
                             </MarkEdit>
                           </div>
                         </div>
-                      )
+                      );
                     }
 
                   })

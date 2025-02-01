@@ -17,12 +17,12 @@ import { ModeType } from 'chat-list/types/edit';
 import FormatCreate from 'chat-list/components/card-format';
 import { getValues } from 'chat-list/service/sheet';
 import instruction from './prompts/instruction.md';
-import introduce from './prompts/introduce.md'
+import introduce from './prompts/introduce.md';
 import i18n from 'chat-list/locales/i18n';
-import { tools } from 'chat-list/tools/sheet/intelligent'
-import IntelligentRender from 'chat-list/components/render-intelligent'
+import { tools } from 'chat-list/tools/sheet/intelligent';
+import IntelligentRender from 'chat-list/components/render-intelligent';
 import { chatByPrompt } from 'chat-list/service/message';
-import avatarPng from 'chat-list/assets/img/steps.png'
+import avatarPng from 'chat-list/assets/img/steps.png';
 // import second from './prompts/introduce.md'
 // import returnFuncion from './prompts/return.md';
 
@@ -124,7 +124,7 @@ export class EditSheet extends ChatPluginBase implements IChatPlugin {
           'card',
           message.from.name,
           'assistant',
-        ))
+        ));
         return this.buildChatMessage('Ok,I have show data to you,you can check it and update data to sheet.', 'text', message.from.name, 'assistant',);
       }
 
@@ -142,7 +142,7 @@ export class EditSheet extends ChatPluginBase implements IChatPlugin {
   currentCode = '';
   tools: any = [];
   onReceive = async (message: IChatMessage) => {
-    const tool = tools.find(p => p.name == 'apply_prompt_by_row')
+    const tool = tools.find(p => p.name == 'apply_prompt_by_row');
     const res = await chatByPrompt(instruction, message.content, {
       tool_choice: {
         type: 'function',
@@ -158,24 +158,24 @@ export class EditSheet extends ChatPluginBase implements IChatPlugin {
           parameters: tool.parameters
         },
       }]
-    })
-    let args
+    });
+    let args;
     if (res.tool_calls.length > 0) {
       const toolCall = res.tool_calls[0];
       args = JSON.parse(toolCall.function.arguments);
     } else {
       args = {
         requirements: message.content
-      }
+      };
     }
     const result = await tool.func({
       ...args,
       context: this.context
-    })
+    });
     return result as unknown as IChatMessage;
   };
   render() {
-    return <IntelligentRender />
+    return <IntelligentRender />;
   }
 }
 

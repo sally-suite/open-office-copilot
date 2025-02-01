@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Button } from "chat-list/components/ui/button"
+import React, { useState } from 'react';
+import { Button } from "chat-list/components/ui/button";
 
 export const ThemeColors = [
     {
@@ -66,7 +66,7 @@ export const ThemeColors = [
         highlight: '#D9D9D9',
         complementary: '#404040'
     },
-]
+];
 
 interface ThemeSelectorProps {
     // Add props here if needed
@@ -75,12 +75,12 @@ interface ThemeSelectorProps {
 
 export default function ThemeSelector(props: ThemeSelectorProps) {
     const { onChange } = props;
-    const [selectedColor, setSelectedColor] = useState(ThemeColors[0])
-    const [showComplementary, setShowComplementary] = useState(false)
+    const [selectedColor, setSelectedColor] = useState(ThemeColors[0]);
+    const [showComplementary, setShowComplementary] = useState(false);
     const onSelect = (theme: typeof ThemeColors[0]) => {
-        setSelectedColor(theme)
-        onChange?.(theme)
-    }
+        setSelectedColor(theme);
+        onChange?.(theme);
+    };
     return (
         <div className="p-2 bg-white ">
             <h2 className="font-bold mb-4 text-gray-800">Theme Colors</h2>
@@ -164,5 +164,5 @@ export default function ThemeSelector(props: ThemeSelectorProps) {
                 </p>
             </div> */}
         </div>
-    )
+    );
 }

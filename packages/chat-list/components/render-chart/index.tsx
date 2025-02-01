@@ -1,6 +1,6 @@
-import { ChatContext } from 'chat-list/store/chatContext'
-import React, { useContext, useEffect, useState } from 'react'
-import sheetApi from '@api/sheet'
+import { ChatContext } from 'chat-list/store/chatContext';
+import React, { useContext, useEffect, useState } from 'react';
+import sheetApi from '@api/sheet';
 import { getHeaderList } from 'chat-list/service/sheet';
 import { Textarea } from 'chat-list/components/ui/textarea';
 import Button from 'chat-list/components/button';
@@ -8,15 +8,15 @@ import Markdown from 'chat-list/components/markdown';
 import { FormulaInfo } from 'chat-list/components/card-sheet-info/form';
 
 import { buildChatMessage } from 'chat-list/utils';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 export default function ChartRender() {
     const { t } = useTranslation('chart');
     const { plugin } = useContext(ChatContext);
     const [inputValue, setInputValue] = useState('');
     const [formValue, setFormValue] = useState<FormulaInfo>({});
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
-    const [result, setResult] = useState('')
+    const [result, setResult] = useState('');
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
@@ -25,11 +25,11 @@ export default function ChartRender() {
         const heads = await getHeaderList();
         if (!heads || heads.length == 0 || heads.every(h => h == '' || h == undefined)) {
             const msg = "I'm sorry, I can't detect the table header, you need to select the data range first.";
-            setResult(msg)
+            setResult(msg);
             return null;
         }
         return heads;
-    }
+    };
 
     const generate = async () => {
         // const context = await buildContext();
@@ -39,7 +39,7 @@ export default function ChartRender() {
             return;
         }
         plugin.memory = [];
-        const result = await plugin.onReceive(buildChatMessage(inputValue, 'text', 'user'), { stream: false })
+        const result = await plugin.onReceive(buildChatMessage(inputValue, 'text', 'user'), { stream: false });
         setResult(result.content);
     };
     const recommend = async () => {
@@ -51,9 +51,9 @@ export default function ChartRender() {
             return;
         }
         plugin.memory = [];
-        const result = await plugin.onReceive(buildChatMessage('Help me recommend charts based on data from the current table', 'text', 'user'), { stream: false })
+        const result = await plugin.onReceive(buildChatMessage('Help me recommend charts based on data from the current table', 'text', 'user'), { stream: false });
         setResult(result.content);
-    }
+    };
 
     const init = async () => {
         try {
@@ -70,14 +70,14 @@ export default function ChartRender() {
                 },
                 dataRangeCells,
                 headerInDataRange: 'Yes'
-            })
+            });
         } finally {
             setLoading(false);
         }
-    }
+    };
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     return (
         <div className=" p-2 flex flex-col mx-auto mt-2">

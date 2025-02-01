@@ -1,9 +1,9 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { generateNotes } from './util';
 import { buildChatMessage } from 'chat-list/utils';
-import slideApi from '@api/slide'
+import slideApi from '@api/slide';
 
 export const func = async ({ tone, all_page, from_page, to_page, context }: { tone: string, all_page: boolean, from_page: string, to_page: string, context: ChatState }) => {
 
@@ -19,7 +19,7 @@ export const func = async ({ tone, all_page, from_page, to_page, context }: { to
             end = Number(to_page) - 1;
         }
     }
-    let notes = ''
+    let notes = '';
     for (let i = start; i <= end; i++) {
         const item = slides[i];
         setTyping(true);
@@ -31,14 +31,14 @@ export const func = async ({ tone, all_page, from_page, to_page, context }: { to
             if (content) {
                 notes += content;
                 // appendMsg(buildChatMessage(content, 'text', 'assistant'));
-                await slideApi.setSpeakerNote(id, content)
+                await slideApi.setSpeakerNote(id, content);
             }
         }
     }
 
     return `Task completed, speaker nodes is:\n\n${notes}\n\nPlease let user check the generated speaker notes and manually insert the notes into the presentation,and the speaker notes is AI-generated and is not guaranteed to be accurate, so please be sure to proofread`;
 
-}
+};
 
 export default {
     type: 'function',

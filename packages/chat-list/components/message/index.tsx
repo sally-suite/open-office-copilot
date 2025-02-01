@@ -1,6 +1,6 @@
 import { cn } from 'chat-list/lib/utils';
 import { IChatMessage } from 'chat-list/types/message';
-import Typing from 'chat-list/components/typing'
+import Typing from 'chat-list/components/typing';
 import React, { useEffect, useState, memo } from 'react';
 import ErrorBoundary from 'chat-list/components/error-boundary';
 

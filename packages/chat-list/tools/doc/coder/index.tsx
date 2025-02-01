@@ -7,7 +7,7 @@
 // import translate from './translate';
 // import coder from './coder'
 import { ITool } from 'chat-list/types/plugin';
-import runScript from './code-interpreter'
+import runScript from './code-interpreter';
 export const tools: ITool[] = [
   runScript
 ];

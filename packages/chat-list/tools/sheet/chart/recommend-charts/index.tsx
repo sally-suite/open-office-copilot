@@ -1,7 +1,7 @@
 import { ChartTypeKeys, ChartTypes } from 'chat-list/types/chart';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import description from './description.md';
-import { addChart } from '../add-chart'
+import { addChart } from '../add-chart';
 import { getHeaderList } from 'chat-list/service/sheet';
 import { buildChatMessage } from 'chat-list/utils';
 import { LineChart } from 'lucide-react';
@@ -24,7 +24,7 @@ export async function main({ source_range = '', charts_params = [], context, fro
         return {
             [cur]: true,
             ...acc
-        }
+        };
     }, {});
 
     const chartParams = charts_params;
@@ -54,7 +54,7 @@ export async function main({ source_range = '', charts_params = [], context, fro
     }
     // context.appendMsg(buildChatMessage(chartDefine, 'text', 'assistant', from));
 
-    const results = []
+    const results = [];
     for (let i = 0; i < chartParams.length; i++) {
         const param = chartParams[i];
         const option = {
@@ -62,7 +62,7 @@ export async function main({ source_range = '', charts_params = [], context, fro
             ...param,
             context
         };
-        const result = await addChart(option)
+        const result = await addChart(option);
         results.push(result);
     }
     if (results.length > 0) {

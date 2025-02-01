@@ -89,7 +89,7 @@ function App({
         return log;
       });
     });
-  }
+  };
 
   const onInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = (
     e: React.ChangeEvent<HTMLTextAreaElement>
@@ -117,7 +117,7 @@ function App({
       }
       setEditorCode(resultCode);
       if (onUndo) {
-        await onUndo(action)
+        await onUndo(action);
       } else {
         await executeCode(resultCode);
       }
@@ -263,11 +263,11 @@ function App({
 
   const onRecorderOutput = (text: string) => {
     setInput(input + text);
-  }
+  };
 
   const onClearInput = () => {
-    setInput('')
-  }
+    setInput('');
+  };
 
   useEffect(() => {
     // console.log(editorCode);

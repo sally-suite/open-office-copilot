@@ -11,17 +11,17 @@ import { blobToArrayBuffer, copyByClipboard, uuid } from 'chat-list/utils';
 import { cn } from 'chat-list/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { python } from '@codemirror/lang-python';
-import Folder from './Folder'
+import Folder from './Folder';
 import { clearFolder, prepareFolder, writeFile } from 'chat-list/tools/sheet/python/util';
 import Markdown, { replaceImageLinks } from "../markdown/plain";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
-import MarkEdit from './MarkEdit'
+import MarkEdit from './MarkEdit';
 import Modal from '../modal';
 import Button from '../button';
 import { Input } from '../ui/input';
 import api from '@api/index';
 import Notes from './Notes';
-import stepsPng from 'chat-list/assets/img/steps-80.png'
+import stepsPng from 'chat-list/assets/img/steps-80.png';
 import { Textarea } from '../ui/textarea';
 import { SendButton } from '../composer/Composer/SendButton';
 // import { editFunction } from '../service/edit';
@@ -71,8 +71,8 @@ function App({
   const inputFolder = useRef(null);
   const outputFolder = useRef(null);
   const editorRef = useRef(null);
-  const [noteName, setNoteName] = useState('')
-  const [markOpen, setMarkOpen] = useState(false)
+  const [noteName, setNoteName] = useState('');
+  const [markOpen, setMarkOpen] = useState(false);
   const onCodeChange = (id: string, value: string) => {
     // setEditorCode(value);
     setActionState((prev) => ({
@@ -104,7 +104,7 @@ function App({
         ...newCell
       }
     }));
-  }
+  };
   const removeCell = (id: string) => {
     setCurrentCell('');
     setCurrentCellIndex(-1);
@@ -115,7 +115,7 @@ function App({
       const { [id]: _, ...rest } = prev;
       return rest;
     });
-  }
+  };
   const addUndoActions = (action: ILog) => {
     setUndoActions((prevLogs) => [...prevLogs, action]);
   };
@@ -149,26 +149,26 @@ function App({
     setWaitting(true);
     updateCell(cellId, {
       status: 'generating'
-    })
+    });
     try {
       const content = actionState[cellId].content;
       const code = actionState[cellId].code;
       const result = await codeCompletion(code, content, (done: boolean, code: string) => {
         updateCell(cellId, {
           code: code,
-        })
+        });
       });
       if (result) {
         updateCell(cellId, {
           status: 'running'
-        })
+        });
         const execResult = await executeCode(result);
         if (execResult.startsWith('Script run failed')) {
           updateCell(cellId, {
             result: execResult,
             type: 'code',
             status: 'error',
-          })
+          });
         } else {
           updateCell(cellId, {
             code: result,
@@ -176,14 +176,14 @@ function App({
             result: execResult,
             type: 'code',
             status: 'success',
-          })
+          });
         }
 
       } else {
         updateCell(cellId, {
           result: 'No response',
           status: 'success',
-        })
+        });
       }
       // 设置 editorRef.current 的滚动条到最底部
       // setTimeout(() => {
@@ -196,7 +196,7 @@ function App({
       updateCell(cellId, {
         result: err.message,
         status: 'error',
-      })
+      });
     } finally {
       setWaitting(false);
     }
@@ -208,32 +208,32 @@ function App({
     setWaitting(true);
     updateCell(cellId, {
       status: 'running'
-    })
+    });
     try {
       const result = actionState[cellId].code;
 
       if (result) {
         const execResult = await executeCode(result);
-        console.log(execResult)
+        console.log(execResult);
         if (execResult.startsWith('Script run failed')) {
           updateCell(cellId, {
             result: execResult,
             type: 'code',
             status: 'error',
-          })
+          });
         } else {
           updateCell(cellId, {
             result: execResult,
             type: 'code',
             status: 'success',
-          })
+          });
         }
 
       } else {
         updateCell(cellId, {
           result: 'No response',
           status: 'success',
-        })
+        });
       }
       // 设置 editorRef.current 的滚动条到最底部
       // setTimeout(() => {
@@ -246,11 +246,11 @@ function App({
       updateCell(cellId, {
         result: err.message,
         status: 'error',
-      })
+      });
     } finally {
       setWaitting(false);
     }
-  }
+  };
   const onStart = async () => {
     if (waitting) {
       return;
@@ -268,29 +268,29 @@ function App({
       type: 'code',
       expand: true,
       status: 'generating',
-    })
+    });
 
     setCurrentCell(id);
 
     try {
       const content = input;
       const result = await codeCompletion('', content, (done: boolean, code: string) => {
-        console.log(code)
+        console.log(code);
         updateCell(id, {
           code: code,
-        })
+        });
       });
       if (result) {
         updateCell(id, {
           status: 'running'
-        })
+        });
         const execResult = await executeCode(result);
         if (execResult.startsWith('Script run failed')) {
           updateCell(id, {
             result: execResult,
             type: 'code',
             status: 'error',
-          })
+          });
         } else {
           updateCell(id, {
             code: result,
@@ -298,7 +298,7 @@ function App({
             result: execResult,
             status: 'success',
             type: 'code'
-          })
+          });
         }
 
       } else {
@@ -309,7 +309,7 @@ function App({
           content: content,
           result: 'No response',
           status: 'success',
-        })
+        });
       }
       // 设置 editorRef.current 的滚动条到最底部
       // setTimeout(() => {
@@ -324,11 +324,11 @@ function App({
         id,
         result: err.message,
         status: 'error',
-      })
+      });
     } finally {
       setWaitting(false);
     }
-  }
+  };
   const onFixError = async (cellId: string) => {
     if (waitting) {
       return;
@@ -343,7 +343,7 @@ function App({
       const result = await codeCompletion(code, prompt, (done: boolean, code: string) => {
         updateCell(cellId, {
           code: code,
-        })
+        });
       });
       if (result) {
         const execResult = await executeCode(result);
@@ -353,12 +353,12 @@ function App({
           result: execResult,
           type: 'code',
           status: 'success',
-        })
+        });
       } else {
         updateCell(cellId, {
           result: 'No response',
           status: 'success',
-        })
+        });
       }
       // 设置 editorRef.current 的滚动条到最底部
       // setTimeout(() => {
@@ -371,36 +371,36 @@ function App({
       updateCell(cellId, {
         result: err.message,
         status: 'error',
-      })
+      });
     } finally {
       setWaitting(false);
     }
-  }
+  };
   const onExpand = (id: string) => {
     updateCell(id, {
       expand: !actionState[id].expand
-    })
-  }
+    });
+  };
 
   // 执行代码的函数
   const executeCode = async (editorCode: string) => {
     try {
       await clearOutput();
-      setWaitting(true)
+      setWaitting(true);
       const result = await onRun?.(editorCode);
       if (result) {
         appendLog(`${typeof result == 'object' ? JSON.stringify(result) : result}`, LogType.info);
       } else {
         appendLog(`Script run finished.`, LogType.info);
       }
-      setWaitting(false)
+      setWaitting(false);
       await refreshOutput();
       return `${typeof result == 'object' ? JSON.stringify(result) : result}`;
     } catch (error) {
-      console.error(error)
+      console.error(error);
       appendLog(error.message, LogType.error);
     } finally {
-      setWaitting(false)
+      setWaitting(false);
     }
   };
   function generateIpynb(data: { result: string, code: string }[]) {
@@ -460,17 +460,17 @@ function App({
     for (let i = 0; i < cells.length; i++) {
       const cell = cells[i];
       setCurrentCell(cell.id);
-      moveCellToView(cell.id)
+      moveCellToView(cell.id);
       await onRunCode(cell.id);
     }
 
-  }
+  };
   const removeCode = async () => {
     if (!currentCell) {
       return;
     }
     removeCell(currentCell);
-  }
+  };
   const onAddCell = (type: CellType) => {
 
     const id = uuid();
@@ -484,7 +484,7 @@ function App({
         result: '',
         expand: true
       },
-    })
+    });
     // 插入当前焦点cell的下面
     const index = cells.findIndex(cell => cell.id === currentCell);
     if (index !== -1) {
@@ -495,7 +495,7 @@ function App({
     // setCells([...cells, { id, type }]);
     setCurrentCell(id);
     moveCellToView(id);
-  }
+  };
   function download(mark: string, filename = 'script.md') {
 
     const blob = new Blob([mark], { type: 'text/plain;charset=utf-8;' });
@@ -516,67 +516,67 @@ function App({
       if (type == 'code') {
         const code = actionState[p.id].code;
         const result = actionState[p.id].result;
-        return `\`\`\`python\n${code}\n\`\`\`\n\n${result}`
+        return `\`\`\`python\n${code}\n\`\`\`\n\n${result}`;
       } else if (type == 'markdown') {
-        return actionState[p.id].content
+        return actionState[p.id].content;
       }
     }).join('\n\n');
     const md = replaceImageLinks(mark);
     download(md);
-  }
+  };
   const downloadJupyter = () => {
     const list = cells.map((p) => {
       const type = actionState[p.id].type;
       if (type == 'code') {
         const code = actionState[p.id].code;
         const result = actionState[p.id].result;
-        return { code, result: replaceImageLinks(result) }
+        return { code, result: replaceImageLinks(result) };
       } else if (type == 'markdown') {
-        return { code: '', result: replaceImageLinks(actionState[p.id].content) }
+        return { code: '', result: replaceImageLinks(actionState[p.id].content) };
       }
     });
     const ipynb = generateIpynb(list);
     download(ipynb, 'note.ipynb');
-  }
+  };
   const copyMark = async () => {
     const mark = cells.map((p) => {
       const type = actionState[p.id].type;
       if (type == 'code') {
         const code = actionState[p.id].code || '';
         const result = actionState[p.id].result || '';
-        return `\`\`\`python\n${code}\n\`\`\`\n\n${result}`
+        return `\`\`\`python\n${code}\n\`\`\`\n\n${result}`;
       } else if (type == 'markdown') {
-        return actionState[p.id].content
+        return actionState[p.id].content;
       }
     }).join('\n\n');
     const md = replaceImageLinks(mark);
-    copyByClipboard(md)
-  }
+    copyByClipboard(md);
+  };
   const copyJupyter = () => {
     const list = cells.map((p) => {
       const type = actionState[p.id].type;
       if (type == 'code') {
         const code = actionState[p.id].code || '';
         const result = actionState[p.id].result || '';
-        return { code, result: replaceImageLinks(result) }
+        return { code, result: replaceImageLinks(result) };
       } else if (type == 'markdown') {
-        return { code: '', result: replaceImageLinks(actionState[p.id].content) }
+        return { code: '', result: replaceImageLinks(actionState[p.id].content) };
       }
     });
     const ipynb = generateIpynb(list);
     // download(ipynb, 'note.ipynb');
-    copyByClipboard(ipynb)
-  }
+    copyByClipboard(ipynb);
+  };
 
   const onSelectCodeblock = async (id: string) => {
-    const index = cells.findIndex(p => p.id == id)
+    const index = cells.findIndex(p => p.id == id);
     setCurrentCellIndex(index);
-    setCurrentCell(id)
-  }
+    setCurrentCell(id);
+  };
   const onDeselect = () => {
     setCurrentCell('');
     setCurrentCellIndex(-1);
-  }
+  };
   const onMarkChange = (id: string, note: string) => {
     setActionState({
       ...actionState,
@@ -585,12 +585,12 @@ function App({
         note
       },
     });
-  }
+  };
   const addCodeLog = async (id: string, log: string) => {
     if (!actionState) {
       return;
     }
-    let currentId = id
+    let currentId = id;
     if (!id) {
       currentId = currentCell;
     }
@@ -607,7 +607,7 @@ function App({
         result: log
       },
     });
-  }
+  };
   const saveToSheet = async () => {
     try {
       await onSaveToSheet?.();
@@ -620,21 +620,21 @@ function App({
 
   const onRecorderOutput = (text: string) => {
     setInput(input + text);
-  }
+  };
 
   const renderSelectedCodeBlock = () => {
     if (!currentCell) {
-      return 'No code selected'
+      return 'No code selected';
     }
     if (actionState[currentCell].type !== 'code') {
-      return 'No code selected'
+      return 'No code selected';
     }
-    return `[${(currentCellIndex + 1)} ]`
-  }
+    return `[${(currentCellIndex + 1)} ]`;
+  };
 
   const onClearInput = () => {
-    setInput('')
-  }
+    setInput('');
+  };
   // const toggleMode = (mode) => {
   //   setMode(mode === 'code' ? 'output' : 'code');
   // }
@@ -643,42 +643,42 @@ function App({
     await prepareFolder(['/input'], false);
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      const buffer = await blobToArrayBuffer(file)
+      const buffer = await blobToArrayBuffer(file);
       const uint8View = new Uint8Array(buffer);
-      await writeFile(`/input/${file.name}`, uint8View)
+      await writeFile(`/input/${file.name}`, uint8View);
     }
     if (inputFolder.current) {
       await inputFolder.current.refresh();
     }
-  }
+  };
 
   const clearOutput = async () => {
     await clearFolder('/output');
     await refreshOutput();
-  }
+  };
 
   const refreshOutput = async () => {
     if (outputFolder.current) {
       outputFolder.current.refresh();
     }
-  }
+  };
 
   const saveNote = async () => {
     const notes = cells.map((p) => {
       return {
         ...p,
         ...actionState[p.id]
-      }
-    })
-    console.log(notes)
+      };
+    });
+    console.log(notes);
     await api.addBookmark({
       name: noteName || 'notes-' + new Date().toLocaleString(),
       type: 'sheet',
       agent: 'jupyter',
       data: JSON.stringify(notes),
-    })
-    setMarkOpen(false)
-  }
+    });
+    setMarkOpen(false);
+  };
 
   const onNoteSelect = (data: string) => {
     const cells = JSON.parse(data);
@@ -686,22 +686,22 @@ function App({
       return {
         ...prev,
         [p.id]: p
-      }
-    }, {})
+      };
+    }, {});
     setCells(cells);
     setActionState(state);
     setCurrentCell(cells[0].id);
     setMode('code');
-  }
+  };
 
   const moveCellToView = (cellId: string) => {
 
     setTimeout(() => {
       document.getElementById(cellId).scrollIntoView({
         behavior: 'smooth'
-      })
-    }, 500)
-  }
+      });
+    }, 500);
+  };
 
   const init = () => {
     const log: ICell = {
@@ -718,7 +718,7 @@ function App({
     if (autoRun) {
       executeCode(editorCode);
     }
-  }
+  };
 
   useEffect(() => {
     // console.log(editorCode);
@@ -1140,7 +1140,7 @@ function App({
                           </div>
                         </div>
 
-                      )
+                      );
                     } else if (type === 'markdown') {
                       return (
                         <div key={action.id}
@@ -1162,7 +1162,7 @@ function App({
                             </MarkEdit>
                           </div>
                         </div>
-                      )
+                      );
                     }
 
                   })

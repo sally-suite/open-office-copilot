@@ -1,6 +1,6 @@
 import { IUserOrderState } from 'chat-list/types/license';
 import { ISheetService, DataValidationColConfig, ITableOption, } from 'chat-list/types/api/sheet';
-import { setLocalStore, getLocalStore } from 'chat-list/local/local'
+import { setLocalStore, getLocalStore } from 'chat-list/local/local';
 
 class SheetServiceMock implements ISheetService {
   appendRows = async (value: string[][]) => {
@@ -123,12 +123,12 @@ class SheetServiceMock implements ISheetService {
   setValues: (values: string[][]) => Promise<void> = () => void 0;
   insertImage: (dataUrl: string) => Promise<void> = () => void 0;
   setUserProperty: (key: string, value: string) => Promise<void> = async (key, value) => {
-    await this.sleep()
+    await this.sleep();
     setLocalStore(key, value);
     return Promise.resolve();
   };
   getUserProperty: (key: string) => Promise<string> = async (key) => {
-    await this.sleep()
+    await this.sleep();
     return getLocalStore(key);
   };
   getRowColNum: () => Promise<{ col: number; row: number; rowNum: number; colNum: number; }> = () => {
@@ -137,7 +137,7 @@ class SheetServiceMock implements ISheetService {
       row: 1,
       rowNum: 12,
       colNum: 4
-    })
+    });
   };
   checkUser = async (): Promise<IUserOrderState> => {
     // await this.sleep();
@@ -156,7 +156,7 @@ class SheetServiceMock implements ISheetService {
       exp: Date.now(),
       gptLimit: 20,
       noApiKey: true,
-    } as unknown as IUserOrderState)
+    } as unknown as IUserOrderState);
     // return Promise.resolve({
     //   "state": "free",
     //   "gptLimit": 13,
@@ -166,13 +166,13 @@ class SheetServiceMock implements ISheetService {
   };
   getRangeA1Notation = async () => {
     await this.sleep();
-    return "B6:E25"
+    return "B6:E25";
   };
   insertText = async () => {
     await this.sleep();
   };
   runScript = async (code: string) => {
-    console.log(code)
+    console.log(code);
     await this.sleep();
   };
   getSheetInfo = async (): Promise<{ current: string, sheets: string[] }> => {
@@ -180,7 +180,7 @@ class SheetServiceMock implements ISheetService {
     return {
       current: 'Sheet1',
       sheets: ['Sheet1', 'test']
-    }
+    };
   };
   getValuesByRange = async (): Promise<string> => {
     return Promise.resolve(JSON.stringify([
@@ -253,9 +253,9 @@ class SheetServiceMock implements ISheetService {
     // ));
   };
   setValuesByRange = async (values: string[][], row: number, col: number, numRows: number, numCols: number): Promise<void> => {
-    console.log(values, row, col, numRows, numCols)
+    console.log(values, row, col, numRows, numCols);
     return Promise.resolve();
-  }
+  };
   getActiveRange = async () => {
     return Promise.resolve({
       address: 'A1:D12',
@@ -301,17 +301,17 @@ class SheetServiceMock implements ISheetService {
           1600
         ]
       ]
-    })
-  }
+    });
+  };
   createPivotTable = async () => {
     return;
-  }
+  };
   activeSheet = async (sheetName: string) => {
     return;
-  }
+  };
   copySheet = async (sheetName: string, name: string) => {
     return;
-  }
+  };
 }
 
 export default new SheetServiceMock();

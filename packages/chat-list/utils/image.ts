@@ -10,6 +10,6 @@ export default {
         return key;
     },
     get(key: string): string {
-        return IMAGES.get(key) || ''
+        return IMAGES.get(key) || '';
     },
-}
+};

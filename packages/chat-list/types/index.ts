@@ -32,7 +32,7 @@ declare module '*.txt' {
 declare const Office: any;
 declare const google: any;
 declare const process: any;
-declare const loadPyodide: any
+declare const loadPyodide: any;
 interface Window {
   INPUT_EXCEL_FILE: File,
   chrome: any,

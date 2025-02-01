@@ -1,7 +1,7 @@
 import { GptModel, IChatBody, IChatResult, ICompletionsBody, IMessageBody } from "chat-list/types/chat";
 import gptApi from '@api/gpt';
 
-import { getModel } from 'chat-list/local/local'
+import { getModel } from 'chat-list/local/local';
 import { blobToBase64Image, resizeImg, template } from "chat-list/utils";
 import { IChatMessage } from "chat-list/types/message";
 // import { isProd } from "chat-list/utils";
@@ -50,7 +50,7 @@ export const chatByPrompt = async (prompt = '', input = '', options: Partial<ICh
         ...options
     }, callback);
     return result;
-}
+};
 
 export const chatJson = async (chatBody: IChatBody): Promise<IChatResult> => {
     // if (!isProd()) {
@@ -69,7 +69,7 @@ export const chatJson = async (chatBody: IChatBody): Promise<IChatResult> => {
         temperature,
         tools: tools && tools.length > 0 ? tools : undefined,
         ...rest
-    })
+    });
     // if (!isProd()) {
     // console.log('chat output', result);
     // }
@@ -89,7 +89,7 @@ export const chatJson = async (chatBody: IChatBody): Promise<IChatResult> => {
             };
         }
     }
-    return result
+    return result;
 };
 
 export const chatStream = async (chatBody: IChatBody, callback?: (done: boolean, result: IChatResult, stop: () => void) => void): Promise<IChatResult> => {
@@ -125,7 +125,7 @@ export const chatStream = async (chatBody: IChatBody, callback?: (done: boolean,
     //         };
     //     }
     // }
-    return result
+    return result;
 };
 
 export const completions = async (completionBody: ICompletionsBody) => {
@@ -141,10 +141,10 @@ export const completions = async (completionBody: ICompletionsBody) => {
     // console.log('completions output', result);
 
     return result;
-}
+};
 
 export const speechToText = async (audio: string) => {
-    const result: any = await gptApi.speechToText(audio)
+    const result: any = await gptApi.speechToText(audio);
     // if (!isProd()) {
     console.log('chat output', result);
     return result;
@@ -156,26 +156,26 @@ export const chatByTemplate = async (promptTemplate: string,
     options: Partial<IChatBody> = {},
     callback?: (done: boolean, result: IChatResult, stop: () => void) => void
 ) => {
-    const prompt = template(promptTemplate, data || {})
+    const prompt = template(promptTemplate, data || {});
     const result = await chatByPrompt('', prompt, {
         temperature: 0.8,
         stream: false,
         ...options
     }, callback);
     return result;
-}
+};
 
 const convertMessage = async (message: IChatMessage): Promise<IMessageBody> => {
     const { type, text, files } = message;
     const ps = files.filter(p => p.type.startsWith('image')).map(async (file) => {
         const base64 = await blobToBase64Image(file);
-        const url = await resizeImg(base64, 512, 512)
+        const url = await resizeImg(base64, 512, 512);
         return {
             type: 'image_url',
             image_url: {
                 url
             }
-        }
+        };
     });
 
     const images = await Promise.all(ps);
@@ -183,8 +183,8 @@ const convertMessage = async (message: IChatMessage): Promise<IMessageBody> => {
     return {
         role: 'user',
         content: msgs
-    }
-}
+    };
+};
 export const chatWithImage = async (image: File, input: string, callback?: (done: boolean, result: IChatResult, stop: () => void) => void) => {
     const msg = await convertMessage({ text: input, files: [image], type: 'parts' } as any);
     const vm: GptModel = "gpt-4o";
@@ -196,4 +196,4 @@ export const chatWithImage = async (image: File, input: string, callback?: (done
         temperature: 0.7
     }, callback);
     return result;
-}
+};

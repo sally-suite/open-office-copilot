@@ -1,5 +1,5 @@
-import React from 'react'
-import { Layout, Image } from 'lucide-react'
+import React from 'react';
+import { Layout, Image } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 
 export default function LayoutSelector() {
@@ -15,5 +15,5 @@ export default function LayoutSelector() {
                 </PopoverContent>
             </Popover>
         </div>
-    )
+    );
 }

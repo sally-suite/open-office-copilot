@@ -4,8 +4,8 @@ import React from 'react';
 import i18n from 'chat-list/locales/i18n';
 import instruction from './prompt/instruction.md';
 import sallyPng from 'chat-list/assets/img/sally-32.png';
-import CardIntroduce from 'chat-list/components/card-introduce'
-import ContextSlide from 'chat-list/components/context-slide'
+import CardIntroduce from 'chat-list/components/card-introduce';
+import ContextSlide from 'chat-list/components/context-slide';
 import SlideRender from 'chat-list/components/render-slide';
 
 
@@ -17,8 +17,8 @@ export class Start extends ChatPluginBase implements IChatPlugin {
   placeholder = i18n.t('doc.agent.sally.placeholder', 'Input your message...');
   description = "Your AI Assistant, powered by GPT or Gemini.";
   introduce = () => {
-    return <CardIntroduce />
-  }
+    return <CardIntroduce />;
+  };
   // quickReplies = () => {
   //   return [
   //     {
@@ -93,8 +93,8 @@ export class Start extends ChatPluginBase implements IChatPlugin {
     const data = JSON.parse(context);
     return (
       <ContextSlide type={data.type} text={data.text} slides={data.slides} />
-    )
-  }
+    );
+  };
   onReceive = async (message: IChatMessage) => {
     const { setTyping, plugins } = this.context;
     // const text = message.content as string;
@@ -106,10 +106,10 @@ export class Start extends ChatPluginBase implements IChatPlugin {
     }
 
 
-    return await super.onReceive(message)
-  }
+    return await super.onReceive(message);
+  };
   render() {
-    return <SlideRender />
+    return <SlideRender />;
   }
 }
 

@@ -1,6 +1,6 @@
 import { render } from "chat-list/sheet";
 import { runPython } from 'chat-list/service/python';
-import XLSX from 'xlsx'
+import XLSX from 'xlsx';
 // import { loadPyodide } from 'pyodide'
 render();
 
@@ -139,4 +139,4 @@ async function main() {
     }
     pyodide.FS.closedir(directory);
 }
-main()
+main();

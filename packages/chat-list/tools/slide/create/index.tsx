@@ -1,8 +1,8 @@
 import { ITool } from 'chat-list/types/plugin';
 // import createLayout from './create-layout';
 // import generatePpt from './generate_presentation';
-import generate_ppt_by_step from './generate_ppt_by_step_v3'
-import generate_speaker_notes from './generate_speaker_notes'
+import generate_ppt_by_step from './generate_ppt_by_step_v3';
+import generate_speaker_notes from './generate_speaker_notes';
 // import caclulateByRequirement from './calculate-by-requirement';
 import python_interpreter_slide from './python-interpreter-slide';
 import python_install from 'chat-list/tools/sheet/python/pip-install';

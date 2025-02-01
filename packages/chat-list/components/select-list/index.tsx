@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Modal from 'chat-list/components/modal'
+import Modal from 'chat-list/components/modal';
 interface IOption {
   label: string;
   value: string;

@@ -3,7 +3,7 @@ import { ChatPluginBase, IChatPlugin } from "chat-list/types/plugin";
 import { IChatMessage } from "chat-list/types/message";
 // import CardProgress from 'chat-list/components/card-tasks/progress'
 // import { Glasses } from "lucide-react";
-import introduce from './promps/introduce.md'
+import introduce from './promps/introduce.md';
 import { getSheetInfo } from 'chat-list/service/sheet';
 import instruction from './promps/instruction.md';
 import i18n from 'chat-list/locales/i18n';
@@ -38,8 +38,8 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
     return input;
   };
   injectContext = async () => {
-    return await getSheetInfo()
-  }
+    return await getSheetInfo();
+  };
   tools = ['python_interpreter', 'pip_install'];
   text: string;
   files: File[];
@@ -50,9 +50,9 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
 
     if (type == 'parts') {
       this.text = text;
-      window.INPUT_EXCEL_FILE = files[0]
+      window.INPUT_EXCEL_FILE = files[0];
     }
-    return super.onReceive(message)
+    return super.onReceive(message);
   };
 }
 

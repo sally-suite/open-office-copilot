@@ -1,5 +1,5 @@
 
-import React, { } from 'react'
+import React, { } from 'react';
 import { Grid3X3 } from 'lucide-react';
 
 
@@ -12,5 +12,5 @@ export default function ContextSheet({ address = '' }: { address?: string }) {
                 {address}
             </span>
         </div >
-    )
+    );
 }

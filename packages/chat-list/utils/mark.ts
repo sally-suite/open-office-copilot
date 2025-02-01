@@ -1,10 +1,10 @@
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
-import remarkMath from 'remark-math'
-import rehypeMathjax from 'rehype-mathjax'
-import remarkMermaid from 'remark-mermaidjs'
-import rehypeKatex from 'rehype-katex'
+import remarkMath from 'remark-math';
+import rehypeMathjax from 'rehype-mathjax';
+import remarkMermaid from 'remark-mermaidjs';
+import rehypeKatex from 'rehype-katex';
 import remarkStringify from 'remark-stringify';
 
 import remarkGfm from 'remark-gfm';
@@ -28,19 +28,19 @@ const svgToImagePlugin: Plugin<[], Root> = function () {
                 promises.push(
                     (async () => {
                         try {
-                            console.log('node', node)
+                            console.log('node', node);
                             // 获取 SVG 字符串
                             const svgString = toHtml(node);
-                            console.log('svgString', svgString)
+                            console.log('svgString', svgString);
                             const div = document.createElement('div');
-                            div.style.position = 'fixed'
+                            div.style.position = 'fixed';
                             div.style.left = '-2000px';
                             div.style.top = '-2000px';
                             div.style.width = '800px';
-                            div.innerHTML = svgString
+                            div.innerHTML = svgString;
                             document.body.appendChild(div);
                             const { width, height, data } = await svgAsPng(div.childNodes[0] as SVGElement);
-                            console.log(width, height, data)
+                            console.log(width, height, data);
                             document.body.removeChild(div);
                             // 修改节点为 img
                             node.tagName = 'img';
@@ -139,4 +139,4 @@ const buildHtmlWithMathjax = async (text: string) => {
     const hastNode = await processor.process(text);
     const html = hastNode.value as string;
     return html;
-}
+};

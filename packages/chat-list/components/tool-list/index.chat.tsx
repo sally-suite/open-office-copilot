@@ -1,11 +1,11 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 import {
     Code2,
     HelpCircle,
     Settings,
     X
-} from "lucide-react"
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -17,9 +17,9 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "chat-list/components/ui/dropdown-menu";
-import { Switch } from 'chat-list/components/ui/switch'
+import { Switch } from 'chat-list/components/ui/switch';
 import { cn } from 'chat-list/lib/utils';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import Tooltip from '../tooltip';
 import { SHEET_CHAT_SITE } from 'chat-list/config/site';
 
@@ -28,12 +28,12 @@ export default function ToolList() {
     const { agentTools, plugin, model, setAgentTools } = useChatState();
 
     const [open, setOpen] = useState(false);
-    const [canUseTool, setCanUseTool] = useState(true)
+    const [canUseTool, setCanUseTool] = useState(true);
     const navigate = useNavigate();
 
     const onToggle = () => {
         setOpen(!open);
-    }
+    };
     const onToolCheckChange = (checked: boolean) => {
         if (checked) {
             setAgentTools(plugin.tools.map(id => {
@@ -41,13 +41,13 @@ export default function ToolList() {
                     id,
                     name: id,
                     enable: true
-                }
+                };
             }));
         } else {
-            setAgentTools([])
+            setAgentTools([]);
         }
 
-    }
+    };
     const onToolItemCheckChange = (id: string) => {
         // setAgentTool(id, checked);
         const checked = !!agentTools.find(p => p.id == id);
@@ -55,37 +55,37 @@ export default function ToolList() {
             // setAgentTools([{ id, name: id, enable: true }])
             setAgentTools(agentTools.concat({ id, name: id, enable: true }));
         } else {
-            setAgentTools(agentTools.filter(item => item.id !== id))
+            setAgentTools(agentTools.filter(item => item.id !== id));
         }
         // setOpen(false)
-    }
+    };
     const showTools = () => {
-        window.open(`${SHEET_CHAT_SITE}/guide/tools`, '_blank')
-    }
+        window.open(`${SHEET_CHAT_SITE}/guide/tools`, '_blank');
+    };
     const onClear: MouseEventHandler<HTMLSpanElement> = (e) => {
         e.stopPropagation();
-        setAgentTools([])
-    }
+        setAgentTools([]);
+    };
     const gotoSetting = () => {
-        navigate(`/setting/${plugin.id}`)
-    }
+        navigate(`/setting/${plugin.id}`);
+    };
     // if (!plugin.tools || plugin.tools.length == 0) {
     //     return null;
     // }
     const renderToolDescription = (id: string) => {
         // const tool = tools.find(p => p.name == id);
-        return t(`tool:${id}.description`)
-    }
+        return t(`tool:${id}.description`);
+    };
     useEffect(() => {
         if (model === 'ERNIE-Speed-128K') {
-            setCanUseTool(false)
+            setCanUseTool(false);
             if (agentTools.length > 0) {
-                setAgentTools([])
+                setAgentTools([]);
             }
         } else {
-            setCanUseTool(true)
+            setCanUseTool(true);
         }
-    }, [model, agentTools])
+    }, [model, agentTools]);
 
     if (plugin?.tools?.length == 0) {
         return null;
@@ -182,7 +182,7 @@ export default function ToolList() {
                                                         {renderToolDescription(id)}
                                                     </div>
                                                 </div>
-                                            )
+                                            );
                                         })
                                     }
                                 </DropdownMenuGroup>
@@ -265,5 +265,5 @@ export default function ToolList() {
             </DropdownMenu>
         </>
 
-    )
+    );
 }

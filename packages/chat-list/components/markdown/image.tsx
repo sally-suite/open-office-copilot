@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react';
 import IconButton from '../icon-button';
 import { FileOutput, LineChart } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { base64ToFile, proxyImage } from 'chat-list/utils';
 import Loading from '../loading';
 import slideApi from '@api/slide';
-import { fail } from 'chat-list/components/ui/use-toast'
+import { fail } from 'chat-list/components/ui/use-toast';
 
 export default function Image(props: any) {
     const { src, ...rest } = props;
@@ -17,7 +17,7 @@ export default function Image(props: any) {
     const [loading, setLoading] = useState(true);
     const [hover, setHover] = useState(false);
     const [error, setError] = useState('');
-    const [hasVision] = useState(plugins.some(p => p.action === 'vision'))
+    const [hasVision] = useState(plugins.some(p => p.action === 'vision'));
     const [imageSrc, setImageSrc] = useState(src);
     const { t } = useTranslation();
 
@@ -41,16 +41,16 @@ export default function Image(props: any) {
             const tarWidth = width < 500 ? 0 : width;
             const tarHeight = tarWidth > 0 ? height * (width / tarWidth) : 0;
             if (docType === 'sheet') {
-                await sheetApi.insertImage(imageData, tarWidth, tarHeight)
+                await sheetApi.insertImage(imageData, tarWidth, tarHeight);
             } else if (docType === 'doc') {
-                await docApi.insertImage(imageData, tarWidth, tarHeight)
+                await docApi.insertImage(imageData, tarWidth, tarHeight);
             } else if (docType === 'slide') {
-                await slideApi.insertImage(imageData, tarWidth, tarHeight)
+                await slideApi.insertImage(imageData, tarWidth, tarHeight);
             } else if (docType == 'side') {
-                await docApi.insertImage(imageData, tarWidth, tarHeight)
+                await docApi.insertImage(imageData, tarWidth, tarHeight);
             }
         } catch (e) {
-            fail('Sorry, insert failed. You can try copying the image to this document.')
+            fail('Sorry, insert failed. You can try copying the image to this document.');
         }
 
     };
@@ -61,12 +61,12 @@ export default function Image(props: any) {
             // plg['sourceImages'] = [props.src];
             // setMode('custom');
             // setPlugin(plg)
-            const file = await base64ToFile(props.src, 'image.png')
-            setFileList([file])
-            setText('@Vision ')
+            const file = await base64ToFile(props.src, 'image.png');
+            setFileList([file]);
+            setText('@Vision ');
         }
 
-    }
+    };
     const loadImage = async () => {
         const src = props.src;
         try {
@@ -77,31 +77,31 @@ export default function Image(props: any) {
                     const result = await proxyImage(src);
                     imageData = result || props.src;
                 } catch (e) {
-                    setError(e.message)
-                    setLoading(false)
+                    setError(e.message);
+                    setLoading(false);
                     return;
                 }
             }
             setImageSrc(imageData);
-            setLoading(false)
+            setLoading(false);
         } catch (e) {
             // fail('Sorry, insert failed. You can try copying the image to this document.')
-            setError(e.message)
-            setLoading(false)
+            setError(e.message);
+            setLoading(false);
         }
-    }
+    };
     const onMouseEnter = () => {
-        setHover(true)
-    }
+        setHover(true);
+    };
     const onMouseLeave = () => {
-        setHover(false)
-    }
+        setHover(false);
+    };
     const onError = () => {
 
         // setError(e.message)
         loadImage();
         // setLoading(false)
-    }
+    };
     const insertTitle = useMemo(() => {
         let tip = '';
         if (docType === 'doc') {
@@ -110,7 +110,7 @@ export default function Image(props: any) {
             tip = t('common.insert_to_sheet');
         }
         return tip;
-    }, [])
+    }, []);
 
 
     if (error) {
@@ -134,7 +134,7 @@ export default function Image(props: any) {
                     )
                 }
             </div>
-        )
+        );
     }
 
     if (docType === 'doc') {
@@ -170,7 +170,7 @@ export default function Image(props: any) {
                 }
 
             </div >
-        )
+        );
     }
     return (
         <div className='relative' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -215,5 +215,5 @@ export default function Image(props: any) {
             }
 
         </div>
-    )
+    );
 }

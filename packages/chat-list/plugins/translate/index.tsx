@@ -13,7 +13,7 @@ import { LANGUAGE_MAP } from 'chat-list/data/translate/languages';
 import { translateSheetByGoogle, translateSheetByGpt } from 'chat-list/service/translate';
 import { ILangItem } from 'chat-list/types/translate';
 import { Languages } from 'lucide-react';
-import instruction from './prompts/instruction.md'
+import instruction from './prompts/instruction.md';
 export class TranslateSheet extends ChatPluginBase implements IChatPlugin {
   name = 'translate-sheet';
   icon = Languages;
@@ -65,7 +65,7 @@ export class TranslateSheet extends ChatPluginBase implements IChatPlugin {
         lng = LANGUAGE_MAP.find((p) => p.text === args.target);
       }
       if (lng) {
-        setTargetLanguage(lng)
+        setTargetLanguage(lng);
         if (name === 'translateSheet') {
           if (this.context.platform == 'google' && (!engine || engine === 'google')) {
             await translateSheetByGoogle('', lng.value);
@@ -78,9 +78,9 @@ export class TranslateSheet extends ChatPluginBase implements IChatPlugin {
       } else {
         this.sendMsg(this.buildChatMessage(<CardTranslate />, 'card', from?.name));
       }
-      return this.buildChatMessage('Task completed.', 'text', from?.name)
+      return this.buildChatMessage('Task completed.', 'text', from?.name);
     }
-    return this.buildChatMessage(res.content, 'text', from?.name)
+    return this.buildChatMessage(res.content, 'text', from?.name);
 
   };
   async checkInput(input: string) {
@@ -90,13 +90,13 @@ export class TranslateSheet extends ChatPluginBase implements IChatPlugin {
     if (!tool_calls || tool_calls?.length <= 0) {
       return {
         content
-      }
+      };
     }
     const function_call = tool_calls?.[0].function;
     return {
       content,
       function_call
-    }
+    };
   };
   async translateText(content: string, from: ILangItem, to: ILangItem) {
     const engine = getTranslateEngine();

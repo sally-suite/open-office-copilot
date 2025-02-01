@@ -1,8 +1,8 @@
 import { QuickReplyItem } from "chat-list/types/message";
 import { ChatPluginBase, IChatPlugin } from "chat-list/types/plugin";
 import { IChatMessage } from "chat-list/types/message";
-import introduce from './prompt/introduce.md'
-import { FileText } from 'lucide-react'
+import introduce from './prompt/introduce.md';
+import { FileText } from 'lucide-react';
 
 /**
  * Main service, task split ,plan
@@ -15,7 +15,7 @@ export class Main extends ChatPluginBase implements IChatPlugin {
   action = "markdoc";
   placeholder = "Input your Markdown content.";
   description = "Convert your Markdown to Document";
-  instruction = "Convert your Markdown to Document"
+  instruction = "Convert your Markdown to Document";
   introduce = introduce;
   quickReplies = (input: string) => {
     return [] as QuickReplyItem[];
@@ -35,8 +35,8 @@ export class Main extends ChatPluginBase implements IChatPlugin {
     // } else {
     //   appendMsg(this.buildChatMessage('Copy the message you sent to the document,do not insert 😄', 'text'))
     // }
-    appendMsg(this.buildChatMessage(text, 'text'))
-    appendMsg(this.buildChatMessage('Copy above message to the document, do not insert 😄', 'text'))
+    appendMsg(this.buildChatMessage(text, 'text'));
+    appendMsg(this.buildChatMessage('Copy above message to the document, do not insert 😄', 'text'));
 
     setTyping(false);
   };

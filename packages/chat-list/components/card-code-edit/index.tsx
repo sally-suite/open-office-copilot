@@ -9,7 +9,7 @@ import {
 import Button from '../button';
 import sheetApi from '@api/sheet';
 import { setCodeEditValue } from 'chat-list/local/session';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 import Markdown from 'chat-list/components/markdown';
 // import Markdown from '../markdown';
 export interface ICardCodeEditProps {

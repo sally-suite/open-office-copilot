@@ -1,9 +1,9 @@
-import * as React from "react"
+/* eslint-disable react/prop-types */
+import * as React from "react";
 
-import { cn } from "chat-list/lib/utils"
+import { cn } from "chat-list/lib/utils";
 
-export interface InputProps
-    extends React.InputHTMLAttributes<HTMLInputElement> { }
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className, type, ...props }, ref) => {
@@ -17,9 +17,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 ref={ref}
                 {...props}
             />
-        )
+        );
     }
-)
-Input.displayName = "Input"
+);
+Input.displayName = "Input";
 
-export { Input }
+export { Input };

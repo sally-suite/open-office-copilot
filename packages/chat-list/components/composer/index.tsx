@@ -12,7 +12,7 @@ import { IconButtonProps } from 'chat-list/components/icon-button';
 // import { speechToText } from 'chat-list/service/message';
 import { File, MessageSquarePlus, Plus, Settings, Volume2, VolumeX } from 'lucide-react';
 import { ToolbarItemProps } from "./Composer/Toolbar";
-import QuickReply from 'chat-list/components/quick-reply'
+import QuickReply from 'chat-list/components/quick-reply';
 // import Icon from '../icon';
 import { QuickReplyItem } from 'chat-list/types/message';
 import { useNavigate } from 'react-router-dom';
@@ -106,11 +106,11 @@ export default React.memo(function ChatComposer(props: IChatComposerProps) {
 
   const onQuickReply = (item: QuickReplyItem, index: number) => {
     quickReply(item, index);
-  }
+  };
 
   const onFilesChange = (files: File[]) => {
     setFileList(files);
-  }
+  };
 
   const onFileSelect = useCallback(async (files: File[]) => {
 
@@ -129,7 +129,7 @@ export default React.memo(function ChatComposer(props: IChatComposerProps) {
           title: 'Back to ' + plugins[0].name,
           onClick: () => {
             onSend('text', '/');
-            resetList([])
+            resetList([]);
           },
         }
       ]);
@@ -179,7 +179,7 @@ export default React.memo(function ChatComposer(props: IChatComposerProps) {
         onClick: () => {
           newChat();
         },
-      })
+      });
     }
     return actions;
   }, [mute, plugin]);

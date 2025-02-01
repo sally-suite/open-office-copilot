@@ -21,7 +21,7 @@ const UserProvider = ({ children }: any) => {
       return false;
     }
     return true;
-  }
+  };
 
   const checkUserState = async () => {
     // check token first
@@ -67,7 +67,7 @@ const UserProvider = ({ children }: any) => {
       if (userState.key) {
         setToken(userState.key);
       }
-      setPoints(points)
+      setPoints(points);
 
     } catch (e) {
       if (e.code == 401) {
@@ -85,7 +85,7 @@ const UserProvider = ({ children }: any) => {
     setUser({
       ...user,
       ...state
-    })
+    });
   }, [user]);
 
   const checkLicense = async (licenseKey: string) => {
@@ -110,25 +110,25 @@ const UserProvider = ({ children }: any) => {
         username: email.split('@')[0],
         isAuthenticated: true
       });
-      setPoints(points)
+      setPoints(points);
     } catch (e) {
       console.log(e.message);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
 
   const updatePoints = async () => {
     try {
       const points = await userApi.getPoints();
       if (typeof points !== 'undefined') {
-        setPoints(points)
+        setPoints(points);
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
   useLayoutEffect(() => {
     checkUserState();

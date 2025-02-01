@@ -1,17 +1,17 @@
 import { ISlideItem, Slide, SlideElement, Theme } from "chat-list/types/api/slide";
-import { titleFontSize, contentY } from './constants'
+import { titleFontSize, contentY } from './constants';
 
 const gapConfig: any = {
     2: 0.4,
     3: 0.3,
     4: 0.2,
-}
+};
 
 const marginConfig: any = {
     2: 20,
     3: 15,
     4: 10,
-}
+};
 
 export function render(data: ISlideItem, theme?: Theme): Slide {
     const elements: SlideElement[] = [];
@@ -125,28 +125,28 @@ export function render(data: ISlideItem, theme?: Theme): Slide {
                     height: 2,
                 },
             }
-        )
+        );
         return elements;
     }
     if (data.list.length <= 3) {
         data.list.forEach((item, index) => {
             const left = 1 + (index * itemWidth);
             const eles: any = renderItem(item, index, left, contentY + 0.7, itemWidth * 0.8);
-            elements.push(...eles)
-        })
+            elements.push(...eles);
+        });
     } else {
         data.list.forEach((item, index) => {
             if (index % 2 == 0) {
                 const left = 1 + (index * itemWidth);
                 const eles: any = renderItem(item, index, left, contentY, itemWidth * 1.8);
-                elements.push(...eles)
+                elements.push(...eles);
             } else {
                 const left = 1 + ((index - 1) * itemWidth);
                 const top = contentY + 2.5;
                 const eles: any = renderItem(item, index, left, top, itemWidth * 1.8);
-                elements.push(...eles)
+                elements.push(...eles);
             }
-        })
+        });
     }
 
 
@@ -165,4 +165,4 @@ export default {
     render,
     name: 'Column Card',
     image: false,
-}
+};

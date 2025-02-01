@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import {
     Card,
     CardContent,
@@ -16,16 +16,16 @@ interface ICatalogProps {
 
 export default function Catalog(props: ICatalogProps) {
     const { value, onChange } = props;
-    const [text, setText] = useState(value)
+    const [text, setText] = useState(value);
     const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
-    }
+    };
     const onOk = () => {
         onChange(text);
-    }
+    };
     useEffect(() => {
-        setText(value)
-    }, [value])
+        setText(value);
+    }, [value]);
     return (
         <Card className="w-full">
             <CardTitle> </CardTitle>

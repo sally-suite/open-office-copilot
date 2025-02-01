@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import docApi from '@api/doc';
-import { TextCursorInput, X } from 'lucide-react'
+import { TextCursorInput, X } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
 import { proxyImage } from 'chat-list/utils/img';
 import { base64ToFile } from 'chat-list/utils';
@@ -31,7 +31,7 @@ export default function index(props: ISelectedTextProps) {
         }
         // setText(selectedText);
         setDataContext(data);
-    }
+    };
     async function init() {
         unregist.current = await docApi.registSelectEvent(async (text: string, type: 'text' | 'image' = 'text') => {
             // console.log('select text', text, type);
@@ -47,32 +47,32 @@ export default function index(props: ISelectedTextProps) {
                 // url 转 base64
                 // console.log(text)
                 const imageUrl = await proxyImage(text);
-                const file = await base64ToFile(imageUrl, text)
-                setFileList(fileList.concat([file]))
+                const file = await base64ToFile(imageUrl, text);
+                setFileList(fileList.concat([file]));
             }
-        })
+        });
 
     }
     const onDeselect = () => {
         docApi.deselect();
         // setText('');
         setDataContext('');
-    }
+    };
     useEffect(() => {
-        init()
+        init();
         return () => {
             if (unregist.current) {
-                unregist.current()
+                unregist.current();
             }
-        }
-    }, [])
+        };
+    }, []);
 
     useEffect(() => {
         if (messages.length == 0) {
             lastText.current.text = '';
             updateContext();
         }
-    }, [messages])
+    }, [messages]);
 
     if (!dataContext) {
         return null;
@@ -96,5 +96,5 @@ export default function index(props: ISelectedTextProps) {
                 <X height={16} width={16} className='text-gray-500' />
             </span>
         </div>
-    )
+    );
 }

@@ -7,6 +7,6 @@ import { ITool } from 'chat-list/types/plugin';
 
 export const toolList: ITool[][] = [
     writer, common
-]
+];
 
 export default toolList;

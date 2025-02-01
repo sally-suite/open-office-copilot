@@ -35,14 +35,14 @@ export class Sally extends ChatPluginBase implements IChatPlugin {
       //   code: 'test2',
       //   name: 'test2'
       // }
-    ]
+    ];
   };
   onQuickReply = async (item: QuickReplyItem) => {
     // const { appendMsg, setPlugins, plugins } = this.context;
     // appendMsg(this.buildChatMessage(mark, 'text'))
     // docApi.insertText(mark)
     // setPlugins(plugins.filter((plugin) => plugin.action !== 'sally'))
-  }
+  };
   onSend = (input: IChatMessage) => {
     // 用户发送的消息，拦截，自定义一些操作
     return input;

@@ -81,4 +81,4 @@ function loadLanguageAsync() {
 }
 
 const languageSet = loadLanguageAsync();
-export default languageSet
+export default languageSet;

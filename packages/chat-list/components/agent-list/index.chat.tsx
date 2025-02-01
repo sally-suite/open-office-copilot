@@ -27,9 +27,9 @@ export default function AgentList(props: IAgentListProps) {
         // setMode('chat');
         // setPlugin(plg)
         if (onAgentSelect) {
-            onAgentSelect(plg)
+            onAgentSelect(plg);
         }
-    }
+    };
     return (
         <div className='flex flex-col p-0 w-16 pt-0 shadow-md items-center rounded-md overflow-hidden '>
             {plugins.map((item) => {
@@ -44,8 +44,8 @@ export default function AgentList(props: IAgentListProps) {
                             <Avatar icon={item.icon} height={28} width={28} className=' hover:scale-125 transition-all duration-300 ease-in-out' />
                         </Tooltip>
                     </div>
-                )
+                );
             })}
         </div>
-    )
+    );
 }

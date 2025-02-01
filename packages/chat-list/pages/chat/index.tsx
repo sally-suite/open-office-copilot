@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import LeftNavigation from 'chat-list/components/nav-left';
-import ChatRender from 'chat-list/components/chat-render'
+import ChatRender from 'chat-list/components/chat-render';
 import { cn } from 'chat-list/lib/utils';
-import { Menu } from 'lucide-react'
+import { Menu } from 'lucide-react';
 import { isMobile } from 'chat-list/utils';
 import Button from 'chat-list/components/button';
 import Icon from 'chat-list/components/icon';
@@ -13,7 +13,7 @@ const App = () => {
     const [open, setOpen] = useState(false);
     const back = () => {
         window.location.href = '/';
-    }
+    };
 
     useEffect(() => {
         const loading = document.getElementById('loading');
@@ -64,7 +64,7 @@ const App = () => {
                     </DialogContent>
                 </Dialog> */}
             </div>
-        )
+        );
     }
 
     return (

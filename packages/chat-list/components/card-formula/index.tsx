@@ -8,7 +8,7 @@ import {
 } from "chat-list/components/ui/card";
 import sheetService from '@api/sheet';
 import Markdown from 'chat-list/components/markdown';
-import BubbleMenu from 'chat-list/components/bubble-menu'
+import BubbleMenu from 'chat-list/components/bubble-menu';
 interface ICardFormulaProps {
   content: string;
   expressoin: string;
@@ -23,7 +23,7 @@ export default function CardCreate(props: ICardFormulaProps) {
   };
   const showExplain = () => {
     setExplain(!explain);
-  }
+  };
   return (
     <Card className="w-full">
       <CardTitle>Add Formula</CardTitle>

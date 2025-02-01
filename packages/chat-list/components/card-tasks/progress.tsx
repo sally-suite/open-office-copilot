@@ -6,13 +6,13 @@ import {
     // RadioGroup,
 } from "chat-list/components/ui/card";
 import { ITask } from "chat-list/types/task";
-import { Check, MoreHorizontal, X } from 'lucide-react'
+import { Check, MoreHorizontal, X } from 'lucide-react';
 
 export const Status: any = {
     'pending': <MoreHorizontal height={20} width={20} className="text-gray-200" />,
     'done': <Check height={20} width={20} className="text-green-700" />,
     'failed': <X height={20} width={20} className="text-red-500 h-5 w-5" />
-}
+};
 export default React.memo(function CardCreate(props: ICardTasksProps) {
     const { tasks, title } = props;
     if (tasks.length === 0) {
@@ -25,7 +25,7 @@ export default React.memo(function CardCreate(props: ICardTasksProps) {
                     </div>
                 </CardContent>
             </Card>
-        )
+        );
     }
     return (
         <Card className=" w-card">
@@ -43,7 +43,7 @@ export default React.memo(function CardCreate(props: ICardTasksProps) {
                                     </span>
                                     <span className="ml-2">{item.id}. {item.task}</span>
                                 </li>
-                            )
+                            );
                         })}
                     </ol>
                 </div>

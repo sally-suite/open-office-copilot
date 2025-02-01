@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from 'react'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { Button } from "chat-list/components/ui/button"
-import { Plus } from "lucide-react"
-import DraggableList from './DraggableList'
+import React, { useState, useCallback } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Button } from "chat-list/components/ui/button";
+import { Plus } from "lucide-react";
+import DraggableList from './DraggableList';
 
 interface OutlineItem {
     id: string;
@@ -15,27 +15,27 @@ export default function OutlineConfirmation({ initialOutline = [], onConfirm }: 
     initialOutline?: OutlineItem[];
     onConfirm: (outline: OutlineItem[]) => void;
 }) {
-    const [outline, setOutline] = useState<OutlineItem[]>(initialOutline)
+    const [outline, setOutline] = useState<OutlineItem[]>(initialOutline);
 
     const handleChange = (newOutline: OutlineItem[]) => {
-        setOutline(newOutline)
-    }
+        setOutline(newOutline);
+    };
 
     const addItem = (parentId: string | null = null) => {
-        const newItem = { id: Date.now().toString(), title: '', children: [] }
+        const newItem = { id: Date.now().toString(), title: '', children: [] };
         setOutline((prevOutline) => {
-            const newOutline = JSON.parse(JSON.stringify(prevOutline))
+            const newOutline = JSON.parse(JSON.stringify(prevOutline));
             if (parentId === null) {
-                newOutline.push(newItem)
+                newOutline.push(newItem);
             } else {
-                const parent = newOutline.find((item: OutlineItem) => item.id === parentId)
+                const parent = newOutline.find((item: OutlineItem) => item.id === parentId);
                 if (parent) {
-                    parent.children.push(newItem)
+                    parent.children.push(newItem);
                 }
             }
-            return newOutline
-        })
-    }
+            return newOutline;
+        });
+    };
 
     const handleConfirm = () => {
         const cleanOutline = (items: OutlineItem[]): OutlineItem[] => {
@@ -44,10 +44,10 @@ export default function OutlineConfirmation({ initialOutline = [], onConfirm }: 
                 .map((item) => ({
                     ...item,
                     children: cleanOutline(item.children),
-                }))
-        }
-        onConfirm(cleanOutline(outline))
-    }
+                }));
+        };
+        onConfirm(cleanOutline(outline));
+    };
 
     return (
         <DndProvider backend={HTML5Backend}>
@@ -63,5 +63,5 @@ export default function OutlineConfirmation({ initialOutline = [], onConfirm }: 
                 </Button>
             </div>
         </DndProvider>
-    )
+    );
 }

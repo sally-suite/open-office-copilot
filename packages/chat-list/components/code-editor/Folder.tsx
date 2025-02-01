@@ -1,5 +1,5 @@
-import { clearFolder, removeFile, readFilesToData, downloadFile, readFileToBase64 } from 'chat-list/tools/sheet/python/util'
-import React, { useEffect, useImperativeHandle, useState } from 'react'
+import { clearFolder, removeFile, readFilesToData, downloadFile, readFileToBase64 } from 'chat-list/tools/sheet/python/util';
+import React, { useEffect, useImperativeHandle, useState } from 'react';
 import Markdown from '../markdown/plain';
 import Loading from '../loading';
 import { ChevronRight, ChevronUp, FileImage, FolderClosed, FolderOpen, FileSpreadsheet, FileText } from 'lucide-react';
@@ -23,11 +23,11 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
     const [marks, setMarks] = useState<{ type: string, name: string, path: string, data: string | { name: string, data: string[][] }[] }[]>([]);
     const [fileStatus, setFileStatus] = useState<{ [x: string]: boolean }>({});
     const [folderStatus, setFolderStatus] = useState(expand);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
     const { t } = useTranslation('coder');
     const init = async () => {
         try {
-            setLoading(true)
+            setLoading(true);
             const marks = await readFilesToData(folder, showFileContent);
             setMarks(marks);
             const fsStatus = marks.reduce((pre, { name, path, data, type }, i) => {
@@ -35,33 +35,33 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
                 return {
                     ...pre,
                     [fileName]: expand
-                }
+                };
             }, {});
-            setFileStatus(fsStatus)
-            setLoading(false)
+            setFileStatus(fsStatus);
+            setLoading(false);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
     const onExpand = (name: string) => {
         setFileStatus({
             ...fileStatus,
             [name]: !fileStatus[name]
         });
-    }
+    };
     const onFolderExpand = (e) => {
-        setFolderStatus(!folderStatus)
-    }
+        setFolderStatus(!folderStatus);
+    };
     const refresh = async () => {
         await init();
-    }
+    };
     const renderFile = ({ type, data, name }: { type: string, name: string, data: string | { name: string, data: string[][] }[] }) => {
         if (type === 'xlsx' || type === 'xls' || type === 'csv') {
             return (
                 <div className='p-2'>
                     <DataSheet data={data as { name: string, data: string[][] }[]} />
                 </div>
-            )
+            );
         } else if (type === 'png' || type === 'jpg' || type === 'jpeg') {
             return (
                 <div className='p-2'>
@@ -71,7 +71,7 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
                         }
                     </Markdown>
                 </div>
-            )
+            );
         } else if (type == 'md') {
             return (
                 <div className='p-2'>
@@ -81,7 +81,7 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
                         }
                     </Markdown>
                 </div>
-            )
+            );
         } else {
             return (
                 <div className='p-2'>
@@ -89,33 +89,33 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
                         {data as string}
                     </pre>
                 </div>
-            )
+            );
         }
-    }
+    };
     const removeFileByPath = async (path: string, e: Event) => {
         e.stopPropagation();
         e.preventDefault();
-        await removeFile(path)
+        await removeFile(path);
         await refresh();
-    }
+    };
     const downloadFileByPath = async (path: string, e: Event) => {
         e.stopPropagation();
         e.preventDefault();
-        await downloadFile(path)
+        await downloadFile(path);
         await refresh();
-    }
+    };
     const insertToSlide = async (path: string, e: Event) => {
         e.stopPropagation();
         e.preventDefault();
         const data = await readFileToBase64(path, 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
         // console.log('pptdata', data)
-        await slideApi.insertSlidesFromBase64(data)
+        await slideApi.insertSlidesFromBase64(data);
         // await insertToSlide(path)
         // await refresh();
-    }
+    };
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     useImperativeHandle(ref, () => ({
         refresh
@@ -124,9 +124,9 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
     if (loading) {
         return (
             <Loading />
-        )
+        );
     }
-    console.log('folderStatus', folderStatus, expand)
+    console.log('folderStatus', folderStatus, expand);
     return (
         <div className='flex flex-col text-sm'>
             <div className='flex flex-row items-center justify-start p-1 cursor-pointer hover:bg-gray-100 border-b ' onClick={onFolderExpand}>
@@ -210,7 +210,7 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
                                             )
                                         }
                                     </div>
-                                )
+                                );
                             })
                         }
                     </div>
@@ -219,5 +219,5 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
 
 
         </div>
-    )
+    );
 });

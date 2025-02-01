@@ -1,7 +1,7 @@
-import { ChartTypes, ICellOption, ISlideItem, ITableCell, Slide, SlideElement, TextBlock, Theme } from "chat-list/types/api/slide";
-import { titleFontSize, contentY } from './constants';
+/* eslint-disable no-case-declarations */
+import { ISlideItem, Slide, SlideElement, Theme } from "chat-list/types/api/slide";
+import { titleFontSize } from './constants';
 import { generateEChartsOption, renderEChart } from "chat-list/utils/chart";
-import { hexToRgba } from "chat-list/utils";
 
 const SLIDE_WIDTH = 13.3;
 const SLIDE_HEIGHT = 7.5;

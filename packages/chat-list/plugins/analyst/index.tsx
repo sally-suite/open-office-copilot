@@ -4,15 +4,15 @@ import { IChatMessage } from "chat-list/types/message";
 import React from "react";
 import { buildCreateTaskPrompt, parseNextTask, parseTaskList, parseTaskResult } from "./util";
 import { ITask } from "chat-list/types/task";
-import CardTaskList from 'chat-list/components/card-tasks/list'
+import CardTaskList from 'chat-list/components/card-tasks/list';
 // import CardProgress from 'chat-list/components/card-tasks/progress'
 import { SHEET_CHAT_TASK_AUTO_EXEC } from "chat-list/config/task";
 import { getLocalStore } from "chat-list/local/local";
 // import { shortTermMemory } from 'chat-list/utils/chat'
 import { Glasses } from "lucide-react";
-import introduce from './promps/introduce.md'
-import CardConfirm from 'chat-list/components/card-confirm'
-import analyzSummary from './promps/analyz-summary.md'
+import introduce from './promps/introduce.md';
+import CardConfirm from 'chat-list/components/card-confirm';
+import analyzSummary from './promps/analyz-summary.md';
 import { arrayToMarkdownTable } from "chat-list/utils";
 import { getValues } from 'chat-list/service/sheet';
 import instruction from './promps/instruction.md';
@@ -54,7 +54,7 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
   getDataByMarkdown = async () => {
     const values = await getValues();
     return arrayToMarkdownTable(values);
-  }
+  };
   nextTask = async (task: ITask) => {
     if (task) {
       if (this.step > this.round) {
@@ -85,7 +85,7 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
       this.shortTermMemory.push({
         role: 'user',
         content: analyzSummary
-      })
+      });
       this.context.appendMsg(this.buildChatMessage(`All tasks have been completed, I'll summarize a data analysis for you`, 'text'));
       setTimeout(async () => {
         this.context.setTyping(true);
@@ -96,30 +96,30 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
         });
         this.sendMsg(this.buildChatMessage(content, 'text'));
         const askQuestMsg = `You can ask me questions about this data analysis report, Or clean messages and start another analyze task.`;
-        this.sendMsg(this.buildChatMessage(askQuestMsg, 'text'))
+        this.sendMsg(this.buildChatMessage(askQuestMsg, 'text'));
         this.shortTermMemory.push({
           role: 'assistant',
           content: askQuestMsg
-        })
+        });
         this.reset();
         this.context.setTyping(false);
       }, 0);
     }
-  }
+  };
   updateTaskStatus = async (id: number, status: ITask['status']) => {
     const task = this.taskList.find(t => t.id === id);
     if (task) {
       task.status = status;
       // this.sendMsg(this.buildChatMessage(<CardProgress tasks={this.taskList} />, 'card'));
     }
-  }
+  };
   confirmTasks = async (tasks: ITask[], plugins: IChatPlugin[]) => {
     const auto = getLocalStore(SHEET_CHAT_TASK_AUTO_EXEC);
     if (auto == 'auto') {
       this.round = tasks.length + 1;
       this.context.appendMsg(this.buildChatMessage(<CardTaskList
         tasks={tasks}
-      />, 'card'))
+      />, 'card'));
       this.shortTermMemory.push({
         role: 'user',
         content: `Excute tasks :\n ${JSON.stringify(tasks, null, 2)}`
@@ -147,9 +147,9 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
 
           this.nextTask(task);
         }}
-      />, 'card'))
+      />, 'card'));
     }
-  }
+  };
   onReceive = async (message: IChatMessage) => {
     const { content: input, role } = message;
     const include = ['coder', 'chart', 'chatsheet', 'calculator', 'filter'];
@@ -161,17 +161,17 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
         this.shortTermMemory.push({
           role: 'user',
           content: message.content
-        })
+        });
         const { content } = await this.context.chat({ messages: this.shortTermMemory, temperature: 0.8 });
         this.shortTermMemory.push({
           role: 'assistant',
           content: content
-        })
+        });
         this.sendMsg(this.buildChatMessage(content, 'text'));
       } else {
         this.dateset = await this.getDataByMarkdown();
-        const systemContext = buildCreateTaskPrompt(input as string, this.dateset, plugins)
-        this.shortTermMemory = []
+        const systemContext = buildCreateTaskPrompt(input as string, this.dateset, plugins);
+        this.shortTermMemory = [];
         this.shortTermMemory.push(systemContext);
         const { content } = await this.context.chat({ messages: this.shortTermMemory, temperature: 0.8 });
         const tasks = parseTaskList(content);
@@ -182,7 +182,7 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
       if (input && this.currentTask) {
         const result = parseTaskResult(input);
         if (result.status == 'successfully') {
-          this.updateTaskStatus(this.currentTask.id, 'done')
+          this.updateTaskStatus(this.currentTask.id, 'done');
           this.shortTermMemory.push({
             role: 'user',
             content: `Task ${this.currentTask.id} is done.` + ((result.result ? `the task result is ${result.result}` : '') + ', return new task list in JSON format that is delimited by triple backticks')
@@ -190,7 +190,7 @@ export class Analyst extends ChatPluginBase implements IChatPlugin {
           const task = parseNextTask(this.taskList);
           this.nextTask(task);
         } else {
-          this.updateTaskStatus(this.currentTask.id, 'failed')
+          this.updateTaskStatus(this.currentTask.id, 'failed');
           this.shortTermMemory.push({
             role: 'user',
             content: `Task ${this.currentTask.id} executed failed, reason is ${result.reason}.`

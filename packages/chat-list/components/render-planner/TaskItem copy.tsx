@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import IconButton from 'chat-list/components/icon-button'
+import IconButton from 'chat-list/components/icon-button';
 import { Plus, Trash } from 'lucide-react';
 import StepItem from './StepItem';
 import { Input } from '../ui/input';

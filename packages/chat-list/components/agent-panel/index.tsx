@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 import {
     Bot,
     Code2,
     HelpCircle,
     ChevronUp
-} from "lucide-react"
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -18,7 +18,7 @@ import {
     DropdownMenuTrigger,
 } from "chat-list/components/ui/dropdown-menu";
 import { cn } from 'chat-list/lib/utils';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import Tooltip from '../tooltip';
 import { SHEET_CHAT_SITE } from 'chat-list/config/site';
 import Avatar from '../avatars';
@@ -39,11 +39,11 @@ export default function AgentPanel(props: IToolListProps) {
 
     const onToggle = () => {
         setOpen(!open);
-    }
+    };
 
     const onCreateAgent = () => {
         navigate("/create-agent");
-    }
+    };
 
     const onSelectAgent = (plg: IChatPlugin) => {
         if (plugin) {
@@ -56,16 +56,16 @@ export default function AgentPanel(props: IToolListProps) {
             resetList([]);
         }
         setMode(plg.action, plg.mode || 'chat');
-        navigate(`/${plg.action}`)
+        navigate(`/${plg.action}`);
         setPlugin(plg);
         if (onAgentSelect) {
             onAgentSelect(plg);
         }
         onToggle();
-    }
+    };
     const showAgents = () => {
-        window.open(`${SHEET_CHAT_SITE}/guide/agents`, '_blank')
-    }
+        window.open(`${SHEET_CHAT_SITE}/guide/agents`, '_blank');
+    };
     return (
         <>
 
@@ -127,7 +127,7 @@ export default function AgentPanel(props: IToolListProps) {
                                                             }
                                                         </span>
                                                     </DropdownMenuItem>
-                                                )
+                                                );
                                             })
                                         }
                                     </DropdownMenuGroup>
@@ -153,5 +153,5 @@ export default function AgentPanel(props: IToolListProps) {
             </DropdownMenu>
         </>
 
-    )
+    );
 }

@@ -3,25 +3,25 @@ import React, { useCallback, useContext, useEffect } from 'react';
 import { ChatMessageType, IChatMessage } from 'chat-list/types/message';
 import Composer from 'chat-list/components/composer';
 import ReactMarkdown from 'chat-list/components/markdown';
-import CardProgress from 'chat-list/components/card-progress'
+import CardProgress from 'chat-list/components/card-progress';
 import { ChatContext } from '../../store/chatContext';
 import Bubble from 'chat-list/components/bubble';
 
-import { buildChatMessage } from 'chat-list/utils'
-import FilesCard from 'chat-list/components/card-files'
+import { buildChatMessage } from 'chat-list/utils';
+import FilesCard from 'chat-list/components/card-files';
 import MessageList from 'chat-list/components/message-list';
 import ChatFooter from 'chat-list/components/chat-footer';
 import { cn } from 'chat-list/lib/utils';
 
 import Loading from '../loading-logo';
-import CheckContext from 'chat-list/components/check-context'
+import CheckContext from 'chat-list/components/check-context';
 import SelectText from 'chat-list/components/selected-text';
 import Avatar from 'chat-list/components/avatars';
 import ToolList from 'chat-list/components/tool-list';
 import AgentPanel from '../agent-panel';
-import NewChat from 'chat-list/components/new-chat'
+import NewChat from 'chat-list/components/new-chat';
 import LanguageSelect from '../language-select';
-import Message from 'chat-list/components/message'
+import Message from 'chat-list/components/message';
 import TextSelectionToolbar from 'chat-list/components/text-selection-toolbar';
 import EricPromote from '../eric-promo';
 
@@ -76,13 +76,13 @@ const App = (props: IChatListProps) => {
     if (type === 'file') {
       contentNode = (
         <FilesCard files={files} />
-      )
+      );
     }
 
     if (type === 'parts') {
       contentNode = (
         <FilesCard text={text} files={files} title='' />
-      )
+      );
     }
 
     if (msg?.from?.icon) {
@@ -93,18 +93,18 @@ const App = (props: IChatListProps) => {
           </div>
           {contentNode}
         </div>
-      )
+      );
     }
     return contentNode;
   }
   const onSendMsg = useCallback(async (type: ChatMessageType, content: string) => {
-    await sendMsg(buildChatMessage(content, type as ChatMessageType, 'user', { name: user.username }))
-  }, [sendMsg])
+    await sendMsg(buildChatMessage(content, type as ChatMessageType, 'user', { name: user.username }));
+  }, [sendMsg]);
 
 
   const onClearMessage = () => {
     newChat();
-  }
+  };
 
   const renderIntroduction = () => {
     let content: string | React.ReactNode = "";
@@ -120,15 +120,15 @@ const App = (props: IChatListProps) => {
           <Avatar icon={plugin.icon} name={plugin.name} />
           <ReactMarkdown showTableMenu={false} copyContentBtn={false} className="bubble text">{(content || text) + ''}</ReactMarkdown>
         </div>
-      )
+      );
     }
     return (
       <div className='message-list flex-1 flex flex-col overflow-auto p-2 '>
         <Avatar icon={plugin.icon} name={plugin.name} />
         {content}
       </div>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     if (!loading) {

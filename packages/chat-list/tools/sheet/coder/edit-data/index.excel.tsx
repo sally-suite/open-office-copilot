@@ -1,6 +1,6 @@
 import { ChatState, ITool } from "chat-list/types/plugin";
 import instruction from './promps/instruction.excel.md';
-import scriptDescription from './promps/script-description.excel.md'
+import scriptDescription from './promps/script-description.excel.md';
 
 // import { publish } from 'chat-list/msb/public'
 import sheetApi from '@api/sheet';
@@ -19,18 +19,18 @@ export const func = async ({ script, explain, context }: { script: string, expla
         const resMsg = buildChatMessage(`${explain}\n${mark}`, 'text');
         context.appendMsg(resMsg);
 
-        const code = extractCodeFromMd(script)
+        const code = extractCodeFromMd(script);
 
         const result = await sheetApi.runScript(code);
         if (result) {
-            return `Script is\n${mark}\n` + `and the script execution result is ${JSON.stringify(result)}.`
+            return `Script is\n${mark}\n` + `and the script execution result is ${JSON.stringify(result)}.`;
         }
         return `Script is\n${mark}\nRun completed.`;
 
     } else {
         return `Sorry! I can't generate the script code`;
     }
-}
+};
 
 export default {
     type: 'function',

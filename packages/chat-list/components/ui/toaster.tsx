@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
     Toast,
@@ -7,12 +7,12 @@ import {
     ToastProvider,
     ToastTitle,
     ToastViewport,
-} from "chat-list/components/ui/toast"
-import { useToast } from "chat-list/components/ui/use-toast"
-import React from "react"
+} from "chat-list/components/ui/toast";
+import { useToast } from "chat-list/components/ui/use-toast";
+import React from "react";
 
 export function Toaster() {
-    const { toasts } = useToast()
+    const { toasts } = useToast();
 
     return (
         <ToastProvider>
@@ -28,9 +28,9 @@ export function Toaster() {
                         {action}
                         <ToastClose />
                     </Toast>
-                )
+                );
             })}
             <ToastViewport />
         </ToastProvider>
-    )
+    );
 }

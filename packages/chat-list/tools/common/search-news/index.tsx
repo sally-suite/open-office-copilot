@@ -1,10 +1,10 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import api from "@api/index";
 import { SearchResult } from 'chat-list/types/search';
 import { buildChatMessage } from 'chat-list/utils';
-import CardSearch from 'chat-list/components/card-search'
+import CardSearch from 'chat-list/components/card-search';
 import React from 'react';
 
 export const func = async ({ keywords, context }: { keywords: string, context: ChatState }) => {
@@ -15,16 +15,16 @@ export const func = async ({ keywords, context }: { keywords: string, context: C
     }) as SearchResult[];
     const targets = results.filter(p => p.content || p.snippet || p.title);
     if (targets.length == 0) {
-        return 'Search result is empty'
+        return 'Search result is empty';
     }
     const msg = buildChatMessage(<CardSearch results={targets} />, 'card', 'assistant');
     appendMsg(msg);
     const reply = targets.map((item, i) => {
-        return `${i + 1}. LINK: [${item.title}](${item.url})\n\nCONTENT:\n\n${item.content || item.snippet || item.title}`
+        return `${i + 1}. LINK: [${item.title}](${item.url})\n\nCONTENT:\n\n${item.content || item.snippet || item.title}`;
     }).join('\n\n');
 
-    return `# SEARCH NEWS RESULT:\n\n${reply} \n\nSummarize news content, help user add footnotes to the citations.`
-}
+    return `# SEARCH NEWS RESULT:\n\n${reply} \n\nSummarize news content, help user add footnotes to the citations.`;
+};
 
 export default {
     type: 'function',

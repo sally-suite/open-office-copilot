@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { Globe } from 'lucide-react'
+import React, { useEffect, useState } from 'react';
+import { Globe } from 'lucide-react';
 
-import sheetApi from '@api/sheet'
-import docApi from '@api/doc'
+import sheetApi from '@api/sheet';
+import docApi from '@api/doc';
 
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuTrigger,
-} from "chat-list/components/ui/dropdown-menu"
+} from "chat-list/components/ui/dropdown-menu";
 
 
 import { useTranslation } from 'react-i18next';
-import { languages } from 'chat-list/locales/i18n'
-import useChatState from 'chat-list/hook/useChatState'
-import useChromeStore from 'chat-list/hook/useChromeStore'
+import { languages } from 'chat-list/locales/i18n';
+import useChatState from 'chat-list/hook/useChatState';
+import useChromeStore from 'chat-list/hook/useChromeStore';
 export default function index() {
     const { platform, docType, } = useChatState();
     const { t, i18n } = useTranslation();
@@ -27,20 +27,20 @@ export default function index() {
         if (platform === 'google') {
             if (docType === 'sheet') {
                 // console.log('showSidePanel', docType)
-                await sheetApi.showSidePanel('sheet-chat', 'sheet')
+                await sheetApi.showSidePanel('sheet-chat', 'sheet');
             } else if (docType === 'doc') {
                 // console.log('showSidePanel', docType)
-                await docApi.showSidePanel('doc-chat', 'doc')
+                await docApi.showSidePanel('doc-chat', 'doc');
             }
         } else {
             window.location.reload();
         }
-    }
+    };
     useEffect(() => {
         if (!loading && value) {
             i18n.changeLanguage(value);
         }
-    }, [value, loading])
+    }, [value, loading]);
     return (
         <>
             <DropdownMenu>
@@ -60,12 +60,12 @@ export default function index() {
                                         (languages as any)[key].base.name || ''
                                     }
                                 </DropdownMenuCheckboxItem>
-                            )
+                            );
                         })
                     }
                 </DropdownMenuContent >
             </DropdownMenu>
         </>
 
-    )
+    );
 }

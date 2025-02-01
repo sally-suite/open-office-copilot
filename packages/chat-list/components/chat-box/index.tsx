@@ -2,15 +2,15 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from 'rea
 import { ChatMessageType } from 'chat-list/types/message';
 import { ChatContext } from '../../store/chatContext';
 
-import { buildChatMessage, debounce } from 'chat-list/utils'
+import { buildChatMessage, debounce } from 'chat-list/utils';
 
 import Loading from '../loading-logo';
-import Spin from '../loading'
+import Spin from '../loading';
 import styles from './index.module.css';
 import IconButton from 'chat-list/components/icon';
 import { translate } from 'chat-list/service/translate';
 import { Languages, TextCursorInput, X } from 'lucide-react';
-import LanguageList from 'chat-list/components/language-list'
+import LanguageList from 'chat-list/components/language-list';
 import useLocalStore from 'chat-list/hook/useLocalStore';
 
 interface IChatListProps {
@@ -71,7 +71,7 @@ const App = (props: IChatListProps) => {
   };
 
   const handleMouseMove = (e) => {
-    console.log(e)
+    console.log(e);
     if (!isDragging) return;
 
     const deltaX = e.pageX - startX;
@@ -80,7 +80,7 @@ const App = (props: IChatListProps) => {
     editorRef.current.style.left = `${initialLeft + deltaX}px`;
     editorRef.current.style.top = `${initialTop + deltaY}px`;
 
-  }
+  };
 
   const handleMouseUp = () => {
     setIsDragging(false);
@@ -111,15 +111,15 @@ const App = (props: IChatListProps) => {
 
 
   const onSendMsg = useCallback(async (type: ChatMessageType, content: string) => {
-    await sendMsg(buildChatMessage(content, type as ChatMessageType, 'user', { name: user.username }))
-  }, [sendMsg])
+    await sendMsg(buildChatMessage(content, type as ChatMessageType, 'user', { name: user.username }));
+  }, [sendMsg]);
 
 
   function onClose() {
     setPageChatEnable(false);
   }
   function onDeselect() {
-    setSelectedText('')
+    setSelectedText('');
   }
 
   const sendMessage = useCallback(debounce(() => {
@@ -131,18 +131,18 @@ const App = (props: IChatListProps) => {
   }, 500), []);
 
   function init() {
-    document.addEventListener('selectionchange', sendMessage)
+    document.addEventListener('selectionchange', sendMessage);
     return () => {
-      document.removeEventListener('selectionchange', sendMessage)
-    }
+      document.removeEventListener('selectionchange', sendMessage);
+    };
   }
 
   useEffect(() => {
     const unregist = init();
     return () => {
       unregist();
-    }
-  }, [])
+    };
+  }, []);
 
   if (!pageChatEnable) {
     return null;

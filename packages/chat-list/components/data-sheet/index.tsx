@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import DataTable from '../data-table'
+import DataTable from '../data-table';
 import { cn } from 'chat-list/lib/utils';
 interface IPreviewProps {
   data: { name: string, data: any[][] }[];
 }
 export default function Preview(props: IPreviewProps) {
   const { data } = props;
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(0);
   if (!data || data.length == 0) return null;
   return (
     <div>
@@ -19,7 +19,7 @@ export default function Preview(props: IPreviewProps) {
               )} key={index} onClick={() => setCurrent(index)}>
                 {item.name}
               </div>
-            )
+            );
           })
         }
       </div>

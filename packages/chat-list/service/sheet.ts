@@ -1,5 +1,5 @@
-import sheetApi from '@api/sheet'
-import userApi from '@api/user'
+import sheetApi from '@api/sheet';
+import userApi from '@api/user';
 import { memoize } from 'chat-list/utils';
 
 export const getHeaderList = async (sheetName = '') => {
@@ -8,7 +8,7 @@ export const getHeaderList = async (sheetName = '') => {
         return [];
     }
     return values[0];
-}
+};
 
 export const getSheetDataInMarkdown = (data: string[][]) => {
     if (data.length == 0) {
@@ -41,17 +41,17 @@ export const getSheetDataInMarkdown = (data: string[][]) => {
     }
 
     return markdown;
-}
+};
 
 export const getValues = async (limit?: number, sheetName?: string, options: { range: 'all' | 'default' } = { range: 'default' }): Promise<string[][]> => {
     const result = await sheetApi.getValues(limit, sheetName, options || { range: 'default' });
     return JSON.parse(result);
-}
+};
 
 export const getValuesByRange = async (rowOrA1Notation: number | string, column?: number, numRows?: number, numColumns?: number, sheetName?: string): Promise<string[][]> => {
     const result = await sheetApi.getValuesByRange(rowOrA1Notation, column, numRows, numColumns, sheetName);
     return JSON.parse(result);
-}
+};
 
 export const getEmailWithCache = memoize(async () => {
     return await userApi.getEmail();
@@ -81,4 +81,4 @@ ${JSON.stringify(sheetData, null, 2)}
     } catch (e) {
         return '';
     }
-}
+};

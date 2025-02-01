@@ -19,7 +19,8 @@
     "gs:push": "clasp push",
     "gs:deploy": "clasp deploy",
     "deploy": "yarn build && yarn gs:push",
-    "push": "npm run build && git commit -am release && git push"
+    "push": "npm run build && git commit -am release && git push",
+    "lint": "eslint --ext .ts,.tsx ./ --fix --quiet"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
-import { chatByTemplate } from 'chat-list/service/message'
-import createPagePrompt from './prompts/create-page.md'
-import { extractJsonDataFromMd } from 'chat-list/utils'
+import { chatByTemplate } from 'chat-list/service/message';
+import createPagePrompt from './prompts/create-page.md';
+import { extractJsonDataFromMd } from 'chat-list/utils';
 
 export interface Presentation {
     title: string;
@@ -43,6 +43,6 @@ export const generatePage = async (description: string, language: string): Promi
         temperature: 0.8,
         max_tokens: 3000,
         // response_format: { "type": "json_object" },
-    })
-    return extractJsonDataFromMd(result?.content)
-}
+    });
+    return extractJsonDataFromMd(result?.content);
+};

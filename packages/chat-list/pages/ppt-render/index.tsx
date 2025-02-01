@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import CardPPTRender from 'chat-list/components/card-ppt-render'
+import CardPPTRender from 'chat-list/components/card-ppt-render';
 import temp6 from './templates/temp8';
 import sample from './data/sample.json';
 
 const PPTRender = () => {
-    const [pages, setPages] = useState([])
+    const [pages, setPages] = useState([]);
 
     const init = async () => {
         const list = await Promise.all(sample.map((item) => {
@@ -19,8 +19,8 @@ const PPTRender = () => {
                 },
             });
         }));
-        setPages(list)
-    }
+        setPages(list);
+    };
     useEffect(() => {
         init();
     }, []);

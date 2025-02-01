@@ -1,5 +1,5 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { generateCatalog } from './util';
 // import pptData from './ppt.json'
@@ -38,7 +38,7 @@ export const func = async ({ outline, message, is_add_image, language, page_num,
 
     return `TELL USER:"Please review the Outline above and click on Confirm to continue" DO NOT SAY OTHER CONTENT.`;
 
-}
+};
 
 export default {
     type: 'function',

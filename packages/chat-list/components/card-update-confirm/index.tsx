@@ -45,7 +45,7 @@ export default React.memo(function CardSelectRange(
             })}
           </tr>
         );
-      })
+      });
       return (
         <>
           <p>
@@ -57,7 +57,7 @@ export default React.memo(function CardSelectRange(
           </div>
         </>
 
-      )
+      );
     } catch (e) {
       return (
         <>
@@ -68,9 +68,9 @@ export default React.memo(function CardSelectRange(
             {JSON.stringify(data, null, 2)}
           </pre>
         </>
-      )
+      );
     }
-  }
+  };
   return (
     <Card className="w-card">
       <CardTitle>Confirm and update to Sheet</CardTitle>

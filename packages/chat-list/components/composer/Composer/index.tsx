@@ -18,8 +18,8 @@ export const CLASS_NAME_FOCUSING = "S--focusing";
 import Mentions, { completeTextWithMetion, completeTextWithSelectedMetion, IMention } from './Mentions';
 import Prompts, { IPrompts, completeTextWithPrompt, completeTextWithSelectedPrompt } from './Prompts';
 import { XCircle, File, Image, AtSign, Bot, Wand2, Paperclip } from "lucide-react";
-import FileSelector from './FileSelector'
-import ActionSheet from 'chat-list/components/action-sheet'
+import FileSelector from './FileSelector';
+import ActionSheet from 'chat-list/components/action-sheet';
 import { toggleClass } from "chat-list/utils";
 import { useTranslation } from "react-i18next";
 import { FileList } from './FileList'; // Add this import
@@ -97,7 +97,7 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
     const isMountRef = useRef(false);
     const [isWide, setWide] = useState(false);
     const [cursorPosition, setCursorPosition] = useState(0);
-    const [fileList, setFileList] = useState<File[]>(files)
+    const [fileList, setFileList] = useState<File[]>(files);
 
     const handleInputFocus = useCallback(
       (e: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -130,13 +130,13 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
       if (fileList.length > 0 && text.length > 0) {
         await onSend('parts', { text, fileList });
         setFileList([]);
-        onFilesChange([])
+        onFilesChange([]);
         return;
       }
       if (fileList.length > 0) {
         await onSend('file', fileList);
-        setFileList([])
-        onFilesChange([])
+        setFileList([]);
+        onFilesChange([]);
       }
       if (text) {
         await onSend("text", text);
@@ -214,14 +214,14 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
       setCursorPosition(1);
       if (inputRef.current)
         inputRef.current.focus();
-    }
+    };
     const inputSlash = () => {
       // onSend("text", '@');
       onChange('/', null);
       setCursorPosition(1);
       if (inputRef.current)
         inputRef.current.focus();
-    }
+    };
     const handleAccessoryToggle = useCallback(() => {
       setAccessoryOpen(!isAccessoryOpen);
     }, [isAccessoryOpen]);
@@ -256,7 +256,7 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
         inputRef.current.focus();
         return;
       }
-    }
+    };
 
     const onPromptSelect = (item: any) => {
       const output = completeTextWithSelectedPrompt(item, text);
@@ -265,7 +265,7 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
         inputRef.current.focus();
         return;
       }
-    }
+    };
 
     const onFileSelect = useCallback(async (files: File[]) => {
 
@@ -279,7 +279,7 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
       const newFiles = fileList.filter((item, i) => i !== index);
       setFileList(newFiles);
       onFilesChange(newFiles);
-    }
+    };
 
     useEffect(() => {
       const mq =
@@ -332,7 +332,7 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
 
     useEffect(() => {
       setFileList(files);
-    }, [files])
+    }, [files]);
 
     useImperativeHandle(ref, () => ({
       setPlaceholder,
@@ -364,10 +364,10 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
           >
             <FileSelector icon={Image} config={config} onSelect={onFileSelect} />
           </Action>
-        )
+        );
       }
       return null;
-    }
+    };
     const renderFileSelector = (fileConfig: any) => {
       if (!fileConfig) {
         return null;
@@ -425,15 +425,15 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
         >
           <FileSelector icon={Paperclip} config={config} onSelect={onFileSelect} />
         </Action>
-      )
+      );
       return actions;
-    }
+    };
     const renderFileIcon = (file: File) => {
       if (file.type.startsWith('image')) {
-        return <Image height={14} width={14} />
+        return <Image height={14} width={14} />;
       }
-      return <File height={14} width={14} />
-    }
+      return <File height={14} width={14} />;
+    };
 
     const hasToolbar = toolbar.length > 0;
 

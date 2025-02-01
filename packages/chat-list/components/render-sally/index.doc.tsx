@@ -1,24 +1,24 @@
-import useChatState from 'chat-list/hook/useChatState'
-import React, { useMemo, useState } from 'react'
+import useChatState from 'chat-list/hook/useChatState';
+import React, { useMemo, useState } from 'react';
 import { cn } from 'chat-list/lib/utils';
 
 import CardTranslate from 'chat-list/components/card-translate-doc';
-import promptSetting from 'chat-list/plugins/sally-slide/prompt'
-import api from '@api/doc'
+import promptSetting from 'chat-list/plugins/sally-slide/prompt';
+import api from '@api/doc';
 // import SallyAvatar from 'chat-list/components/avatars/sally'
 
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import Button from '../button';
 import Markdown from '../markdown';
 
 function TranslateCard() {
-    const [text, setText] = useState('')
+    const [text, setText] = useState('');
     return (
         <>
             <CardTranslate
                 onTranslate={(text) => {
-                    setText(text)
+                    setText(text);
                 }}
             />
             <p className='mt-1 text-sm'>
@@ -26,7 +26,7 @@ function TranslateCard() {
             </p>
         </>
 
-    )
+    );
 }
 
 export default function ToolsRender({ className = '' }: { className: string }) {
@@ -77,10 +77,10 @@ export default function ToolsRender({ className = '' }: { className: string }) {
                 name: t('doc.make_titles', 'Make titles'),
                 tip: t('doc.tip.make_titles', 'Make titles for document'),
                 icon: '',
-            }]
+            }];
     }, []);
     const callTool = async (item: any) => {
-        setResult('')
+        setResult('');
         if (item.code == 'translate') {
             setResult(<TranslateCard />);
         } else {
@@ -88,7 +88,7 @@ export default function ToolsRender({ className = '' }: { className: string }) {
             const prompt = (promptSetting as any)[item.code];
             const text = await api.getSelectedText();
             if (!text) {
-                setResult('No text selected.')
+                setResult('No text selected.');
                 return;
             }
             const result = await chat({
@@ -102,19 +102,19 @@ export default function ToolsRender({ className = '' }: { className: string }) {
                         content: text,
                     }]
             });
-            setResult(result.content)
+            setResult(result.content);
         }
-    }
+    };
     const renderResult = (result: any) => {
         if (typeof result == 'string') {
             return (
                 <Markdown>
                     {result}
                 </Markdown>
-            )
+            );
         }
         return result;
-    }
+    };
     return (
         <div className={cn('flex flex-col w-full p-1 overflow-auto', className)}>
             <p>
@@ -130,7 +130,7 @@ export default function ToolsRender({ className = '' }: { className: string }) {
                                 }
                             </Button>
 
-                        )
+                        );
                     })
                 }
             </div>
@@ -138,5 +138,5 @@ export default function ToolsRender({ className = '' }: { className: string }) {
                 {renderResult(result)}
             </div>
         </div>
-    )
+    );
 }

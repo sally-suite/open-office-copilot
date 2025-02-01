@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import useLocalStore from './useLocalStore';
 import { AGENT_AGENT, AGENT_TOOL, getLocalStore } from 'chat-list/local/local';
 import { IAgentTools, IChatPlugin, IAgentToolItem, DocType } from 'chat-list/types/plugin';
@@ -24,21 +24,21 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
             if (agentTools.find(item => item.id === id)) {
                 return;
             }
-            setAgentTools([...agentTools, { id, enable }])
+            setAgentTools([...agentTools, { id, enable }]);
         } else {
-            setAgentTools(agentTools.filter((item: IAgentToolItem) => item.id !== id))
+            setAgentTools(agentTools.filter((item: IAgentToolItem) => item.id !== id));
         }
-    }
+    };
     const setColAgent = (id: string, enable: boolean) => {
         // 设置当前插件的colAgents
         const list = colAgents?.map((item: IAgentToolItem) => {
             if (item.id === id) {
-                return { ...item, enable }
+                return { ...item, enable };
             }
             return item;
-        })
+        });
         setColAgents(list);
-    }
+    };
     const init = () => {
 
         // const tools = plugin.tools;
@@ -112,7 +112,7 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
                 id: name,
                 name: snakeToWords(name),
                 enable: true
-            }
+            };
         }));
 
         const agents = plugin.agents;
@@ -126,11 +126,11 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
                 icon: plg.icon,
                 name: plg.name,
                 enable: true
-            }
+            };
         }).filter(p => !!p);
         setColAgents(colAgents);
 
-    }
+    };
     const reset = () => {
         const tools = plugin.tools;
         setAgentTools(tools.map((name) => {
@@ -138,7 +138,7 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
                 id: name,
                 name: snakeToWords(name),
                 enable: true
-            }
+            };
         }));
 
         const agents = plugin.agents;
@@ -149,10 +149,10 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
                 icon: plg.icon,
                 name: plg.name,
                 enable: true
-            }
-        })
+            };
+        });
         setColAgents(colAgents);
-    }
+    };
     // useEffect(() => {
     //     init();
     // }, [plugin])
@@ -164,5 +164,5 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
         setAgentTools,
         setColAgents,
         reset
-    }
+    };
 }

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Header from 'chat-list/components/header'
+import Header from 'chat-list/components/header';
 import { Plus, Play, Trash } from 'lucide-react';
 import IconButton from '../icon-button';
-import { PlanContext } from './planContext'
+import { PlanContext } from './planContext';
 import Button from '../button';
 const PlanList: React.FC = () => {
     // const [plans, setPlans] = useState<IPlan[]>([]);
@@ -17,19 +17,19 @@ const PlanList: React.FC = () => {
     };
     const addPlan = () => {
         naviate(`/planner/add`);
-    }
+    };
 
     const edit = async (id: string) => {
         naviate(`/planner/plan/${id}`);
-    }
+    };
     const run = async (id: string, e: Event) => {
         e.stopPropagation();
-        console.log(id)
-    }
+        console.log(id);
+    };
     const remove = async (id: string, e: Event) => {
         e.stopPropagation();
-        await removePlan(id)
-    }
+        await removePlan(id);
+    };
 
     return (
         <div className="container mx-auto p-0">

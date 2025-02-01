@@ -1,12 +1,12 @@
 // MyForm.tsx
 
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { Input } from 'chat-list/components/ui/input'
+import { Input } from 'chat-list/components/ui/input';
 import { MousePointerSquare } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import Button from '../button'
-import Icondbutton from '../icon-button'
-import sheetApi from '@api/sheet'
+import Button from '../button';
+import Icondbutton from '../icon-button';
+import sheetApi from '@api/sheet';
 import { getHeaderList } from 'chat-list/service/sheet';
 export interface FormulaInfo {
     headers: string;
@@ -44,7 +44,7 @@ const InputField: React.FC<InputProps> = ({ label, value, placeholder, onSetValu
             </div>
 
         </>
-    )
+    );
 };
 
 
@@ -80,8 +80,8 @@ const MyForm: React.FC<IFormProps> = (props: IFormProps) => {
         setFormData({
             ...formData,
             [name]: result
-        })
-    }
+        });
+    };
 
     const onSetHeaders = async () => {
         // const range = await sheetApi.getRangeA1Notation();
@@ -89,8 +89,8 @@ const MyForm: React.FC<IFormProps> = (props: IFormProps) => {
         setFormData({
             ...formData,
             headers: heads.join(',')
-        })
-    }
+        });
+    };
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -102,7 +102,7 @@ const MyForm: React.FC<IFormProps> = (props: IFormProps) => {
 
     useEffect(() => {
         setFormData(value);
-    }, [value])
+    }, [value]);
 
     return (
         <form className="w-full max-w-md mx-auto">

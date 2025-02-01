@@ -6,8 +6,8 @@ import { getSheetDataInMarkdown } from 'chat-list/service/sheet';
 import { MessagesSquare } from 'lucide-react';
 import { getValues } from 'chat-list/service/sheet';
 import chatAssistPrompt from './prompt/chat-assist.md';
-import chatUserPrompt from './prompt/chat-user.md'
-import instruction from './prompt/instruction.md'
+import chatUserPrompt from './prompt/chat-user.md';
+import instruction from './prompt/instruction.md';
 export class SheetChat extends ChatPluginBase implements IChatPlugin {
   name = 'Chat with Sheet';
   icon = MessagesSquare;

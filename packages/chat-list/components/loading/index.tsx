@@ -15,4 +15,4 @@ export default function Loading({ className, text }: { className?: string, text?
 
 export {
   Loading
-}
+};

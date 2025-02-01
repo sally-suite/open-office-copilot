@@ -7,7 +7,7 @@ import {
     // RadioGroup,
 } from "chat-list/components/ui/card";
 import Button from '../button';
-import FileSelector from 'chat-list/components/file-selector'
+import FileSelector from 'chat-list/components/file-selector';
 import { useTranslation } from 'react-i18next';
 import { cn } from 'chat-list/lib/utils';
 import { UploadCloud, XCircle } from 'lucide-react';
@@ -20,19 +20,19 @@ export default React.memo(function CardSelectRange(
     props: ICardUpdateConfirmProps
 ) {
     const { onUpload } = props;
-    const [files, setFiles] = useState<File[]>([])
+    const [files, setFiles] = useState<File[]>([]);
     const { t } = useTranslation();
     const onOk = async () => {
         onUpload?.(files);
     };
 
     const removeImage = (index: number) => {
-        setFiles(files.filter((_, i) => i !== index))
+        setFiles(files.filter((_, i) => i !== index));
         // setFiles(files.filter((_, i) => i !== index))
-    }
+    };
     const onFileSelect = async (fs: File[]) => {
-        setFiles?.(files.concat(fs))
-    }
+        setFiles?.(files.concat(fs));
+    };
     return (
         <Card className="w-card">
             <CardTitle>Upload files</CardTitle>
@@ -50,7 +50,7 @@ export default React.memo(function CardSelectRange(
                                     </span>
                                     <XCircle height={14} width={14} onClick={removeImage.bind(null, i)} className=" text-gray-500 cursor-pointer" />
                                 </div>
-                            )
+                            );
                         })
                     }
                 </div>

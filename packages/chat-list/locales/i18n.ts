@@ -1,8 +1,8 @@
 
-import language from './language'
-import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
-import LanguageDetector from 'i18next-browser-languagedetector'
+import language from './language';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 export const languages = language;
 i18n
   .use(LanguageDetector)
@@ -55,8 +55,8 @@ i18n
       // optional set cookie options, reference:[MDN Set-Cookie docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
       // cookieOptions: { path: '/', sameSite: 'strict' }
     }
-  })
+  });
 
-document.documentElement.lang = i18n.language
+document.documentElement.lang = i18n.language;
 
-export default i18n
+export default i18n;

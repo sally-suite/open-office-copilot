@@ -3,12 +3,12 @@
 
 
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import description from './description.md'
+import description from './description.md';
 import { buildChatMessage } from 'chat-list/utils';
 import CardConfirm from 'chat-list/components/card-confirm';
-import Markdown from 'chat-list/components/markdown'
+import Markdown from 'chat-list/components/markdown';
 import React from 'react';
-import i18n from 'chat-list/locales/i18n'
+import i18n from 'chat-list/locales/i18n';
 
 export const main: ITool['func'] = async ({ uml_code, context }: { uml_code: string, context: ChatState }): Promise<any> => {
     // const result = await chatByPrompt(description, requirement)
@@ -27,7 +27,7 @@ export const main: ITool['func'] = async ({ uml_code, context }: { uml_code: str
             okText='Edit'
             hideCancel={true}
             onOk={() => {
-                const plg = plugins.find(p => p.action == 'uml')
+                const plg = plugins.find(p => p.action == 'uml');
                 plg['code'] = code;
                 setMode(plg.action, 'custom');
                 setPlugin(plg);
@@ -35,7 +35,7 @@ export const main: ITool['func'] = async ({ uml_code, context }: { uml_code: str
         />, 'card', 'assistant'
     ));
     return code;
-}
+};
 
 export default {
     "name": "write_uml",

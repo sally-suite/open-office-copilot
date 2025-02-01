@@ -7,11 +7,11 @@ import api from '@api/index';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
-import remarkMath from 'remark-math'
+import remarkMath from 'remark-math';
 // import rehypeMathjax from 'rehype-mathjax'
-import rehypeKatex from 'rehype-katex'
+import rehypeKatex from 'rehype-katex';
 
-import remarkMermaid from 'remark-mermaidjs'
+import remarkMermaid from 'remark-mermaidjs';
 
 import remarkGfm from 'remark-gfm';
 import { unified } from 'unified';
@@ -19,7 +19,7 @@ import { buildHtml, copyByClipboard, removeMentions } from 'chat-list/utils';
 import useChatState from 'chat-list/hook/useChatState';
 import { Check, Code, Copy, FileOutput, Bookmark, BookmarkCheck, Replace } from 'lucide-react';
 import IconButton from '../icon-button';
-import { cn } from 'chat-list/lib/utils'
+import { cn } from 'chat-list/lib/utils';
 import { useTranslation } from 'react-i18next';
 import Button from '../button';
 
@@ -40,11 +40,11 @@ export default React.memo(function index(props: IBubbleMenuProps) {
   const [copyOk, setCopyOk] = React.useState(false);
   const [copyMarkOk, setCopyMarkOk] = React.useState(false);
   const [isMarked, setIsMarked] = useState(false);
-  const container = useRef(null)
+  const container = useRef(null);
   const { t } = useTranslation();
   const onInsertCell = async () => {
     setWaiting(true);
-    const result = removeMentions(content)
+    const result = removeMentions(content);
     if (docType === 'sheet') {
       await sheetApi.insertText(result);
     } else if (docType === 'slide') {
@@ -88,9 +88,9 @@ export default React.memo(function index(props: IBubbleMenuProps) {
       type: docType,
       agent: plugin.action,
       data: content
-    })
+    });
     setIsMarked(true);
-  }
+  };
   // const buildHtml = async (text: string) => {
   //   const processor = unified()
   //     .use(remarkParse)
@@ -109,9 +109,9 @@ export default React.memo(function index(props: IBubbleMenuProps) {
   //   return html;
   // }
   const handleClick = async () => {
-    const result = removeMentions(content)
+    const result = removeMentions(content);
     let html = await buildHtml(result);
-    console.log(container.current)
+    console.log(container.current);
     if (container.current) {
       html = container.current.innerHTML;
     }
@@ -122,13 +122,13 @@ export default React.memo(function index(props: IBubbleMenuProps) {
     }, 1000);
   };
   const onCopyMark = async () => {
-    const result = removeMentions(content)
+    const result = removeMentions(content);
     await copyByClipboard(result, result);
     setCopyMarkOk(true);
     setTimeout(() => {
       setCopyMarkOk(false);
     }, 1000);
-  }
+  };
   const insertTitle = useMemo(() => {
     let tip = '';
     if (docType === 'doc') {
@@ -137,10 +137,10 @@ export default React.memo(function index(props: IBubbleMenuProps) {
       tip = t('common.insert_to_sheet');
     }
     return tip;
-  }, [])
+  }, []);
   const copyTitle = useMemo(() => {
     return t('common.copy');
-  }, [])
+  }, []);
 
   return (
     <div

@@ -1,7 +1,7 @@
 import { arrayToMarkdownTable, letter2columnNum, loadScript, memoize, numberToLetter } from "chat-list/utils";
-import { PyodideInterface } from 'pyodide'
+import { PyodideInterface } from 'pyodide';
 import XLSX from 'xlsx';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import { getValues } from 'chat-list/service/sheet';
 import image from 'chat-list/utils/image';
 import { getLocalStore, setLocalStore } from "chat-list/local/local";
@@ -24,9 +24,9 @@ export const createXlsxFile = async (sheetName?: string) => {
         return {
             name,
             values
-        }
+        };
     });
-    const sheetValues = await Promise.all(ps)
+    const sheetValues = await Promise.all(ps);
     // 创建新的 Workbook 对象
     // const wb = XLSX.utils.book_new();
     // // 创建新的工作表对象
@@ -61,7 +61,7 @@ export const createXlsxFile = async (sheetName?: string) => {
     });
     const wboutArrayBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
     return wboutArrayBuffer;
-}
+};
 
 export const readXlsxFileToJson = async (path: string): Promise<{ name: string, data: any[][] }[]> => {
     const pyodide = await initEnv();
@@ -84,7 +84,7 @@ export const readXlsxFileToJson = async (path: string): Promise<{ name: string, 
         // 更新工作表的范围
         worksheet['!ref'] = XLSX.utils.encode_range(newRange);
         const jsonData: any[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: true, defval: null });
-        console.log(jsonData)
+        console.log(jsonData);
         results.push({
             name,
             data: jsonData
@@ -92,7 +92,7 @@ export const readXlsxFileToJson = async (path: string): Promise<{ name: string, 
     }
 
     return results;
-}
+};
 
 export const readCsvFileToJson = async (path: string): Promise<{ name: string, data: any[][] }[]> => {
     const pyodide = await initEnv();
@@ -112,7 +112,7 @@ export const readCsvFileToJson = async (path: string): Promise<{ name: string, d
     }
 
     return results;
-}
+};
 
 export async function getPngBase64(fileArrayBuffer: Buffer) {
     const fileBlob = new Blob([new Uint8Array(fileArrayBuffer)], { type: 'image/png' });
@@ -135,26 +135,26 @@ export const readFileToBase64Image = async (path: string) => {
     const ext = path.split('.').pop();
     const base64Image = `data:image/${ext};base64,${base64}`;
     return base64Image;
-}
+};
 
 export const readFileToText = async (path: string) => {
     const pyodide = await initEnv();
     const modifiedFileData = pyodide.FS.readFile(path, { encoding: "binary" });
     const text = new TextDecoder("utf-8").decode(modifiedFileData);
     return text;
-}
+};
 
 export const getPackages = (): string[] => {
     const pkgs = getLocalStore('python_packages');
     return pkgs || ['pandas', 'matplotlib', 'numpy', 'openpyxl', 'seaborn', 'tabulate'];
-}
+};
 
 export const addPackages = (packages: string[] = []) => {
     const existingPackages = new Set(getPackages());
     const uniqueNewPackages = packages.filter((packageItem) => !existingPackages.has(packageItem));
     const mergedPackages = [...existingPackages, ...uniqueNewPackages];
-    setLocalStore('python_packages', mergedPackages)
-}
+    setLocalStore('python_packages', mergedPackages);
+};
 
 export const initEnv = memoize<(packages?: string[]) => Promise<PyodideInterface>>(async (packages: string[] = []): Promise<PyodideInterface> => {
     console.log('Initializing Python environment, please wait for a moment...');
@@ -164,10 +164,10 @@ export const initEnv = memoize<(packages?: string[]) => Promise<PyodideInterface
     const micropip = pyodide.pyimport("micropip");
     const pkgs = getPackages();
     if (packages.length > 0) {
-        pkgs.push(...packages)
+        pkgs.push(...packages);
     }
     await micropip.install(pkgs);
-    console.log('Initializing Python environment ends.')
+    console.log('Initializing Python environment ends.');
     return pyodide;
 });
 
@@ -179,9 +179,9 @@ export const pipInstall = async (packages: string[] = []) => {
     await env.loadPackage("micropip");
     const micropip = env.pyimport("micropip");
     await micropip.install(packages);
-    addPackages(packages)
+    addPackages(packages);
     return env;
-}
+};
 
 export async function checkDirectoryExists(directoryPath: string) {
     try {
@@ -212,8 +212,8 @@ export async function emptyDirectory(folder: string, fs: any) {
             const dir = contents[i];
             if (dir !== "." && dir !== "..") {
                 const itemPath = `${folder}/${dir}`;
-                console.log(itemPath)
-                const exist = await checkDirectoryExists(itemPath)
+                console.log(itemPath);
+                const exist = await checkDirectoryExists(itemPath);
                 if (exist) {
                     await emptyDirectory(itemPath, fs); // 递归删除子目录
                     fs.rmdir(itemPath); // 删除空子目录
@@ -224,7 +224,7 @@ export async function emptyDirectory(folder: string, fs: any) {
 
         }
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
 }
 
@@ -232,15 +232,15 @@ export const clearFolder = async (folder: string) => {
     const env = await initEnv();
     // 使用 pyodide 初始化 input 文件夹，判断文件夹是否存在，如果存在，先删除，再创建,使用pyodide的FS API
     const fs = env.FS;
-    await emptyDirectory(folder, fs)
-}
+    await emptyDirectory(folder, fs);
+};
 
 export const removeFile = async (filePath: string) => {
     const env = await initEnv();
     // 使用 pyodide 初始化 input 文件夹，判断文件夹是否存在，如果存在，先删除，再创建,使用pyodide的FS API
     const fs = env.FS;
     fs.unlink(filePath); // 删除文件
-}
+};
 
 function s2ab(s: string) {
     const buf = new ArrayBuffer(s.length);
@@ -281,7 +281,7 @@ export const downloadFile = async (filePath: string) => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-}
+};
 
 export const prepareFolder = async (folders: string[], clear = true) => {
     const env = await initEnv();
@@ -301,7 +301,7 @@ export const prepareFolder = async (folders: string[], clear = true) => {
         }
     }
     return env;
-}
+};
 
 export const writeFile = async (path: string, dataArrayBuffer: ArrayBuffer) => {
     if (!dataArrayBuffer) {
@@ -310,7 +310,7 @@ export const writeFile = async (path: string, dataArrayBuffer: ArrayBuffer) => {
     const pyodide = await initEnv();
     pyodide.FS.writeFile(path, dataArrayBuffer, { encoding: "binary" });
 
-}
+};
 
 export const listFiles = async (directoryPath: string): Promise<string[]> => {
     const pyodide = await initEnv();
@@ -332,7 +332,7 @@ export const listFiles = async (directoryPath: string): Promise<string[]> => {
         }
     }
     return fileNames;
-}
+};
 
 export const runFunction = async (code: string, functionName = 'main', args: any[] = []) => {
     const pyodide = await initEnv();
@@ -346,7 +346,7 @@ export const runFunction = async (code: string, functionName = 'main', args: any
     pyodide.setStdout({
         batched: (lines) => {
             if (typeof lines === 'string') {
-                captureStdout(lines)
+                captureStdout(lines);
             } else if (Array.isArray(lines)) {
                 (lines as string[]).forEach(captureStdout);
             }
@@ -371,7 +371,7 @@ export const runFunction = async (code: string, functionName = 'main', args: any
         result = res || '';
     }
     return stdout + '\n\n' + (result || '');
-}
+};
 
 export const runFunctionWithLog = async (code: string, functionName = 'main', args: any[] = []) => {
     const pyodide = await initEnv();
@@ -386,7 +386,7 @@ export const runFunctionWithLog = async (code: string, functionName = 'main', ar
     pyodide.setStdout({
         batched: (lines) => {
             if (typeof lines === 'string') {
-                captureStdout(lines)
+                captureStdout(lines);
             } else if (Array.isArray(lines)) {
                 (lines as string[]).forEach(captureStdout);
             }
@@ -395,7 +395,7 @@ export const runFunctionWithLog = async (code: string, functionName = 'main', ar
     pyodide.setStderr({
         batched: (lines) => {
             if (typeof lines === 'string') {
-                captureStdout(lines)
+                captureStdout(lines);
             } else if (Array.isArray(lines)) {
                 (lines as string[]).forEach(captureStdout);
             }
@@ -413,7 +413,7 @@ export const runFunctionWithLog = async (code: string, functionName = 'main', ar
 
     // Return both the function result and captured stdout
     return { result, stdout };
-}
+};
 
 export const readFilesToData = async (folder: string, showFileContent = true): Promise<{
     type: string,
@@ -427,7 +427,7 @@ export const readFilesToData = async (folder: string, showFileContent = true): P
 }[]> => {
     const files = await listFiles(folder);
     if (!files || files.length <= 0) {
-        return []
+        return [];
     }
     const results: { type: string, name: string, path: string; data: any }[] = [];
     // JavaScript 从文件系统中读取修改后的文件
@@ -469,7 +469,7 @@ export const readFilesToData = async (folder: string, showFileContent = true): P
             // render image
             let base64Image: any = [];
             if (showFileContent) {
-                base64Image = await readFileToBase64Image(path)
+                base64Image = await readFileToBase64Image(path);
             }
             // const url = image.set(base64Image, 'python.chart')
             // const msg = `${fileName}\n![${fileName}](${url})`;
@@ -482,7 +482,7 @@ export const readFilesToData = async (folder: string, showFileContent = true): P
         } else if (ext === 'txt') {
             let text: any = [];
             if (showFileContent) {
-                text = await readFileToText(path)
+                text = await readFileToText(path);
             }
 
             results.push({
@@ -494,7 +494,7 @@ export const readFilesToData = async (folder: string, showFileContent = true): P
         } else if (ext === 'md') {
             let text: any = [];
             if (showFileContent) {
-                text = await readFileToText(path)
+                text = await readFileToText(path);
             }
 
             results.push({
@@ -520,7 +520,7 @@ export const readFilesToData = async (folder: string, showFileContent = true): P
         }
     }
     return results;
-}
+};
 
 export const convertFileToMark = (files: {
     type: string;
@@ -543,9 +543,9 @@ export const convertFileToMark = (files: {
     for (let i = 0; i < files.length; i++) {
         const { type, name, data, path } = files[i];
         if (type === 'xlsx' || type === 'xls') {
-            const datas = data as { name: string; data: any[][]; }[]
+            const datas = data as { name: string; data: any[][]; }[];
             const content = datas.map(({ name, data }) => {
-                return `**${name}**\n\n${arrayToMarkdownTable(data)}`
+                return `**${name}**\n\n${arrayToMarkdownTable(data)}`;
             }).join('\n\n');
             results.push({
                 type,
@@ -556,9 +556,9 @@ export const convertFileToMark = (files: {
             });
         }
         else if (type === 'csv') {
-            const datas = data as { name: string; data: any[][]; }[]
+            const datas = data as { name: string; data: any[][]; }[];
             const markTable = datas.map(({ name, data }) => {
-                return `**${name}**\n${arrayToMarkdownTable(data)}\n`
+                return `**${name}**\n${arrayToMarkdownTable(data)}\n`;
             }).join('\n');
             results.push({
                 type,
@@ -570,7 +570,7 @@ export const convertFileToMark = (files: {
         }
         else if (type === 'png' || type == 'jpeg') {
             // render image
-            const url = image.set(data as string, `python.chart/${name}`)
+            const url = image.set(data as string, `python.chart/${name}`);
             const msg = `**${name}**\n![${name}](${url})`;
             results.push({
                 type,
@@ -602,7 +602,7 @@ export const convertFileToMark = (files: {
         }
     }
     return results;
-}
+};
 
 
 export async function updateFileToSheet(activeSheet: string, fileDatas: {
@@ -616,13 +616,13 @@ export async function updateFileToSheet(activeSheet: string, fileDatas: {
             const sheets = (file.data as { name: string; data: any[][]; }[]);
             const sheet = sheets.find(p => p.name == activeSheet);
             if (sheet) {
-                await sheetApi.setValues(sheet.data, activeSheet)
+                await sheetApi.setValues(sheet.data, activeSheet);
             } else {
                 const values = sheets[0].data;
-                await sheetApi.setValues(values)
+                await sheetApi.setValues(values);
             }
         } else if (file.type === 'png' || file.type == 'jpg' || file.type == 'jpeg') {
-            await sheetApi.insertImage(file.data as string, 500, 350)
+            await sheetApi.insertImage(file.data as string, 500, 350);
         }
     }
 }
@@ -650,14 +650,14 @@ export const runScript = async (script: string) => {
             if (ext === 'xlsx') {
                 const datas = await readXlsxFileToJson(path);
                 const markTable = datas.map(({ data }) => {
-                    return `${arrayToMarkdownTable(data)}`
+                    return `${arrayToMarkdownTable(data)}`;
                 }).join('\n');
 
                 execResult += `\n\n${result}\n${markTable}`;
             } else if (ext === 'png' || ext == 'jpeg') {
                 // render image
-                const base64Image = await readFileToBase64Image(path)
-                const url = image.set(base64Image)
+                const base64Image = await readFileToBase64Image(path);
+                const url = image.set(base64Image);
                 const msg = `${result}\n\n${fileName}\n![${fileName}](${url})`;
 
                 execResult += `\n\n${msg}`;
@@ -677,7 +677,7 @@ export const runScript = async (script: string) => {
         console.error(e);
         return `Script run failed, Exception:${e.message}`;
     }
-}
+};
 
 export const readFileToBase64 = async (path: string, type = ''): Promise<string> => {
     const pyodide = await initEnv();
@@ -696,7 +696,7 @@ export const readFileToBase64 = async (path: string, type = ''): Promise<string>
         };
         fileReader.readAsDataURL(fileBlob);
     });
-}
+};
 
 export function extractPackageNames(command: string) {
     const regex = /^!?(\s*pip install (.+))/;
@@ -719,12 +719,12 @@ export async function prepareFont(language = 'en-US') {
         vi: '/roboto/Roboto-Regular-14.ttf',
         'zh-CN': "/yahei/Microsoft-YaHei.ttf",
         'zh-TW': "/yahei/Microsoft-YaHei.ttf",
-    }
+    };
     try {
-        const font = fontMap[language] || '/yahei/Microsoft-YaHei.ttf'
+        const font = fontMap[language] || '/yahei/Microsoft-YaHei.ttf';
         const fontUrl = `https://cdn.sally.bot/font${font}`;//`font/yahei/${font}`;
         const data = await fetch(fontUrl)
-            .then(response => response.arrayBuffer())
+            .then(response => response.arrayBuffer());
         const pyodide = await initEnv();
         // await prepareFolder(['/input'], false)
         await writeFile(`/language.ttf`, new Uint8Array(data));

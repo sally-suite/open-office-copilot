@@ -1,9 +1,10 @@
-import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { Check } from "lucide-react"
+/* eslint-disable react/prop-types */
+import * as React from "react";
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import { Check } from "lucide-react";
 
-import { cn } from "chat-list/lib/utils"
-import { useState } from "react"
+import { cn } from "chat-list/lib/utils";
+import { useState } from "react";
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
@@ -23,8 +24,8 @@ const Checkbox = React.forwardRef<
       <Check className="h-4 w-4" />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
-))
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
+));
+Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
 interface CheckboxGroupProps {
   options: { value: string, text: string }[];
@@ -63,6 +64,6 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ options, value, onChange,
   );
 };
 
-CheckboxGroup.displayName = 'CheckboxGroup'
+CheckboxGroup.displayName = 'CheckboxGroup';
 
-export { Checkbox, CheckboxGroup }
+export { Checkbox, CheckboxGroup };

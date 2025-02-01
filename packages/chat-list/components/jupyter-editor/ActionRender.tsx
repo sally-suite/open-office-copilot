@@ -41,7 +41,7 @@ export default function ActionRender(props: IActionProps) {
             <Check color="green" size={16} />
             {renderUndo()}
           </>
-        )
+        );
       } else if (actionState[log.id].status === "error") {
         return "";
       }

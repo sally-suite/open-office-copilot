@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Textarea } from 'chat-list/components/ui/textarea';
 import Button from 'chat-list/components/button';
 import Markdown from 'chat-list/components/markdown';
-import FileSelector from 'chat-list/components/file-selector'
+import FileSelector from 'chat-list/components/file-selector';
 import { IMessageBody } from 'chat-list/types/chat';
 import { blobToBase64Image } from 'chat-list/utils';
 import { chat } from 'chat-list/service/message';
 import { ShieldAlert, XCircle } from 'lucide-react';
 import { cn } from 'chat-list/lib/utils';
 import useLocalStore from 'chat-list/hook/useLocalStore';
-import { Alert, AlertDescription, AlertTitle } from "chat-list/components/ui/alert"
+import { Alert, AlertDescription, AlertTitle } from "chat-list/components/ui/alert";
 import toast from 'chat-list/components/ui/use-toast';
 import { useTranslation } from 'react-i18next';
-import ModelSelect from 'chat-list/components/model-select'
+import ModelSelect from 'chat-list/components/model-select';
 import { Input } from '../ui/input';
 import useChatState from 'chat-list/hook/useChatState';
 export interface IVisionRenderProps {
@@ -28,7 +28,7 @@ export default function VisionRender(props: IVisionRenderProps) {
     const [result, setResult] = useState('');
     const [images, setImages] = useState(sourceImages);
     const { value: model, setValue: setModel } = useLocalStore('vision-model', 'gpt-4o');
-    const { value: tipVisible, setValue: setTipVisible } = useLocalStore('sheet-chat-vison-tip', true)
+    const { value: tipVisible, setValue: setTipVisible } = useLocalStore('sheet-chat-vison-tip', true);
     const [maxTokens, setMaxTokens] = useState(500);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -41,7 +41,7 @@ export default function VisionRender(props: IVisionRenderProps) {
                 image_url: {
                     url
                 }
-            }
+            };
         });
 
         // const images = await Promise.all(ps);
@@ -49,12 +49,12 @@ export default function VisionRender(props: IVisionRenderProps) {
         return {
             role: 'user',
             content: msgs
-        }
-    }
+        };
+    };
     const ask = async () => {
-        setResult('')
+        setResult('');
         if (images.length === 0) {
-            toast.fail('Please select an image.')
+            toast.fail('Please select an image.');
             return;
         }
         const msg = convertMessage(inputValue, images);
@@ -71,11 +71,11 @@ export default function VisionRender(props: IVisionRenderProps) {
             setResult(result.content);
         });
 
-    }
+    };
     const chatWithImage = async (prompt: string, async = true) => {
-        setResult('')
+        setResult('');
         if (images.length === 0) {
-            toast.fail('Please select an image.')
+            toast.fail('Please select an image.');
             return;
         }
         const msg = convertMessage(prompt, images);
@@ -95,36 +95,36 @@ export default function VisionRender(props: IVisionRenderProps) {
         if (!async) {
             setResult(res.content);
         }
-    }
+    };
     const extractTable = async () => {
         const prompt = 'Please extracts table information and returns the table.';
         setInputValue(prompt);
         await chatWithImage(prompt);
-    }
+    };
     const analyzeChart = async () => {
         const prompt = 'You are a data analysis expert, help me analyze this chart for key findings and output your analysis.';
         setInputValue(prompt);
         await chatWithImage(prompt);
-    }
+    };
     const extractDiagram = async () => {
         const prompt = 'Help me extract the diagram from the image and return the UML Diagram in mermaid format.output format:\nDiagram:\n\n<diagram>';
         setInputValue(prompt);
         await chatWithImage(prompt, false);
-    }
+    };
     const extractFormula = async () => {
         const prompt = 'Help me extract the Formula from the image and return the Formula in Latex format, Using the $ wrap formula.';
         setInputValue(prompt);
         await chatWithImage(prompt);
-    }
+    };
     const onFileSelect = async (files: File[]) => {
         const imgs = await Promise.all(files.map(file => blobToBase64Image(file)));
-        setImages(images.concat(imgs))
+        setImages(images.concat(imgs));
         // setFiles(files);
-    }
+    };
     const removeImage = (index: number) => {
-        setImages(images.filter((_, i) => i !== index))
+        setImages(images.filter((_, i) => i !== index));
         // setFiles(files.filter((_, i) => i !== index))
-    }
+    };
     const initQuestions = async () => {
         const prompt = `You're a data analytics expert,can you recommend three questions about this image?`;
         const msg = convertMessage(prompt, images);
@@ -136,30 +136,30 @@ export default function VisionRender(props: IVisionRenderProps) {
         setInputValue('Preparing questions...');
         setInputValue(reuslt.content);
         // setResult(reuslt.content);
-    }
+    };
     const closeTip = () => {
         setTipVisible(false);
-    }
+    };
     const onModelChange = (model: string) => {
         // console.log(model)
-        setModel(model)
-    }
+        setModel(model);
+    };
     const onMaxTokensChange = (e: any) => {
-        setMaxTokens(e.target.value)
-    }
+        setMaxTokens(e.target.value);
+    };
     const initImageList = async () => {
         const imgs = await Promise.all(fileList.map(file => blobToBase64Image(file)));
-        setImages(imgs)
-    }
+        setImages(imgs);
+    };
     useEffect(() => {
         if (sourceImages.length > 0) {
             initQuestions();
         }
-    }, [sourceImages])
+    }, [sourceImages]);
 
     useEffect(() => {
         initImageList();
-    }, [fileList])
+    }, [fileList]);
     return (
         <div className="flex flex-col p-2">
             {
@@ -197,7 +197,7 @@ export default function VisionRender(props: IVisionRenderProps) {
                                 <XCircle onClick={removeImage.bind(null, i)} className=" absolute top-1 w-4 h-4 right-1 text-gray-500 cursor-pointer" />
 
                             </div>
-                        )
+                        );
                     })
                 }
             </div>

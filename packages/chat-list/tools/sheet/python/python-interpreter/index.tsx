@@ -16,7 +16,7 @@ import i18n from 'chat-list/locales/i18n';
  */
 export const func = async ({ active_sheet, script, output_files, explain, context }: { active_sheet: string, script: string, output_files: string[], explain: string, context: ChatState }) => {
     // const code = extractCodeFromMd(script);
-    console.log('output_files', output_files)
+    console.log('output_files', output_files);
     if (!script) {
         return `Sorry! I can't generate the script code`;
     }
@@ -36,8 +36,8 @@ export const func = async ({ active_sheet, script, output_files, explain, contex
 
     const wboutArrayBuffer = await createXlsxFile();
 
-    await prepareFolder(['/input'], false)
-    await prepareFolder(['/output'], false)
+    await prepareFolder(['/input'], false);
+    await prepareFolder(['/output'], false);
     await writeFile('/input/data.xlsx', wboutArrayBuffer);
     await prepareFont(i18n.resolvedLanguage);
     const result = await runFunction(code, 'main');
@@ -59,14 +59,14 @@ export const func = async ({ active_sheet, script, output_files, explain, contex
         const exist = output_files.some((fileName) => {
             if (fileName.startsWith('/output')) {
                 if (fileName == path) {
-                    return true
+                    return true;
                 }
             } else {
                 if (fileName == `${name}.${type}`) {
-                    return true
+                    return true;
                 }
             }
-            return false
+            return false;
         });
         if (!exist) {
             continue;
@@ -78,7 +78,7 @@ export const func = async ({ active_sheet, script, output_files, explain, contex
         if (type == 'pptx') {
             const data = await readFileToBase64(path, 'application/vnd.openxmlformats-officedocument.presentationml.presentation');
             // console.log('pptdata', data)
-            await slideApi.insertSlidesFromBase64(data)
+            await slideApi.insertSlidesFromBase64(data);
             summary += 'Generating presentation task completed!';
         } else if (type == 'xlsx') {
             // display a card to show download link
@@ -92,7 +92,7 @@ export const func = async ({ active_sheet, script, output_files, explain, contex
             for await (const file of data) {
                 const { name } = file;
                 if (file?.data && file?.data.length > 0 && file?.data[0].length > 0) {
-                    const n = await sheetApi.initSheet(name)
+                    const n = await sheetApi.initSheet(name);
                     await sheetApi.setValues(file?.data || [], n);
                 }
             }
@@ -108,7 +108,7 @@ export const func = async ({ active_sheet, script, output_files, explain, contex
                 component: (
                     <FolderList folders={['/output']} expand={true} />
                 )
-            })
+            });
         } else {
             const folderMsg = buildChatMessage(<CardFolder folders={['/output']} />, 'card', 'assistant');
             appendMsg(folderMsg);
@@ -116,7 +116,7 @@ export const func = async ({ active_sheet, script, output_files, explain, contex
 
     }
     return summary;
-}
+};
 
 export default {
     type: 'function',

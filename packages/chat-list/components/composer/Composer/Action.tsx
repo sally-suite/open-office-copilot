@@ -1,7 +1,7 @@
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
-import { cn } from 'chat-list/lib/utils'
-import Tooltip from 'chat-list/components/tooltip'
+import { cn } from 'chat-list/lib/utils';
+import Tooltip from 'chat-list/components/tooltip';
 import Avatar from 'chat-list/components/avatars';
 
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -32,7 +32,7 @@ export const Action = (props: IconButtonProps) => {
         }
         {children}
       </div>
-    )
+    );
   }
   return (
     <Tooltip tip={title}>
@@ -48,4 +48,4 @@ export const Action = (props: IconButtonProps) => {
       </div>
     </Tooltip>
   );
-}
+};

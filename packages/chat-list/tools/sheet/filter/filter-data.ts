@@ -9,10 +9,10 @@ import {
     extractCodeFromMd,
     getFunc,
 } from 'chat-list/utils';
-import { colors } from 'chat-list/data/templates/colors'
-import { getSheetInfo, getValues } from 'chat-list/service/sheet'
+import { colors } from 'chat-list/data/templates/colors';
+import { getSheetInfo, getValues } from 'chat-list/service/sheet';
 import { chat } from 'chat-list/service/message';
-import instruction from './prompts/instruction.md'
+import instruction from './prompts/instruction.md';
 import { ITool, IToolFunction } from 'chat-list/types/plugin';
 
 const getSheetDataByFunctionMode = async (input: any, sampleData: string[][]): Promise<string[][]> => {
@@ -38,7 +38,7 @@ const getColor = () => {
 const hightlightRowsByColor = async (rows: { row: number, data: any[] }[], color: string) => {
     const rowNums = rows.map(p => p.row);
     await sheetApi.highlightRowsWithColor(rowNums, color);
-}
+};
 
 const buildMarkdownTable = async (rows: { row: number, data: any[] }[], sampleData: string[][]) => {
     const records = rows.map(p => p.data);
@@ -49,12 +49,12 @@ const buildMarkdownTable = async (rows: { row: number, data: any[] }[], sampleDa
   
   ${mark}
   `;
-}
+};
 
 export const main: IToolFunction = async ({ condtion, sheet_name = '', context, from }) => {
     const sampleData = await getValues(2, sheet_name as any);
     if (!sampleData || sampleData.length <= 0) {
-        throw new Error('Not find data in current sheet.')
+        throw new Error('Not find data in current sheet.');
     }
     const heads = sampleData[0];
     if (!heads || heads.length <= 0 || heads.every(p => !p)) {
@@ -65,13 +65,13 @@ export const main: IToolFunction = async ({ condtion, sheet_name = '', context, 
     const tableData = bodyData.map(p => {
         return p.map(p => {
             if (typeof p == 'string') {
-                return 'sample'
+                return 'sample';
             } else if (typeof p == 'number') {
                 return 1;
             }
             return p;
-        })
-    })
+        });
+    });
     const allSampleData = [heads].concat(tableData);
     const data = await getSheetDataByFunctionMode(condtion, allSampleData);
     if (data.length <= 0) {
@@ -81,9 +81,9 @@ export const main: IToolFunction = async ({ condtion, sheet_name = '', context, 
     const sheetName = await sheetApi.initSheet(name, [], { active: false });
     await sheetApi.setValues(data, sheetName);
     const result = arrayToMarkdownTable(data);
-    context.appendMsg(buildChatMessage(`Condition: ${condtion}\n${result}`, 'text', 'assistant', from))
+    context.appendMsg(buildChatMessage(`Condition: ${condtion}\n${result}`, 'text', 'assistant', from));
     return `Filtering task have been completed, please check Sheet: ${name}, condition is ${condtion}`;
-}
+};
 
 
 export default {

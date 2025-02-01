@@ -24,7 +24,7 @@ export const extractCodeFromMd = (inputText: string) => {
     }
 
     return '';
-}
+};
 
 // export const extractJsonDataFromMd = (inputText: string) => {
 //     try {
@@ -108,28 +108,28 @@ export const extractJsFunctionFromMd = (inputText: string) => {
 
 
 export const absolute = (url: string) => {
-    return `${SHEET_CHAT_SITE}${url}`
-}
+    return `${SHEET_CHAT_SITE}${url}`;
+};
 
 export const sleep = (ms?: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms || 500));
-}
+};
 
 export const uuid = () => {
     return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-}
+};
 
 export const isCtrlPlus = (e: any, key) => {
     const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
     return (
         (isMac && e.metaKey && !e.ctrlKey && !e.altKey && e.key === key) ||
         (!isMac && e.ctrlKey && !e.metaKey && !e.altKey && e.key === key)
-    )
-}
+    );
+};
 
 export const isProd = () => {
     return process.env.NODE_ENV === 'production';
-}
+};
 
 // export const memoize = (func: any) => {
 //     let cache: any;
@@ -180,7 +180,7 @@ export const cacheInTime = (fn: (...arg: any[]) => void, time: number) => {
         lastResult.result = fn(...args);
         return lastResult.result;
     };
-}
+};
 
 
 
@@ -229,7 +229,7 @@ export const blobToDataURL = async (blob: Blob): Promise<string> => {
         };
         reader.readAsDataURL(blob);
     });
-}
+};
 
 
 export const blobToBase64 = async (blob: Blob): Promise<string> => {
@@ -241,10 +241,10 @@ export const blobToBase64 = async (blob: Blob): Promise<string> => {
         };
         reader.onerror = function () {
             console.error('Error reading blob as base64');
-        }
+        };
         reader.readAsDataURL(blob);
     });
-}
+};
 
 export const blobToArrayBuffer = async (blob: Blob): Promise<ArrayBuffer> => {
     return new Promise((resolve) => {
@@ -255,12 +255,12 @@ export const blobToArrayBuffer = async (blob: Blob): Promise<ArrayBuffer> => {
         };
         reader.readAsArrayBuffer(blob);
     });
-}
+};
 
 export const blobToBase64Image = async (file: Blob) => {
     const base64 = await blobToBase64(file);
     return `data:${file.type || 'image/png'};base64,${base64}`;
-}
+};
 
 function getMimeType(base64Url: string) {
     if (base64Url.startsWith('http')) {
@@ -272,7 +272,7 @@ function getMimeType(base64Url: string) {
             return `image/${matchs[0].substring(1)}`;
         }
 
-        return 'image/png'
+        return 'image/png';
     }
     const matches = base64Url.match(/^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-+.]+);base64,/);
     if (matches && matches.length > 1) {
@@ -304,7 +304,7 @@ export async function base64ToFile(base64Url: string, fileName: string, mime?: s
             return null;
         }
     } else {
-        mimeType = mime
+        mimeType = mime;
     }
     //判断是否为图片base64 data url,然后 提取base64字符串中的数据部分
     let base64 = base64Url;
@@ -312,7 +312,7 @@ export async function base64ToFile(base64Url: string, fileName: string, mime?: s
         base64 = base64Url.split(',')[1];
     }
 
-    const blob = base64ToBlob(base64, mimeType)
+    const blob = base64ToBlob(base64, mimeType);
 
     return new File([blob], fileName, { type: mimeType });
 }
@@ -321,23 +321,23 @@ export const platform = (): Platform => {
 
     // @ts-ignore
     if (typeof window?.google?.script !== 'undefined') {
-        return 'google'
+        return 'google';
     }
     // @ts-ignore
     if (typeof window.Office !== 'undefined') {
-        return 'office'
+        return 'office';
     }
     // @ts-ignore
     if (typeof window.Asc !== 'undefined') {
-        return 'only'
+        return 'only';
     }
     // @ts-ignore
     if (typeof window.chrome?.storage !== 'undefined') {
-        return 'chrome'
+        return 'chrome';
     }
 
-    return 'other'
-}
+    return 'other';
+};
 
 
 export const copyTextByCommand = (type: 'text' | 'html', html: string) => {
@@ -361,12 +361,12 @@ export const copyTextByCommand = (type: 'text' | 'html', html: string) => {
     selection.addRange(range);
     document.execCommand('copy');
     document.body.removeChild(textarea);
-}
+};
 
 export const copyByClipboard = async (content: string, html?: string) => {
     if (html) {
         try {
-            copyTextByCommand('html', html)
+            copyTextByCommand('html', html);
         } catch (e) {
             const htmlBlob = new Blob([html], {
                 type: 'text/html',
@@ -392,10 +392,10 @@ export const copyByClipboard = async (content: string, html?: string) => {
                 }),
             ]);
         } catch (e) {
-            copyTextByCommand('text', content)
+            copyTextByCommand('text', content);
         }
     }
-}
+};
 
 export function extractMentions(text: string) {
     const mentionRegex = /@([^\s]+)/g;
@@ -423,7 +423,7 @@ export const extractCommand = (text: string) => {
     }
     return '';
 
-}
+};
 
 export function existMentions(text: string) {
     const mentionRegex = /^@([^\s]+)/g;
@@ -523,7 +523,7 @@ export function formatCurrency(number: number): string {
 export const formatNumberWithCommas = (num: number) => {
     // 格式化数字，按照英文习惯加逗号
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
+};
 
 export function isBase64(str: string) {
     const base64Regex = /^(?:[A-Za-z0-9+/]{4})*?(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
@@ -586,8 +586,8 @@ export const isMobile = () => {
     }
     return /mobile|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
-    )
-}
+    );
+};
 
 export function loadScript(url: string) {
     return new Promise((resolve, reject) => {
@@ -614,12 +614,12 @@ export function loadScript(url: string) {
 
         // 将脚本元素插入到HTML中
         document.getElementsByTagName("head")[0].appendChild(script);
-    })
+    });
 
 }
 
 export function addBlockQuote(content: string) {
-    if (!content.trim()) return ''
+    if (!content.trim()) return '';
 
     return content.replace(/^(.*)$/gm, '> $1');
 }
@@ -657,4 +657,4 @@ export function hexToRgba(hexColor: string, opacity: number) {
 export const htmlToText = (html: string) => {
     const doc = new DOMParser().parseFromString(html, 'text/html');
     return doc.body.textContent || "";
-}
+};

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { createRoot } from 'react-dom/client';
 import { plugins } from 'chat-list/apps/chat/plugins';
-import { init } from 'chat-list/service/log'
+import { init } from 'chat-list/service/log';
 import { UserProvider } from 'chat-list/store/userContext';
 import { ChatProvider } from 'chat-list/store/chatContext';
 import 'chat-list/components/icon/svg-icons-register';
@@ -15,7 +15,7 @@ import 'chat-list/assets/css/markdown.less';
 import { DocType, IChatPlugin } from 'chat-list/types/plugin';
 import { getLocalStore } from 'chat-list/local/local';
 import { Toaster } from "chat-list/components/ui/toaster";
-import Jupyter from 'chat-list/pages/jupyter'
+import Jupyter from 'chat-list/pages/jupyter';
 import { TooltipProvider } from 'chat-list/components/ui/tooltip';
 import 'chat-list/locales/i18n';
 import { useTranslation } from 'react-i18next';

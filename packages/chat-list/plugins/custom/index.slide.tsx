@@ -17,7 +17,7 @@ export class CustomAgent extends ChatPluginBase implements IChatPlugin {
     this.agents = [];
     this.instruction = agent.instruction || '';
     this.description = agent.description || '';
-    this.introduce = agent.introduce || `Hi,I'm ${this.name},How can I assistant you?`
+    this.introduce = agent.introduce || `Hi,I'm ${this.name},How can I assistant you?`;
     this.dataAsContext = agent.dataAsContext;
     this.action = this.name;
     this.isCustom = true;
@@ -27,8 +27,8 @@ export class CustomAgent extends ChatPluginBase implements IChatPlugin {
     const data = JSON.parse(context);
     return (
       <ContextSlide type={data.type} text={data.text} slides={data.slides} />
-    )
-  }
+    );
+  };
   // tools = tools;
   // injectContext = async () => {
   //   const { docType } = this.context;

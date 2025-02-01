@@ -40,8 +40,8 @@ const SlideProvider = ({ children, slideData: defaultSlideData, slideImages, met
   const [slideData, setSlideData] = useState(defaultSlideData);
 
   useEffect(() => {
-    setSlideData(defaultSlideData)
-  }, [defaultSlideData])
+    setSlideData(defaultSlideData);
+  }, [defaultSlideData]);
 
   return (
     <SlideContext.Provider value={{

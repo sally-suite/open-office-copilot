@@ -1,5 +1,5 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
 import { setLocalStore } from 'chat-list/local/local';
 import { cn } from 'chat-list/lib/utils';
@@ -16,7 +16,7 @@ export default function CardPaperInfo(props: ICardPaperInfo) {
         <div className='bubble p-4 rounded-md flex flex-row items-center text-sm cursor-pointer' onClick={() => {
             if (papers && papers.length > 0) {
                 setLocalStore('paper-list', papers);
-                navigate('/search-paper')
+                navigate('/search-paper');
             }
         }}>
             <Icon height={20} width={20} />
@@ -24,5 +24,5 @@ export default function CardPaperInfo(props: ICardPaperInfo) {
                 {content}
             </span>
         </div>
-    )
+    );
 }

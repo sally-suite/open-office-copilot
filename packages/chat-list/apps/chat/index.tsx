@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { createRoot } from 'react-dom/client';
 import { plugins } from 'chat-list/apps/chat/plugins';
-import { init } from 'chat-list/service/log'
+import { init } from 'chat-list/service/log';
 import { UserProvider } from 'chat-list/store/userContext';
 import { ChatProvider } from 'chat-list/store/chatContext';
 import { createHashRouter, createMemoryRouter, RouterProvider } from 'react-router-dom';
@@ -17,7 +17,7 @@ import { DocType, IChatPlugin } from 'chat-list/types/plugin';
 import { getLocalStore } from 'chat-list/local/local';
 import { Toaster } from "chat-list/components/ui/toaster";
 import CreateAgent from 'chat-list/pages/create-agent';
-import Chat from 'chat-list/pages/chat'
+import Chat from 'chat-list/pages/chat';
 import { TooltipProvider } from 'chat-list/components/ui/tooltip';
 import 'chat-list/locales/i18n';
 import { useTranslation } from 'react-i18next';

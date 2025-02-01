@@ -6,17 +6,17 @@ import { ITool } from 'chat-list/types/plugin';
 // import getSelectTextDesc from './get-selected-text.md'
 export const main: ITool['func'] = async (): Promise<any> => {
     // 先检查Article 标签
-    const article = document.querySelector('article')
+    const article = document.querySelector('article');
     if (article) {
-        return article.innerText
+        return article.innerText;
     }
     // 再检查 main 标签
-    const main = document.querySelector('main')
+    const main = document.querySelector('main');
     if (main) {
-        return main.innerText
+        return main.innerText;
     }
-    return document.body.innerText
-}
+    return document.body.innerText;
+};
 
 export default {
     "name": "get_page_selected_text",

@@ -1,7 +1,7 @@
 // FileList.js
 import { File, Image } from 'lucide-react';
 import React, { useState } from 'react';
-import ImageFile from '../ImageFile'
+import ImageFile from '../ImageFile';
 import { formatFileSize } from 'chat-list/utils/file';
 
 interface IFileListProps {
@@ -13,13 +13,13 @@ interface IFileListProps {
 
 const FileList = ({ title = 'File List', files, text }: IFileListProps) => {
 
-    const [visible, setVisible] = useState<{ [x: string]: boolean }>({})
+    const [visible, setVisible] = useState<{ [x: string]: boolean }>({});
     const showMore = (id: string) => {
         setVisible({
             ...visible,
             [id]: !visible[id]
-        })
-    }
+        });
+    };
     const renderPreview = (file: File & { content: string }) => {
         if (file.type.startsWith('image')) {
             return (
@@ -30,10 +30,10 @@ const FileList = ({ title = 'File List', files, text }: IFileListProps) => {
                     </p>
                 </div>
 
-            )
+            );
         }
         return file.content;
-    }
+    };
     return (
         <div className="flex flex-col p-2 shadow rounded-xl rounded-tr-none items-center bg-white w-card">
             <h2 className="w-full text-left pl-2 text-base mb-1">{title}</h2>
@@ -66,7 +66,7 @@ const FileList = ({ title = 'File List', files, text }: IFileListProps) => {
                                     }
                                 </div>
                             </div>
-                        )
+                        );
                     })
                 }
             </div>

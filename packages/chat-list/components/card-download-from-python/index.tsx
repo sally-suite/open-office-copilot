@@ -5,7 +5,7 @@ import {
     CardTitle
     // RadioGroup,
 } from "chat-list/components/ui/card";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { downloadFile } from 'chat-list/tools/sheet/python/util';
 import { DownloadCloud } from 'lucide-react';
 
@@ -19,8 +19,8 @@ export default function CardDownLoadFromPython(props: ICardDownLoadProps) {
     const { t } = useTranslation(['base']);
 
     const download = async (item: { path: string, name: string }) => {
-        await downloadFile(item.path)
-    }
+        await downloadFile(item.path);
+    };
     return (
         <Card>
             <CardTitle>{t('common.download')}</CardTitle>

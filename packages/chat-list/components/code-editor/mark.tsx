@@ -62,7 +62,7 @@ function App({
   const onCodeChange = (value: string) => {
     setEditorCode(value);
     if (onChange) {
-      onChange(value)
+      onChange(value);
     }
   };
   const addLog = (newLog: ILog) => {
@@ -106,7 +106,7 @@ function App({
       }
       setEditorCode(resultCode);
       if (onUndo) {
-        await onUndo(action)
+        await onUndo(action);
       } else {
         await executeCode(resultCode);
       }
@@ -252,15 +252,15 @@ function App({
 
   const onRecorderOutput = (text: string) => {
     setInput(input + text);
-  }
+  };
 
   const onClearInput = () => {
-    setInput('')
-  }
+    setInput('');
+  };
 
   const toggleMode = () => {
     setMode(mode === 'code' ? 'preview' : 'code');
-  }
+  };
 
   // useEffect(() => {
   //   // console.log(editorCode);

@@ -4,7 +4,7 @@ import description from './description.md';
 import sheetApi from '@api/sheet';
 import { arrayToMarkdownTable, buildChatMessage, extractJsonDataFromMd, template } from "chat-list/utils";
 import { chatByPrompt, chatByTemplate } from "chat-list/service/message";
-import answerDataTmp from './answer-data.md'
+import answerDataTmp from './answer-data.md';
 import { Puzzle } from "lucide-react";
 
 const BATCH_SIZE = 5; // 每个批次处理的行数
@@ -17,7 +17,7 @@ export const func = async ({ user_requirements, context }: { user_requirements: 
     const range = await sheetApi.getActiveRange();
     const { values, row, col, rowNum, colNum } = range;
     if (!values || values.length <= 0 || values.every(v => v.every(v => !v))) {
-        return 'No data found, tell user select a range of data, and can not select an entire column or row.'
+        return 'No data found, tell user select a range of data, and can not select an entire column or row.';
     }
 
     let allValues: any[] = [];
@@ -61,7 +61,7 @@ export const func = async ({ user_requirements, context }: { user_requirements: 
     context.appendMsg(resMsg);
     return 'Table completion done in batches.';
 
-}
+};
 
 export default {
     type: 'function',

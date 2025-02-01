@@ -2,13 +2,13 @@ import useChatState from 'chat-list/hook/useChatState';
 import React, { useEffect, useState } from 'react';
 import api from '@api/index';
 import ChatHeader from 'chat-list/components/header';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'chat-list/components/markdown';
 import { cn } from 'chat-list/lib/utils';
 import IconButton from '../icon-button';
 import { Check, Copy, FileOutput, Trash } from 'lucide-react';
 import Loading from '../loading';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import sheetApi from '@api/sheet';
 import docApi from '@api/doc';
 import slideApi from '@api/slide';
@@ -16,12 +16,12 @@ import { buildHtml, copyByClipboard, removeMentions } from 'chat-list/utils';
 // import plugins from '../trans-box/plugins';
 
 export default function BookMarks() {
-    const { t } = useTranslation('base')
-    const [list, setList] = useState([])
+    const { t } = useTranslation('base');
+    const [list, setList] = useState([]);
     const navigate = useNavigate();
     const params = useParams();
-    const [current, setCurrent] = useState(params.agent)
-    const [loading, setLoading] = useState(true)
+    const [current, setCurrent] = useState(params.agent);
+    const [loading, setLoading] = useState(true);
     const { docType, plugins, platform } = useChatState();
     const [copyOk, setCopyOk] = React.useState(false);
 
@@ -30,41 +30,41 @@ export default function BookMarks() {
         const list = await api.getBookmarkList({
             type: docType,
             agent: params.agent
-        })
+        });
         const msgs = list.map((item: any) => {
             return {
                 id: item.id,
                 content: item.data,
                 type: 'text',
-            }
-        })
-        setList(msgs)
+            };
+        });
+        setList(msgs);
         setLoading(false);
-    }
+    };
     const loadMarks = async (agent: string) => {
         setLoading(true);
         setCurrent(agent);
         const list = await api.getBookmarkList({
             type: docType,
             agent
-        })
+        });
         const msgs = list.map((item: any) => {
             return {
                 id: item.id,
                 content: item.data,
                 type: 'text',
-            }
-        })
+            };
+        });
 
-        setList(msgs)
+        setList(msgs);
         setLoading(false);
-    }
+    };
     const onRemove = async (id: string) => {
         await api.removeBookmark({ id });
-        await loadMarks(current)
-    }
+        await loadMarks(current);
+    };
     const onInsertCell = async (id: string, content: string) => {
-        const result = removeMentions(content)
+        const result = removeMentions(content);
         let html = await buildHtml(result);
         const el = document.querySelector(`#msg_${id}`);
         if (el) {
@@ -83,7 +83,7 @@ export default function BookMarks() {
         }
     };
     const onCopy = async (id: string, content: string) => {
-        const result = removeMentions(content)
+        const result = removeMentions(content);
         let html = await buildHtml(result);
         const el = document.querySelector(`#msg_${id}`);
         if (el) {
@@ -94,7 +94,7 @@ export default function BookMarks() {
         setTimeout(() => {
             setCopyOk(false);
         }, 1000);
-    }
+    };
     function renderMessageContent(msg: { id: string, content: string, type: string, text: string }) {
 
         const { type, content, text, id, } = msg;
@@ -147,11 +147,11 @@ export default function BookMarks() {
         return contentNode;
     }
     const onBack = () => {
-        navigate(-1)
-    }
+        navigate(-1);
+    };
     useEffect(() => {
         init();
-    }, [])
+    }, []);
     if (loading) {
         return (
             <div className='flex flex-col flex-1 overflow-y-auto bg-white'>
@@ -176,13 +176,13 @@ export default function BookMarks() {
                                 >
                                     {plg.name}
                                 </div>
-                            )
+                            );
                         })
                     }
                 </div>
                 <Loading className='h-40' />
             </div>
-        )
+        );
     }
     return (
         <div className='flex flex-col flex-1 overflow-y-auto bg-white h-screen'>
@@ -207,7 +207,7 @@ export default function BookMarks() {
                             >
                                 {plg.name}
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
@@ -224,7 +224,7 @@ export default function BookMarks() {
                             <div key={item.id}>
                                 {renderMessageContent(item)}
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
@@ -232,5 +232,5 @@ export default function BookMarks() {
                 list.length === 0 && <div className='flex justify-center items-center h-full'>No Bookmarks</div>
             }
         </div>
-    )
+    );
 }

@@ -2,13 +2,13 @@ import React from 'react';
 import { ChatPluginBase, IChatPlugin } from 'chat-list/types/plugin';
 import { IChatMessage, QuickReplyItem } from 'chat-list/types/message';
 import sheetApi from '@api/sheet';
-import instruction from './prompts/instruction.md'
-import description from './prompts/description.md'
-import formula from 'chat-list/assets/img/sigma.png'
+import instruction from './prompts/instruction.md';
+import description from './prompts/description.md';
+import formula from 'chat-list/assets/img/sigma.png';
 import FormulaRender from 'chat-list/components/render-formula';
 import i18n from 'chat-list/locales/i18n';
 export class EditFunction extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('doc.agent.formula', 'Write Formula')
+  name = i18n.t('doc.agent.formula', 'Write Formula');
   icon = formula;
   action = 'formula';
   shortDescription = i18n.t('doc.agent.formula.short_description', "Help you write Formula.");
@@ -49,8 +49,8 @@ export class EditFunction extends ChatPluginBase implements IChatPlugin {
 
   // };
   render = () => {
-    return <FormulaRender />
-  }
+    return <FormulaRender />;
+  };
 }
 
 export default new EditFunction();

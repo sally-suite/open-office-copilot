@@ -9,13 +9,13 @@ import {
 import TransStyleList from "../trans-style-list";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { getValues } from 'chat-list/service/sheet';
-import sheeApi from '@api/sheet'
-import { useTranslation } from 'react-i18next'
+import sheeApi from '@api/sheet';
+import { useTranslation } from 'react-i18next';
 import { Input } from "../ui/input";
 import { extractJsonDataFromMd, isTwoDimensionalArray, template } from "chat-list/utils";
 import useChatState from "chat-list/hook/useChatState";
 import Progress from "../progress";
-import transDataPrompt from './promps/translate.md'
+import transDataPrompt from './promps/translate.md';
 import { getApiConfig } from "chat-list/local/local";
 
 export function buildTransLateMessages(data: string[][], sourceLanguage: string, targetLanguage: string, style: string) {
@@ -54,14 +54,14 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
   const context = useChatState();
   const { targetLanguage, tone, sheetName, batchSize = 3 } = props;
   const { t } = useTranslation(['translate']);
-  const [rows, setRows] = useState(batchSize)
-  const [target, setTarget] = useState(targetLanguage)
+  const [rows, setRows] = useState(batchSize);
+  const [target, setTarget] = useState(targetLanguage);
   const { value: mode, setValue: setMode } = useLocalStore(
     SHEET_CHAT_TRANSLATE_MODE,
     "overwrite"
   );
-  const [style, setStyle] = useState(tone || "Formal")
-  const [progress, setProgress] = useState(0)
+  const [style, setStyle] = useState(tone || "Formal");
+  const [progress, setProgress] = useState(0);
   const running = useRef(false);
 
   const translateSheetByGpt = async (
@@ -117,19 +117,19 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
           throw new Error(`I'm sorry, I can't deal with your request.`);
         }
       }
-      console.log(value)
+      console.log(value);
 
       if (isTwoDimensionalArray(value)) {
         if (!mode || mode == 'overwrite') {
-          console.log(value, row + i, col, value.length, value[0].length)
-          await sheeApi.setValuesByRange(value, row + i, col, value.length, value[0].length)
+          console.log(value, row + i, col, value.length, value[0].length);
+          await sheeApi.setValuesByRange(value, row + i, col, value.length, value[0].length);
         } else {
           if (!isActive) {
             await sheeApi.initSheet(name, [], { active: true });
             isActive = true;
           }
-          console.log(value, row + i, col, value.length, value[0].length)
-          await sheeApi.setValuesByRange(value, row + i, col, value.length, value[0].length)
+          console.log(value, row + i, col, value.length, value[0].length);
+          await sheeApi.setValuesByRange(value, row + i, col, value.length, value[0].length);
         }
       }
       if (i >= values.length) {
@@ -141,7 +141,7 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
     if (progress < 100) {
       setProgress(100);
     }
-  }
+  };
 
   const onTranslateSet = async () => {
     if (!target) {
@@ -156,12 +156,12 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
       style,
       sheetName,
       rows
-    )
+    );
 
   };
   const onStop = () => {
     running.current = false;
-  }
+  };
 
   const onSelectTarget = (value: string, text: string) => {
     setTarget(text);
@@ -177,17 +177,17 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
 
   const onTargetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTarget(e.target.value);
-  }
+  };
   const onStyleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStyle(e.target.value);
-  }
+  };
 
   const onRowsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (Number(e.target.value) <= 0) {
       return 0;
     }
-    setRows(Number(e.target.value))
-  }
+    setRows(Number(e.target.value));
+  };
   return (
     <div className="flex flex-col mx-auto w-full">
       <div>
@@ -215,7 +215,7 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
                   >
                     {t(`mode.${opt.value}`, opt.label)}
                   </SelectItem>
-                )
+                );
               })
             }
           </SelectContent>

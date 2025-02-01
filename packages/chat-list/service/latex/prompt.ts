@@ -17,7 +17,7 @@ function loadPromptAsync() {
             return {
                 ...pre,
                 [fileName]: content.default
-            }
+            };
         }
 
     }, {});

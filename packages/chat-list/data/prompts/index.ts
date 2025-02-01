@@ -4,4 +4,4 @@ import zh from 'chat-list/data/prompts/zh.json';
 export default {
   'en-US': en,
   zh,
-} as { [x: string]: any }
+} as { [x: string]: any };

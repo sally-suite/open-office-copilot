@@ -3,7 +3,7 @@ import { LucideIcon } from "lucide-react";
 import { capitalizeFirstLetter } from "chat-list/utils";
 // import Icon from 'chat-list/components/icon'
 // import { LucideIcon } from "lucide-react";
-import Avatar from 'chat-list/components/avatars'
+import Avatar from 'chat-list/components/avatars';
 export interface IMention {
     name: string, avatar?: string, description?: string
 }
@@ -19,13 +19,13 @@ interface ICommandsProps {
 
 export const fetchMentions = (mentions: IMention[], mentionInput: string) => {
     return mentions.filter(item => item.name.toLowerCase().startsWith(mentionInput.toLowerCase()));
-}
+};
 
 export const fetchMetionByInput = (mentions: IMention[], input: string, cursorPosition: number) => {
     const mentionInput = input.slice(input.lastIndexOf('@') + 1, cursorPosition);
     const newMentions = fetchMentions(mentions, mentionInput);
     return newMentions;
-}
+};
 
 export const completeTextWithMetion = (mentions: IMention[], input: string, cursorPosition: number) => {
     if (!input || input.endsWith(' ')) {
@@ -39,13 +39,13 @@ export const completeTextWithMetion = (mentions: IMention[], input: string, curs
     const preMentionText = input.slice(0, input.lastIndexOf('@') + 1);
     const newText = preMentionText + capitalizeFirstLetter(mention.name) + ' ' + input.slice(cursorPosition);
     return newText;
-}
+};
 
 export const completeTextWithSelectedMetion = (mention: IMention, input: string, cursorPosition: number) => {
     const preMentionText = input.slice(0, input.lastIndexOf('@') + 1);
     const newText = preMentionText + capitalizeFirstLetter(mention.name) + ' ' + input.slice(cursorPosition);
     return newText;
-}
+};
 
 export default React.memo(function Commands(props: ICommandsProps) {
     const { input, onSelect, className = "", mentions = [], style = {}, cursorPosition } = props;
@@ -75,10 +75,10 @@ export default React.memo(function Commands(props: ICommandsProps) {
             setList([]);
             return;
         }
-        const newMentions = fetchMetionByInput(mentions, input, cursorPosition)
+        const newMentions = fetchMetionByInput(mentions, input, cursorPosition);
         setList(newMentions);
         setMentionInput(mentionInput);
-    }
+    };
 
     // const handleMentionSelect = (mention: any) => {
     //     const preMentionText = input.slice(0, input.lastIndexOf('@') + 1);
@@ -105,7 +105,7 @@ export default React.memo(function Commands(props: ICommandsProps) {
 
 
     useEffect(() => {
-        onInputChange()
+        onInputChange();
     }, [input]);
 
 

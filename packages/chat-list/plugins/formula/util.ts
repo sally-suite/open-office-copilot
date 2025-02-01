@@ -1,7 +1,7 @@
 import { arrayToMarkdownTable, template } from 'chat-list/utils';
-import genExp from './prompts/gen-formula.md'
-import sheetApi from '@api/sheet'
-import { getHeaderList } from 'chat-list/service/sheet'
+import genExp from './prompts/gen-formula.md';
+import sheetApi from '@api/sheet';
+import { getHeaderList } from 'chat-list/service/sheet';
 
 function convertToSpreadsheetCode(headers: string[]) {
   const spreadsheetCodes = [];
@@ -49,7 +49,7 @@ function buildColunsWithCode(headers: string[]) {
     const code = getColumnCode(index + 1);
     return `${header}[${code}]`;
   });
-  return columnCodes.join(',')
+  return columnCodes.join(',');
 }
 
 export const buildFunctionCreateMessages = async (input: string) => {
@@ -61,13 +61,13 @@ export const buildFunctionCreateMessages = async (input: string) => {
     rowNum: rowColNum.rowNum,
     colNum: rowColNum.colNum,
     columns: sheetHeads
-  })
+  });
   const context = {
     role: 'user',
     content: prompt
-  }
+  };
 
   return [
     context
-  ]
-}
+  ];
+};

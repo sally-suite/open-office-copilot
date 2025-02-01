@@ -18,8 +18,8 @@ export const main: ITool['func'] = async ({ target_language, batch_size, tone, s
         null,
         [],
         "I've shown some a translation options to user, you can let user check out and click ok,do not return other tools."
-    )
-}
+    );
+};
 
 export default {
     "name": "translate_sheet",

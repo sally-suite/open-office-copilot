@@ -17,13 +17,13 @@ interface ICommandsProps {
 
 export const fetchMentions = (prompts: IPrompts[], mentionInput: string) => {
     return prompts.filter(item => item.act.toLowerCase().includes(mentionInput.toLowerCase()));
-}
+};
 
 export const fetchPromptByInput = (prompts: IPrompts[], input: string) => {
     const mentionInput = input.slice(input.lastIndexOf('/') + 1);
     const newMentions = fetchMentions(prompts, mentionInput);
     return newMentions;
-}
+};
 
 export const completeTextWithPrompt = (prompts: IPrompts[], input: string) => {
     if (!input.startsWith('/')) {
@@ -35,11 +35,11 @@ export const completeTextWithPrompt = (prompts: IPrompts[], input: string) => {
     }
     const mention = list[0];
     return mention.prompt;
-}
+};
 
 export const completeTextWithSelectedPrompt = (mention: IPrompts, input: string) => {
-    return mention.prompt
-}
+    return mention.prompt;
+};
 
 
 export default React.memo(function Commands(props: ICommandsProps) {
@@ -65,10 +65,10 @@ export default React.memo(function Commands(props: ICommandsProps) {
             setList(prompts);
             return;
         }
-        const newMentions = fetchPromptByInput(prompts, input)
+        const newMentions = fetchPromptByInput(prompts, input);
         setList(newMentions);
         setMentionInput(mentionInput);
-    }
+    };
 
     // const handleMentionSelect = (mention: any) => {
     //     const preMentionText = input.slice(0, input.lastIndexOf('@') + 1);
@@ -95,17 +95,17 @@ export default React.memo(function Commands(props: ICommandsProps) {
 
 
     useEffect(() => {
-        onInputChange()
+        onInputChange();
     }, [input]);
 
     const init = () => {
-        setWaiting(true)
+        setWaiting(true);
         setList(prompts);
-        setWaiting(false)
-    }
+        setWaiting(false);
+    };
     useEffect(() => {
-        init()
-    }, [])
+        init();
+    }, []);
 
 
     if (!showMentionList) {

@@ -25,12 +25,12 @@ export default function EricPromote() {
         } else {
             resetList([]);
         }
-        navigate(`/${agent}`)
-    }
+        navigate(`/${agent}`);
+    };
     const contact = () => {
         setIsPromoteAlert(false);
-        setAgent('eric')
-    }
+        setAgent('eric');
+    };
     useEffect(() => {
         if (loading) {
             return;

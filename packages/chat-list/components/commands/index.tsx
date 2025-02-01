@@ -17,7 +17,7 @@ export default React.memo(function Commands(props: ICommandsProps) {
   const { plugins } = useContext(ChatContext);
   const [list, setList] = useState(plugins);
   const [bottom, setBottom] = useState(0);
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   const onSelectCommand = (cmd: string) => {
     if (onSelect) {
       onSelect(cmd);
@@ -45,17 +45,17 @@ export default React.memo(function Commands(props: ICommandsProps) {
       return false;
     });
     setList(ls);
-  }, [input])
+  }, [input]);
 
   useEffect(() => {
     if (!input) {
-      setVisible(false)
+      setVisible(false);
       return;
     }
     if (input.startsWith('/')) {
       showPanel();
     }
-    onInputChange()
+    onInputChange();
   }, [input]);
 
   if (!visible) {

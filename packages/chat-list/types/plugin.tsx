@@ -8,7 +8,7 @@ import { AGENT_AGENT, getLocalStore } from "chat-list/local/local";
 import i18n from 'chat-list/locales/i18n';
 import ContextText from 'chat-list/components/context-text';
 import { IsSupportToolCallModel } from "chat-list/config/model";
-import taskExecListPrompt from 'chat-list/service/react/task_exec_list.md'
+import taskExecListPrompt from 'chat-list/service/react/task_exec_list.md';
 
 
 export interface IModelConfig {
@@ -220,15 +220,15 @@ export abstract class ChatPluginBase implements IChatPlugin {
     onQuickReply: (quickReply: QuickReplyItem) => void;
     onSend?: (input: IChatMessage) => void;
     onLoad?: () => void;
-    transfer?: (message: IChatMessage) => Promise<IChatMessage>
+    transfer?: (message: IChatMessage) => Promise<IChatMessage>;
     shortTermMemory: IMessageBody[] = [];
     memory: IMessageBody[] = [];
     push = (message: IMessageBody) => {
         this.memory.push(message);
         if (process.env.NODE_ENV === 'development') {
-            console.log(this.action, this.memory)
+            console.log(this.action, this.memory);
         }
-    }
+    };
     tools: string[] = [];
     agents: string[] = [];
     injectContext: () => Promise<string>;
@@ -243,7 +243,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
         } else if (type === 'text') {
             text = content as string;
         } else if (type === 'file') {
-            files = content as File[]
+            files = content as File[];
             text = alt;
         } else if (type === 'card') {
             card = content as React.ReactNode;
@@ -269,7 +269,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 avatar: this.icon,
                 name: this.name
             }
-        }
+        };
     }
     async sendMsg(message: IChatMessage) {
         await this.context.sendMsg(message);
@@ -281,7 +281,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
         } else {
             await this.sendMsg(this.buildChatMessage(result, 'text', to?.name));
         }
-        this.context.setTyping(false)
+        this.context.setTyping(false);
     }
     failedMessage(reason: string, to: IChatMessage['from']) {
         return this.buildChatMessage(`Task executed failed, reason: ${reason}`, 'text', to?.name);
@@ -302,7 +302,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
         this.push({
             role: 'user',
             content: input
-        })
+        });
         const result = await this.context.chat({
             messages: context.concat(this.memory),
             temperature,
@@ -312,7 +312,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
             this.push({
                 role: 'assistant',
                 content: result.content
-            })
+            });
         }
         return result;
     }
@@ -328,7 +328,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     id: name,
                     name: snakeToWords(name),
                     enable: true
-                }
+                };
             }));
         } else if (!agentTools) {
             return (tools.map((name) => {
@@ -336,7 +336,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     id: name,
                     name: snakeToWords(name),
                     enable: true
-                }
+                };
             }));
         } else {
             const newList = agentTools.filter(p => p.enable).map((tool) => {
@@ -344,16 +344,16 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     id: tool.id,
                     name: snakeToWords(tool.name),
                     enable: true
-                }
-            })
+                };
+            });
             return newList;
         }
-    }
+    };
     getAgents = () => {
         const { docType, plugins } = this.context;
         const colAgentKey = `${docType}_${AGENT_AGENT}_${this.action}`;
         const agents = this.agents || [];
-        const colAgents = getLocalStore(colAgentKey)
+        const colAgents = getLocalStore(colAgentKey);
         if (!colAgents) {
             return (agents.map((name) => {
                 const plg = plugins.find(p => p.action == name);
@@ -362,18 +362,18 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     icon: plg.icon,
                     name: plg.name,
                     enable: true
-                }
+                };
             }));
         }
         return colAgents;
-    }
+    };
     buildAgentTools = memoize((colAgents: IAgentToolItem[]) => {
         const { plugins } = this.context;
         const enableAgentsMap: { [x: string]: boolean } = colAgents.filter(p => p.enable).reduce((acc, tool) => {
             return {
                 ...acc,
                 [tool.id]: true
-            }
+            };
         }, {});
         const toolList = plugins.filter(p => enableAgentsMap[p.action]);
         const agents: ToolFunction[] = toolList.map((plg) => {
@@ -393,7 +393,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                         "required": ['content']
                     }
                 }
-            }
+            };
         });
         const agentMap = toolList.reduce((acc, tool) => {
             if (tool.action) {
@@ -405,20 +405,20 @@ export abstract class ChatPluginBase implements IChatPlugin {
             agents,
             agentMap,
         };
-    })
+    });
     buildTools = memoize((agentTools: IAgentToolItem[]) => {
         const { tools } = this.context;
         if (agentTools.length <= 0) {
             return {
                 toolMap: {},
                 tools: void 0,
-            }
+            };
         }
         const enableToolMap: { [x: string]: boolean } = agentTools.filter(p => p.enable).reduce((acc, tool) => {
             return {
                 ...acc,
                 [tool.id]: true
-            }
+            };
         }, {});
         const tarTools = tools.filter(p => enableToolMap[p.name]);
         const toolMap = tarTools.reduce((acc, tool) => {
@@ -437,13 +437,13 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     parameters
                 },
 
-            }
-        })
+            };
+        });
         return {
             toolMap,
             tools: toolList && toolList.length == 0 ? undefined : toolList
-        }
-    })
+        };
+    });
     buildAllTools = () => {
         const agentTools: IAgentToolItem[] = this.getTools();
         // console.log(agentTools)
@@ -457,14 +457,14 @@ export abstract class ChatPluginBase implements IChatPlugin {
             toolMap: {
                 ...toolMap,
             }
-        }
-    }
+        };
+    };
     handleTools = async (tool_call: ToolFunctinCall, toolMap: any, message: any, dataContext: any) => {
         const { appendMsg, model, showMessage } = this.context;
         // console.log('tool_call.function.arguments', tool_call.function.arguments)
         let args = JSON.parse(tool_call.function.arguments);
         if (model.startsWith('glm')) {
-            args = adaptToolArguments(args)
+            args = adaptToolArguments(args);
         }
         const name = tool_call.function.name;
         const displayName = i18n.t(name, snakeToWords(name), {
@@ -472,7 +472,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
         });
 
         const toolMsg = showMessage(displayName);
-        await sleep(100)
+        await sleep(100);
         try {
             const res = await toolMap[name]({
                 ...args,
@@ -493,11 +493,11 @@ export abstract class ChatPluginBase implements IChatPlugin {
 
             return res;
         } catch (e) {
-            console.error(e)
-            toolMsg.failed(`${displayName}:\n ${e.message}`)
+            console.error(e);
+            toolMsg.failed(`${displayName}:\n ${e.message}`);
             return `${name} tool failed to handle your request:` + e.message;
         }
-    }
+    };
     handleAgents = async (message: IChatMessage, tool_call: ToolFunctinCall, agentMap: any,) => {
         const { text } = message;
         const { appendMsg } = this.context;
@@ -510,11 +510,11 @@ export abstract class ChatPluginBase implements IChatPlugin {
 
         appendMsg(this.buildChatMessage(content, 'text', agent.action, 'assistant',));
 
-        let nextMessage = this.buildChatMessage(content, 'text', agent.action, 'assistant',)
+        let nextMessage = this.buildChatMessage(content, 'text', agent.action, 'assistant',);
         if (message.type == 'parts') {
-            nextMessage = this.buildChatMessage({ text: content, fileList: message.files } as any, 'parts', agent.action, 'assistant',)
+            nextMessage = this.buildChatMessage({ text: content, fileList: message.files } as any, 'parts', agent.action, 'assistant',);
         }
-        const agentReply: any = await agent.onReceive(nextMessage)
+        const agentReply: any = await agent.onReceive(nextMessage);
         // debugger;
         // console.log(agent.action, agentReply)
         if (agentReply) {
@@ -522,7 +522,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
             return agentReply;
         }
         return null;
-    }
+    };
     summaryHistory = async (memory: IMessageBody[]): Promise<IMessageBody[]> => {
         const summaryPrompt = `You can help me summarize messages, be concise and don't leave out information.`;
         const result = await this.context.chat(
@@ -537,10 +537,10 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 role: 'assistant', content: `\n[History]\n${result.content}`
             },
         ];
-    }
+    };
     handleToolCall = async (message: IChatMessage, response: IChatResult, toolMap: any, dataContext: string) => {
         const { tool_calls } = response;
-        this.push({ role: 'assistant', content: response.content, tool_calls: tool_calls })
+        this.push({ role: 'assistant', content: response.content, tool_calls: tool_calls });
 
         for (let i = 0; i < tool_calls.length; i++) {
             const tool_call = tool_calls[i];
@@ -548,7 +548,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
             try {
                 let res;
                 if (typeof toolMap[name] === 'function') {
-                    res = await this.handleTools(tool_call, toolMap, message, dataContext)
+                    res = await this.handleTools(tool_call, toolMap, message, dataContext);
                 }
                 if (!res) {
                     this.push({
@@ -556,7 +556,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                         "role": "tool",
                         "name": name,
                         "content": `${name} tool failed to handle your request`
-                    })
+                    });
                     continue;
                 }
                 if (typeof res === 'string') {
@@ -565,21 +565,21 @@ export abstract class ChatPluginBase implements IChatPlugin {
                         "role": "tool",
                         "name": name,
                         "content": res,
-                    })
+                    });
                 } else if (typeof res == 'object' && typeof res.content === 'string') {
                     this.push({
                         "tool_call_id": tool_call.id,
                         "role": "tool",
                         "name": name,
                         "content": res.content
-                    })
+                    });
                 } else {
                     this.push({
                         "tool_call_id": tool_call.id,
                         "role": "tool",
                         "name": name,
                         "content": JSON.stringify(res),
-                    })
+                    });
                 }
 
             } catch (e) {
@@ -588,11 +588,11 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     "role": "tool",
                     "name": name,
                     "content": 'Task execution failure:' + e.message,
-                })
+                });
             }
 
         }
-    }
+    };
     handleAgentCall = async (message: IChatMessage, response: IChatResult, toolMap: any): Promise<any> => {
         const { tool_calls } = response;
         // this.push({ role: 'assistant', content: response.content, tool_calls: tool_calls })
@@ -602,7 +602,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
             try {
                 let res;
                 if (typeof toolMap[name] === 'object') {
-                    res = await this.handleAgents(message, tool_call, toolMap)
+                    res = await this.handleAgents(message, tool_call, toolMap);
                 }
                 if (!res) {
                     return;
@@ -611,28 +611,28 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     this.push({
                         "role": 'assistant',
                         "content": res,
-                    })
+                    });
                 } else if (typeof res == 'object' && typeof res.type === 'string') {
                     this.push({
                         "role": 'assistant',
                         "content": res.content
-                    })
+                    });
                 } else {
                     this.push({
                         "role": 'assistant',
                         "content": JSON.stringify(res),
-                    })
+                    });
                 }
 
             } catch (e) {
                 this.push({
                     "role": 'assistant',
                     "content": 'Task execution failure',
-                })
+                });
             }
 
         }
-    }
+    };
     // convertMessageToMark = async (message: IChatMessage): Promise<IChatMessage> => {
     //     if (message.type == 'text') {
     //         return message;
@@ -653,12 +653,12 @@ export abstract class ChatPluginBase implements IChatPlugin {
         if (this.abort) {
             this.abort();
         }
-    }
+    };
     renderMessageContext = (context: string) => {
         return (
             <ContextText text={context} />
-        )
-    }
+        );
+    };
     // handleCall = async (message: IChatMessage, result: IChatResult, toolMap: any, dataContext: string) => {
     //     const toolCalls = result.tool_calls.filter(p => this.tools.includes(p.function.name));
     //     if (toolCalls && toolCalls.length > 0) {
@@ -672,7 +672,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
     async onReceive(message: IChatMessage, options: IChatOptions = { stream: true }) {
 
         const { setTyping, setStatus, platform, model, plugin, plugins, user, chat, appendMsg, updateMsg } = this.context;
-        setTyping(true)
+        setTyping(true);
         setStatus('typing');
 
         if (message.mentions && message.mentions.length > 0) {
@@ -682,7 +682,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
             this.push({
                 role: 'user',
                 content: message.context ? message.context + '\n\n' + message.content : message.content
-            })
+            });
             for (let i = 0; i < mentions.length; i++) {
                 const agentName = mentions[i];
                 if (agentName === plugin.action) {
@@ -707,7 +707,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 this.push({
                     role: 'assistant',
                     content: allMsg
-                })
+                });
             }
             return;
         }
@@ -720,14 +720,14 @@ export abstract class ChatPluginBase implements IChatPlugin {
                             this.push({
                                 role: 'user',
                                 content: message.context ? message.context + '\n\n' + message.content : message.content
-                            })
+                            });
                             appendMsg(this.buildChatMessage(`@Vision ${message.content}`, 'text', '', 'assistant'));
                             const msg = await agent.onReceive(message);
                             if (msg && msg.content) {
                                 this.push({
                                     role: 'assistant',
                                     content: msg.content
-                                })
+                                });
                             }
                             return msg;
                         }
@@ -739,14 +739,14 @@ export abstract class ChatPluginBase implements IChatPlugin {
                             this.push({
                                 role: 'user',
                                 content: message.context ? message.context + '\n\n' + message.content : message.content
-                            })
+                            });
                             appendMsg(this.buildChatMessage(`@Python ${message.content}`, 'text', '', 'assistant'));
                             const msg = await agent.onReceive(message);
                             if (msg && msg.content) {
                                 this.push({
                                     role: 'assistant',
                                     content: msg.content
-                                })
+                                });
                             }
                             return msg;
                         }
@@ -778,7 +778,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
         }];
 
         if (this.memory.length > 20) {
-            this.memory = await this.summaryHistory(this.memory)
+            this.memory = await this.summaryHistory(this.memory);
         }
 
         this.push({
@@ -798,7 +798,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 if (this.context.mute) {
                     break;
                 }
-                setTyping(true)
+                setTyping(true);
                 setStatus('typing');
                 const messages = context.concat(this.memory);
                 const stream: boolean = options.stream;
@@ -826,7 +826,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                             isAppend = true;
                         } else {
                             resMsg.content = res.content;
-                            updateMsg(resMsg._id, resMsg)
+                            updateMsg(resMsg._id, resMsg);
                         }
                     }
                     if (done) {
@@ -837,7 +837,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                             //     content: res.content
                             // })
                             resMsg.content = res.content;
-                            updateMsg(resMsg._id, resMsg)
+                            updateMsg(resMsg._id, resMsg);
                         }
                         isAppend = false;
                         resMsg = this.buildChatMessage('', 'text');
@@ -848,7 +848,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     break;
                 } else if (typeof result === 'string') {
                     if ((result as string).startsWith("{")) {
-                        this.push({ role: 'assistant', content: result })
+                        this.push({ role: 'assistant', content: result });
                         return this.buildChatMessage(result);
                     }
                     break;
@@ -940,15 +940,15 @@ export abstract class ChatPluginBase implements IChatPlugin {
             }
             if (res.content) {
                 if (!isAppend) {
-                    callback?.(res.content)
+                    callback?.(res.content);
                     isAppend = true;
                 } else {
-                    callback?.(res.content)
+                    callback?.(res.content);
                 }
             }
             if (done) {
                 if (res.content) {
-                    callback?.(res.content)
+                    callback?.(res.content);
                 }
                 isAppend = false;
             }
@@ -963,7 +963,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
         }
 
         if (result.content) {
-            callback?.(result.content)
+            callback?.(result.content);
         }
 
         if (result.tool_calls && result.tool_calls.length > 0) {
@@ -976,7 +976,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     // res = await this.handleTools(tool_call, toolMap, message, dataContext)
                     let args = JSON.parse(tool_call.function.arguments);
                     if (model.startsWith('glm')) {
-                        args = adaptToolArguments(args)
+                        args = adaptToolArguments(args);
                     }
                     res = await toolMap[name]({
                         ...args,
@@ -1000,7 +1000,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     return JSON.stringify(res);
                 }
             } catch (e) {
-                return e.message
+                return e.message;
             }
         }
     }
@@ -1010,7 +1010,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
         const messages: any[] = [{
             role: 'user',
             content: prompt
-        }]
+        }];
         const result = await chat(
             { messages, temperature: 0.5, stream: true },
             async (done: boolean, res: IChatResult, abort) => {
@@ -1021,7 +1021,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
     }
     async handleByReact(message: IChatMessage, options: IChatOptions = { stream: true }) {
         const { setTyping, setStatus, platform, model, plugin, plugins, user, chat, appendMsg, updateMsg } = this.context;
-        setTyping(true)
+        setTyping(true);
         setStatus('typing');
         const { tools, toolMap } = this.buildAllTools();
         let instruction = this.instruction;
@@ -1053,11 +1053,11 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 if (this.context.mute) {
                     break;
                 }
-                setTyping(true)
+                setTyping(true);
                 setStatus('typing');
 
                 const tool_status = this.memory.filter(p => p.role == 'tool').map((task) => {
-                    return `tool ${task.tool_call_id}, status:done`
+                    return `tool ${task.tool_call_id}, status:done`;
                 }).join('\n');
 
                 const prompt = template(taskPrompt, {
@@ -1070,14 +1070,14 @@ export abstract class ChatPluginBase implements IChatPlugin {
                         return {
                             role: 'assistant',
                             content: `${msg.content}\n\n\`\`\`tools\n${JSON.stringify(msg?.tool_calls, null, 2)}\n\`\`\``
-                        }
+                        };
                     }
                     if (msg.role == 'tool') {
                         return {
                             role: 'user',
                             // name: msg.name,
                             content: `Call tool ${msg.name} ${msg.tool_call_id} result:\n\n${msg.content}.`
-                        }
+                        };
                     }
 
                     return msg;
@@ -1090,7 +1090,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     // merge user role
                     if (cur.role === 'user' && prev[prev.length - 1]?.role === 'user') {
                         // copy content,do not update origin
-                        prev[prev.length - 1].content = prev[prev.length - 1].content + '\n\n' + cur.content
+                        prev[prev.length - 1].content = prev[prev.length - 1].content + '\n\n' + cur.content;
                         // prev.push({
                         //     ...prev[prev.length - 1],
                         //     content: prev[prev.length - 1].content + '\n\n' + cur.content
@@ -1101,13 +1101,13 @@ export abstract class ChatPluginBase implements IChatPlugin {
                         });
                     }
                     return prev;
-                }, [])
-                console.log('memory')
-                console.log(this.memory)
-                console.log('hisotry')
-                console.log(hisotry)
+                }, []);
+                console.log('memory');
+                console.log(this.memory);
+                console.log('hisotry');
+                console.log(hisotry);
                 const messages = context
-                    .concat(hisotry)
+                    .concat(hisotry);
                 // console.log(messages)
                 const result = await chat({
                     messages,
@@ -1128,14 +1128,14 @@ export abstract class ChatPluginBase implements IChatPlugin {
                             isAppend = true;
                         } else {
                             resMsg.content = res.content;
-                            updateMsg(resMsg._id, resMsg)
+                            updateMsg(resMsg._id, resMsg);
                         }
                     }
                     if (done) {
                         setStatus('done');
                         if (res.content) {
                             resMsg.content = res.content;
-                            updateMsg(resMsg._id, resMsg)
+                            updateMsg(resMsg._id, resMsg);
                         }
                         isAppend = false;
                         resMsg = this.buildChatMessage('', 'text');
@@ -1146,7 +1146,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 // console.log(content)
                 let res = extractJsonDataFromMd(content);
                 if ((content.includes('```tools') || content.includes('```json')) && !res.tools) {
-                    const json = await this.fixJsonFormat(content)
+                    const json = await this.fixJsonFormat(content);
                     // console.log('fix json')
                     // console.log(json)
                     res = extractJsonDataFromMd(json);
@@ -1161,7 +1161,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                                 name: tool.function.name,
                                 arguments: JSON.stringify(tool.function.parameters || tool.function.arguments)
                             }
-                        }
+                        };
 
                     });
                     const toolCalls = tool_calls.filter(p => this.tools.includes(p.function.name));
@@ -1175,12 +1175,12 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     this.push({
                         role: 'assistant',
                         content: result.content
-                    })
+                    });
                     break;
                 }
             }
         } catch (e) {
-            console.error(e)
+            console.error(e);
             setTyping(false);
             setStatus('done');
         } finally {

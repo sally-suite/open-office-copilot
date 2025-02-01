@@ -5,8 +5,8 @@ import {
   CardTitle,
   // RadioGroup,
 } from "chat-list/components/ui/card";
-import Form, { FormulaInfo } from './form'
-import sheetApi from '@api/sheet'
+import Form, { FormulaInfo } from './form';
+import sheetApi from '@api/sheet';
 import { getHeaderList } from 'chat-list/service/sheet';
 import Loading from '../loading';
 import { numberToLetter, parseCellAddress } from 'chat-list/utils';
@@ -17,7 +17,7 @@ interface ICardFormulaInfoProps {
 export default function CardFormulaInfo(props: ICardFormulaInfoProps) {
   const { onSubmit } = props;
   const [formValue, setFormValue] = useState<FormulaInfo>({});
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const init = async () => {
     setLoading(true);
     const heads = await getHeaderList();
@@ -26,16 +26,16 @@ export default function CardFormulaInfo(props: ICardFormulaInfoProps) {
       headers: heads.join(','),
       dataRangeCells,
       headerInDataRange: 'Yes'
-    })
+    });
     setLoading(false);
-  }
+  };
   const onSubmitForm = () => {
     const start = formValue.dataRangeCells.split(':')[0];
     const { column, row } = parseCellAddress(start);
     const headers = formValue.headers.split(',').map((h, i) => {
-      const letter = numberToLetter(column + i)
-      return `${h}<${letter}${row}>`
-    }).join(' , ')
+      const letter = numberToLetter(column + i);
+      return `${h}<${letter}${row}>`;
+    }).join(' , ');
     const content = `
 Here is the information about data range:
 
@@ -43,10 +43,10 @@ Here is the information about data range:
 2. HEADER NAMES: ${headers}
 3. HEADER IN DATA RANGE: ${formValue.headerInDataRange}`;
     onSubmit?.(content);
-  }
+  };
   useEffect(() => {
     init();
-  }, [])
+  }, []);
   return (
     <Card className="w-full">
       <CardTitle>Forumla Context</CardTitle>

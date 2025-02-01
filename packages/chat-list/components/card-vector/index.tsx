@@ -10,17 +10,17 @@ import Button from "../button";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { CheckboxGroup } from "../ui/checkbox";
 import { getHeaderList, getValuesByRange } from "chat-list/service/sheet";
-import FileSelector from 'chat-list/components/file-selector'
+import FileSelector from 'chat-list/components/file-selector';
 import { chunkText, parseDocument } from "chat-list/utils/file";
 import gptApi from '@api/gpt';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import { getValues } from 'chat-list/service/sheet';
-import toast from 'chat-list/components/ui/use-toast'
+import toast from 'chat-list/components/ui/use-toast';
 import { Trash2, Image, File } from "lucide-react";
 import Tooltip from "../tooltip";
 import Progress from 'chat-list/components/progress';
 import { Input } from "../ui/input";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { cn } from "chat-list/lib/utils";
 
 const modeOpions = [
@@ -32,7 +32,7 @@ const modeOpions = [
         value: 'columns',
         text: 'Select Columns'
     }
-]
+];
 
 interface ICardVectorProps {
     files?: File[],
@@ -56,9 +56,9 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
     const [chunkSize, setChunkSize] = useState(500);
     const onFileSelect = async (fs: File[]) => {
         // const imgs = await Promise.all(files.map(file => blobToBase64Image(file)));
-        setFiles(files.concat(fs))
+        setFiles(files.concat(fs));
         // setFiles(files);
-    }
+    };
     const initHeaders = async () => {
         setLoading(true);
         const list = await getHeaderList();
@@ -66,7 +66,7 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
             return {
                 value: name,
                 text: name
-            }
+            };
         }));
         setLoading(false);
     };
@@ -89,15 +89,15 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
                         model: 'text-embedding-ada-002',
                         input: chunks[j]
                     });
-                    console.log(JSON.stringify(result || ''))
-                    values.push([chunks[j], JSON.stringify(result)])
+                    console.log(JSON.stringify(result || ''));
+                    values.push([chunks[j], JSON.stringify(result)]);
                 }
             }
             sheetName += file.name;
         }
         await sheetApi.initSheet(sheetName, titles);
         await sheetApi.setValues([titles].concat(values), sheetName);
-    }
+    };
     const initByBatch = async (vectorIndex: number, colIndexs: number[], titles: string[], row: number, col: number, rowNum: number, colNum: number, batch: number) => {
         if (batch <= 0) {
             return;
@@ -119,17 +119,17 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
                 continue;
             }
             const text = colIndexs.map((colIndex) => {
-                return `${titles[colIndex]}:${row[colIndex]}`
+                return `${titles[colIndex]}:${row[colIndex]}`;
             }).join('\n');
             const result = await gptApi.embeddings({
                 model: 'text-embedding-ada-002',
                 input: text
             });
-            console.log(JSON.stringify(result || ''))
+            console.log(JSON.stringify(result || ''));
             row[vectorIndex] = JSON.stringify(result);
         }
         await sheetApi.setValuesByRange(values, row, col, batch, colNum);
-    }
+    };
     const initByColumns = async () => {
         setProgress(0);
         const { row, col, rowNum, colNum, } = await sheetApi.getRowColNum();
@@ -153,11 +153,11 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
         for (let i = 2; i <= rowNum; i += batch) {
             if (i + batch > rowNum + 1) {
                 const lastBatch = rowNum - i + 1;
-                console.log(vectorIndex, colIndexs, titles, i, col, rowNum, colNumber, lastBatch)
+                console.log(vectorIndex, colIndexs, titles, i, col, rowNum, colNumber, lastBatch);
                 await initByBatch(vectorIndex, colIndexs, titles, i, col, rowNum, colNumber, lastBatch);
                 setProgress(100);
             } else {
-                console.log(vectorIndex, colIndexs, titles, i, col, rowNum, colNumber, batch)
+                console.log(vectorIndex, colIndexs, titles, i, col, rowNum, colNumber, batch);
                 await initByBatch(vectorIndex, colIndexs, titles, i, col, rowNum, colNumber, batch);
                 if (i - 1 >= rowNum) {
                     setProgress(100);
@@ -169,7 +169,7 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
         }
 
 
-    }
+    };
     const onCreateVector = async () => {
         try {
             if (mode == 'file') {
@@ -177,17 +177,17 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
             } else {
                 await initByColumns();
             }
-            toast.show('Initialization successful')
+            toast.show('Initialization successful');
         } catch (e) {
-            toast.fail('Initialization failure,reason is ' + e.message, 3000)
+            toast.fail('Initialization failure,reason is ' + e.message, 3000);
         }
-    }
+    };
     const onFileRemove = (index: number) => {
-        setFiles(files.filter((item, i) => i !== index))
-    }
+        setFiles(files.filter((item, i) => i !== index));
+    };
     const onChunkSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setChunkSize(parseFloat(e.target.value));
-    }
+    };
     useEffect(() => {
         initHeaders();
     }, []);
@@ -212,7 +212,7 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
                                         {t(`knowledge:init_from_${opt.value}`, '')}
                                     </label>
                                 </div>
-                            )
+                            );
                         })
                     }
                 </RadioGroup>
@@ -240,7 +240,7 @@ export default React.memo(function CardVector(props: ICardVectorProps) {
                                                                 <Trash2 height={14} width={14} />
                                                             </span>
                                                         </div>
-                                                    )
+                                                    );
                                                 })
                                             }
 

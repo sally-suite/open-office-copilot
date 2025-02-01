@@ -1,5 +1,5 @@
-import { clearFolder, removeFile, readFilesToData, downloadFile } from 'chat-list/tools/sheet/python/util'
-import React, { useEffect, useImperativeHandle, useState } from 'react'
+import { clearFolder, removeFile, readFilesToData, downloadFile } from 'chat-list/tools/sheet/python/util';
+import React, { useEffect, useImperativeHandle, useState } from 'react';
 import Markdown from '../markdown';
 import Loading from '../loading';
 import { ChevronRight } from 'lucide-react';
@@ -15,35 +15,35 @@ interface IFolderProps {
 export default React.forwardRef(function Folder(props: IFolderProps, ref) {
     const { folder } = props;
     const [marks, setMarks] = useState<{ type: string, name: string, path: string, data: string | { name: string, data: string[][] }[] }[]>([]);
-    const [fileStatus, setFileStatus] = useState<{ [x: string]: boolean }>({})
-    const [loading, setLoading] = useState(true)
+    const [fileStatus, setFileStatus] = useState<{ [x: string]: boolean }>({});
+    const [loading, setLoading] = useState(true);
     const { t } = useTranslation('coder');
     const init = async () => {
         try {
-            setLoading(true)
+            setLoading(true);
             const marks = await readFilesToData(folder);
             setMarks(marks);
-            setLoading(false)
+            setLoading(false);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
     const onExpand = (name: string) => {
         setFileStatus({
             ...fileStatus,
             [name]: !fileStatus[name]
         });
-    }
+    };
     const refresh = async () => {
         await init();
-    }
+    };
     const renderFile = ({ type, data, name }: { type: string, name: string, data: string | { name: string, data: string[][] }[] }) => {
         if (type === 'xlsx' || type === 'xls' || type === 'csv') {
             return (
                 <div className='p-2'>
                     <DataSheet data={data as { name: string, data: string[][] }[]} />
                 </div>
-            )
+            );
         } else if (type === 'png' || type === 'jpg' || type === 'jpeg') {
             return (
                 <div className='p-2'>
@@ -53,7 +53,7 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
                         }
                     </Markdown>
                 </div>
-            )
+            );
         } else {
             return (
                 <div className='p-2'>
@@ -61,24 +61,24 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
                         {data as string}
                     </Markdown>
                 </div>
-            )
+            );
         }
-    }
+    };
     const removeFileByPath = async (path: string, e: Event) => {
         e.stopPropagation();
         e.preventDefault();
-        await removeFile(path)
+        await removeFile(path);
         await refresh();
-    }
+    };
     const downloadFileByPath = async (path: string, e: Event) => {
         e.stopPropagation();
         e.preventDefault();
-        await downloadFile(path)
+        await downloadFile(path);
         await refresh();
-    }
+    };
     useEffect(() => {
         init();
-    }, [])
+    }, []);
 
     useImperativeHandle(ref, () => ({
         refresh
@@ -87,7 +87,7 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
     if (loading) {
         return (
             <Loading />
-        )
+        );
     }
 
     return (
@@ -121,9 +121,9 @@ export default React.forwardRef(function Folder(props: IFolderProps, ref) {
                                 )
                             }
                         </div>
-                    )
+                    );
                 })
             }
         </div>
-    )
+    );
 });

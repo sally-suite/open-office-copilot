@@ -1,7 +1,7 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext, useMemo } from 'react';
 import { FileOutput } from 'lucide-react';
 import sheetApi from '@api/sheet';
-import IconButton from 'chat-list/components/icon-button'
+import IconButton from 'chat-list/components/icon-button';
 // import docApi from '@api/doc';
 import { ChatContext } from 'chat-list/store/chatContext';
 import docApi from '@api/doc';
@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 export const Code = ({ children }: any) => {
     const script: string = children[0];
-    const { docType } = useContext(ChatContext)
+    const { docType } = useContext(ChatContext);
     const { t } = useTranslation();
 
     const onInsertCell = async () => {
@@ -37,7 +37,7 @@ export const Code = ({ children }: any) => {
             tip = t('common.insert_to_sheet');
         }
         return tip;
-    }, [])
+    }, []);
     return (
         <div
             className="inline-flex flex-row items-start relative py-2 rounded"

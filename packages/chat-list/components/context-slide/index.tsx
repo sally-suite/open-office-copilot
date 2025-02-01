@@ -1,5 +1,5 @@
-import { Presentation, TextCursorInput } from 'lucide-react'
-import React from 'react'
+import { Presentation, TextCursorInput } from 'lucide-react';
+import React from 'react';
 
 interface IContextTextProps {
     type: 'selected_text' | 'selected_slides',
@@ -8,7 +8,7 @@ interface IContextTextProps {
 }
 
 export default function ContextText(props: IContextTextProps) {
-    const { text, slides } = props
+    const { text, slides } = props;
     return (
         <div className='flex flex-row items-center h-6 w-full px-2 text-sm bg-[#f0f1f5] border-b justify-start  rounded-tl-sm '>
 
@@ -36,5 +36,5 @@ export default function ContextText(props: IContextTextProps) {
                 )
             }
         </div>
-    )
+    );
 }

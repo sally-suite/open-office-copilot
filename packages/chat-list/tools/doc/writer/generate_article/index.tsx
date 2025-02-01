@@ -1,21 +1,14 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 import { generateCatalog, generatePage } from './util';
 // import pptData from './ppt.json'
 import { buildChatMessage, getImgSize, proxyImage, searchImage } from 'chat-list/utils';
-import CardSlideImages from 'chat-list/components/card-slide-images';
-import React from 'react';
 // import imageStore from 'chat-list/utils/image'
 import { IChatMessage } from 'chat-list/types/message';
-import { searchStore } from 'chat-list/utils/vertor'
-import { IChapterItem } from 'chat-list/types/api/doc';
-import catelogData from './catelog.json'
-import pageData from './pagedata.json'
 import serApi from "@api/index";
 import { SearchResult } from 'chat-list/types/search';
-import image from 'chat-list/utils/image';
 
 // import creaetLayoutPrompt from './prompts/create-layout.md'
 // import { chatByPrompt } from 'chat-list/service/message';
@@ -50,16 +43,15 @@ export const func = async ({ reference, webpage_urls = [], is_add_image = true, 
                 const results = await serApi.search({
                     keyword: url
                 }) as SearchResult[];
-                return results.map(r => (r.content || r.snippet)).join('\n')
-            }))
-            fileContent += ps.join('\n')
+                return results.map(r => (r.content || r.snippet)).join('\n');
+            }));
+            fileContent += ps.join('\n');
         } catch (e) {
-            console.log(e)
+            console.log(e);
             // return "Searching for web content failed, please try another web link.";
         }
     }
-    debugger;
-    const catalog = await generateCatalog(reference, language)
+    const catalog = await generateCatalog(reference, language);
     // const catalog = pptData;
     // console.log('catelog', catalog)
     const title = catalog.cover?.title;
@@ -70,25 +62,25 @@ export const func = async ({ reference, webpage_urls = [], is_add_image = true, 
     const messageId = articleMessage._id;
     appendMsg(articleMessage);
 
-    mark += `# ${title}`
-    mark += `\n## ${subTitle}`
+    mark += `# ${title}`;
+    mark += `\n## ${subTitle}`;
     articleMessage.content = mark;
-    updateMsg(messageId, articleMessage)
-    await docApi.insertTitle(title, 0)
-    await docApi.insertTitle(subTitle, 0.5)
+    updateMsg(messageId, articleMessage);
+    await docApi.insertTitle(title, 0);
+    await docApi.insertTitle(subTitle, 0.5);
 
-    mark += `\n## ${catalog.overview.title}`
-    mark += `\n ${catalog.overview.content}`
+    mark += `\n## ${catalog.overview.title}`;
+    mark += `\n ${catalog.overview.content}`;
     articleMessage.content = mark;
-    updateMsg(messageId, articleMessage)
+    updateMsg(messageId, articleMessage);
 
-    await docApi.insertParagraph('')
-    await docApi.insertParagraph(catalog.overview.content)
-    await docApi.insertParagraph('')
+    await docApi.insertParagraph('');
+    await docApi.insertParagraph(catalog.overview.content);
+    await docApi.insertParagraph('');
 
     const wordCount = Math.round(word_count / slides.length);
     for (let i = 0; i < slides.length; i++) {
-        setTyping(true)
+        setTyping(true);
         const item = slides[i];
         try {
             let refer = 'NONE';
@@ -100,9 +92,9 @@ export const func = async ({ reference, webpage_urls = [], is_add_image = true, 
 
             const page = await generatePage(item.title, item.description, JSON.stringify(catalog, null, 2), refer, wordCount, language);
             // console.log(page)
-            let images: string[] = []
+            let images: string[] = [];
             if (is_add_image && page.image_search_keywords) {
-                images = await searchImage(page.image_search_keywords, 4)
+                images = await searchImage(page.image_search_keywords, 4);
                 // appendMsg(buildChatMessage(<CardSlideImages title={page.title} images={images} />, 'card', 'assistant'))
             }
             let size;
@@ -113,24 +105,24 @@ export const func = async ({ reference, webpage_urls = [], is_add_image = true, 
                     if (!image) {
                         continue;
                     }
-                    size = await getImgSize(image)
-                    imageBase64 = image
+                    size = await getImgSize(image);
+                    imageBase64 = image;
                     break;
                 }
             } catch (e) {
-                console.log(e)
+                console.log(e);
             }
-            await docApi.insertParagraph('')
-            await docApi.insertTitle(page.title, 1)
-            await docApi.insertParagraph(page.paragraphs)
+            await docApi.insertParagraph('');
+            await docApi.insertTitle(page.title, 1);
+            await docApi.insertParagraph(page.paragraphs);
 
-            mark += `\n## ${page.title}`
-            mark += `\n ${page.paragraphs?.join('\n\n')}`
+            mark += `\n## ${page.title}`;
+            mark += `\n ${page.paragraphs?.join('\n\n')}`;
 
             articleMessage.content = mark;
-            updateMsg(messageId, articleMessage)
+            updateMsg(messageId, articleMessage);
 
-            mark += images?.map((img) => { return `![${page.title}](${img})` })?.join('\n') || '';
+            mark += images?.map((img) => { return `![${page.title}](${img})`; })?.join('\n') || '';
 
             articleMessage.content = mark;
             updateMsg(messageId, articleMessage);
@@ -138,30 +130,30 @@ export const func = async ({ reference, webpage_urls = [], is_add_image = true, 
             if (imageBase64) {
                 await docApi.insertImage(imageBase64, size?.width, size?.height, "", "", "End");
             }
-            await docApi.insertParagraph('')
+            await docApi.insertParagraph('');
 
         } catch (e) {
-            console.log(e)
+            console.log(e);
             continue;
         }
     }
 
-    await docApi.insertParagraph('')
-    await docApi.insertTitle(catalog.summary.title, 1)
-    await docApi.insertParagraph(catalog.summary.content)
-    await docApi.insertParagraph('')
-    await docApi.insertParagraph(catalog.summary?.keywords?.join(', '))
+    await docApi.insertParagraph('');
+    await docApi.insertTitle(catalog.summary.title, 1);
+    await docApi.insertParagraph(catalog.summary.content);
+    await docApi.insertParagraph('');
+    await docApi.insertParagraph(catalog.summary?.keywords?.join(', '));
 
-    mark += `\n## ${catalog.summary.title}`
-    mark += `\n ${catalog.summary.content}`
+    mark += `\n## ${catalog.summary.title}`;
+    mark += `\n ${catalog.summary.content}`;
     mark += '\n';
-    mark += `\n ${catalog.summary?.keywords?.join(', ')}`
+    mark += `\n ${catalog.summary?.keywords?.join(', ')}`;
     // appendMsg(buildChatMessage(mark, 'text', 'assistant'));
     articleMessage.content = mark;
     updateMsg(messageId, articleMessage);
 
     return "Task completed, tell the user to please select the appropriate image, and the article is AI-generated and is not guaranteed to be accurate, so please be sure to proofread.";
-}
+};
 
 export default {
     type: 'function',

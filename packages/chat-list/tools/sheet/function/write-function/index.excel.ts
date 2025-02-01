@@ -1,7 +1,7 @@
-import instruction from './instruction.excel.md'
+import instruction from './instruction.excel.md';
 import { ChatState, ITool, IToolFunction } from 'chat-list/types/plugin';
 import { buildChatMessage } from 'chat-list/utils';
-import { Sigma } from 'lucide-react'
+import { Sigma } from 'lucide-react';
 
 export const func: IToolFunction = async ({ function_code, explain, dataContext, context }: { function_code: string, explain: string, dataContext: string, context: ChatState }) => {
     // const promp = template(genExp, {
@@ -18,9 +18,9 @@ export const func: IToolFunction = async ({ function_code, explain, dataContext,
     // console.log(function_code, explain)
     const { appendMsg } = context;
     const msg = "`" + function_code + "`\n" + explain;
-    appendMsg(buildChatMessage(msg))
+    appendMsg(buildChatMessage(msg));
     return 'Task done,' + msg;
-}
+};
 
 export default {
     type: 'function',

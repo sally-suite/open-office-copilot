@@ -13,7 +13,7 @@ import CardPaperInfo from 'chat-list/components/card-paper-info';
 export const func = async ({ paper_context, keywords, context }: { paper_context: string, keywords: string, context: ChatState }) => {
     const { appendMsg, showMessage } = context;
 
-    console.log(paper_context, keywords)
+    console.log(paper_context, keywords);
 
     const results = await api.searchPapers({
         keyword: keywords
@@ -24,35 +24,35 @@ export const func = async ({ paper_context, keywords, context }: { paper_context
 
     // }
     const list = results.map((item) => {
-        return `POSITION:${item.position}\n\nTITLE:${item.title}\n\nCONTENT:\n${item.snippet}`
+        return `POSITION:${item.position}\n\nTITLE:${item.title}\n\nCONTENT:\n${item.snippet}`;
     }).join('\n\n');
 
     showMessage((
         <CardPaperInfo papers={results} icon={Search} content={i18n.t('paper:search_some_papers', "10", { num: results.length })} />
-    ), 'assistant', 'card')
+    ), 'assistant', 'card');
 
     const msg = showMessage((
         <CardPaperInfo icon={ScanSearch} content={i18n.t('paper:filtering_papers')} />
-    ), 'assistant', 'card')
+    ), 'assistant', 'card');
 
     const result: number[] = await filterPapers(list, paper_context);
 
     console.log('filter', result);
 
-    const top3 = results.filter(p => result.includes(p.position))
+    const top3 = results.filter(p => result.includes(p.position));
     msg.update(
         <CardPaperInfo papers={top3} icon={Sparkles} content={i18n.t('paper:search_top_num', "3", { num: top3.length })} />
-    )
+    );
 
     // const msg = buildChatMessage(<CardPapers papers={results} />, 'card', 'assistant');
     // appendMsg(msg);
 
     const reply = top3.map((item) => {
-        return `URL:${item.link}\n\nTITLE:${item.title}\n\nCONTENT:\n${item.snippet}`
+        return `URL:${item.link}\n\nTITLE:${item.title}\n\nCONTENT:\n${item.snippet}`;
     }).join('\n\n');
 
-    return `I've sifted through the three most relevant papers for you:\n\n${reply}`
-}
+    return `I've sifted through the three most relevant papers for you:\n\n${reply}`;
+};
 
 export default {
     type: 'function',

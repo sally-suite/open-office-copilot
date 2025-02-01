@@ -9,5 +9,5 @@ export default function Python({ ...props }) {
         <IconImage src={png} className='h-6 w-6' {...props} >
 
         </IconImage>
-    )
+    );
 }

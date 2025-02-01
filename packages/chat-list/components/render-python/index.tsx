@@ -1,7 +1,7 @@
-import { ChatContext } from 'chat-list/store/chatContext'
-import React, { useContext, useEffect, useState } from 'react'
+import { ChatContext } from 'chat-list/store/chatContext';
+import React, { useContext, useEffect, useState } from 'react';
 import CodeEditor from 'chat-list/components/code-editor/python';
-import sheetApi from '@api/sheet'
+import sheetApi from '@api/sheet';
 import { getSheetInfo, getValues } from 'chat-list/service/sheet';
 import { editFunction, createFunction, runScript } from './util';
 
@@ -57,15 +57,15 @@ export default function CoderRender() {
         const newHistory = history.slice(0, history.length - 1);
         setHistory(newHistory);
         // console.log('undo')
-    }
+    };
     const pushHistory = async () => {
         const values = await getValues();
         setHistory(history.concat([values]));
-    }
+    };
 
     useEffect(() => {
-        initEnv()
-    }, [])
+        initEnv();
+    }, []);
     return (
         <CodeEditor
             autoRun={true}

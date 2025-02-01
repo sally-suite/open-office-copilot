@@ -21,7 +21,7 @@ const UserProvider = ({ children }: any) => {
       return false;
     }
     return true;
-  }
+  };
 
   const checkUserState = async () => {
     // check token first
@@ -65,7 +65,7 @@ const UserProvider = ({ children }: any) => {
       if (userState.key) {
         setToken(userState.key);
       }
-      setPoints(points)
+      setPoints(points);
     } catch (e) {
       if (e.code == 401) {
         setUser({
@@ -106,19 +106,19 @@ const UserProvider = ({ children }: any) => {
         username: email.split('@')[0],
         isAuthenticated: true
       });
-      setPoints(points)
+      setPoints(points);
     } catch (e) {
       console.log(e.message);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   const setUserState = useCallback(async (state = {}) => {
     setUser({
       ...user,
       ...state
-    })
+    });
   }, [user]);
 
   // const checkTimestamp = async () => {
@@ -149,13 +149,13 @@ const UserProvider = ({ children }: any) => {
     try {
       const points = await userApi.getPoints();
       if (typeof points !== 'undefined') {
-        setPoints(points)
+        setPoints(points);
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
 
-  }
+  };
 
   useLayoutEffect(() => {
     checkUserState();

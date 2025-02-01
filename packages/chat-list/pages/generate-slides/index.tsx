@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CatalogConfirm, { IStatus } from 'chat-list/components/catalog-confirm';
 import LicenseSetting from 'chat-list/components/license-setting';
-import pptPng from 'chat-list/assets/img/ppt-80.png'
+import pptPng from 'chat-list/assets/img/ppt-80.png';
 import { cn } from 'chat-list/lib/utils';
 import EricPromo from 'chat-list/components/eric-promo';
 
@@ -24,11 +24,11 @@ export default function RenderSlide() {
             </div>
             <div className='flex-1 overflow-hidden'>
                 <CatalogConfirm className='' onStatusChange={(value) => {
-                    setStatus(value)
+                    setStatus(value);
                 }} />
             </div>
             <EricPromo />
         </div>
 
-    )
+    );
 }

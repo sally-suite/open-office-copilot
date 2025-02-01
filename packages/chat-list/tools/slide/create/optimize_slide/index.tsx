@@ -1,9 +1,9 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { generatePage } from './util';
 import { getImageSizeByBatch, searchImage } from 'chat-list/utils';
-import slideApi from '@api/slide'
+import slideApi from '@api/slide';
 import React from 'react';
 import CardSlideRender from 'chat-list/components/card-slide-render';
 
@@ -34,13 +34,13 @@ export const func = async ({ from_page, to_page, language, context }: { from_pag
             const description = texts.join('\n');
             const page = await generatePage(description, language);
 
-            const images = await searchImage(page.image_search_keywords + ' png jpeg', 4)
-            slideImages.push({ title: page.title, images })
-            setTyping(true)
+            const images = await searchImage(page.image_search_keywords + ' png jpeg', 4);
+            slideImages.push({ title: page.title, images });
+            setTyping(true);
             let imageList = await getImageSizeByBatch(images.slice(0, 5));
             if (imageList.length < 4) {
                 const others = await getImageSizeByBatch(images.slice(5, 10));
-                imageList = imageList.concat(others)
+                imageList = imageList.concat(others);
             }
             slideElements = slideElements.concat([
                 {
@@ -54,10 +54,10 @@ export const func = async ({ from_page, to_page, language, context }: { from_pag
                             src: item.src,
                             width: item.width,
                             height: item.height
-                        }
+                        };
                     })
                 }
-            ])
+            ]);
             if (!msg) {
                 msg = showMessage(
                     <CardSlideRender
@@ -70,7 +70,7 @@ export const func = async ({ from_page, to_page, language, context }: { from_pag
                             author: 'Your Name',
                             company: 'Your Company',
                         }} />
-                    , 'assistant', 'card')
+                    , 'assistant', 'card');
             } else {
                 msg.update(
                     <CardSlideRender
@@ -83,14 +83,14 @@ export const func = async ({ from_page, to_page, language, context }: { from_pag
                             author: 'Your Name',
                             company: 'Your Company',
                         }} />
-                )
+                );
             }
         }
     }
 
     return "Task completed, please let user check the generated slides and insert the slide into the presentation, and the slide is AI-generated and is not guaranteed to be accurate, so please be sure to proofread";
 
-}
+};
 
 export default {
     type: 'function',

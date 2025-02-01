@@ -21,13 +21,13 @@ interface ICommandsProps {
 
 export const fetchMentions = (prompts: IPrompts[], mentionInput: string) => {
     return prompts.filter(item => item.act.toLowerCase().includes(mentionInput.toLowerCase()));
-}
+};
 
 export const fetchPromptByInput = (prompts: IPrompts[], input: string) => {
     const mentionInput = input.slice(input.lastIndexOf('/') + 1);
     const newMentions = fetchMentions(prompts, mentionInput);
     return newMentions;
-}
+};
 
 export const completeTextWithPrompt = (prompts: IPrompts[], input: string) => {
     if (!input.startsWith('/')) {
@@ -39,26 +39,26 @@ export const completeTextWithPrompt = (prompts: IPrompts[], input: string) => {
     }
     const mention = list[0];
     return mention.prompt;
-}
+};
 
 export const completeTextWithSelectedPrompt = (mention: IPrompts) => {
-    return mention.prompt
-}
+    return mention.prompt;
+};
 
 
 export default React.memo(function Commands(props: ICommandsProps) {
     const { onSelect } = props;
-    const [input, setInput] = useState('')
+    const [input, setInput] = useState('');
     const [list, setList] = useState<IPrompts[]>([]);
     const [mentionInput, setMentionInput] = useState('');
     const [waiting, setWaiting] = useState(true);
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
     const inputField = useRef(null);
     const promptList = useMemo(() => {
         const prompts = prompt[i18n.resolvedLanguage] || prompt['en-US'];
         return prompts;
 
-    }, [i18n.resolvedLanguage])
+    }, [i18n.resolvedLanguage]);
     const onSelectCommand = (item: IPrompts) => {
         if (onSelect) {
             onSelect(item);
@@ -68,35 +68,35 @@ export default React.memo(function Commands(props: ICommandsProps) {
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
 
-    }
+    };
 
     const updateList = () => {
         if (!input) {
-            setList(promptList)
+            setList(promptList);
             return;
         }
 
-        const newMentions = fetchPromptByInput(promptList, input)
+        const newMentions = fetchPromptByInput(promptList, input);
         setList(newMentions);
         setMentionInput(mentionInput);
-    }
+    };
 
     const onToggle = () => {
         setOpen(!open);
-    }
+    };
 
     useEffect(() => {
         updateList();
     }, [input]);
 
     const init = () => {
-        setWaiting(true)
+        setWaiting(true);
         setList(promptList);
-        setWaiting(false)
-    }
+        setWaiting(false);
+    };
     useEffect(() => {
-        init()
-    }, [])
+        init();
+    }, []);
 
     return (
         <>

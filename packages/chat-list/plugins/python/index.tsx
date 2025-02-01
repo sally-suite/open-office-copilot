@@ -8,7 +8,7 @@ import PythonRender from 'chat-list/components/render-python';
 import description from './promps/description.md';
 import i18n from 'chat-list/locales/i18n';
 import { initEnv, prepareFolder } from "chat-list/tools/sheet/python/util";
-import avatarPng from 'chat-list/assets/img/bar-chart.png'
+import avatarPng from 'chat-list/assets/img/bar-chart.png';
 import { dataRangeAnalyzeMixin } from '../_mixins/sheet';
 import ContextSheet from "chat-list/components/context-sheet";
 import { ISheetInfo } from "chat-list/types/api/sheet";
@@ -17,7 +17,7 @@ import { ISheetInfo } from "chat-list/types/api/sheet";
  * Code generation and run it in Google Apps Script
  */
 export class Code extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('sheet.agent.python', 'Python')
+  name = i18n.t('sheet.agent.python', 'Python');
   icon = avatarPng;
   // model = null;
   action = "python";
@@ -40,7 +40,7 @@ export class Code extends ChatPluginBase implements IChatPlugin {
     //   code: 'editor',
     //   name: 'Editor'
     // }] as QuickReplyItem[];
-    return []
+    return [];
   };
   onQuickReply = (quickReply: QuickReplyItem) => {
     // const { appendMsg } = this.context;
@@ -48,7 +48,7 @@ export class Code extends ChatPluginBase implements IChatPlugin {
     //   context.setMode('custom');
     // }
     // appendMsg(buildChatMessage(<CardConfirm content="" okText={"Confirm"} cancelText="Reselect and Confirm" />, 'card', 'user'))
-  }
+  };
   onSend = (input: IChatMessage) => {
     // 用户发送的消息，拦截，自定义一些操作
     return input;
@@ -58,7 +58,7 @@ export class Code extends ChatPluginBase implements IChatPlugin {
   // injectContext = async () => {
   //   return await getSheetInfo()
   // }
-  initialize = false
+  initialize = false;
   // async onReceive(message: IChatMessage, options?: { stream: boolean; }): Promise<any> {
   //   const { showMessage } = this.context;
   //   if (!this.initialize) {
@@ -76,8 +76,8 @@ export class Code extends ChatPluginBase implements IChatPlugin {
     const sheetInfo: ISheetInfo = JSON.parse(context);
     return (
       <ContextSheet address={sheetInfo.activeRange} />
-    )
-  }
+    );
+  };
   onReceive = async (message: IChatMessage) => {
     const { setTyping } = this.context;
     if (!message.content) {
@@ -100,12 +100,12 @@ export class Code extends ChatPluginBase implements IChatPlugin {
     }
     return await super.onReceive(message);
     // return await super.handleByReact(message, { stream: false });
-  }
+  };
   render = () => {
     return (
       <PythonRender />
-    )
-  }
+    );
+  };
 }
 
 export default new Code(dataRangeAnalyzeMixin);

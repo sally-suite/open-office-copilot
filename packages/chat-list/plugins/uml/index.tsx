@@ -2,13 +2,13 @@ import React from 'react';
 import { ChatPluginBase, IChatPlugin } from 'chat-list/types/plugin';
 import { IChatMessage, QuickReplyItem } from 'chat-list/types/message';
 import sheetApi from '@api/sheet';
-import instruction from './prompts/instruction.md'
-import description from './prompts/description.md'
+import instruction from './prompts/instruction.md';
+import description from './prompts/description.md';
 import i18n from 'chat-list/locales/i18n';
-import RenderUml from 'chat-list/components/render-uml'
-import umlPng from 'chat-list/assets/img/flow-chart.png'
+import RenderUml from 'chat-list/components/render-uml';
+import umlPng from 'chat-list/assets/img/flow-chart.png';
 export class UML extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('doc.agent.uml', 'Diagram')
+  name = i18n.t('doc.agent.uml', 'Diagram');
   icon = umlPng;
   action = 'uml';
   shortDescription = i18n.t('doc.agent.uml.short_description', "Help you write UML Diagram.");
@@ -31,8 +31,8 @@ export class UML extends ChatPluginBase implements IChatPlugin {
     return super.onReceive(message, { stream: false });
   };
   render = () => {
-    return <RenderUml />
-  }
+    return <RenderUml />;
+  };
 }
 
 export default new UML();

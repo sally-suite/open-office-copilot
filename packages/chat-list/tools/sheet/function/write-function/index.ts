@@ -1,7 +1,7 @@
-import instruction from './instruction.md'
+import instruction from './instruction.md';
 import { ChatState, ITool, IToolFunction } from 'chat-list/types/plugin';
 import { buildChatMessage } from 'chat-list/utils';
-import { Sigma } from 'lucide-react'
+import { Sigma } from 'lucide-react';
 export const func: IToolFunction = async ({ function_code, explain, dataContext, context }: { function_code: string, explain: string, dataContext: string, context: ChatState }) => {
     // const promp = template(genExp, {
     //     sheet_info: dataContext
@@ -17,9 +17,9 @@ export const func: IToolFunction = async ({ function_code, explain, dataContext,
     // console.log(function_code, explain)
     const { appendMsg } = context;
     const msg = "`" + function_code + "`\n" + explain;
-    appendMsg(buildChatMessage(msg))
+    appendMsg(buildChatMessage(msg));
     return msg;
-}
+};
 
 export default {
     type: 'function',

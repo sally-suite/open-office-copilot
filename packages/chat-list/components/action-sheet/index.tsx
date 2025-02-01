@@ -1,5 +1,5 @@
-import React from 'react'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from 'chat-list/components/ui/sheet'
+import React from 'react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from 'chat-list/components/ui/sheet';
 
 interface IActionSheetProps {
     title?: string;
@@ -15,7 +15,7 @@ export default function index(props: IActionSheetProps) {
         if (!open) {
             onClose?.();
         }
-    }
+    };
     return (
         <Sheet open={open} onOpenChange={onOpenChange} modal={false}>
             {/* <SheetTrigger></SheetTrigger> */}
@@ -34,5 +34,5 @@ export default function index(props: IActionSheetProps) {
             </SheetContent>
         </Sheet>
 
-    )
+    );
 }

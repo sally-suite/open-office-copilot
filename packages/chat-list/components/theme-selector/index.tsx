@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Sun, Moon, Check, Type } from 'lucide-react';
 import { Card, CardContent } from "chat-list/components/ui/card";
 import { ScrollArea } from "chat-list/components/ui/scroll-area";
-import lightThemes from './theme-light.json'
-import darkThemes from './theme-dark.json'
+import lightThemes from './theme-light.json';
+import darkThemes from './theme-dark.json';
 import { Sheet, SheetContent, SheetHeader } from '../ui/sheet';
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import { cn } from 'chat-list/lib/utils';
@@ -207,11 +207,11 @@ interface IThemePanelProps {
 
 const ThemePanel: React.FC<IThemePanelProps> = (props: IThemePanelProps) => {
     const { theme, font, open, onClose, onChange, sample } = props;
-    const [fonts] = useState(fontList)
+    const [fonts] = useState(fontList);
     const [mode, setMode] = useState<'light' | 'dark' | 'font'>('light');
     const [selectedTheme, setSelectedTheme] = useState<Theme>(theme || lightThemes[0]);
     const [selectedFont, setSelectedFont] = useState<Font>(font || fonts[0]);
-    const [side, setSide] = useState<'bottom' | 'right'>('bottom')
+    const [side, setSide] = useState<'bottom' | 'right'>('bottom');
     const themes = mode === 'light' ? lightThemes : darkThemes;
     const onSelectedTheme = (theme: Theme) => {
         // const theme = themes.find((theme) => theme.name === themeName);
@@ -219,14 +219,14 @@ const ThemePanel: React.FC<IThemePanelProps> = (props: IThemePanelProps) => {
         if (theme) {
             onChange(theme, selectedFont);
         }
-    }
+    };
     const onSelectedFont = (font: Font) => {
         // const font = fonts.find((font) => font.name === fontName);
         setSelectedFont(font);
         if (font) {
             onChange(selectedTheme, font);
         }
-    }
+    };
     const resizePanel = () => {
         // 判断屏幕宽度
         if (window.innerWidth > 500) {
@@ -234,7 +234,7 @@ const ThemePanel: React.FC<IThemePanelProps> = (props: IThemePanelProps) => {
         } else {
             setSide('bottom');
         }
-    }
+    };
     useEffect(() => {
         const handleResize = () => {
             resizePanel();

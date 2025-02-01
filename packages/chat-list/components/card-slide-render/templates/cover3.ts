@@ -1,5 +1,5 @@
 import { ISlideItem, Slide, SlideElement, TextBlock, Theme } from "chat-list/types/api/slide";
-import { titleFontSize } from './constants'
+import { titleFontSize } from './constants';
 import { corpImageByRatio } from "chat-list/utils";
 
 
@@ -47,7 +47,7 @@ export async function render(slideItem: ISlideItem, theme: Theme): Promise<Slide
     if (slideItem.image && slideItem.image.length > 0) {
         const img = slideItem.image[0];
         const radio = 13.3 / 2.865;
-        const image = await corpImageByRatio(img.src, radio, 13.3 * 96, 'cover')
+        const image = await corpImageByRatio(img.src, radio, 13.3 * 96, 'cover');
         elements.push({
             type: 'image',
             src: image,
@@ -78,4 +78,4 @@ export default {
     render,
     name: 'Top image with title and subtitle',
     image: false,
-}
+};

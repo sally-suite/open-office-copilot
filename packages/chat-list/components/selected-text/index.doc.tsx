@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import docApi from '@api/doc';
-import { TextCursorInput, X } from 'lucide-react'
+import { TextCursorInput, X } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
 interface ISelectedTextProps {
     onSelect?: (text: string) => void;
@@ -26,18 +26,18 @@ export default function index(props: ISelectedTextProps) {
         }
         // setText(selectedText);
         setDataContext(data);
-    }
+    };
     const loopSelectedText = () => {
         timer = setTimeout(async () => {
             updateContext();
             await loopSelectedText();
-        }, 1000)
+        }, 1000);
 
         return timer;
-    }
+    };
     const onDeselect = async () => {
         setDataContext('');
-    }
+    };
 
     useEffect(() => {
         loopSelectedText();
@@ -45,15 +45,15 @@ export default function index(props: ISelectedTextProps) {
             if (timer) {
                 clearTimeout(timer);
             }
-        }
-    }, [])
+        };
+    }, []);
 
     useEffect(() => {
         if (messages.length == 0) {
             lastText.current.text = '';
             updateContext();
         }
-    }, [messages])
+    }, [messages]);
 
     if (!dataContext) {
         return null;
@@ -73,5 +73,5 @@ export default function index(props: ISelectedTextProps) {
                 <X height={16} width={16} className='text-gray-500' />
             </span>
         </div>
-    )
+    );
 }

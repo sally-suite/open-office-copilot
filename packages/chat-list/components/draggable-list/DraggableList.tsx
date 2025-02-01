@@ -1,10 +1,10 @@
 
-import React, { useState, useCallback, useRef } from 'react'
-import { DndProvider, useDrag, useDrop } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { Button } from "chat-list/components/ui/button"
-import { Input } from "chat-list/components/ui/input"
-import { Plus, Trash2, ChevronRight, ChevronDown, GripVertical } from "lucide-react"
+import React, { useState, useCallback, useRef } from 'react';
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Button } from "chat-list/components/ui/button";
+import { Input } from "chat-list/components/ui/input";
+import { Plus, Trash2, ChevronRight, ChevronDown, GripVertical } from "lucide-react";
 
 interface OutlineItem {
     id: string;
@@ -35,50 +35,50 @@ const DraggableItem: React.FC<DraggableItemProps> = ({
     toggleExpand,
     isExpanded
 }) => {
-    const ref = useRef<HTMLDivElement>(null)
+    const ref = useRef<HTMLDivElement>(null);
     const [{ handlerId }, drop] = useDrop({
         accept: `ITEM${parentId ? `-${parentId}` : ''}`,
         collect(monitor) {
             return {
                 handlerId: monitor.getHandlerId(),
-            }
+            };
         },
         hover(item: { index: number }, monitor) {
             if (!ref.current) {
-                return
+                return;
             }
-            const dragIndex = (item as any).index
-            const hoverIndex = index
+            const dragIndex = (item as any).index;
+            const hoverIndex = index;
             if (dragIndex === hoverIndex) {
-                return
+                return;
             }
-            const hoverBoundingRect = ref.current?.getBoundingClientRect()
-            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-            const clientOffset = monitor.getClientOffset()
-            const hoverClientY = (clientOffset as any).y - hoverBoundingRect.top
+            const hoverBoundingRect = ref.current?.getBoundingClientRect();
+            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+            const clientOffset = monitor.getClientOffset();
+            const hoverClientY = (clientOffset as any).y - hoverBoundingRect.top;
             if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-                return
+                return;
             }
             if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-                return
+                return;
             }
             moveItem(dragIndex, hoverIndex, parentId)
-                ; (item as any).index = hoverIndex
+                ; (item as any).index = hoverIndex;
         },
-    })
+    });
 
     const [{ isDragging }, drag, preview] = useDrag({
         type: `ITEM${parentId ? `-${parentId}` : ''}`,
         item: () => {
-            return { id: item.id, index }
+            return { id: item.id, index };
         },
         collect: (monitor) => ({
             isDragging: monitor.isDragging(),
         }),
-    })
+    });
 
-    const opacity = isDragging ? 0.4 : 1
-    drag(drop(ref))
+    const opacity = isDragging ? 0.4 : 1;
+    drag(drop(ref));
 
     return (
         <div ref={preview} style={{ opacity }} className={`space-y-2 ${parentId ? 'ml-6' : ''}`}>
@@ -143,95 +143,95 @@ const DraggableItem: React.FC<DraggableItemProps> = ({
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
 export default function OutlineConfirmation({ initialOutline = [], onConfirm }: {
     initialOutline?: OutlineItem[];
     onConfirm: (outline: OutlineItem[]) => void;
 }) {
-    const [outline, setOutline] = useState<OutlineItem[]>(initialOutline)
-    const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set())
+    const [outline, setOutline] = useState<OutlineItem[]>(initialOutline);
+    const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
     const moveItem = useCallback((dragIndex: number, hoverIndex: number, parentId: string | null) => {
         setOutline((prevOutline) => {
-            const newOutline = JSON.parse(JSON.stringify(prevOutline))
+            const newOutline = JSON.parse(JSON.stringify(prevOutline));
             const items = parentId
                 ? newOutline.find((item: OutlineItem) => item.id === parentId)?.children
-                : newOutline
-            const [reorderedItem] = items.splice(dragIndex, 1)
-            items.splice(hoverIndex, 0, reorderedItem)
-            return newOutline
-        })
-    }, [])
+                : newOutline;
+            const [reorderedItem] = items.splice(dragIndex, 1);
+            items.splice(hoverIndex, 0, reorderedItem);
+            return newOutline;
+        });
+    }, []);
 
     const addItem = (parentId: string | null = null) => {
-        const newItem = { id: Date.now().toString(), title: '', children: [] }
+        const newItem = { id: Date.now().toString(), title: '', children: [] };
         setOutline((prevOutline) => {
-            const newOutline = JSON.parse(JSON.stringify(prevOutline))
+            const newOutline = JSON.parse(JSON.stringify(prevOutline));
             if (parentId === null) {
-                newOutline.push(newItem)
+                newOutline.push(newItem);
             } else {
-                const parent = newOutline.find((item: OutlineItem) => item.id === parentId)
+                const parent = newOutline.find((item: OutlineItem) => item.id === parentId);
                 if (parent) {
-                    parent.children.push(newItem)
+                    parent.children.push(newItem);
                 }
             }
-            return newOutline
-        })
-    }
+            return newOutline;
+        });
+    };
 
     const updateItem = (id: string, newTitle: string, parentId: string | null = null) => {
         setOutline((prevOutline) => {
-            const newOutline = JSON.parse(JSON.stringify(prevOutline))
+            const newOutline = JSON.parse(JSON.stringify(prevOutline));
             const updateItemRecursive = (items: OutlineItem[]) => {
-                for (let item of items) {
+                for (const item of items) {
                     if (item.id === id) {
-                        item.title = newTitle
-                        return true
+                        item.title = newTitle;
+                        return true;
                     }
                     if (item.children.length > 0 && updateItemRecursive(item.children)) {
-                        return true
+                        return true;
                     }
                 }
-                return false
-            }
-            updateItemRecursive(newOutline)
-            return newOutline
-        })
-    }
+                return false;
+            };
+            updateItemRecursive(newOutline);
+            return newOutline;
+        });
+    };
 
     const removeItem = (id: string, parentId: string | null = null) => {
         setOutline((prevOutline) => {
-            const newOutline = JSON.parse(JSON.stringify(prevOutline))
+            const newOutline = JSON.parse(JSON.stringify(prevOutline));
             const removeItemRecursive = (items: OutlineItem[]) => {
                 for (let i = 0; i < items.length; i++) {
                     if (items[i].id === id) {
-                        items.splice(i, 1)
-                        return true
+                        items.splice(i, 1);
+                        return true;
                     }
                     if (items[i].children.length > 0 && removeItemRecursive(items[i].children)) {
-                        return true
+                        return true;
                     }
                 }
-                return false
-            }
-            removeItemRecursive(newOutline)
-            return newOutline
-        })
-    }
+                return false;
+            };
+            removeItemRecursive(newOutline);
+            return newOutline;
+        });
+    };
 
     const toggleExpand = (id: string) => {
         setExpandedItems((prev) => {
-            const next = new Set(prev)
+            const next = new Set(prev);
             if (next.has(id)) {
-                next.delete(id)
+                next.delete(id);
             } else {
-                next.add(id)
+                next.add(id);
             }
-            return next
-        })
-    }
+            return next;
+        });
+    };
 
     const handleConfirm = () => {
         const cleanOutline = (items: OutlineItem[]): OutlineItem[] => {
@@ -240,10 +240,10 @@ export default function OutlineConfirmation({ initialOutline = [], onConfirm }: 
                 .map((item) => ({
                     ...item,
                     children: cleanOutline(item.children),
-                }))
-        }
-        onConfirm(cleanOutline(outline))
-    }
+                }));
+        };
+        onConfirm(cleanOutline(outline));
+    };
 
     return (
         <DndProvider backend={HTML5Backend}>
@@ -274,5 +274,5 @@ export default function OutlineConfirmation({ initialOutline = [], onConfirm }: 
                 </Button>
             </div>
         </DndProvider>
-    )
+    );
 }

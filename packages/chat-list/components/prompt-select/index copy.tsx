@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 import {
     Bot,
     LogOut,
     Wand2,
     Wrench,
     Code2
-} from "lucide-react"
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -19,12 +19,12 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "chat-list/components/ui/dropdown-menu";
-import { Switch } from 'chat-list/components/ui/switch'
+import { Switch } from 'chat-list/components/ui/switch';
 import { cn } from 'chat-list/lib/utils';
 import { snakeToWords } from 'chat-list/utils';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import PromptSelect from 'chat-list/components/composer/Composer/Prompts';
-import prompts from 'chat-list/data/prompts/en-US.json'
+import prompts from 'chat-list/data/prompts/en-US.json';
 interface IToolListProps {
     className?: string;
 }
@@ -39,34 +39,34 @@ export default function ToolList(props: IToolListProps) {
 
     const onToggle = () => {
         setOpen(!open);
-    }
+    };
     const onToolCheckChange = (checked: boolean) => {
         setAgentTools(agentTools.map(item => {
             return {
                 ...item,
                 enable: checked
-            }
+            };
         }));
-    }
+    };
     const onToolItemCheckChange = (id: string, checked: boolean) => {
         setAgentTool(id, checked);
-    }
+    };
     const onAgentCheckChange = (checked: boolean) => {
         setColAgents(colAgents.map(item => {
             return {
                 ...item,
                 enable: checked
-            }
+            };
         }));
 
-    }
+    };
     const onAgentItemCheckChange = (id: string, checked: boolean) => {
-        setColAgent(id, checked)
-    }
+        setColAgent(id, checked);
+    };
     const onCreateAgent = () => {
         navigate("/create-agent");
-    }
-    console.log(prompts)
+    };
+    console.log(prompts);
     return (
         <>
 
@@ -90,11 +90,11 @@ export default function ToolList(props: IToolListProps) {
                         aa
                     </div>
                     <PromptSelect prompts={prompts} input='' onSelect={() => {
-                        console.log('first')
+                        console.log('first');
                     }} />
                 </DropdownMenuContent>
             </DropdownMenu>
         </>
 
-    )
+    );
 }

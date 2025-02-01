@@ -1,27 +1,28 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import React, { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math'
+import remarkMath from 'remark-math';
 // import rehypeKatex from 'rehype-katex'
-import rehypeMathjax from './rehype-mathjax/svg'
-import remarkMermaid from './remark-mermaidjs/browser'
+import rehypeMathjax from './rehype-mathjax/svg';
+import remarkMermaid from './remark-mermaidjs/browser';
 import BubbleMenu from '../bubble-menu';
 import Table from './table';
 import image from 'chat-list/utils/image';
-import Image from './image'
+import Image from './image';
 import { NormalComponents } from 'react-markdown/lib/complex-types';
 import { SpecialComponents } from 'react-markdown/lib/ast-to-react';
-import Code from './code'
+import Code from './code';
 import { isImageLink } from 'chat-list/utils';
 import CodeInline from './code-inline';
-import ErrorBoundary from 'chat-list/components/error-boundary'
-import Svg from './svg'
-import rehypeKatex from 'rehype-katex'
-import Katex from './katex'
-import MathMark from './math'
-import Link from './link'
+import ErrorBoundary from 'chat-list/components/error-boundary';
+import Svg from './svg';
+import rehypeKatex from 'rehype-katex';
+import Katex from './katex';
+import MathMark from './math';
+import Link from './link';
 // import remarkPlantUml from '@akebifiky/remark-simple-plantuml'
 import './index.less';
 import useChatState from 'chat-list/hook/useChatState';
@@ -71,19 +72,19 @@ export default React.memo(function Markdown(props: IMarkdownProps) {
     supportMath = true,
     showBookmark = true,
   } = props;
-  const [root, setRoot] = useState(null)
+  const [root, setRoot] = useState(null);
   const container = useRef();
   const { platform } = useChatState();
   useEffect(() => {
-    setRoot(container.current)
+    setRoot(container.current);
   }, []);
 
   const content = replaceImageLinks(children);
-  let remarkPlugins = [remarkGfm, remarkMermaid]
+  let remarkPlugins = [remarkGfm, remarkMermaid];
   let rehypePlugins = [];
   if (supportMath) {
-    remarkPlugins = [remarkGfm, remarkMath, remarkMermaid]
-    rehypePlugins = (platform == 'google' || docType == 'slide') ? [rehypeMathjax] : [rehypeKatex]
+    remarkPlugins = [remarkGfm, remarkMath, remarkMermaid];
+    rehypePlugins = (platform == 'google' || docType == 'slide') ? [rehypeMathjax] : [rehypeKatex];
   }
 
   return (

@@ -6,15 +6,15 @@ import {
   CardActions,
   // RadioGroup,
 } from "chat-list/components/ui/card";
-import { Input } from 'chat-list/components/ui/input'
+import { Input } from 'chat-list/components/ui/input';
 import Button from '../button';
 import sheetService from '@api/sheet';
 import { getHeaderList } from 'chat-list/service/sheet';
 import SelectList from '../select-list';
 import { RadioGroup, RadioGroupItem } from 'chat-list/components/ui/radio-group';
-import { CheckboxGroup } from 'chat-list/components/ui/checkbox'
+import { CheckboxGroup } from 'chat-list/components/ui/checkbox';
 import { ChartTypes } from 'chat-list/types/chart';
-import Loading from 'chat-list/components/loading'
+import Loading from 'chat-list/components/loading';
 import useChatState from 'chat-list/hook/useChatState';
 import { useTranslation } from 'react-i18next';
 
@@ -51,7 +51,7 @@ function CardChart(props: ICardFormatProps) {
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation(['chart']);
   const onAddChart = async () => {
-    console.log(options)
+    console.log(options);
     await sheetService.AddChart({
       address,
       type: chartType,
@@ -73,23 +73,23 @@ function CardChart(props: ICardFormatProps) {
       return {
         value: name,
         text: name
-      }
+      };
     }));
     setLoading(false);
   };
   const onSelectX = (val: string) => {
-    console.log(val)
+    console.log(val);
     setXValue(val);
   };
   const onSelectY = (vals: string[]) => {
-    console.log(vals)
+    console.log(vals);
     setYValues(vals);
   };
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
   const onStackedChange = (val: 'true' | 'false') => {
-    console.log(val)
+    console.log(val);
     setIsStacked(val);
   };
   useEffect(() => {
@@ -136,7 +136,7 @@ function CardChart(props: ICardFormatProps) {
                         className="mx-1 cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                         htmlFor={`x-${value}}`}>{text}</label>
                     </div>
-                  )
+                  );
                 })
               }
             </RadioGroup>

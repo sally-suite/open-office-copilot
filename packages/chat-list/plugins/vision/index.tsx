@@ -14,7 +14,7 @@ import i18n from 'chat-list/locales/i18n';
 import imagePng from 'chat-list/assets/img/image.png';
 
 export class Vision extends ChatPluginBase implements IChatPlugin {
-  name = i18n.t('sheet.agent.vision', 'Vision')
+  name = i18n.t('sheet.agent.vision', 'Vision');
   icon = imagePng;
   fileConfig = {
     accept: {
@@ -45,14 +45,14 @@ export class Vision extends ChatPluginBase implements IChatPlugin {
     const { type, text, files } = message;
     const ps = files.filter(p => p.type.startsWith('image')).map(async (file) => {
       const base64 = await blobToBase64Image(file);
-      const url = await resizeImg(base64, 512, 512)
+      const url = await resizeImg(base64, 512, 512);
       // console.log(url)
       return {
         type: 'image_url',
         image_url: {
           url
         }
-      }
+      };
     });
 
     const images = await Promise.all(ps);
@@ -60,8 +60,8 @@ export class Vision extends ChatPluginBase implements IChatPlugin {
     return {
       role: 'user',
       content: msgs
-    }
-  }
+    };
+  };
   text: string;
   images: File[];
   onReceive = async (message: IChatMessage) => {
@@ -73,7 +73,7 @@ export class Vision extends ChatPluginBase implements IChatPlugin {
     return await super.onReceive({ _id: message._id, role: message.role, content: msg.content }, {
       model: 'gpt-4o',
       stream: false
-    })
+    });
 
     //const { setTyping, chat, appendMsg, model, updateMsg } = this.context;
     // setTyping(true);
@@ -148,7 +148,7 @@ export class Vision extends ChatPluginBase implements IChatPlugin {
   };
   sourceImages: string[];
   render() {
-    return <VisionRender images={this.sourceImages} />
+    return <VisionRender images={this.sourceImages} />;
   }
 }
 

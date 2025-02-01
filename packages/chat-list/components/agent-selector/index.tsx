@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 import {
     Bot,
     HelpCircle,
     X
-} from "lucide-react"
+} from "lucide-react";
 
 import {
     DropdownMenu,
@@ -15,11 +15,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "chat-list/components/ui/dropdown-menu";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import Tooltip from '../tooltip';
 import Avatar from '../avatars';
 import { IChatPlugin } from 'chat-list/types/plugin';
-import { Switch } from 'chat-list/components/ui/switch'
+import { Switch } from 'chat-list/components/ui/switch';
 // import { plugins } from 'chat-list/plugins/sheet';
 interface IAgentSelectorProps {
     className?: string;
@@ -36,7 +36,7 @@ export default function ToolList(props: IAgentSelectorProps) {
 
     const onToggle = () => {
         setOpen(!open);
-    }
+    };
 
     const onAgentItemCheckChange = (item: IChatPlugin, checked: boolean) => {
         // if (plugin) {
@@ -56,28 +56,28 @@ export default function ToolList(props: IAgentSelectorProps) {
         // setOpen(false)
         let agents: IChatPlugin[] = [];
         if (checked) {
-            agents = (colAgents.concat(item))
+            agents = (colAgents.concat(item));
         } else {
-            agents = (colAgents.filter(i => i.action !== item.action))
+            agents = (colAgents.filter(i => i.action !== item.action));
         }
-        setColAgents(agents)
-        onChange?.(agents)
-    }
+        setColAgents(agents);
+        onChange?.(agents);
+    };
     const onAgentCheckChange = (checked: boolean) => {
         if (checked) {
-            setColAgents(allAgents)
+            setColAgents(allAgents);
         } else {
-            setColAgents([])
+            setColAgents([]);
         }
-    }
+    };
     const onRemove = (item: IChatPlugin, e: Event) => {
         e.stopPropagation();
-        setColAgents(colAgents.filter(i => i.action !== item.action))
-    }
+        setColAgents(colAgents.filter(i => i.action !== item.action));
+    };
 
     useEffect(() => {
-        setAllAgents(plugins.filter(p => p.action != plugin.action))
-    }, [])
+        setAllAgents(plugins.filter(p => p.action != plugin.action));
+    }, []);
 
     return (
         <>
@@ -118,7 +118,7 @@ export default function ToolList(props: IAgentSelectorProps) {
                                             <X height={16} width={16} className=' text-gray-500' />
                                         </span>
                                     </div>
-                                )
+                                );
                             })
                         }
                     </div>
@@ -160,7 +160,7 @@ export default function ToolList(props: IAgentSelectorProps) {
                                                             }
                                                         </span>
                                                     </DropdownMenuCheckboxItem>
-                                                )
+                                                );
                                             })
                                         }
                                     </DropdownMenuGroup>
@@ -186,5 +186,5 @@ export default function ToolList(props: IAgentSelectorProps) {
             </DropdownMenu>
         </>
 
-    )
+    );
 }

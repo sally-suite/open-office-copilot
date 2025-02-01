@@ -1,6 +1,6 @@
 // FileList.js
 import React from 'react';
-import ProgressBar from '../progress'
+import ProgressBar from '../progress';
 
 interface ICardProgressProps {
     percentage: number;

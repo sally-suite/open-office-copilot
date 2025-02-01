@@ -1,11 +1,11 @@
-import React from 'react'
-import useChatState from 'chat-list/hook/useChatState'
+import React from 'react';
+import useChatState from 'chat-list/hook/useChatState';
 import { Bookmark, Twitter, Youtube } from 'lucide-react';
-import AgentPanel from 'chat-list/components/agent-panel'
-import { useTranslation } from 'react-i18next'
+import AgentPanel from 'chat-list/components/agent-panel';
+import { useTranslation } from 'react-i18next';
 import { cn } from 'chat-list/lib/utils';
 import Button from '../button';
-import Tooltip from 'chat-list/components/tooltip'
+import Tooltip from 'chat-list/components/tooltip';
 import { useNavigate } from "react-router-dom";
 
 export default function index() {
@@ -15,8 +15,8 @@ export default function index() {
     const navigate = useNavigate();
 
     const onClickBookmark = () => {
-        navigate(`/bookmarks/${plugin.action}`)
-    }
+        navigate(`/bookmarks/${plugin.action}`);
+    };
     return (
         <div className={cn('w-full relative z-20 border-b shadow',
             // (open) ? "h-10" : " h-0"
@@ -68,5 +68,5 @@ export default function index() {
                 }
             </div>
         </div>
-    )
+    );
 }

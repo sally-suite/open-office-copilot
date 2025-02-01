@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import StepItem from './StepItem';
 import { XCircle, Plus, Trash } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
-import IconButton from 'chat-list/components/icon-button'
+import IconButton from 'chat-list/components/icon-button';
 import { Textarea } from '../ui/textarea';
 import { IPlanTask } from 'chat-list/types/user';
 

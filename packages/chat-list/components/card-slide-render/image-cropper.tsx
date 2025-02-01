@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ReactCrop, { Crop, PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop'
+import ReactCrop, { Crop, PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import { Slider } from '../ui/slider';
 import Button from '../button';
@@ -31,7 +31,7 @@ function centerAspectCrop(
         ),
         mediaWidth,
         mediaHeight,
-    )
+    );
 }
 
 export default function ImageCropper(props: ImageCropperProps) {
@@ -51,8 +51,8 @@ export default function ImageCropper(props: ImageCropperProps) {
 
     function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
         if (aspect) {
-            const { width, height } = e.currentTarget
-            setCrop(centerAspectCrop(width, height, aspect))
+            const { width, height } = e.currentTarget;
+            setCrop(centerAspectCrop(width, height, aspect));
         }
     }
 
@@ -81,7 +81,7 @@ export default function ImageCropper(props: ImageCropperProps) {
 
         const result = await cropImage(imgBase64, cropWidth, cropHeight, cropX, cropY);
         onConfirm?.(result);
-    }
+    };
 
     return (
         <div
@@ -118,7 +118,7 @@ export default function ImageCropper(props: ImageCropperProps) {
                     step={0.1}
                     className="w-full"
                     onValueChange={(e) => {
-                        setScale(e[0])
+                        setScale(e[0]);
                     }}
                 />
             </div>
@@ -128,5 +128,5 @@ export default function ImageCropper(props: ImageCropperProps) {
                 </Button>
             </div>
         </div>
-    )
+    );
 }

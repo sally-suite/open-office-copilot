@@ -21,29 +21,12 @@ class UserService implements IUserService {
         return Promise.resolve();
     };
     getUserProperty: (key: string) => Promise<string> = async (key: string) => {
-        // const store: any = {
-        //     'OPENAI_API_MODEL': "gpt-3.5-turbo"
-        // }
-        // return store[key] || ""
         const value = getLocalStore(key) as unknown as string;
         return Promise.resolve(value);
     };
     checkUser = async (): Promise<IUserOrderState> => {
-        // await sleep();
-        debugger;
         const result = await api.checkUser(null);
-        // debugger;
         return result;
-        // return Promise.resolve({
-        //     state: 'paid',
-        //     email: 'hongyin163@gmail.com',
-        //     order: null,
-        //     version: 'standard',
-        //     gpt: 0,
-        //     exp: Date.now(),
-        //     gptLimit: 12,
-        //     noApiKey: true,
-        // } as unknown as IUserOrderState)
     };
     sentMessage? = async (message: IUserMessage) => {
         await api.sentMessage(message);

@@ -35,8 +35,8 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ value, onChange }) => {
     };
 
     useEffect(() => {
-        setText(value || '\n')
-    }, [value])
+        setText(value || '\n');
+    }, [value]);
 
     return (
         <div className="p-1">

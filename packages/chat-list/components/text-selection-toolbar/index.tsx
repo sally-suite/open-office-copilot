@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FileOutput, Quote } from 'lucide-react';
-import CopyButton from 'chat-list/components/copy-button'
+import CopyButton from 'chat-list/components/copy-button';
 import useChatState from 'chat-list/hook/useChatState';
 import docApi from '@api/doc';
 import slideApi from '@api/slide';
@@ -55,7 +55,7 @@ const TextSelectionToolbar = () => {
                     setSelectedText(text);
 
                 }
-            }, 200)
+            }, 200);
 
         };
 
@@ -77,12 +77,12 @@ const TextSelectionToolbar = () => {
 
     const onCopy = () => {
         setShowToolbar(false);
-    }
+    };
 
     const onInsert = async () => {
         const content = selectedText;
-        const result = removeMentions(content)
-        const html = await buildHtml(result)
+        const result = removeMentions(content);
+        const html = await buildHtml(result);
         // if (platform == 'office') {
         //     await docApi.insertText(html, {
         //         type: 'html'
@@ -107,7 +107,7 @@ const TextSelectionToolbar = () => {
     };
 
     const onQuote = () => {
-        setDataContext(selectedText)
+        setDataContext(selectedText);
         setShowToolbar(false);
     };
 

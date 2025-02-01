@@ -24,7 +24,7 @@ export class Code extends ChatPluginBase implements IChatPlugin {
   // introduce = introduce;
   introduce = () => {
     return i18n.t('agent:python-slide_introduction', "Hi! How can I assist you today?");
-  }
+  };
   fileConfig = {
     accept: {
       text: false,
@@ -46,15 +46,15 @@ export class Code extends ChatPluginBase implements IChatPlugin {
     if (quickReply.code == 'editor') {
       context.setMode(this.action, 'custom');
     }
-  }
+  };
   tools = ['pip_install', 'python_interpreter_slide'];
   renderMessageContext = (context: string) => {
     const data = JSON.parse(context);
     return (
       <ContextSlide type={data.type} text={data.text} slides={data.slides} />
-    )
-  }
-  initialize = false
+    );
+  };
+  initialize = false;
   async onReceive(message: IChatMessage, options?: { stream: boolean; }): Promise<any> {
     const { showMessage } = this.context;
     if (!this.initialize) {
@@ -64,7 +64,7 @@ export class Code extends ChatPluginBase implements IChatPlugin {
       this.initialize = true;
     }
 
-    return await super.onReceive(message, options)
+    return await super.onReceive(message, options);
   }
 }
 

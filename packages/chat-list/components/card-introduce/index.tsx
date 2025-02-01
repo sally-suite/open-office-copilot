@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 
-import { useTranslation } from 'react-i18next'
-import { ArrowLeft, Wrench } from 'lucide-react'
+import { useTranslation } from 'react-i18next';
+import { ArrowLeft, Wrench } from 'lucide-react';
 import sheetApi from '@api/sheet';
 import Avatar from '../avatars';
 import { useNavigate } from 'react-router-dom';
@@ -12,11 +12,11 @@ interface IToolListProps {
     className?: string;
 }
 
-const GOOGLE_GPT_FUNCTIONS_EXAMPLE = [`=SALLY_GPT(A1,B1,"your prompt")`, `=SALLY_EXTRACT(A2,"name")`, `=SALLY_TRANS(A2,"english")`]
-const GOOGLE_GPT_FUNCTIONS = ['SALLY_GPT', 'SALLY_EXTRACT', 'SALLY_TRANS']
+const GOOGLE_GPT_FUNCTIONS_EXAMPLE = [`=SALLY_GPT(A1,B1,"your prompt")`, `=SALLY_EXTRACT(A2,"name")`, `=SALLY_TRANS(A2,"english")`];
+const GOOGLE_GPT_FUNCTIONS = ['SALLY_GPT', 'SALLY_EXTRACT', 'SALLY_TRANS'];
 
-const OFFICE_GPT_FUNCTIONS_EXAMPLE = [`=SL.GPT3("What's your name?")`, `=SL.GPT4(A2,"Generate proposals ...")`]
-const OFFICE_GPT_FUNCTIONS = ['SL.GPT3', 'SL.GPT4']
+const OFFICE_GPT_FUNCTIONS_EXAMPLE = [`=SL.GPT3("What's your name?")`, `=SL.GPT4(A2,"Generate proposals ...")`];
+const OFFICE_GPT_FUNCTIONS = ['SL.GPT3', 'SL.GPT4'];
 
 
 const GPT_FUNCTION: { [x: string]: { name: string, functions: string[], examples: string[] } } = {
@@ -30,20 +30,20 @@ const GPT_FUNCTION: { [x: string]: { name: string, functions: string[], examples
         functions: OFFICE_GPT_FUNCTIONS,
         examples: OFFICE_GPT_FUNCTIONS_EXAMPLE
     }
-}
+};
 
 const AGENTS: { [x: string]: string[] } = {
     google: ['python', 'coder', 'translate', 'intelligent'],
     office: ['python', 'vba', 'translate', 'intelligent']
-}
+};
 
 export default React.memo(function ToolList(props: IToolListProps) {
 
     const { className } = props;
     const { t } = useTranslation(['base', 'tool']);
     const { plugin, setAgentTools, platform, setText, tools, setPlugin, plugins, setMode, setPlaceholder } = useChatState();
-    const formula = GPT_FUNCTION['google']
-    const [agents, setAgents] = useState([])
+    const formula = GPT_FUNCTION['google'];
+    const [agents, setAgents] = useState([]);
     const navigate = useNavigate();
 
     const onSelect = (id: string) => {
@@ -51,26 +51,26 @@ export default React.memo(function ToolList(props: IToolListProps) {
         const tip = t(`tool:${id}.tip`, '');
         setPlaceholder(tip);
         setAgentTools([{ id, name: id, enable: true }]);
-    }
+    };
     const onSelectFunction = async (index: number) => {
-        await sheetApi.insertText(formula.examples[index])
-    }
+        await sheetApi.insertText(formula.examples[index]);
+    };
     const onSelectAgent = (plg: IChatPlugin) => {
         // const plg = plugins.find(p => p.action == agent);
         // setPlugin(plg)
         setMode(plg.action, plg.mode || 'chat');
-        navigate(`/${plg.action}`)
-    }
+        navigate(`/${plg.action}`);
+    };
 
     const init = () => {
         const map = AGENTS[platform] || [];
         const agents = plugins?.filter(p => map.includes(p.action));
         setAgents(agents);
-    }
+    };
 
     useEffect(() => {
         init();
-    }, [])
+    }, []);
     return (
         <div className='flex flex-col text-sm mb-32 relative'>
             {/* <p className='markdown py-1'>
@@ -103,7 +103,7 @@ export default React.memo(function ToolList(props: IToolListProps) {
                                 </div>
 
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
@@ -133,7 +133,7 @@ export default React.memo(function ToolList(props: IToolListProps) {
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
@@ -157,7 +157,7 @@ export default React.memo(function ToolList(props: IToolListProps) {
                                             </div>
                                         </Tooltip>
 
-                                    )
+                                    );
                                 })
                             }
                         </div>
@@ -166,5 +166,5 @@ export default React.memo(function ToolList(props: IToolListProps) {
             }
         </div>
 
-    )
+    );
 });

@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTitle,
-} from "chat-list/components/ui/sheet"
+} from "chat-list/components/ui/sheet";
 import { cn } from 'chat-list/lib/utils';
 import { ChevronLeft, Crop as CropIcon, Replace } from 'lucide-react';
 import { debounce, proxyImage } from 'chat-list/utils';
@@ -26,33 +26,33 @@ export default function ImageSelector(props: ImageSelectorProps) {
     const { title, open, onClose, images, onSelect, aspect } = props;
     const [type, setType] = useState<'list' | 'corp'>('list');
     const [currentImage, setCurrentImage] = useState('');
-    const [side, setSide] = useState<'bottom' | 'right'>('bottom')
-    const imageListRef = useRef<HTMLDivElement>(null)
+    const [side, setSide] = useState<'bottom' | 'right'>('bottom');
+    const imageListRef = useRef<HTMLDivElement>(null);
     const { t } = useTranslation();
 
     const handleReplace = async (img: string) => {
         const imgBase64 = await proxyImage(img);
-        onSelect?.(imgBase64)
-    }
+        onSelect?.(imgBase64);
+    };
 
     const handleSelectImage = (img: string) => {
         setCurrentImage(img);
         setType('corp');
-    }
+    };
 
     const handleCropComplete = (croppedImage: string) => {
         onSelect?.(croppedImage);
         onClose?.();
-    }
+    };
 
     const handleBack = () => {
-        setType('list')
-        setCurrentImage('')
-    }
+        setType('list');
+        setCurrentImage('');
+    };
 
     useEffect(() => {
         if (open) {
-            setType('list')
+            setType('list');
         }
     }, [open]);
 
@@ -65,8 +65,8 @@ export default function ImageSelector(props: ImageSelectorProps) {
             if (titleElement) {
                 titleElement.scrollIntoView({ behavior: 'auto' });
             }
-        }, 300)
-    }, [open, title])
+        }, 300);
+    }, [open, title]);
 
     const resizePanel = () => {
         if (window.innerWidth > 500) {
@@ -74,7 +74,7 @@ export default function ImageSelector(props: ImageSelectorProps) {
         } else {
             setSide('bottom');
         }
-    }
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -147,12 +147,12 @@ export default function ImageSelector(props: ImageSelectorProps) {
                                                                     </IconButton>
                                                                 </div>
                                                             </div>
-                                                        )
+                                                        );
                                                     })
                                                 }
                                             </div>
                                         </div>
-                                    )
+                                    );
                                 })
                             }
                         </div>
@@ -170,5 +170,5 @@ export default function ImageSelector(props: ImageSelectorProps) {
                 }
             </SheetContent>
         </Sheet>
-    )
+    );
 }

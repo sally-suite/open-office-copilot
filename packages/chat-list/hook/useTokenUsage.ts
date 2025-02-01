@@ -11,11 +11,11 @@ export default function useTokenUsage(): TokenUsage {
     const { value: tokenUsage, setValue: setTokenUsage } = useUserProperty(GPT_API_LIMIT_KEY, 0);
 
     const addUsage = async (usage: IUsage) => {
-        await setTokenUsage(Number(tokenUsage) + (usage?.total_tokens || 0))
-    }
+        await setTokenUsage(Number(tokenUsage) + (usage?.total_tokens || 0));
+    };
 
     return {
         tokenUsage: Number(tokenUsage),
         addUsage
-    }
+    };
 }

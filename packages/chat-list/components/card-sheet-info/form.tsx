@@ -1,14 +1,14 @@
 // MyForm.tsx
 
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { Input } from 'chat-list/components/ui/input'
+import { Input } from 'chat-list/components/ui/input';
 import { MousePointerSquare } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import Button from '../button'
-import Icondbutton from '../icon-button'
-import sheetApi from '@api/sheet'
+import Button from '../button';
+import Icondbutton from '../icon-button';
+import sheetApi from '@api/sheet';
 import { getHeaderList, getValuesByRange } from 'chat-list/service/sheet';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 export interface FormulaInfo {
     // header: {
     //     names: string[],
@@ -47,7 +47,7 @@ const InputField: React.FC<InputProps> = ({ label, value, onSetValue, onChange }
                 <Icondbutton title={t('sheet.context.select_data_and_click', 'Select data range and click')} className=' bg-transparent border-0 ml-2 ' icon={MousePointerSquare} onClick={onSetValue}></Icondbutton>
             </div>
         </>
-    )
+    );
 };
 
 
@@ -93,7 +93,7 @@ const MyForm: React.FC<IFormProps> = (props: IFormProps) => {
         setFormData(value);
         onChange?.(value);
 
-    }
+    };
 
     const onSetHeaders = async () => {
         const range = await sheetApi.getRangeA1Notation();
@@ -104,25 +104,25 @@ const MyForm: React.FC<IFormProps> = (props: IFormProps) => {
                 names: heads[0],
                 range
             },
-        }
+        };
         setFormData(value);
         onChange?.(value);
-    }
+    };
 
     const onHeaderInDataRange = async (value: string) => {
         const val = {
             ...formData,
             headerInDataRange: value
-        }
+        };
         setFormData(val);
         onChange?.(val);
-    }
+    };
     const onAddrChanbge = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData((prevData) => ({
             ...prevData,
             dataRangeCells: e.target.value,
         }));
-    }
+    };
     const initEvent = async () => {
         return sheetApi?.registSelectEvent?.(async ({ address, values }) => {
 
@@ -130,12 +130,12 @@ const MyForm: React.FC<IFormProps> = (props: IFormProps) => {
                 ...formData,
                 dataRangeCells: address
             });
-        })
-    }
+        });
+    };
 
     useEffect(() => {
         setFormData(value);
-    }, [value])
+    }, [value]);
 
     useEffect(() => {
         const unregist = initEvent();
@@ -143,10 +143,10 @@ const MyForm: React.FC<IFormProps> = (props: IFormProps) => {
             if (unregist) {
                 unregist.then((unreg: any) => {
                     unreg?.();
-                })
+                });
             }
-        }
-    }, [])
+        };
+    }, []);
 
     // useEffect(() => {
     //     onChange?.(formData);

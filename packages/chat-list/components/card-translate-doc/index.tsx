@@ -3,7 +3,7 @@ import toast from "chat-list/components/ui/use-toast";
 import Setting, { ILangItem } from './setting';
 import useChatState from 'chat-list/hook/useChatState';
 import { buildTransLateDocMessages, translateDocByGoogle } from 'chat-list/service/doc';
-import docApi from '@api/doc'
+import docApi from '@api/doc';
 import { IMessageBody } from 'chat-list/types/chat';
 
 interface ICardTranslateDocProps {
@@ -37,7 +37,7 @@ export default React.memo(function CardTranslate({ onTranslate }: ICardTranslate
       }
       msg.update(result.content);
       if (done) {
-        msg.update(result.content)
+        msg.update(result.content);
       }
     });
 

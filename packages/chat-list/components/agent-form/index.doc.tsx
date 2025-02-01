@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -14,18 +14,18 @@ import {
     FormDescription
 } from "chat-list/components/ui/form";
 import { Input } from "chat-list/components/ui/input";
-import { Textarea } from 'chat-list/components/ui/textarea'
+import { Textarea } from 'chat-list/components/ui/textarea';
 import { CheckboxGroup } from '../ui/checkbox';
 import useChatState from 'chat-list/hook/useChatState';
-import EmojiSelector from 'chat-list/components/emoji-select'
+import EmojiSelector from 'chat-list/components/emoji-select';
 import { IAgent } from 'chat-list/types/agent';
 import { cn } from 'chat-list/lib/utils';
 // import Tooltip from '../tooltip';
-import preview from 'chat-list/assets/img/preview.png'
+import preview from 'chat-list/assets/img/preview.png';
 import { DocType } from 'chat-list/types/plugin';
 import { useTranslation } from 'react-i18next';
 import i18n from 'chat-list/locales/i18n';
-import PpromptSelect, { IPrompts } from 'chat-list/components/prompt-select'
+import PpromptSelect, { IPrompts } from 'chat-list/components/prompt-select';
 // import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 // 更新表单的 schema 以匹配你的数据模型
 const formSchema = z.object({
@@ -94,8 +94,8 @@ export default function AgenForm(props: IAgentFormProps) {
             // actions: z.array(z.string()),
             // owner: z.string()
         });
-        return schema
-    }, [t])
+        return schema;
+    }, [t]);
     // 使用 react-hook-form 创建表单
     const form = useForm<IAgent>({
         mode: 'onBlur',
@@ -115,7 +115,7 @@ export default function AgenForm(props: IAgentFormProps) {
     const onPromptSelect = (prompt: IPrompts) => {
         form.setValue('name', prompt.act.replace(/[\s]*/g, ''));
         form.setValue('instruction', prompt.prompt);
-    }
+    };
 
     // const onFormChange = (values) => {
     //     console.log(values)
@@ -126,8 +126,8 @@ export default function AgenForm(props: IAgentFormProps) {
             if (name == 'name') {
                 return;
             }
-            onChange?.(value)
-        })
+            onChange?.(value);
+        });
         form.register('name', {
             onBlur() {
 
@@ -137,14 +137,14 @@ export default function AgenForm(props: IAgentFormProps) {
                     form.setValue('introduce', intro);
                     value.introduce = intro;
                 }
-                onChange?.(value)
+                onChange?.(value);
             },
-        })
+        });
         return () => {
-            subscription.unsubscribe()
+            subscription.unsubscribe();
             form.unregister('name');
-        }
-    }, [form])
+        };
+    }, [form]);
     // const list = tools.map(p => p.name).join(',');
     // console.log(list)
     return (
@@ -240,7 +240,7 @@ export default function AgenForm(props: IAgentFormProps) {
                                                     return {
                                                         value: tool.name,
                                                         text: tool.displayName,
-                                                    }
+                                                    };
                                                 })}
                                             />
                                         </FormControl>
@@ -250,7 +250,7 @@ export default function AgenForm(props: IAgentFormProps) {
                                             <a href='https://forms.gle/RZjHvJrqE2SsANHz9' target='_blank' className='cursor-pointer text-blue-500' rel="noreferrer">{t('tools.new_tool_rquest', '')}</a>
                                         </FormDescription>
                                     </FormItem>
-                                )
+                                );
                             }}
                         />
 

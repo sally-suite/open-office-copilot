@@ -11,9 +11,9 @@ import { LiveAudioVisualizer } from 'react-audio-visualize';
 
 import { Action } from './Action';
 import useLocalStore from 'chat-list/hook/useLocalStore';
-import LANGUAGES from 'chat-list/data/speech-to-text/language'
+import LANGUAGES from 'chat-list/data/speech-to-text/language';
 import LanguageList from 'chat-list/components/language-list';
-import { Mic, XCircle } from 'lucide-react'
+import { Mic, XCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 let ts = 0;
@@ -186,13 +186,13 @@ export const Recorder = React.forwardRef<RecorderHandle, RecorderProps>(
     };
 
     const changeLanguage = (val: string) => {
-      setLanguage(val)
-    }
+      setLanguage(val);
+    };
     const onSelectLang = () => {
       if (timer.current) {
-        clearTimeout(timer.current)
+        clearTimeout(timer.current);
       }
-    }
+    };
     // useEffect(() => {
     //  initRecognizer();
     //   return () => {
@@ -212,15 +212,15 @@ export const Recorder = React.forwardRef<RecorderHandle, RecorderProps>(
         setOpenLangSelect(true);
       } else {
         if (timer.current) {
-          clearTimeout(timer.current)
+          clearTimeout(timer.current);
         }
         timer.current = setTimeout(() => {
           setOpenLangSelect(false);
-        }, 3000)
+        }, 3000);
       }
       // }
 
-    }, [status])
+    }, [status]);
     // const wavesStyle = { transform: `scale(${(volume || 1) / 100 + 1})` };
     return (
       <>

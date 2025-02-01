@@ -1,5 +1,5 @@
-import React from 'react'
-import CardLayout from 'chat-list/components/card-slide-layout'
+import React from 'react';
+import CardLayout from 'chat-list/components/card-slide-layout';
 import { createRoot } from 'react-dom/client';
 
 import 'chat-list/components/icon/svg-icons-register';
@@ -30,13 +30,13 @@ const elements: any = [
         "height": 50,
         "text": "去了东京大阪，北海道，去看了樱花，很美"
     }
-]
+];
 export default function test() {
     return (
         <div>
             <CardLayout elements={elements} />
         </div>
-    )
+    );
 }
 
 export const render = () => {

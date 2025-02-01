@@ -1,21 +1,21 @@
 import { IMessageBody } from 'chat-list/types/chat';
-import instruction from './instruction.md'
+import instruction from './instruction.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { buildChatMessage, extractJsonDataFromMd } from 'chat-list/utils';
 import sheetApi from '@api/sheet';
 import { template } from 'chat-list/utils';
-import systemData from './system-data.md'
-import { getValues } from 'chat-list/service/sheet'
+import systemData from './system-data.md';
+import { getValues } from 'chat-list/service/sheet';
 
 
 export const buildDataModeSystemMessage = async (): Promise<string> => {
   const data = await getValues();
   const prompt = template(systemData, {
     tableData: JSON.stringify(data)
-  })
+  });
 
   return prompt;
-}
+};
 
 export const func = async ({ requirements, context, dataContext }: { requirements: string, context: ChatState, dataContext: string }) => {
 
@@ -26,7 +26,7 @@ export const func = async ({ requirements, context, dataContext }: { requirement
   }, {
     role: 'user',
     content: requirements
-  }]
+  }];
   const { content } = await context.chat({ messages });
   try {
     const data = extractJsonDataFromMd(content as string);
@@ -45,7 +45,7 @@ export const func = async ({ requirements, context, dataContext }: { requirement
   } catch (err) {
     return buildChatMessage(content, 'text', 'assistant',);
   }
-}
+};
 
 export default {
   type: 'function',

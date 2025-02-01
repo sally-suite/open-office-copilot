@@ -7,7 +7,7 @@
 // import translate from './translate';
 // import coder from './coder'
 import { ITool } from 'chat-list/types/plugin';
-import filterData from './filter-data'
+import filterData from './filter-data';
 export const tools: ITool[] = [
   filterData
 ];

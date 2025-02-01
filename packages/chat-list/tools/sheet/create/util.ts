@@ -1,7 +1,7 @@
 import { FieldConfig } from 'chat-list/types/field';
 // import { template } from 'chat-list/utils';
-import promptV3 from './prompts/prompt-v3.md'
-import promptV5 from './prompts/prompt-v5.md'
+import promptV3 from './prompts/prompt-v3.md';
+import promptV5 from './prompts/prompt-v5.md';
 interface ITableInfo {
   tableName: string;
   columns: string[];
@@ -95,36 +95,36 @@ export const extractTableInfoFromMd = (inputText: string): (ITableInfo | undefin
     }
   }
   return;
-}
+};
 
 export const buildSheetCreateMessages = (tableName: string) => {
   const context = {
     role: 'user',
     content: promptV3
-  }
+  };
 
   if (!tableName) {
-    return []
+    return [];
   }
   return [
     context,
     { role: 'assistant', content: "Please input the table name you want to create." },
     { role: 'user', content: tableName }
-  ]
-}
+  ];
+};
 
 export const buildTableCreateMessages = (input: string) => {
   const context = {
     role: 'system',
     content: promptV5
-  }
+  };
 
   if (!input) {
-    return []
+    return [];
   }
   return [
     context,
     { role: 'user', content: input }
-  ]
-}
+  ];
+};
 

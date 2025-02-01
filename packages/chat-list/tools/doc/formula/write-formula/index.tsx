@@ -3,7 +3,7 @@
 
 
 import { ChatState, ITool } from 'chat-list/types/plugin';
-import description from './description.md'
+import description from './description.md';
 import { buildChatMessage } from 'chat-list/utils';
 
 
@@ -11,16 +11,16 @@ export const main: ITool['func'] = async ({ latex_code, context }: { latex_code:
     // const result = await chatByPrompt(description, requirement)
     // return result.content;
     if (!latex_code) {
-        return 'Generate failed.'
+        return 'Generate failed.';
     }
     const { appendMsg } = context;
     let result = latex_code;
     if (!latex_code.startsWith('$')) {
         result = `$${latex_code}$`;
     }
-    appendMsg(buildChatMessage(result, 'text'))
+    appendMsg(buildChatMessage(result, 'text'));
     return result;
-}
+};
 
 export default {
     "name": "write_formula",

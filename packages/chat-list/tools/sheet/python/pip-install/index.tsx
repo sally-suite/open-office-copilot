@@ -1,18 +1,18 @@
 /* eslint-disable no-inner-declarations */
 import { ITool } from "chat-list/types/plugin";
-import { pipInstall } from '../util'
+import { pipInstall } from '../util';
 
 /**
  * Install Python Packages
  */
 export const func = async ({ packages }: { packages: string[] }) => {
     if (packages && packages.length > 0) {
-        await pipInstall(packages)
+        await pipInstall(packages);
         return `I have installed the following packages: ${packages.join(', ')}.`;
     } else {
         return `Sorry! There is no package to install.`;
     }
-}
+};
 
 export default {
     type: 'function',

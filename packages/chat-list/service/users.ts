@@ -11,9 +11,9 @@ export const getUserPrivacyState = async () => {
   // setPrivacyState(state);
   // return state === 'yes';
   return false;
-}
+};
 
 export const setUserPrivacyState = async (state: string) => {
   setPrivacyState(state);
   // await userApi.setUserProperty('sheet-chat-privacy-state', state);
-}
+};

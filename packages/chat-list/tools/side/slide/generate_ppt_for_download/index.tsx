@@ -1,5 +1,5 @@
 
-import description from './description.md'
+import description from './description.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { generateCatalog, generatePage } from './util';
 import { ISlideItem } from 'chat-list/types/api/slide';
@@ -7,9 +7,9 @@ import { buildChatMessage, getImgSize, proxyImage, searchImage } from 'chat-list
 import CardSlideImages from 'chat-list/components/card-slide-images';
 import React from 'react';
 import { IChatMessage } from 'chat-list/types/message';
-import { searchStore } from 'chat-list/utils/vertor'
+import { searchStore } from 'chat-list/utils/vertor';
 import { generateSlides } from 'chat-list/service/slide';
-import CardDownload from 'chat-list/components/card-download-file'
+import CardDownload from 'chat-list/components/card-download-file';
 export const func = async ({ reference, message, is_add_image, language, page_num, context }: { reference: string, message: IChatMessage, language: string, page_num: number, is_add_image: boolean, is_use_search: boolean, context: ChatState }) => {
     // 生成大纲
     // 根据大纲生成每页内容和配图建议
@@ -27,11 +27,11 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
         fileId = 'input-message';
         fileContent = message.content;
     }
-    const catalog = await generateCatalog(reference + '\n\n' + fileContent, pageNum, language)
+    const catalog = await generateCatalog(reference + '\n\n' + fileContent, pageNum, language);
 
     const title = catalog.title_slide?.title;
     const subTitle = catalog.title_slide?.subtitle;
-    const slides = catalog.contents_slide?.slides || []
+    const slides = catalog.contents_slide?.slides || [];
     const slideElements: ISlideItem[] = [];
     let mark = '';
     const articleMessage = buildChatMessage('', 'text', 'assistant');
@@ -42,20 +42,20 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
         type: 'cover',
         title: title,
         subtitle: subTitle,
-    })
+    });
     mark += `# ${title}\n## ${subTitle}`;
     slideElements.push({
         type: 'overview',
         title: title,
         text: catalog.overview_slide?.content
-    })
+    });
     mark += `\n\n${catalog.overview_slide?.content}`;
 
     articleMessage.content = mark;
-    updateMsg(messageId, articleMessage)
+    updateMsg(messageId, articleMessage);
 
     for (let i = 0; i < slides.length; i++) {
-        setTyping(true)
+        setTyping(true);
         const item = slides[i];
         try {
             const refer = fileContent;
@@ -69,7 +69,7 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                 images = await searchImage(page.image_search_keywords, 4);
                 // appendMsg(buildChatMessage(<CardSlideImages title={page.title} images={images} />, 'card', 'assistant'))
             }
-            setTyping(true)
+            setTyping(true);
             let size;
             let imageBase64;
             for (let i = 0; i < images.length; i++) {
@@ -77,8 +77,8 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                 if (!image) {
                     continue;
                 }
-                size = await getImgSize(image)
-                imageBase64 = image
+                size = await getImgSize(image);
+                imageBase64 = image;
                 break;
             }
             slideElements.push({
@@ -92,15 +92,15 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
                     width: size?.width,
                     height: size?.height
                 }
-            })
+            });
             mark += `\n\n## ${page.title}\n\n${page.content}`;
             mark += `\n\n${page.list.map(item => `- ${item}`).join('\n')}`;
             // mark += `\n\n${page.speaker_notes}`
             mark += '\n\n';
-            mark += images?.map((img) => { return `![${page.title}](${img})` })?.join('\n\n') || '';
+            mark += images?.map((img) => { return `![${page.title}](${img})`; })?.join('\n\n') || '';
 
             articleMessage.content = mark;
-            updateMsg(messageId, articleMessage)
+            updateMsg(messageId, articleMessage);
         } catch (e) {
             continue;
         }
@@ -114,11 +114,11 @@ export const func = async ({ reference, message, is_add_image, language, page_nu
     const pptFile = new Blob([file], { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
     const newFile = new File([pptFile], `${title}.pptx`, { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' });
 
-    appendMsg(buildChatMessage(<CardDownload files={[newFile, markFile]} />, 'card', 'assistant'))
+    appendMsg(buildChatMessage(<CardDownload files={[newFile, markFile]} />, 'card', 'assistant'));
 
     return "Task completed,tell user to choose a favorite layout in PPT,and select the right images from image list,and the PPT is AI-generated and is not guaranteed to be accurate, so please be sure to proofread";
 
-}
+};
 
 export default {
     type: 'function',

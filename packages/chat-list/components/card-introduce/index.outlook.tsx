@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
-import useChatState from 'chat-list/hook/useChatState'
+import useChatState from 'chat-list/hook/useChatState';
 
-import { useTranslation } from 'react-i18next'
-import promptSetting from 'chat-list/plugins/sally-slide/prompt'
+import { useTranslation } from 'react-i18next';
+import promptSetting from 'chat-list/plugins/sally-slide/prompt';
 import CardTranslate from 'chat-list/components/card-translate-doc';
 import { buildChatMessage } from 'chat-list/utils';
-import api from '@api/doc'
+import api from '@api/doc';
 import commonApi from "@api/index";
-import gpt from '@api/gpt'
+import gpt from '@api/gpt';
 
 import { chatByPrompt } from 'chat-list/service/message';
 import { ImageSearchResult } from 'chat-list/types/search';
@@ -72,13 +72,13 @@ export default function ToolList() {
             //     code: 'create_images',
             //     icon: '',
             // }
-        ]
+        ];
     }, []);
     const onSelect = (id: string) => {
         const tip = t(`tool:${id}.tip`, '');
         setPlaceholder(tip);
         setAgentTools([{ id, name: id, enable: true }]);
-    }
+    };
 
     const callTool = async (item: any) => {
         // setResult('')
@@ -86,11 +86,11 @@ export default function ToolList() {
             appendMsg(buildChatMessage(
                 <CardTranslate
                     onTranslate={(text) => {
-                        appendMsg(buildChatMessage(text, 'text', 'assistant'))
+                        appendMsg(buildChatMessage(text, 'text', 'assistant'));
                     }}
                 />, 'card'));
         } else if (item.code === 'search_images') {
-            setTyping(true)
+            setTyping(true);
             const text = await api.getSelectedText();
             const result = await chatByPrompt('', 'Help me suggest five keywords based on the following text:\n\n' + text, {
                 stream: false,
@@ -115,7 +115,7 @@ export default function ToolList() {
             appendMsg(msg);
 
         } else if (item.code === 'create_images') {
-            setTyping(true)
+            setTyping(true);
             const text = await api.getSelectedText();
             const prompResult = await chatByPrompt('', 'Extract the scene, style, and characters from the following text in 100 words or less:\n\n' + text, {
                 stream: false,
@@ -129,10 +129,10 @@ export default function ToolList() {
                 response_format: 'url'
             });
             if (result?.data?.[0].b64_json) {
-                const content = `![image](data:image/png;base64,${result.data[0].b64_json})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`
+                const content = `![image](data:image/png;base64,${result.data[0].b64_json})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`;
                 appendMsg(buildChatMessage(content, 'text', 'assistant'));
             } if (result?.data?.[0].url) {
-                const content = `![image](${result.data[0].url})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`
+                const content = `![image](${result.data[0].url})\n\n**Prompt:**\n\n${result?.data?.[0].revised_prompt}`;
                 appendMsg(buildChatMessage(content, 'text', 'assistant'));
             } else {
                 appendMsg(buildChatMessage('Failed to generate image', 'text', 'assistant'));
@@ -141,7 +141,7 @@ export default function ToolList() {
             await api.removeLineBreaks();
 
         } else {
-            setTyping(true)
+            setTyping(true);
             const prompt = (promptSetting as any)[item.code];
             let text;
             if (item.code == 'summarize' || item.code == 'make_titles') {
@@ -150,14 +150,14 @@ export default function ToolList() {
                 text = await api.getSelectedText();
             }
             if (!text) {
-                appendMsg(buildChatMessage(t('doc.no_text_selected'), 'text', 'assistant'))
+                appendMsg(buildChatMessage(t('doc.no_text_selected'), 'text', 'assistant'));
                 return;
             }
             const msg = showMessage('', 'assistant');
             plugin.memory.push({
                 role: 'user',
                 content: `${prompt}\n\nUSER INPUT:\n${text}`
-            })
+            });
             await chat({
                 stream: true,
                 temperature: 0.7,
@@ -175,11 +175,11 @@ export default function ToolList() {
                     plugin.memory.push({
                         role: 'assistant',
                         content: result.content
-                    })
+                    });
                 }
             });
         }
-    }
+    };
 
     return (
         <div className='flex flex-col text-sm mb-96'>
@@ -197,7 +197,7 @@ export default function ToolList() {
                             >
                                 {t(`tool:${id}`)}
                             </div>
-                        )
+                        );
                     })
                 }
             </div>
@@ -216,7 +216,7 @@ export default function ToolList() {
                                 >
                                     {t(`doc.${tool.code}`)}
                                 </div>
-                            )
+                            );
                         })
                     }
                 </div>
@@ -224,5 +224,5 @@ export default function ToolList() {
 
         </div>
 
-    )
+    );
 }
