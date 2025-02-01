@@ -1,0 +1,14 @@
+{
+    "no_vector_alert": "当前工作表中未建立知识库，您可以上传文件或选择关键列来构建知识库",
+    "build_by_file_or_sheet": "您可以上传文件或选择关键列来构建知识库",
+    "ask": "询问",
+    "initialize": "初始化",
+    "refresh": "刷新列",
+    "upload_files": "上传知识文件",
+    "knowledge_file": "知识文件:",
+    "chunk_size": "文件分块大小:",
+    "initialization": "初始化知识库",
+    "init_from_file": "从文件初始化",
+    "init_from_columns": "从列初始化",
+    "enter_question": "请输入你的问题"
+}

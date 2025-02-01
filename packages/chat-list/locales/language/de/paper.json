@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "Wir haben {{num}} Arbeiten für Sie gefunden.",
+    "filtering_papers": "Filtern für Sie....",
+    "search_top_num": "Hier sind {{num}} ausgewählte Arbeiten nur für Sie!",
+    "search_papers": "Arbeiten suchen",
+    "related_articles": "Verwandte Artikel",
+    "view": "Ansehen",
+    "cited_by": "Zitiert von {{num}}",
+    "add_footnote": "Fußnote hinzufügen",
+    "add_cite": "Zitation hinzufügen",
+    "select_text": "Text auswählen, um eine Fußnote oder ein Zitat hinzuzufügen",
+    "ask_for_citations": "KI nach Zitaten fragen",
+    "searching_papers": "Google Scholar wird durchsucht..."
+}

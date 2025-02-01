@@ -1,0 +1,12 @@
+{
+    "notes": "この機能はGoogle Gemini APIに基づいています。Gemini APIキーは<a class='text-blue-700' target='_blank' href='https://makersuite.google.com/' rel='noreferrer'>こちら</a>で取得できます。主に英語の認識に適しており、他の言語の認識は保証されません。",
+    "go_to_set_gemini_api_key": "Gemini APIキーを設定するにはこちらへ",
+    "upload_images": "画像をアップロード",
+    "please_upload_images": "画像をアップロードして質問を入力するか、画像からテーブルを抽出してください。",
+    "ask": "質問する",
+    "vision_model": "ビジョンモデル：",
+    "extract_table": "テーブルを抽出",
+    "extract_formula": "式を抽出する",
+    "extract_diagram": "図を抽出する",
+    "analyze_chart": "チャートを分析する"
+}

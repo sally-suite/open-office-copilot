@@ -1,0 +1,12 @@
+{
+    "notes": "Tính năng này dựa trên API Gemini của Google, Bạn có thể nhận Key API Gemini tại liên kết này <a class=' text-blue-700'  target='_blank'  href='https://makersuite.google.com/' rel='noreferrer'>Gemini AI</a>. Nó tốt nhất cho việc nhận diện tiếng Anh, các ngôn ngữ khác không được đảm bảo sẽ được nhận diện.",
+    "go_to_set_gemini_api_key": "Đi đến cài đặt Key API Gemini",
+    "upload_images": "Tải lên hình ảnh",
+    "please_upload_images": "Vui lòng tải lên hình ảnh và nhập câu hỏi của bạn hoặc trích xuất bảng từ hình ảnh.",
+    "ask": "Hỏi",
+    "vision_model": "Mô hình Thị giác:",
+    "extract_table": "Trích xuất Bảng",
+    "extract_formula": "Trích xuất Công thức",
+    "extract_diagram": "Trích xuất Sơ đồ",
+    "analyze_chart": "Phân tích Biểu đồ"
+}

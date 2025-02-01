@@ -1,0 +1,15 @@
+{
+    "template_desc": "Đây là một mẫu prompt được xây dựng từ thông tin cột bảng, nơi chúng tôi sẽ tạo ra kết quả theo hàng và điền cột mục tiêu bằng các kết quả.",
+    "enter_requirement": "Nhập yêu cầu của bạn",
+    "prompt_template": "Mẫu prompt:",
+    "column_label": "Viết kết quả vào cột này:",
+    "column_placeholder": "Nhãn cột chữ, chẳng hạn: H",
+    "requirement": "Yêu cầu:",
+    "card_title": "Tạo theo Hàng",
+    "loading_info": "Xây dựng thông tin mẫu prompt",
+    "stop": "Dừng",
+    "send": "Gửi",
+    "refresh": "Làm mới",
+    "test_prompt": "Kiểm tra Prompt",
+    "prompt_preview": "Xem trước lời nhắc:"
+}

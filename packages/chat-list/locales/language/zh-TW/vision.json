@@ -1,0 +1,12 @@
+{
+    "notes": "此功能基於 Google Gemini API，您可以在這個鏈接獲取 Gemini API 金鑰 <a class=' text-blue-700'  target='_blank'  href='https://makersuite.google.com/' rel='noreferrer'>Gemini AI</a>。最佳辨識語言為英語，其他語言的辨識不保證。",
+    "go_to_set_gemini_api_key": "前往設定 Gemini API 金鑰",
+    "upload_images": "上傳圖片",
+    "please_upload_images": "請上傳圖片並輸入您的問題或從圖片中提取表格。",
+    "ask": "提問",
+    "vision_model": "視覺模型：",
+    "extract_table": "提取表格",
+    "extract_formula": "提取公式",
+    "extract_diagram": "提取圖表",
+    "analyze_chart": "分析圖表"
+}

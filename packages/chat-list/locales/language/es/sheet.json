@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "Contexto de datos",
+    "sheet.agent.analyst": "Analista",
+    "sheet.agent.function": "Función",
+    "sheet.agent.chart": "Gráfico",
+    "sheet.agent.translate": "Traducir",
+    "sheet.agent.vision": "Visión",
+    "sheet.agent.knowledge": "Conocimiento",
+    "sheet.agent.coder": "Codificador",
+    "sheet.context.data_range": "Rango de datos",
+    "sheet.context.select_data_range": "Seleccionar rango de datos",
+    "sheet.context.is_header_in_data_range": "¿La cabecera está en el rango de datos?",
+    "sheet.context.headers": "Encabezados",
+    "sheet.context.select_header_range": "Seleccionar rango de encabezados",
+    "sheet.context.description": "Esta es la información predeterminada de la hoja que he recopilado. Si no es precisa, puede modificarla, y la modificación afectará a la conversación actual.",
+    "sheet.context.update": "Actualizar",
+    "sheet.context.card_title": "Confirmar la información de contexto",
+    "sheet.context.select_data_and_click": "Seleccione el rango de datos y haga clic",
+    "sheet.context.select_data_range_desc": "Seleccione el rango de datos y haga clic en el botón derecho para obtener información del rango."
+}

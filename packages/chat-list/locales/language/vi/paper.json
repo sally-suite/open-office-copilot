@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "Chúng tôi đã tìm thấy {{num}} tài liệu cho bạn.",
+    "filtering_papers": "Đang lọc cho bạn....",
+    "search_top_num": "Dưới đây là {{num}} tài liệu được chọn chỉ dành cho bạn!",
+    "search_papers": "Tìm kiếm tài liệu",
+    "related_articles": "Bài viết liên quan",
+    "view": "Xem",
+    "cited_by": "Được trích dẫn bởi {{num}}",
+    "add_footnote": "Thêm chú thích",
+    "add_cite": "Thêm trích dẫn",
+    "select_text": "Chọn văn bản để thêm chú thích hoặc trích dẫn",
+    "ask_for_citations": "Yêu cầu AI trích dẫn",
+    "searching_papers": "Đang tìm kiếm trên Google Scholar..."
+}

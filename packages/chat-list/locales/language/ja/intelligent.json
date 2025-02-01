@@ -1,0 +1,15 @@
+{
+    "template_desc": "これはテーブル列情報から構築されたプロンプトテンプレートで、行ごとに結果を生成し、対象列に結果を入力します。",
+    "enter_requirement": "要件を入力してください",
+    "prompt_template": "プロンプトのテンプレート：",
+    "column_label": "この列に結果を入力する：",
+    "column_placeholder": "Hなど、文字列のラベル",
+    "requirement": "要件：",
+    "card_title": "行ごとにプロンプトを適用",
+    "loading_info": "プロンプトテンプレート情報の構築",
+    "stop": "停止",
+    "send": "送信する",
+    "refresh": "リフレッシュ",
+    "test_prompt": "テストプロンプト",
+    "prompt_preview": "プロンプトのプレビュー："
+}

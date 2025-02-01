@@ -1,0 +1,54 @@
+.fadeInOut {
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.rotate {
+  animation: rotate 1s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.blinking {
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pulse {
+  display: inline-block;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "notes": "يعتمد هذا الميزة على واجهة برمجة التطبيقات Gemini API من Google. يمكنك الحصول على مفتاح Gemini API من خلال هذا الرابط <a class=' text-blue-700'  target='_blank'  href='https://makersuite.google.com/' rel='noreferrer'>Gemini AI</a>. هو الأفضل للاعتراف بالإنجليزية، لا يضمن الاعتراف باللغات الأخرى.",
+    "go_to_set_gemini_api_key": "انتقل لضبط مفتاح Gemini API",
+    "upload_images": "تحميل الصور",
+    "please_upload_images": "يرجى تحميل الصور وإدخال سؤالك أو استخراج الجدول من الصورة.",
+    "ask": "اسأل",
+    "vision_model": "نموذج الرؤية:",
+    "extract_table": "استخراج الجدول",
+    "extract_formula": "استخراج الصيغة",
+    "extract_diagram": "استخراج الدائرة",
+    "analyze_chart": "تحليل الرسم البياني"
+}

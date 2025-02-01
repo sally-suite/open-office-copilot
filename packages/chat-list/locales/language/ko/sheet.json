@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "데이터 컨텍스트",
+    "sheet.agent.analyst": "분석가",
+    "sheet.agent.function": "기능",
+    "sheet.agent.chart": "차트",
+    "sheet.agent.translate": "번역",
+    "sheet.agent.vision": "비전",
+    "sheet.agent.knowledge": "지식",
+    "sheet.agent.coder": "코더",
+    "sheet.context.data_range": "데이터 범위",
+    "sheet.context.select_data_range": "데이터 범위 선택",
+    "sheet.context.is_header_in_data_range": "데이터 범위에 헤더가 포함되어 있음",
+    "sheet.context.headers": "헤더",
+    "sheet.context.select_header_range": "헤더 범위 선택",
+    "sheet.context.description": "이것은 제가 수집한 기본 시트 정보입니다. 정확하지 않다면 수정할 수 있으며, 수정 사항은 현재 대화에 적용됩니다.",
+    "sheet.context.update": "업데이트",
+    "sheet.context.card_title": "컨텍스트 정보 확인",
+    "sheet.context.select_data_and_click": "데이터 범위를 선택하고 클릭",
+    "sheet.context.select_data_range_desc": "데이터 범위를 선택하고 오른쪽 버튼을 클릭하여 범위 정보를 확인하세요."
+}

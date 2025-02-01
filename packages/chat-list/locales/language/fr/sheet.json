@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "Contexte de données",
+    "sheet.agent.analyst": "Analyste",
+    "sheet.agent.function": "Fonction",
+    "sheet.agent.chart": "Graphique",
+    "sheet.agent.translate": "Traduire",
+    "sheet.agent.vision": "Vision",
+    "sheet.agent.knowledge": "Connaissance",
+    "sheet.agent.coder": "Codeur",
+    "sheet.context.data_range": "Plage de données",
+    "sheet.context.select_data_range": "Sélectionner la plage de données",
+    "sheet.context.is_header_in_data_range": "L'en-tête est-il dans la plage de données",
+    "sheet.context.headers": "En-têtes",
+    "sheet.context.select_header_range": "Sélectionner la plage d'en-têtes",
+    "sheet.context.description": "Il s'agit des informations de feuille par défaut que j'ai collectées. Si elles ne sont pas correctes, vous pouvez les modifier, et la modification affectera la conversation actuelle.",
+    "sheet.context.update": "Mettre à jour",
+    "sheet.context.card_title": "Confirmer les informations de contexte",
+    "sheet.context.select_data_and_click": "Sélectionnez la plage de données et cliquez",
+    "sheet.context.select_data_range_desc": "Sélectionnez la plage de données et cliquez sur le bouton droit pour obtenir des informations sur la plage."
+}

@@ -1,0 +1,6 @@
+{
+    "generate": "Tạo ra",
+    "placeholder": "Vui lòng mô tả cảnh, nhân vật và phong cách bạn tưởng tượng.",
+    "fail": "Không thể tạo hình ảnh, vui lòng thử lại sau.",
+    "loading": "Đang tạo hình ảnh, vui lòng chờ..."
+}

@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "Контекст данных",
+    "sheet.agent.analyst": "Аналитик",
+    "sheet.agent.function": "Функция",
+    "sheet.agent.chart": "Диаграмма",
+    "sheet.agent.translate": "Перевести",
+    "sheet.agent.vision": "Видение",
+    "sheet.agent.knowledge": "Знания",
+    "sheet.agent.coder": "Кодер",
+    "sheet.context.data_range": "Диапазон данных",
+    "sheet.context.select_data_range": "Выберите диапазон данных",
+    "sheet.context.is_header_in_data_range": "Является ли заголовок в диапазоне данных",
+    "sheet.context.headers": "Заголовки",
+    "sheet.context.select_header_range": "Выберите диапазон заголовков",
+    "sheet.context.description": "Это информация о листе по умолчанию, которую я собрал. Если она неточной, вы можете внести изменения, и они будут работать для текущей беседы.",
+    "sheet.context.update": "Обновить",
+    "sheet.context.card_title": "Подтвердите информацию контекста",
+    "sheet.context.select_data_and_click": "Выберите диапазон данных и нажмите",
+    "sheet.context.select_data_range_desc": "Выберите диапазон данных и нажмите правую кнопку, чтобы получить информацию о диапазоне."
+}

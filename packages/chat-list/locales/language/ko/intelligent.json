@@ -1,0 +1,15 @@
+{
+    "template_desc": "이것은 테이블 열 정보를 기반으로 만들어진 프롬프트 템플릿으로, 행별로 결과를 생성하고 결과를 대상 열에 채웁니다.",
+    "enter_requirement": "요구 사항 입력",
+    "prompt_template": "프롬프트 템플릿:",
+    "column_label": "이 열에 결과 작성:",
+    "column_placeholder": "열 레이블, 예: H",
+    "requirement": "요구 사항:",
+    "card_title": "행별 생성",
+    "loading_info": "프롬프트 템플릿 정보 생성 중",
+    "stop": "중지",
+    "send": "전송",
+    "refresh": "새로 고침",
+    "test_prompt": "프롬프트 테스트",
+    "prompt_preview": "프롬프트 미리보기:"
+}

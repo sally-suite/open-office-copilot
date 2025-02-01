@@ -1,0 +1,14 @@
+{
+    "no_vector_alert": "Aucune base de connaissances n'a été trouvée dans la feuille actuelle. Vous pouvez soit télécharger un fichier, soit sélectionner les colonnes clés pour construire la base de connaissances.",
+    "build_by_file_or_sheet": "Vous pouvez soit télécharger un fichier, soit sélectionner les colonnes clés pour construire la base de connaissances.",
+    "ask": "Demander",
+    "initialize": "Initialiser",
+    "refresh": "Actualiser",
+    "upload_files": "Télécharger des fichiers",
+    "knowledge_file": "Fichier de connaissance :",
+    "chunk_size": "Taille des morceaux :",
+    "initialization": "Initialisation de la base de connaissances",
+    "init_from_file": "Initialiser par fichier",
+    "init_from_columns": "Initialiser par colonnes",
+    "enter_question": "Saisissez votre question."
+}

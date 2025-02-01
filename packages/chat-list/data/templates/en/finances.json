@@ -1,0 +1,77 @@
+{
+  "Budget": [
+    "Date",
+    "Income Source",
+    "Income Amount",
+    "Expense Item",
+    "Expense Amount",
+    "Notes"
+  ],
+  "Expense Record": [
+    "Date",
+    "Income Source",
+    "Income Amount",
+    "Expense Item",
+    "Expense Amount",
+    "Balance",
+    "Notes"
+  ],
+  "Balance Sheet": [
+    "Asset Category",
+    "Asset Amount",
+    "Liability Category",
+    "Liability Amount",
+    "Net Assets"
+  ],
+  "Income Statement": [
+    "Income Item",
+    "Income Amount",
+    "Expense Item",
+    "Expense Amount",
+    "Net Profit / Net Loss"
+  ],
+  "Cash Flow Statement": [
+    "Date",
+    "Cash Inflow",
+    "Cash Outflow",
+    "Net Cash Flow"
+  ],
+  "Investment Portfolio Tracker": [
+    "Investment Asset",
+    "Purchase Date",
+    "Purchase Amount",
+    "Current Value",
+    "Return Rate"
+  ],
+  "Loan Calculator": [
+    "Loan Amount",
+    "Loan Interest Rate",
+    "Loan Term",
+    "Monthly Repayment Amount",
+    "Total Interest Payment"
+  ],
+  "Stock Trading Record": [
+    "Date",
+    "Stock Name",
+    "Transaction Type",
+    "Transaction Price",
+    "Transaction Quantity",
+    "Transaction Amount",
+    "Holdings Quantity"
+  ],
+  "Personal or Family Net Worth Calculator": [
+    "Asset Category",
+    "Asset Amount",
+    "Liability Category",
+    "Liability Amount",
+    "Net Assets"
+  ],
+  "Expense Category Summary": ["Expense Category", "Expense Amount"],
+  "Interest Calculator": [
+    "Deposit Amount",
+    "Deposit Term",
+    "Annual Interest Rate",
+    "Interest Income"
+  ],
+  "Bill Payment Reminder": ["Bill Name", "Due Date", "Reminder Date"]
+}

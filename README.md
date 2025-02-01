@@ -96,6 +96,12 @@ The following are the Agents currently supported by the platform and their featu
 - mathjax
 - katex
 
+## Roadmap
+
+- [ ] Support WPS Office
+- [ ] Support desktop client
+- [ ] Add agent marketplace
+
 ## Wellcome to feedback
 
 - [Github Issue](https://github.com/sally-suite/open-office-copilot)

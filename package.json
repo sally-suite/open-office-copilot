@@ -1,0 +1,33 @@
+{
+  "name": "mate-chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "cd office-chat && npm run build"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "sheet-chat": [
+      "sheet-chat"
+    ],
+    "doc-chat": [
+      "doc-chat"
+    ],
+    "excel-chat": [
+      "excel-chat"
+    ],
+    "word-chat": [
+      "word-chat"
+    ],
+    "nohoist": [
+      "**"
+    ]
+  },
+  "repository": "git@github.com:hongyin163/mate-chat.git",
+  "author": "hongyin163 <hongyin163@163.com>",
+  "license": "MIT",
+  "dependencies": {}
+}

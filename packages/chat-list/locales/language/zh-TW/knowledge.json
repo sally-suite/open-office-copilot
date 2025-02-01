@@ -1,0 +1,14 @@
+{
+    "no_vector_alert": "當前工作表中未找到知識庫，您可以上傳文件或選擇關鍵欄位以建立知識庫。",
+    "build_by_file_or_sheet": "您可以上傳文件或選擇關鍵欄位以建立知識庫。",
+    "ask": "詢問",
+    "initialize": "初始化",
+    "refresh": "刷新",
+    "upload_files": "上傳文件",
+    "knowledge_file": "知識文件：",
+    "chunk_size": "區塊大小：",
+    "initialization": "知識庫初始化",
+    "init_from_file": "從文件初始化",
+    "init_from_columns": "從欄位初始化",
+    "enter_question": "輸入您的問題。"
+}

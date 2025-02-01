@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "سياق البيانات",
+    "sheet.agent.analyst": "محلل",
+    "sheet.agent.function": "وظيفة",
+    "sheet.agent.chart": "رسم بياني",
+    "sheet.agent.translate": "ترجمة",
+    "sheet.agent.vision": "رؤية",
+    "sheet.agent.knowledge": "معرفة",
+    "sheet.agent.coder": "مبرمج",
+    "sheet.context.data_range": "نطاق البيانات",
+    "sheet.context.select_data_range": "تحديد نطاق البيانات",
+    "sheet.context.is_header_in_data_range": "هل العنوان موجود في نطاق البيانات؟",
+    "sheet.context.headers": "العناوين",
+    "sheet.context.select_header_range": "تحديد نطاق العنوان",
+    "sheet.context.description": "هذه هي معلومات ورقة الافتراضية التي جمعتها، إذا لم تكن دقيقة يمكنك تعديلها، والتعديل سيعمل في المحادثة الحالية.",
+    "sheet.context.update": "تحديث",
+    "sheet.context.card_title": "تأكيد معلومات السياق",
+    "sheet.context.select_data_and_click": "حدد نطاق البيانات وانقر",
+    "sheet.context.select_data_range_desc": "حدد نطاق البيانات وانقر على الزر الأيمن للحصول على معلومات النطاق."
+}

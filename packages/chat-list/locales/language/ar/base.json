@@ -1,0 +1,210 @@
+{
+  "name": "عربي",
+  "common.press_and_talk": "اضغط وتحدث",
+  "common.show_agents": "عرض الوكلاء",
+  "common.uppload_file_tip": "تحميل ملف",
+  "common.uppload_excel_tip": "تحميل xlsx/xls/csv",
+  "common.uppload_image": "تحميل صورة",
+  "common.mute": "كتم الصوت",
+  "common.unmute": "إلغاء كتم الصوت",
+  "common.clean_messages": "تنظيف الرسائل",
+  "common.new_chat": "دردشة جديدة",
+  "common.new_messages": "{{num}} رسائل جديدة",
+  "common.technical_support": "التغذية الراجعة",
+  "common.mute.message": "حسنًا، توقفوا عن الكلام!",
+  "common.unmute.message": "حسنًا، استمروا في الكلام.",
+  "common.wellcome_message": "مرحبًا! أنا سالي، كيف يمكنني مساعدتك اليوم؟",
+  "common.change_language": "تغيير اللغة",
+  "common.video_tutorials": "دروس الفيديو",
+  "common.follow_sheet_chat": "متابعة دردشة الورقة",
+  "common.remaining_calls": "المتبقي: {{num}} نقاط",
+  "common.plans_pricing": "الخطط والأسعار",
+  "common.sponsor": "لقد تم طردي. هل يمكنك أن تكفلني بخمسة دولارات لشراء همبرغر🍔؟ بارك الله فيك! 🙏.",
+  "common.set_openai_key": "تعيين مفتاح OpenAI",
+  "common.set_gemini_key": "تعيين مفتاح Gemini",
+  "common.sally_placeholder": "الدردشة معي أو @ الوكيل لمساعدتك.",
+  "common.doc.sally_placeholder": "أدخل رسالتك...",
+  "common.create_agent": "إنشاء وكيل",
+  "common.new_agent_request": "طلب وكيل مخصص",
+  "common.tools": "الأدوات",
+  "common.agents": "الوكلاء",
+  "common.setting": "الإعدادات",
+  "common.download": "تنزيل",
+  "common.openai_setting_notes": " يمكنك استخدام Sally Chat مجانًا باستخدام مفتاح OpenAI الخاص بك، يمكنك الحصول عليه من هذا الرابط <a class='text-blue-700' target='_blank' href='https://platform.openai.com/account/api-keys' rel='noreferrer'>OpenAI</a>.",
+  "common.openai_setting_placeholder": "أدخل مفتاح OpenAI الخاص بك",
+  "common.confirm": "تأكيد",
+  "common.reslect_and_confirm": "إعادة التحديد والتأكيد",
+  "common.gemini_setting_placeholder": "أدخل مفتاح Gemini API الخاص بك",
+  "common.gemini_setting_notes": "يمكنك الحصول على مفتاح Gemini API من هذا الرابط <a class='text-blue-700' target='_blank' href='https://makersuite.google.com/' rel='noreferrer'>Gemini AI</a>.",
+  "common.tool_running": "جارٍ المعالجة.",
+  "common.tool_success": "تمت العملية بنجاح.",
+  "common.tool_failed": "فشلت العملية.",
+  "common.login": "تسجيل الدخول",
+  "common.login_with_google": "تسجيل الدخول باستخدام Google",
+  "common.login_with_microsoft": "تسجيل الدخول باستخدام Microsoft",
+  "common.login_with_license_key": "تسجيل الدخول باستخدام مفتاح الترخيص",
+  "common.license.input_placeholder": "أدخل مفتاح الترخيص الخاص بك",
+  "common.clear": "مسح",
+  "common.license.desc": "يمكنك التسجيل على موقعنا للحصول على <b>مفتاح الترخيص</b>,<a class='text-blue-700 underline' target='_blank' href='https://www.sally.bot' rel='noreferrer'>اشترك 🚀</a>.",
+  "common.table.set_style": "تعيين النمط",
+  "common.table.insert": "إدراج",
+  "common.table.append": "إلحاق",
+  "common.table.set_style_tip": "تعيين نمط الجدول",
+  "common.table.insert_tip": "إدراج مع الرؤوس",
+  "common.table.append_tip": "إلحاق الصفوف بالورقة",
+  "common.table.new_sheet": "ورقة جديدة",
+  "common.table.new_sheet_tip": "إنشاء ورقة جديدة",
+  "common.days": "أيام",
+  "common.months": "أشهر",
+  "common.reference": "مرجع",
+  "common.insert_to_sheet": "إدراج في الورقة",
+  "common.insert_to_doc": "إدراج في المستند",
+  "common.save": "حفظ",
+  "common.copy": "نسخ",
+  "common.close": "إغلاق",
+  "common.insert": "إدراج",
+  "common.replace": "استبدال",
+  "common.regenerate": "إعادة توليد",
+  "common.theme": "ثيم",
+  "common.random_layout": "تصميم عشوائي",
+  "common.change_template": "تغيير القالب",
+  "common.edit": "تحرير",
+  "common.code": "رمز",
+  "common.run": "تشغيل",
+  "common.running": "جارٍ التشغيل",
+  "common.back": "رجوع",
+  "common.analyze": "تحليل",
+  "common.analyze_by_vision": "تحليل بواسطة Vision",
+  "common.chat": "دردشة",
+  "common.tool": "أداة",
+  "common.tool_placeholder": "أدخل متطلباتك واختر الأداة التي تريد استخدامها",
+  "common.gpt_formulas": "صياغات GPT",
+  "common.edit_data": "تحرير نطاق البيانات",
+  "common.analyze_data": "تحليل نطاق البيانات",
+  "common.not_support_tools": "عذرًا، هذا النموذج لا يدعم استخدام الأدوات.",
+  "common.generate_vba_code": "توليد رمز VBA",
+  "common.chat_only": "دردشة فقط",
+  "common.bookmarks": "الإشارات المرجعية",
+  "common.bookmark": "إشارة مرجعية",
+  "common.all": "الكل",
+  "common.no_bookmarks": "لا توجد إشارات مرجعية",
+  "common.prompt": "موجه:",
+  "common.attach_file": "إرفاق ملف",
+  "common.generate_outline": "إنشاء مخطط",
+  "common.outline": "مخطط",
+  "common.add_slide": "إضافة شريحة",
+  "common.add_mages": "إضافة صور",
+  "common.yes": "نعم",
+  "common.no": "لا",
+  "common.crop": "قص الصورة",
+  "common.earn_free_trial": "احصل على فترة تجريبية مجانية",
+  "doc.translate": "ترجمة",
+  "doc.summarize": "تلخيص",
+  "doc.optimize": "إعادة الصياغة",
+  "doc.contine_write": "استمر في الكتابة",
+  "doc.make_longer": "توسيع",
+  "doc.make_shorter": "تقليص",
+  "doc.make_titles": "إنشاء عناوين",
+  "doc.search_images": "البحث عن الصور",
+  "doc.create_images": "إنشاء الصور",
+  "doc.selected_text": "لقد قمت بتحديد النص:",
+  "doc.agent.translate": "ترجمة",
+  "doc.agent.translate.short_description": "ترجمة النص المحدد أو إدخال المستخدم إلى لغات أخرى.",
+  "doc.agent.vision": "رؤية",
+  "doc.agent.vision.short_description": "استخراج المعلومات من الصور.",
+  "doc.agent.formula": "صيغة",
+  "doc.agent.uml": "رسم تخطيطي UML",
+  "doc.agent.uml.short_description": "مساعدتك في كتابة رسم تخطيطي UML.",
+  "doc.agent.function.short_description": "مساعدتك في كتابة الصيغة.",
+  "doc.agent.sally.placeholder": "يرجى إدخال سؤالك أو طلبك...",
+  "doc.agent.sally.choose_tool": "أو اختر النص واختر أداة:",
+  "doc.menu.chat_context": "سياق الدردشة",
+  "doc.tip.chat_context": "عرض سياق الدردشة",
+  "doc.tip.translate": "ترجمة النص المحدد",
+  "doc.tip.summarize": "تلخيص النص المحدد",
+  "doc.tip.optimize": "إعادة صياغة النص المحدد",
+  "doc.tip.contine_writ": "استمرار الكتابة للنص المحدد",
+  "doc.tip.make_longer": "توسيع النص المحدد",
+  "doc.tip.make_shorter": "تقليص النص المحدد",
+  "doc.tip.make_titles": "إنشاء عناوين للمستند",
+  "doc.tip.formula": "كتابة صيغة LaTeX",
+  "doc.grammar": "تصحيح الأخطاء الإملائية والنحوية",
+  "doc.tip.grammar": "تصحيح الأخطاء الإملائية والنحوية",
+  "doc.wellcome_message": "مرحبًا، أنا سالي، يمكنك الدردشة معي أو تحديد النص وإدخال رسالتك.",
+  "doc.no_text_selected": "لم يتم تحديد أي نص",
+  "doc.remove_line_breaks": "إزالة فواصل الأسطر",
+  "doc.add_emoji": "إضافة Emojis",
+  "doc.visualize_as_table": "تحويل إلى جدول",
+  "doc.convert_to_list": "تحويل إلى قائمة",
+  "sheet.menu.data_context": "سياق البيانات",
+  "sheet.menu.data_context_tip": "عرض سياق البيانات للدردشة الحالية",
+  "sheet.agent.analyst": "محلل",
+  "sheet.agent.function": "توليد الصيغة",
+  "sheet.agent.function.short_description": "مساعدتك في توليد الصيغة.",
+  "sheet.agent.chart": "رسم بياني",
+  "sheet.agent.translate": "ترجمة",
+  "sheet.agent.knowledge": "معرفة",
+  "sheet.agent.intelligent": "ذكي",
+  "sheet.agent.analyst.short_description": "تحليل البيانات وتوليد التقارير التحليلية.",
+  "sheet.agent.knowledge.short_description": "استخدام ملف PDF/Word/Text أو الورقة كمصدر معرفة.",
+  "sheet.agent.translate.short_description": "ترجمة الأوراق الخاصة بك.",
+  "sheet.agent.chart.short_description": "إنشاء الرسوم البيانية بناءً على متطلباتك.",
+  "sheet.agent.intelligent.short_description": "إنشاء موجه ببيانات الصف لتوليد المحتوى، تلخيص، الإجابة على الأسئلة، تحليل المشاعر والمهام الأخرى.",
+  "sheet.agent.sally.placeholder": "يرجى تأكيد نطاق البيانات أولاً، ثم أخبرني بمتطلباتك",
+  "sheet.agent.vision": "رؤية",
+  "sheet.agent.vision.short_description": "استخراج المعلومات من الصور.",
+  "sheet.agent.filter": "فلتر",
+  "sheet.agent.filter.short_description": "مساعدتك في تصفية البيانات حسب الشروط، تخزين البيانات في أوراق أخرى.",
+  "sheet.agent.coder": "مبرمج",
+  "sheet.agent.coder.short_description": "توليد الرمز وتشغيله في Google Apps Script.",
+  "sheet.agent.coder_excel.short_description": "توليد الرمز وتشغيله في Excel.",
+  "sheet.agent.python": "محلل بيانات",
+  "sheet.agent.python.short_description": "توليد رمز بايثون وتشغيله لتحرير البيانات أو إنشاء الرسوم البيانية.",
+  "sheet.agent.vba": "VBA",
+  "sheet.agent.vba.short_description": "توليد رمز VBA لك.",
+  "sheet.context.check_data": "فحص الرؤوس",
+  "sheet.context.checking_data": "جارٍ فحص الرؤوس",
+  "sheet.context.suggestions": "اقتراحات",
+  "sheet.context.no_header_alert": "رؤوس خالية! إذا لم أتمكن من العثور على الرؤوس، قد لا أتمكن من تقديم إجابات دقيقة، لتحديد رؤوس الجدول، أقترح:\n\n1. تحديد نطاق بيانات الجدول، بما في ذلك الرؤوس.\n2. التأكد من أن الرأس يحتوي على صف واحد فقط.\n3. عدم تحديد نطاق بيانات فارغ.\n\nبعد تحديد نطاق الجدول، اضغط على زر المحاولة لإعادة الفحص.",
+  "sheet.context.check_is_fine": "اكتمل فحص رؤوس الجدول. هنا الرؤوس التي وجدتها: <b>{{headers}}</b>. <span style='color:red;'>إذا كانت غير صحيحة، يرجى تحديد نطاق الجدول يدويًا لإعادة الفحص</span>. إذا كان كل شيء يبدو جيدًا، هل ترغب في أن أقدم لك اقتراحات لتحليل البيانات؟",
+  "sheet.context.check_data_tip": "مساعدتك في التحقق من صحة نطاق البيانات الحالي وسيتم توليد ثلاثة اقتراحات لتحليل البيانات.",
+  "sheet.context.no_header_found": "لم يتم العثور على رؤوس الجدول",
+  "sheet.context.no_data": "لا توجد بيانات",
+  "sheet.context.retry": "يرجى إعادة المحاولة",
+  "sheet.context.close": "لا، شكرًا",
+  "sheet.agent.sally.choose_tool": "مرحبًا، أنا سالي. اختر أداة وتحدث معي.",
+  "sheet.agent.sally.choose_formula": "أو اختر صيغة GPT:",
+  "agent.translate": "ترجمة",
+  "agent.translate.short_description": "ترجمة النص المحدد أو إدخال المستخدم إلى لغات أخرى.",
+  "agent.vision": "رؤية",
+  "agent.vision.short_description": "استخراج المعلومات من الصور.",
+  "agent.formula": "صيغة",
+  "agent.uml": "رسم تخطيطي",
+  "agent.uml.short_description": "مساعدتك في كتابة رسم تخطيطي UML.",
+  "agent.function.short_description": "مساعدتك في كتابة الصيغة.",
+  "agent.sally.placeholder": "يرجى إدخال سؤالك أو طلبك...",
+  "agent.python": "بايثون",
+  "agent.python.short_description": "توليد رمز بايثون وتشغيله لتحرير البيانات أو إنشاء الرسوم البيانية.",
+  "agent.analyst": "محلل",
+  "agent.function": "وظيفة",
+  "agent.chart": "رسم بياني",
+  "agent.knowledge": "معرفة",
+  "agent.intelligent": "ذكي",
+  "agent.analyst.short_description": "تحليل البيانات وتوليد التقارير التحليلية.",
+  "agent.knowledge.short_description": "استخدام ملف PDF/Word/Text أو الورقة كمصدر معرفة.",
+  "agent.chart.short_description": "إنشاء الرسوم البيانية بناءً على متطلباتك.",
+  "agent.intelligent.short_description": "إنشاء موجه ببيانات الصف لتوليد المحتوى، تلخيص، الإجابة على الأسئلة، تحليل المشاعر والمهام الأخرى.",
+  "agent.filter": "فلتر",
+  "agent.filter.short_description": "مساعدتك في تصفية البيانات حسب الشروط، تخزين البيانات في أوراق أخرى.",
+  "agent.coder": "مبرمج",
+  "agent.coder.short_description": "توليد الرمز وتشغيله في Google Apps Script.",
+  "agent.coder_excel.short_description": "توليد الرمز وتشغيله في Excel.",
+  "agent.vba": "VBA",
+  "agent.vba.short_description": "توليد رمز VBA لك.",
+  "agent.article.short_description": "توليد مقالة لك.",
+  "agent.presentation.short_description": "توليد عرض تقديمي لك.",
+  "agent.stock.short_description": "تحليل الأسهم باستخدام تقنيات الذكاء الاصطناعي.",
+  "agent.crypto.short_description": "تحليل العملات المشفرة باستخدام تقنيات الذكاء الاصطناعي.",
+  "agent.jupyter": "ملاحظة التحليل",
+  "agent.jupyter.short_description": "دفتر ملاحظات لتحليل البيانات يعتمد على الذكاء الاصطناعي."
+}

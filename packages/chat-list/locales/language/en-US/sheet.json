@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "Data Context",
+    "sheet.agent.analyst": "Analyst",
+    "sheet.agent.function": "Function",
+    "sheet.agent.chart": "Chart",
+    "sheet.agent.translate": "Translate",
+    "sheet.agent.vision": "Vision",
+    "sheet.agent.knowledge": "Knowledge",
+    "sheet.agent.coder": "Coder",
+    "sheet.context.data_range": "Data Range",
+    "sheet.context.select_data_range": "Select data range",
+    "sheet.context.is_header_in_data_range": "Is header in data range",
+    "sheet.context.headers": "Headers",
+    "sheet.context.select_header_range": "Select header range",
+    "sheet.context.description": "This is the default sheet information I&apos;ve collected, if it&apos;s not accurate you can modify it, and the modification will work for the current conversation. ",
+    "sheet.context.update": "Update",
+    "sheet.context.card_title": "Confirm Context information",
+    "sheet.context.select_data_and_click": "Select data range and click",
+    "sheet.context.select_data_range_desc": "Select data range and click on the right button to get range info."
+}

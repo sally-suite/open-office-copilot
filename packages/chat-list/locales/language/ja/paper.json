@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "あなたのために{{num}}件の論文が見つかりました。",
+    "filtering_papers": "フィルタリング中....",
+    "search_top_num": "あなたのために選ばれた{{num}}件の論文をご覧ください！",
+    "search_papers": "論文を検索",
+    "related_articles": "関連記事",
+    "view": "表示",
+    "cited_by": "{{num}}件によって引用されています",
+    "add_footnote": "脚注を追加",
+    "add_cite": "引用を追加",
+    "select_text": "脚注または引用を追加するためにテキストを選択",
+    "ask_for_citations": "AIに引用をリクエスト中",
+    "searching_papers": "Google Scholarを検索中..."
+}

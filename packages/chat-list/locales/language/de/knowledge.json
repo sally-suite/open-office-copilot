@@ -1,0 +1,14 @@
+{
+    "no_vector_alert": "In der aktuellen Tabelle wurde keine Wissensbasis gefunden. Sie können entweder eine Datei hochladen oder die Schlüsselspalten auswählen, um die Wissensbasis aufzubauen.",
+    "build_by_file_or_sheet": "Sie können entweder eine Datei hochladen oder die Schlüsselspalten auswählen, um die Wissensbasis aufzubauen.",
+    "ask": "Fragen",
+    "initialize": "Initialisieren",
+    "refresh": "Aktualisieren",
+    "upload_files": "Dateien hochladen",
+    "knowledge_file": "Wissensdatei:",
+    "chunk_size": "Chunk-Größe:",
+    "initialization": "Initialisierung der Wissensbasis",
+    "init_from_file": "Durch Datei initialisieren",
+    "init_from_columns": "Durch Spalten initialisieren",
+    "enter_question": "Geben Sie Ihre Frage ein."
+}

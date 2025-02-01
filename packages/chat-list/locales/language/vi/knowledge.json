@@ -1,0 +1,14 @@
+{
+    "no_vector_alert": "Không tìm thấy cơ sở dữ liệu trong bảng hiện tại, bạn có thể tải lên một tệp hoặc chọn các cột chính để xây dựng cơ sở dữ liệu.",
+    "build_by_file_or_sheet": "Bạn có thể tải lên một tệp hoặc chọn các cột chính để xây dựng cơ sở dữ liệu.",
+    "ask": "Hỏi",
+    "initialize": "Khởi tạo",
+    "refresh": "Làm mới",
+    "upload_files": " Tải lên tệp",
+    "knowledge_file": "Tệp kiến thức:",
+    "chunk_size": "Kích thước đoạn:",
+    "initialization": "Khởi tạo cơ sở dữ liệu kiến thức",
+    "init_from_file": "Khởi tạo từ tệp",
+    "init_from_columns": "Khởi tạo từ các cột",
+    "enter_question": "Nhập câu hỏi của bạn."
+}

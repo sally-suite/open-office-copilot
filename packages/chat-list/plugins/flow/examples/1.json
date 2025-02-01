@@ -1,0 +1,71 @@
+[
+    {
+        "objective": "help me add 100 to the second column,and translate the sheet data to english,and create a pie chart about sales",
+        "examples": [
+            {
+                "id": "a",
+                "task": "add 100 to the seconc column.",
+                "skill": "coder",
+                "dependent_task_ids": [],
+                "status": "pending"
+            },
+            {
+                "id": "b",
+                "task": "translate the sheet data to english.",
+                "skill": "translate",
+                "dependent_task_ids": [
+                    1
+                ],
+                "status": "pending"
+            },
+            {
+                "id": "c",
+                "task": "create a pie chart about sales.",
+                "skill": "chart",
+                "dependent_task_ids": [
+                    2
+                ],
+                "status": "pending"
+            }
+        ]
+    },
+    {
+        "objective": "help me divide the fourth column number by 100 and update title to Revenue(100USD) and write a function to calculate the sum of the fourth column, then tell me the trend of Revenue",
+        "examples": [
+            {
+                "id": "a",
+                "task": "divide the fourth column number by 100.",
+                "skill": "coder",
+                "dependent_task_ids": [],
+                "status": "pending"
+            },
+            {
+                "id": "b",
+                "task": "update title to Revenue(100USD).",
+                "skill": "coder",
+                "dependent_task_ids": [
+                    1
+                ],
+                "status": "pending"
+            },
+            {
+                "id": "c",
+                "task": "write a function to calculate the sum of the fourth column.",
+                "skill": "function",
+                "dependent_task_ids": [
+                    2
+                ],
+                "status": "pending"
+            },
+            {
+                "id": "c",
+                "task": "tell me the trend of Revenue.",
+                "skill": "sheet-chat",
+                "dependent_task_ids": [
+                    3
+                ],
+                "status": "pending"
+            }
+        ]
+    }
+]

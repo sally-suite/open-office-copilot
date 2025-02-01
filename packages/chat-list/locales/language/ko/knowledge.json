@@ -1,0 +1,14 @@
+{
+    "no_vector_alert": "현재 시트에서 지식 기반이 발견되지 않았습니다. 파일을 업로드하거나 주요 열을 선택하여 지식 기반을 구축할 수 있습니다.",
+    "build_by_file_or_sheet": "파일을 업로드하거나 주요 열을 선택하여 지식 기반을 구축할 수 있습니다.",
+    "ask": "질문하기",
+    "initialize": "초기화",
+    "refresh": "새로 고침",
+    "upload_files": "파일 업로드",
+    "knowledge_file": "지식 파일:",
+    "chunk_size": "청크 크기:",
+    "initialization": "지식 기반 초기화",
+    "init_from_file": "파일로 초기화",
+    "init_from_columns": "열로 초기화",
+    "enter_question": "질문을 입력하세요."
+}

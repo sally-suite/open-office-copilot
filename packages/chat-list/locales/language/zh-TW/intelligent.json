@@ -1,0 +1,15 @@
+{
+    "template_desc": "這是一個從表格欄位信息構建的提示模板，我們將根據行生成結果並填充目標欄位。",
+    "enter_requirement": "輸入您的需求",
+    "prompt_template": "提示模板：",
+    "column_label": "將結果寫入此欄位：",
+    "column_placeholder": "字母欄位標籤，例如：H",
+    "requirement": "需求：",
+    "card_title": "按行生成",
+    "loading_info": "正在構建提示模板信息",
+    "stop": "停止",
+    "send": "發送",
+    "refresh": "刷新",
+    "test_prompt": "測試提示",
+    "prompt_preview": "提示预览："
+}

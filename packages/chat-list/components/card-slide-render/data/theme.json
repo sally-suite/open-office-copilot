@@ -1,0 +1,66 @@
+[
+    {
+        "name": "sleek",
+        "primary": "#404040",
+        "background": "#FFFFFF",
+        "text": "#1A1A1A",
+        "highlight": "#737373",
+        "complementary": "#000000"
+    },
+    {
+        "name": "minimalist",
+        "primary": "#6f6f6f",
+        "background": "#F8F8F8",
+        "text": "#1A1A1A",
+        "highlight": "#D9D9D9",
+        "complementary": "#404040"
+    },
+    {
+        "name": "professional",
+        "primary": "#4472C4",
+        "background": "#E6EEF9",
+        "text": "#1A1A1A",
+        "highlight": "#7AA1DE",
+        "complementary": "#C47244"
+    },
+    {
+        "name": "professional",
+        "primary": "#5B9BD5",
+        "background": "#EAF3FB",
+        "text": "#1A1A1A",
+        "highlight": "#8CBAE5",
+        "complementary": "#D5915B"
+    },
+    {
+        "name": "creative",
+        "primary": "#ED7D31",
+        "background": "#FDF1E9",
+        "text": "#1A1A1A",
+        "highlight": "#F2A676",
+        "complementary": "#31A1ED"
+    },
+    {
+        "name": "contemporary",
+        "primary": "#FFC000",
+        "background": "#FFF9E6",
+        "text": "#1A1A1A",
+        "highlight": "#FFD54F",
+        "complementary": "#0080FF"
+    },
+    {
+        "name": "minimalist",
+        "primary": "#70AD47",
+        "background": "#EFF6EA",
+        "text": "#1A1A1A",
+        "highlight": "#97C77E",
+        "complementary": "#AD4770"
+    },
+    {
+        "name": "classic",
+        "primary": "#7030A0",
+        "background": "#F0E6F5",
+        "text": "#1A1A1A",
+        "highlight": "#9A5BC0",
+        "complementary": "#A07030"
+    }
+]

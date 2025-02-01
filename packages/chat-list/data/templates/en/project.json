@@ -1,0 +1,100 @@
+{
+  "Project Plan": [
+    "Task Name",
+    "Start Date",
+    "End Date",
+    "Responsible Person",
+    {
+      "name":"Status",
+      "type":"string",
+      "options": [
+        "Not Started",
+        "In Progress",
+        "Completed",
+        "Delayed",
+        "Canceled",
+        "On Hold",
+        "Blocked"
+      ]
+    }
+  ],
+  "Gantt Chart": [
+    "Task Name",
+    "Start Date",
+    "End Date",
+    "Responsible Person",
+    "Task Dependencies"
+  ],
+  "Issue/Bug Tracking": [
+    "Issue Description",
+    "Severity",
+    "Responsible Person",
+    "Date Submitted",
+    {
+      "name":"Status",
+      "type":"string",
+      "options":[
+        "New",
+        "Open/Pending",
+        "In Progress",
+        "Resolved/Fixed",
+        "Pending Verification",
+        "Closed",
+        "Rejected",
+        "Duplicate",
+        "Cannot Reproduce"
+      ]
+    }
+  ],
+  "Milestone Plan": [
+    "Milestone Name",
+    "Estimated Date",
+    "Actual Date",
+    "Completion Status"
+  ],
+  "Resource Management": [
+    "Resource Name",
+    "Assigned Tasks",
+    "Budgeted Cost",
+    "Actual Cost"
+  ],
+  "Risk Management": [
+    "Risk Description",
+    "Impact Level",
+    "Probability of Occurrence",
+    "Risk Mitigation Actions",
+    "Responsible Person"
+  ],
+  "Meeting Agenda and Minutes": [
+    "Meeting Date",
+    "Meeting Agenda",
+    "Attendees",
+    "Meeting Discussion Points",
+    "Action Items"
+  ],
+  "Decision Matrix": [
+    "Decision Options",
+    "Advantages",
+    "Disadvantages",
+    "Final Decision"
+  ],
+  "Project Budget": [
+    "Cost Items",
+    "Budgeted Amount",
+    "Actual Expenses",
+    "Variance"
+  ],
+  "Communication Plan": [
+    "Stakeholder",
+    "Communication Objectives",
+    "Communication Content",
+    "Communication Channels",
+    "Frequency"
+  ],
+  "Project Evaluation": [
+    "Evaluation Metrics",
+    "Actual Performance",
+    "Feedback Comments",
+    "Improvement Suggestions"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "Schedule Task": ["Date", "Time", "Location", "Description", "Notes"],
+  "Weekly Planner": ["Date", "Task", "Priority", "Status", "Notes"],
+  "Monthly Calendar": ["Date", "Event/Activity", "Notes"],
+  "Time Tracking Sheet": [
+    "Date",
+    "Activity/Task",
+    "Start Time",
+    "End Time",
+    "Duration",
+    "Notes"
+  ],
+  "To-Do Task List": [
+    "Task",
+    "Priority",
+    "Due Date",
+    "Completion Status",
+    "Notes"
+  ],
+  "Timetable": ["Project/Activity", "Start Time", "End Time", "Notes"],
+  "Schedule Reminder": ["Date", "Time", "Item", "Reminder Method", "Notes"],
+  "Time Management Analysis Sheet": [
+    "Date",
+    "Activity/Task",
+    "Time Spent",
+    "Notes"
+  ],
+  "Time Block Planning": ["Time Block", "Planned Activity", "Notes"],
+  "Meeting Schedule": [
+    "Date",
+    "Start Time",
+    "End Time",
+    "Agenda/Topic",
+    "Participants",
+    "Location",
+    "Notes"
+  ],
+  "Timeboxing": ["Time Block", "Planned Activity", "Actual Activity", "Notes"]
+}

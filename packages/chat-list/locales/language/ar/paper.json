@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "لقد وجدنا {{num}} ورقة لك.",
+    "filtering_papers": "جارٍ تصفية الأوراق....",
+    "search_top_num": "إليك {{num}} ورقة مختارة فقط من أجلك!",
+    "search_papers": "بحث في الأوراق",
+    "related_articles": "مقالات ذات صلة",
+    "view": "عرض",
+    "cited_by": "استشهد بها {{num}}",
+    "add_footnote": "إضافة هامش",
+    "add_cite": "إضافة اقتباس",
+    "select_text": "حدد النص لإضافة حاشية سفلية أو اقتباس",
+    "ask_for_citations": "طلب استشهادات من الذكاء الاصطناعي",
+    "searching_papers": "جارٍ البحث في Google Scholar..."
+}

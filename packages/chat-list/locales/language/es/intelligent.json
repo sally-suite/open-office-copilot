@@ -1,0 +1,15 @@
+{
+    "template_desc": "Esta es una plantilla de indicaciones construida a partir de la información de la columna de la tabla, donde generaremos resultados por fila y poblaremos la columna objetivo con los resultados.",
+    "enter_requirement": "Ingrese su requisito",
+    "prompt_template": "Plantilla de indicaciones:",
+    "column_label": "Rellenar el resultado en esta columna:",
+    "column_placeholder": "Etiqueta de columna de letras, como por ejemplo: H",
+    "requirement": "Requisito:",
+    "card_title": "Aplicar indicaciones por fila",
+    "loading_info": "Construcción de información de plantilla de indicaciones",
+    "stop": "Detener",
+    "send": "Enviar",
+    "refresh": "Actualizar",
+    "test_prompt": "Indicación de prueba",
+    "prompt_preview": "Vista previa del aviso:"
+}

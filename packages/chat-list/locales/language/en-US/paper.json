@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "We found {{num}} papers for you.",
+    "filtering_papers": "Filtering for you....",
+    "search_top_num": "Here are {{num}} selected papers just for you!",
+    "search_papers": "Search Papers",
+    "related_articles": "Related articles",
+    "view": "View",
+    "cited_by": "Cited by {{num}}",
+    "add_footnote": "Add Footnote",
+    "add_cite": "Add Cite",
+    "select_text": "Select text to add footnote or cite",
+    "ask_for_citations": " Asking AI for citations",
+    "searching_papers": "Searching google scholar..."
+}

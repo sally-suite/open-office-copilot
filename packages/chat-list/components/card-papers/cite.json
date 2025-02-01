@@ -1,0 +1,46 @@
+{
+    "code": 0,
+    "data": {
+        "citations": [
+            {
+                "title": "MLA",
+                "snippet": "陆伟, et al. \"ChatGPT 为代表的大模型对信息资源管理的影响.\" 图书情报知识 40.2 (2023): 6-9."
+            },
+            {
+                "title": "APA",
+                "snippet": "陆伟, 刘家伟, 马永强, & 程齐凯. (2023). ChatGPT 为代表的大模型对信息资源管理的影响. 图书情报知识, 40(2), 6-9."
+            },
+            {
+                "title": "Chicago",
+                "snippet": "陆伟, 刘家伟, 马永强, and 程齐凯. \"ChatGPT 为代表的大模型对信息资源管理的影响.\" 图书情报知识 40, no. 2 (2023): 6-9."
+            },
+            {
+                "title": "Harvard",
+                "snippet": "陆伟, 刘家伟, 马永强 and 程齐凯, 2023. ChatGPT 为代表的大模型对信息资源管理的影响. 图书情报知识, 40(2), pp.6-9."
+            },
+            {
+                "title": "Vancouver",
+                "snippet": "陆伟, 刘家伟, 马永强, 程齐凯. ChatGPT 为代表的大模型对信息资源管理的影响. 图书情报知识. 2023 May 9;40(2):6-9."
+            }
+        ],
+        "links": [
+            {
+                "name": "BibTeX",
+                "link": "https://scholar.googleusercontent.com/scholar.bib?q=info:W_eUe1D9yZYJ:scholar.google.com/&output=citation&scisdr=ClH8TKELGAA:AFWwaeYAAAAAZxzgwX-8aPQGXVcsz2k9-c_SVjQ&scisig=AFWwaeYAAAAAZxzgwZU37UdktY21wAUcGodi5ds&scisf=4&ct=citation&cd=-1&hl=en"
+            },
+            {
+                "name": "EndNote",
+                "link": "https://scholar.googleusercontent.com/scholar.enw?q=info:W_eUe1D9yZYJ:scholar.google.com/&output=citation&scisdr=ClH8TKELGAA:AFWwaeYAAAAAZxzgwX-8aPQGXVcsz2k9-c_SVjQ&scisig=AFWwaeYAAAAAZxzgwZU37UdktY21wAUcGodi5ds&scisf=3&ct=citation&cd=-1&hl=en"
+            },
+            {
+                "name": "RefMan",
+                "link": "https://scholar.googleusercontent.com/scholar.ris?q=info:W_eUe1D9yZYJ:scholar.google.com/&output=citation&scisdr=ClH8TKELGAA:AFWwaeYAAAAAZxzgwX-8aPQGXVcsz2k9-c_SVjQ&scisig=AFWwaeYAAAAAZxzgwZU37UdktY21wAUcGodi5ds&scisf=2&ct=citation&cd=-1&hl=en"
+            },
+            {
+                "name": "RefWorks",
+                "link": "https://scholar.googleusercontent.com/scholar.rfw?q=info:W_eUe1D9yZYJ:scholar.google.com/&output=citation&scisdr=ClH8TKELGAA:AFWwaeYAAAAAZxzgwX-8aPQGXVcsz2k9-c_SVjQ&scisig=AFWwaeYAAAAAZxzgwZU37UdktY21wAUcGodi5ds&scisf=1&ct=citation&cd=-1&hl=en"
+            }
+        ]
+    },
+    "message": ""
+}

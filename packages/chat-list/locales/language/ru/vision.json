@@ -1,0 +1,12 @@
+{
+    "notes": "Эта функция основана на API Google Gemini. Вы можете получить ключ API Gemini по следующей ссылке <a class=' text-blue-700'  target='_blank'  href='https://makersuite.google.com/' rel='noreferrer'>Gemini AI</a>. Лучший подход для распознавания английского языка, другие языки не гарантированы для распознавания.",
+    "go_to_set_gemini_api_key": "Перейти для установки ключа API Gemini",
+    "upload_images": "Загрузить изображения",
+    "please_upload_images": "Пожалуйста, загрузите изображения и введите ваш вопрос или извлеките таблицу из изображения.",
+    "ask": "Спросить",
+    "vision_model": "Модель зрения:",
+    "extract_table": "Извлечь таблицу",
+    "extract_formula": "Извлечь формулу",
+    "extract_diagram": "Извлечь диаграмму",
+    "analyze_chart": "Анализировать график"
+}

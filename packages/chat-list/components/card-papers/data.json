@@ -1,0 +1,284 @@
+{
+    "code": 0,
+    "data": [
+        {
+            "position": 1,
+            "title": "ChatGPT 为代表的大模型对信息资源管理的影响",
+            "result_id": "W_eUe1D9yZYJ",
+            "link": "http://dik.whu.edu.cn/jwk3/tsqbzs/EN/abstract/abstract6042.shtml",
+            "snippet": "… 等细分领域的大 部分任务主要使用大量标注数据,训练或微调的范式, 大模型技术的探索和应用 … 在较大进步空间.未来需要优化大数据的使用,完善相 应的数据质量和效用评价机制,在大模型底座…",
+            "publication_info": {
+                "summary": "陆伟， 刘家伟， 马永强， 程齐凯 - 图书情报知识, 2023 - dik.whu.edu.cn"
+            },
+            "resources": [
+                {
+                    "title": "whu.edu.cn",
+                    "file_format": "PDF",
+                    "link": "http://dik.whu.edu.cn/jwk3/tsqbzs/CN/article/downloadArticleFile.do?attachType=PDF&id=6042"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=W_eUe1D9yZYJ",
+                "cited_by": {
+                    "total": 20,
+                    "link": "https://scholar.google.com/scholar?cites=10865494098120603483&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "10865494098120603483",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=10865494098120603483&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:W_eUe1D9yZYJ:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3AW_eUe1D9yZYJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 3,
+                    "link": "https://scholar.google.com/scholar?cluster=10865494098120603483&hl=en&as_sdt=0,33",
+                    "cluster_id": "10865494098120603483",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=10865494098120603483&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 2,
+            "title": "土工格栅, 格室加筋砂垫层 大模型试验及抗变形能力分析",
+            "result_id": "io621Jm8VTQJ",
+            "link": "https://xnjdxb.swjtu.edu.cn/article/id/9770",
+            "snippet": "… 土工格栅,格室加筋砂垫层大模型试验及抗变形能力分析 … 摘要: 对土工格栅及土工格室加筋 砂垫层处理松软地基进行了室内大模型试验,对其抗变形能力进行了较为详尽的试验及理论分析.试验 …",
+            "publication_info": {
+                "summary": "苏谦， 蔡英 - 西南交通大学学报, 2001 - xnjdxb.swjtu.edu.cn"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=io621Jm8VTQJ",
+                "cited_by": {
+                    "total": 33,
+                    "link": "https://scholar.google.com/scholar?cites=3771127631877410442&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "3771127631877410442",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=3771127631877410442&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:io621Jm8VTQJ:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3Aio621Jm8VTQJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 3,
+                    "link": "https://scholar.google.com/scholar?cluster=3771127631877410442&hl=en&as_sdt=0,33",
+                    "cluster_id": "3771127631877410442",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=3771127631877410442&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 3,
+            "title": "剪切和摩擦滑动大模型的视电阻率变化幅度和各向异性",
+            "result_id": "ziTElX9u3PsJ",
+            "link": "http://www.dzkx.org/article/id/cjg_348",
+            "snippet": "… 模型,对模型进行剪切和摩擦滑动实验,观测模型不同位置和不同方位的视电阻率变化幅度和各向 异性特征. 均匀介质模型… 位置有关,距裂隙近的测线,电阻率变化幅度大,从百分之几到百分之几十;…",
+            "publication_info": {
+                "summary": "陈峰 - 地球物理学报, 2003 - dzkx.org"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=ziTElX9u3PsJ",
+                "cited_by": {
+                    "total": 21,
+                    "link": "https://scholar.google.com/scholar?cites=18148502092648817870&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "18148502092648817870",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=18148502092648817870&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:ziTElX9u3PsJ:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3AziTElX9u3PsJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 3,
+                    "link": "https://scholar.google.com/scholar?cluster=18148502092648817870&hl=en&as_sdt=0,33",
+                    "cluster_id": "18148502092648817870",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=18148502092648817870&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 4,
+            "title": "大模型: 城市和区域研究的新范式",
+            "result_id": "l1xbJNbpylsJ",
+            "type": "Citation",
+            "snippet": "",
+            "publication_info": {
+                "summary": "龙瀛， 吴康， 王江浩， 刘行健 - 城市规划学刊, 2014"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=l1xbJNbpylsJ",
+                "cited_by": {
+                    "total": 32,
+                    "link": "https://scholar.google.com/scholar?cites=6614356108689235095&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "6614356108689235095",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=6614356108689235095&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:l1xbJNbpylsJ:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3Al1xbJNbpylsJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 3,
+                    "link": "https://scholar.google.com/scholar?cluster=6614356108689235095&hl=en&as_sdt=0,33",
+                    "cluster_id": "6614356108689235095",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=6614356108689235095&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 5,
+            "title": "Inconel 718 合金方坯粗轧加热过程晶粒长大模型",
+            "result_id": "z7TnAFyDvI8J",
+            "type": "Citation",
+            "snippet": "",
+            "publication_info": {
+                "summary": "陈礼清， 隋凤利， 刘相华 - 金属学报, 2009"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=z7TnAFyDvI8J",
+                "cited_by": {
+                    "total": 21,
+                    "link": "https://scholar.google.com/scholar?cites=10357297674220713167&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "10357297674220713167",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=10357297674220713167&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:z7TnAFyDvI8J:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3Az7TnAFyDvI8J%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 2,
+                    "link": "https://scholar.google.com/scholar?cluster=10357297674220713167&hl=en&as_sdt=0,33",
+                    "cluster_id": "10357297674220713167",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=10357297674220713167&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 6,
+            "title": "基于正交试验法的邓肯-张 EB 模型参数敏感性分析研究",
+            "result_id": "w0jm2zcnxCsJ",
+            "link": "http://jhe.ches.org.cn/jhe/ch/reader/view_abstract.aspx?file_no=20121322&st=alljournals",
+            "snippet": "… -张EB 模型参数对坝… 模型参数中Kb,φ0,K 对坝体竖向位移的敏感性相对较大;参数φ0,K,Rf 对坝 体向上游水平位移的敏感性相对较大;参数Kb,φ0,K 对坝体向下游水平位移的敏感性相对较大;模型…",
+            "publication_info": {
+                "summary": "李炎隆， 李守义， 丁战峰， 涂幸 - 水利学报, 2013 - jhe.ches.org.cn"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=w0jm2zcnxCsJ",
+                "cited_by": {
+                    "total": 29,
+                    "link": "https://scholar.google.com/scholar?cites=3153688759932176579&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "3153688759932176579",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=3153688759932176579&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:w0jm2zcnxCsJ:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3Aw0jm2zcnxCsJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 5,
+                    "link": "https://scholar.google.com/scholar?cluster=3153688759932176579&hl=en&as_sdt=0,33",
+                    "cluster_id": "3153688759932176579",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=3153688759932176579&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "http://scholar.googleusercontent.com/scholar?q=cache:w0jm2zcnxCsJ:scholar.google.com/+%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33"
+            }
+        },
+        {
+            "position": 7,
+            "title": "信用风险量化模型比较分析",
+            "result_id": "AJ0f5AJOl98J",
+            "type": "Citation",
+            "snippet": "",
+            "publication_info": {
+                "summary": "吴军， 张继宝 - 国际金融研究, 2004"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=AJ0f5AJOl98J",
+                "cited_by": {
+                    "total": 25,
+                    "link": "https://scholar.google.com/scholar?cites=16111431966265416960&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "16111431966265416960",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=16111431966265416960&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:AJ0f5AJOl98J:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3AAJ0f5AJOl98J%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 3,
+                    "link": "https://scholar.google.com/scholar?cluster=16111431966265416960&hl=en&as_sdt=0,33",
+                    "cluster_id": "16111431966265416960",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=16111431966265416960&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 8,
+            "title": "异丙基肾上腺素致大鼠心力衰竭模型的实验研究",
+            "result_id": "Axe3Dq20ZFQJ",
+            "type": "Citation",
+            "snippet": "",
+            "publication_info": {
+                "summary": "李为民， 田颖， 孔一慧， 甘润韬， 孙桂芳， 沈景霞 - 哈尔滨医科大学学报, 2003"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=Axe3Dq20ZFQJ",
+                "cited_by": {
+                    "total": 42,
+                    "link": "https://scholar.google.com/scholar?cites=6081184052226234115&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "6081184052226234115",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=6081184052226234115&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:Axe3Dq20ZFQJ:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3AAxe3Dq20ZFQJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 3,
+                    "link": "https://scholar.google.com/scholar?cluster=6081184052226234115&hl=en&as_sdt=0,33",
+                    "cluster_id": "6081184052226234115",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=6081184052226234115&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 9,
+            "title": "SWAT 模型在三川河流域的应用",
+            "result_id": "saTtNHLXJP0J",
+            "type": "Citation",
+            "snippet": "",
+            "publication_info": {
+                "summary": "罗睿， 徐宗学， 程磊 - 水资源与水工程学报, 2008"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=saTtNHLXJP0J",
+                "cited_by": {
+                    "total": 28,
+                    "link": "https://scholar.google.com/scholar?cites=18240941276271584433&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "18240941276271584433",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=18240941276271584433&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:saTtNHLXJP0J:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3AsaTtNHLXJP0J%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 2,
+                    "link": "https://scholar.google.com/scholar?cluster=18240941276271584433&hl=en&as_sdt=0,33",
+                    "cluster_id": "18240941276271584433",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=18240941276271584433&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 10,
+            "title": "基于混合效应模型的杉木单木冠幅预测模型",
+            "result_id": "fVPE3M9chBMJ",
+            "type": "Citation",
+            "snippet": "",
+            "publication_info": {
+                "summary": "符利勇， 孙华 - 林业科学, 2013"
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=fVPE3M9chBMJ",
+                "cited_by": {
+                    "total": 31,
+                    "link": "https://scholar.google.com/scholar?cites=1406351031478276989&as_sdt=5,33&sciodt=0,33&hl=en",
+                    "cites_id": "1406351031478276989",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C33&cites=1406351031478276989&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:fVPE3M9chBMJ:scholar.google.com/&scioq=%E5%A4%A7%E6%A8%A1%E5%9E%8B&hl=en&as_sdt=0,33",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C33&engine=google_scholar&hl=en&num=10&q=related%3AfVPE3M9chBMJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 2,
+                    "link": "https://scholar.google.com/scholar?cluster=1406351031478276989&hl=en&as_sdt=0,33",
+                    "cluster_id": "1406351031478276989",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C33&cluster=1406351031478276989&engine=google_scholar&hl=en"
+                }
+            }
+        }
+    ],
+    "message": ""
+}

@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "データコンテキスト",
+    "sheet.agent.analyst": "アナリスト",
+    "sheet.agent.function": "機能",
+    "sheet.agent.chart": "チャート",
+    "sheet.agent.translate": "翻訳",
+    "sheet.agent.vision": "ビジョン",
+    "sheet.agent.knowledge": "ナレッジ",
+    "sheet.agent.coder": "コーダー",
+    "sheet.context.data_range": "データ範囲",
+    "sheet.context.select_data_range": "データ範囲を選択",
+    "sheet.context.is_header_in_data_range": "ヘッダーはデータ範囲内にありますか",
+    "sheet.context.headers": "ヘッダー",
+    "sheet.context.select_header_range": "ヘッダー範囲を選択",
+    "sheet.context.description": "これは私が収集したデフォルトのシート情報です。正確でない場合は変更でき、変更は現在の会話に影響します。",
+    "sheet.context.update": "更新",
+    "sheet.context.card_title": "コンテキスト情報を確認",
+    "sheet.context.select_data_and_click": "データ範囲を選択してクリック",
+    "sheet.context.select_data_range_desc": "データ範囲を選択して、右のボタンをクリックして範囲情報を取得してください。"
+}

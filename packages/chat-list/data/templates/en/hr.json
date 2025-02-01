@@ -1,0 +1,129 @@
+{
+  "Personnel Information": [
+    "Name",
+    "Position",
+    "Contact Information",
+    "Date of Entry",
+    "Gender",
+    "Date of Birth",
+    "ID Number",
+    "Ethnicity",
+    "Birthplace",
+    "Education",
+    "Graduation School",
+    "Major",
+    "Emergency Contact",
+    "Emergency Contact Number"
+  ],
+  "Salary Slip": [
+    "Name",
+    "Position",
+    "Basic Salary",
+    "Allowances",
+    "Overtime Pay",
+    "Deductions",
+    "Net Salary",
+    "Payment Date"
+  ],
+  "Attendance Sheet": [
+    "Name",
+    "Position",
+    "Date",
+    "Start Time",
+    "End Time",
+    "Leave Type",
+    "Leave Duration",
+    "Overtime Hours",
+    "Late Count",
+    "Early Leave Count"
+  ],
+  "Employee Training Record": [
+    "Name",
+    "Position",
+    "Training Name",
+    "Training Date",
+    "Training Location",
+    "Trainer",
+    "Training Score"
+  ],
+  "Performance Evaluation Form": [
+    "Name",
+    "Position",
+    "Evaluation Date",
+    "Task Completion",
+    "Work Quality",
+    "Work Attitude",
+    "Teamwork",
+    "Self-Learning Ability",
+    "Performance Rating"
+  ],
+  "Resignation Registration Form": [
+    "Name",
+    "Position",
+    "Resignation Date",
+    "Reason for Resignation",
+    "Handover Matters"
+  ],
+  "Recruitment Process Tracking": [
+    "Candidate Name",
+    "Applied Position",
+    "Interview Date",
+    "Interviewer",
+    "Interview Result",
+    "Recruitment Progress"
+  ],
+  "Job Description": [
+    "Job Title",
+    "Job Description",
+    "Responsibilities",
+    "Requirements"
+  ],
+  "Organization Chart": [
+    "Department Name",
+    "Job Title",
+    "Job Description",
+    "Supervisor Job Title"
+  ],
+  "Employee Benefits Record": [
+    "Name",
+    "Position",
+    "Benefit Item",
+    "Benefit Enjoyment Date",
+    "Benefit Amount",
+    "Payment Method"
+  ],
+  "Employee Rewards and Penalties Record": [
+    "Name",
+    "Position",
+    "Date",
+    "Reward/Penalty Type",
+    "Reason",
+    "Description"
+  ],
+  "Employee Transfer Record": [
+    "Name",
+    "Previous Position",
+    "New Position",
+    "Transfer Date",
+    "Reason for Transfer"
+  ],
+  "Employee File Checklist": [
+    "Name",
+    "Gender",
+    "Date of Birth",
+    "Contact Information",
+    "ID Number",
+    "Birthplace",
+    "Education",
+    "Graduation School",
+    "Major",
+    "Date of Entry",
+    "Contract Type",
+    "Contract Start Date",
+    "Contract End Date",
+    "Certificate Name",
+    "Certificate Number",
+    "Issuing Authority",
+    "Issue Date"
+  ]
+}

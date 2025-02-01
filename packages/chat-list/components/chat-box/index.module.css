@@ -1,0 +1,83 @@
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  @apply p-2 border-primary overflow-hidden border rounded-md shadow-sm;
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  @apply p-0;
+}
+
+.output input[type='text'] {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  @apply p-1;
+}
+
+.inputBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftActions,
+.rightActions {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  @apply p-0 pb-0 flex flex-col bg-white   rounded overflow-hidden;
+}
+
+.input input[type='text'] {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  @apply p-1 outline-none;
+}
+
+.input .inputBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input .leftActions,
+.input .rightActions {
+  display: flex;
+  align-items: center;
+}
+
+.chatBox {
+  @apply fixed p-2 w-96 h-96  shadow flex flex-col bottom-2 right-4 z-10 bg-white rounded-md;
+  min-width: 200px;
+}
+.textWarper {
+  @apply flex flex-row items-center justify-start my-1 text-sm;
+}
+.close {
+  @apply absolute right-0 top-0 m-2 cursor-pointer;
+}
+.cancelSelect {
+  @apply m-2 cursor-pointer;
+}
+
+.sideButton {
+}
+
+.tab {
+  @apply text-xs border rounded h-5 w-6 inline-flex items-center justify-center mr-1 text-gray-500;
+}

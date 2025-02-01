@@ -1,0 +1,146 @@
+[
+    {
+        "name": "Modern Clean",
+        "code": "modern-clean",
+        "title": "Segoe UI Light",
+        "body": "Segoe UI",
+        "web": {
+            "title": "'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif",
+            "body": "'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif"
+        },
+        "headingClass": "font-light",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Professional Modern",
+        "code": "professional-modern",
+        "title": "Calibri",
+        "body": "Calibri",
+        "web": {
+            "title": "'Helvetica Neue', Arial, sans-serif",
+            "body": "'Helvetica Neue', Arial, sans-serif"
+        },
+        "headingClass": "font-semibold",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Classic Serif",
+        "code": "classic-serif",
+        "title": "Cambria",
+        "body": "Cambria",
+        "web": {
+            "title": "'Georgia', 'Times New Roman', Times, serif",
+            "body": "'Georgia', 'Times New Roman', Times, serif"
+        },
+        "headingClass": "font-semibold",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Contemporary Mix",
+        "code": "contemporary-mix",
+        "title": "Arial",
+        "body": "Georgia",
+        "web": {
+            "title": "'Open Sans', Arial, sans-serif",
+            "body": "'Georgia', 'Times New Roman', Times, serif"
+        },
+        "headingClass": "font-extrabold",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Modern Chinese",
+        "code": "modern-chinese",
+        "title": "Microsoft YaHei",
+        "body": "Microsoft YaHei",
+        "web": {
+            "title": "'Microsoft YaHei', '微软雅黑', -apple-system, sans-serif",
+            "body": "'Microsoft YaHei', '微软雅黑', -apple-system, sans-serif"
+        },
+        "headingClass": "font-medium",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Traditional Chinese",
+        "code": "traditional-chinese",
+        "title": "SimSun",
+        "body": "SimSun",
+        "web": {
+            "title": "SimSun, '宋体', serif",
+            "body": "SimSun, '宋体', serif"
+        },
+        "headingClass": "font-normal",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Elegant",
+        "code": "elegant",
+        "title": "Palatino Linotype",
+        "body": "Book Antiqua",
+        "web": {
+            "title": "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
+            "body": "'Book Antiqua', Palatino, serif"
+        },
+        "headingClass": "font-semibold",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Minimalist",
+        "code": "minimalist",
+        "title": "Consolas",
+        "body": "Segoe UI",
+        "web": {
+            "title": "'Courier New', Courier, monospace",
+            "body": "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+        },
+        "headingClass": "font-bold",
+        "bodyClass": "font-light"
+    },
+    {
+        "name": "Professional Classic",
+        "code": "professional-classic",
+        "title": "Times New Roman",
+        "body": "Verdana",
+        "web": {
+            "title": "'Times New Roman', Times, serif",
+            "body": "'Verdana', Geneva, sans-serif"
+        },
+        "headingClass": "font-bold",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Creative",
+        "code": "creative",
+        "title": "Impact",
+        "body": "Courier New",
+        "web": {
+            "title": "'Impact', Charcoal, sans-serif",
+            "body": "'Courier New', Courier, monospace"
+        },
+        "headingClass": "font-black",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Modern Japanese",
+        "code": "modern-japanese",
+        "title": "Meiryo",
+        "body": "Meiryo",
+        "web": {
+            "title": "Meiryo, 'メイリオ', -apple-system, sans-serif",
+            "body": "Meiryo, 'メイリオ', -apple-system, sans-serif"
+        },
+        "headingClass": "font-medium",
+        "bodyClass": "font-normal"
+    },
+    {
+        "name": "Modern Korean",
+        "code": "modern-korean",
+        "title": "Malgun Gothic",
+        "body": "Malgun Gothic",
+        "web": {
+            "title": "'Malgun Gothic', '맑은 고딕', -apple-system, sans-serif",
+            "body": "'Malgun Gothic', '맑은 고딕', -apple-system, sans-serif"
+        },
+        "headingClass": "font-medium",
+        "bodyClass": "font-normal"
+    }
+]

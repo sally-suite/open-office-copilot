@@ -1,0 +1,36 @@
+.title {
+  @apply text-sm text-slate-600;
+}
+.action {
+  @apply flex flex-row items-center pl-1 text-slate-600;
+  .icon {
+    @apply mr-2 cursor-pointer;
+  }
+}
+.text-action,
+.text-error,
+.text-info {
+  @apply text-sm text-gray-500;
+}
+
+.log-info {
+  @apply text-sm text-green-700;
+}
+.log-error {
+  @apply text-sm text-red-500;
+}
+.log-action {
+  @apply text-sm text-blue-700;
+}
+.log-time {
+  @apply mx-1;
+}
+.section {
+  @apply flex flex-col flex-1 overflow-auto;
+}
+.toolbar {
+  @apply flex flex-row items-center justify-between h-8 py-0 px-1 border-b border-gray-300;
+}
+.panel {
+  @apply flex flex-col flex-1 overflow-auto border-b border-gray-300;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sales Line Chart</title>
+    <!-- Include ECharts library from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+  </head>
+  <body>
+    <div id="salesChart" style="width: 600px; height: 400px"></div>
+    <script>
+      // JavaScript code to create the ECharts line chart
+      var salesData = [
+        { 城市: '纽约', 销售额: 10000 },
+        { 城市: '迈阿密', 销售额: 9300 },
+        { 城市: '奥兰多', 销售额: 8900 },
+        { 城市: '圣地亚哥', 销售额: 8700 },
+        { 城市: '洛杉矶', 销售额: 8500 },
+        { 城市: '波士顿', 销售额: 8300 },
+        { 城市: '旧金山', 销售额: 8000 },
+      ];
+
+      // Extract the city names and sales values from the data
+      var cities = salesData.map((item) => item.城市);
+      var sales = salesData.map((item) => item.销售额);
+
+      // Create a new ECharts instance
+      var chart = echarts.init(document.getElementById('salesChart'));
+
+      // Define the chart options
+      var options = {
+        title: {
+          text: 'Sales Line Chart',
+        },
+        xAxis: {
+          type: 'category',
+          data: cities,
+        },
+        yAxis: {
+          type: 'value',
+        },
+        series: [
+          {
+            data: sales,
+            type: 'line',
+          },
+        ],
+      };
+
+      // Set the chart options and render the chart
+      chart.setOption(options);
+    </script>
+  </body>
+</html>

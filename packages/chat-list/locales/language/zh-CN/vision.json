@@ -1,0 +1,12 @@
+{
+    "notes": "此功能基于Google Gemini API，您可以在此链接获取Gemini API密钥 <a class=' text-blue-700'  target='_blank'  href='https://makersuite.google.com/' rel='noreferrer'>Gemini AI</a> 。最适合识别英语，不能保证对其他语言的识别。",
+    "go_to_set_gemini_api_key": "设置Gemini API密钥",
+    "upload_images": "上传图片",
+    "please_upload_images": "请上传图片并输入您的问题或从图像中提取表格。",
+    "ask": "询问",
+    "vision_model": "视觉模型：",
+    "extract_table": "提取表格",
+    "extract_formula": "提取公式",
+    "extract_diagram": "提取图表",
+    "analyze_chart": "分析图表"
+}

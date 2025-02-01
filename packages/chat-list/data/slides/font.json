@@ -1,0 +1,150 @@
+{
+    "en-US": [
+        {
+            "name": "Sleek",
+            "code": "sleek",
+            "title": "Calibri",
+            "body": "Calibri",
+            "web": {
+                "title": "'Roboto', 'Helvetica Neue', Arial, sans-serif",
+                "body": "'Roboto', 'Helvetica Neue', Arial, sans-serif"
+            },
+            "headingClass": "font-bold",
+            "bodyClass": "font-normal"
+        },
+        {
+            "name": "Classic",
+            "code": "classic",
+            "title": "Cambria",
+            "body": "Cambria",
+            "web": {
+                "title": "'Georgia', 'Times New Roman', Times, serif",
+                "body": "'Georgia', 'Times New Roman', Times, serif"
+            },
+            "headingClass": "font-semibold",
+            "bodyClass": "font-normal"
+        },
+        {
+            "name": "Contemporary",
+            "code": "contemporary",
+            "title": "Arial",
+            "body": "Georgia",
+            "web": {
+                "title": "'Open Sans', Arial, sans-serif",
+                "body": "'Georgia', 'Times New Roman', Times, serif"
+            },
+            "headingClass": "font-extrabold",
+            "bodyClass": "font-normal"
+        },
+        {
+            "name": "Minimalist",
+            "code": "minimalist",
+            "title": "Consolas",
+            "body": "Segoe UI",
+            "web": {
+                "title": "'Courier New', Courier, monospace",
+                "body": "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+            },
+            "headingClass": "font-bold",
+            "bodyClass": "font-light"
+        },
+        {
+            "name": "Professional",
+            "code": "professional",
+            "title": "Times New Roman",
+            "body": "Verdana",
+            "web": {
+                "title": "'Times New Roman', Times, serif",
+                "body": "'Verdana', Geneva, sans-serif"
+            },
+            "headingClass": "font-bold",
+            "bodyClass": "font-normal"
+        },
+        {
+            "name": "Creative",
+            "code": "creative",
+            "title": "Impact",
+            "body": "Courier New",
+            "web": {
+                "title": "'Impact', Charcoal, sans-serif",
+                "body": "'Courier New', Courier, monospace"
+            },
+            "headingClass": "font-black",
+            "bodyClass": "font-normal"
+        }
+    ],
+    "zh-CN": [
+        {
+            "name": "现代简约",
+            "code": "modern",
+            "title": "思源黑体",
+            "body": "微软雅黑",
+            "web": {
+                "title": "'Noto Sans', 'Source Han Sans', sans-serif",
+                "body": "'Noto Sans', 'Source Han Sans', sans-serif"
+            },
+            "headingClass": "font-bold",
+            "bodyClass": "font-normal"
+        },
+        {
+            "name": "经典优雅",
+            "code": "classic",
+            "title": "华文细黑",
+            "body": "宋体",
+            "web": {
+                "title": "'Georgia', 'Times New Roman', serif",
+                "body": "'Georgia', 'Times New Roman', serif"
+            },
+            "headingClass": "font-semibold",
+            "bodyClass": "font-normal"
+        },
+        {
+            "name": "当代对比",
+            "code": "contemporary",
+            "title": "Arial",
+            "body": "仿宋",
+            "web": {
+                "title": "'Open Sans', Arial, sans-serif",
+                "body": "'SimSun', 'Times New Roman', serif"
+            },
+            "headingClass": "font-extrabold",
+            "bodyClass": "font-normal"
+        },
+        {
+            "name": "极简魅力",
+            "code": "minimalist",
+            "title": "等线",
+            "body": "微软雅黑",
+            "web": {
+                "title": "'Courier New', Courier, monospace",
+                "body": "'Microsoft YaHei', Tahoma, Geneva, sans-serif"
+            },
+            "headingClass": "font-bold",
+            "bodyClass": "font-light"
+        },
+        {
+            "name": "专业风格",
+            "code": "professional",
+            "title": "仿宋",
+            "body": "Verdana",
+            "web": {
+                "title": "'Times New Roman', Times, serif",
+                "body": "'Verdana', Geneva, sans-serif"
+            },
+            "headingClass": "font-bold",
+            "bodyClass": "font-normal"
+        },
+        {
+            "name": "创意风采",
+            "code": "creative",
+            "title": "Impact",
+            "body": "Courier New",
+            "web": {
+                "title": "'Impact', Charcoal, sans-serif",
+                "body": "'Courier New', Courier, monospace"
+            },
+            "headingClass": "font-black",
+            "bodyClass": "font-normal"
+        }
+    ]
+}

@@ -1,0 +1,601 @@
+{
+    "code": 0,
+    "data": [
+        {
+            "position": 1,
+            "title": "D4: Improving llm pretraining via document de-duplication and diversification",
+            "result_id": "FoZs6bv87yoJ",
+            "link": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/a8f8cbd7f7a5fb2c837e578c75e5b615-Abstract-Datasets_and_Benchmarks.html",
+            "snippet": "… embeddings can significantly improve LLM training. Specifically, our contributions are as follows: • We investigate different data selection strategies for standard LLM pre-training setups …",
+            "publication_info": {
+                "summary": "K Tirumala, D Simig, A Aghajanyan… - Advances in Neural …, 2023 - proceedings.neurips.cc",
+                "authors": [
+                    {
+                        "name": "K Tirumala",
+                        "link": "https://scholar.google.com/citations?user=B8WLbLsAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=B8WLbLsAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "B8WLbLsAAAAJ"
+                    },
+                    {
+                        "name": "D Simig",
+                        "link": "https://scholar.google.com/citations?user=TtWU9fsAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=TtWU9fsAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "TtWU9fsAAAAJ"
+                    },
+                    {
+                        "name": "A Aghajanyan",
+                        "link": "https://scholar.google.com/citations?user=KxQfzRcAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=KxQfzRcAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "KxQfzRcAAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "neurips.cc",
+                    "file_format": "PDF",
+                    "link": "https://proceedings.neurips.cc/paper_files/paper/2023/file/a8f8cbd7f7a5fb2c837e578c75e5b615-Paper-Datasets_and_Benchmarks.pdf"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=FoZs6bv87yoJ",
+                "cited_by": {
+                    "total": 61,
+                    "link": "https://scholar.google.com/scholar?cites=3093969353032107542&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "3093969353032107542",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=3093969353032107542&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:FoZs6bv87yoJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3AFoZs6bv87yoJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 6,
+                    "link": "https://scholar.google.com/scholar?cluster=3093969353032107542&hl=en&as_sdt=0,40",
+                    "cluster_id": "3093969353032107542",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=3093969353032107542&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:FoZs6bv87yoJ:scholar.google.com/+llm+pretrain&hl=en&as_sdt=0,40"
+            }
+        },
+        {
+            "position": 2,
+            "title": "Chinese tiny llm: Pretraining a chinese-centric large language model",
+            "result_id": "ffamg-VtaVkJ",
+            "link": "https://arxiv.org/abs/2404.04167",
+            "snippet": "… LLM, including a detailed data processing procedure with the obtained Massive Appropriate Pretraining … -Bench), and the 2B-size Chinese Tiny LLM (CT-LLM), we aim to foster further ex…",
+            "publication_info": {
+                "summary": "X Du, Z Yu, S Gao, D Pan, Y Cheng, Z Ma… - arXiv preprint arXiv …, 2024 - arxiv.org",
+                "authors": [
+                    {
+                        "name": "Z Yu",
+                        "link": "https://scholar.google.com/citations?user=qUMjnPcAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=qUMjnPcAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "qUMjnPcAAAAJ"
+                    },
+                    {
+                        "name": "S Gao",
+                        "link": "https://scholar.google.com/citations?user=O42mLrsAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=O42mLrsAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "O42mLrsAAAAJ"
+                    },
+                    {
+                        "name": "Z Ma",
+                        "link": "https://scholar.google.com/citations?user=4RZnXGMAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=4RZnXGMAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "4RZnXGMAAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "arxiv.org",
+                    "file_format": "PDF",
+                    "link": "https://arxiv.org/pdf/2404.04167"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=ffamg-VtaVkJ",
+                "cited_by": {
+                    "total": 8,
+                    "link": "https://scholar.google.com/scholar?cites=6442801574453900925&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "6442801574453900925",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=6442801574453900925&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:ffamg-VtaVkJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3Affamg-VtaVkJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 2,
+                    "link": "https://scholar.google.com/scholar?cluster=6442801574453900925&hl=en&as_sdt=0,40",
+                    "cluster_id": "6442801574453900925",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=6442801574453900925&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:ffamg-VtaVkJ:scholar.google.com/+llm+pretrain&hl=en&as_sdt=0,40"
+            }
+        },
+        {
+            "position": 3,
+            "title": "5 LLM Pretraining Methods",
+            "result_id": "Faf-MkGqajgJ",
+            "link": "https://www.degruyter.com/document/doi/10.1515/9783111425078/pdf?licenseType=restricted#page=107",
+            "snippet": "… The pretraining of data is primarily responsible for the extraordinary powers of LLMs. … pretraining approaches of LLM are covered in this chapter along with their significance. Pretrained …",
+            "publication_info": {
+                "summary": "A Velu, R Ramamoorthy, SM Manasa… - Generative AI and …, 2024 - degruyter.com",
+                "authors": [
+                    {
+                        "name": "A Velu",
+                        "link": "https://scholar.google.com/citations?user=9S83zhAAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=9S83zhAAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "9S83zhAAAAAJ"
+                    },
+                    {
+                        "name": "R Ramamoorthy",
+                        "link": "https://scholar.google.com/citations?user=gaKhrBAAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=gaKhrBAAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "gaKhrBAAAAAJ"
+                    },
+                    {
+                        "name": "SM Manasa",
+                        "link": "https://scholar.google.com/citations?user=I-B3GAoAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=I-B3GAoAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "I-B3GAoAAAAJ"
+                    }
+                ]
+            },
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=Faf-MkGqajgJ",
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:Faf-MkGqajgJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3AFaf-MkGqajgJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 2,
+                    "link": "https://scholar.google.com/scholar?cluster=4065248810660439829&hl=en&as_sdt=0,40",
+                    "cluster_id": "4065248810660439829",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=4065248810660439829&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 4,
+            "title": "Vila: On pre-training for visual language models",
+            "result_id": "z6SZs_CuqVAJ",
+            "link": "https://openaccess.thecvf.com/content/CVPR2024/html/Lin_VILA_On_Pre-training_for_Visual_Language_Models_CVPR_2024_paper.html",
+            "snippet": "… effective pretraining design options to augment LLMs towards vision tasks. Leveraging full strength of LLM … We hope our paper can help spur further research on VLM pretraining. …",
+            "publication_info": {
+                "summary": "J Lin, H Yin, W Ping, P Molchanov… - Proceedings of the …, 2024 - openaccess.thecvf.com",
+                "authors": [
+                    {
+                        "name": "J Lin",
+                        "link": "https://scholar.google.com/citations?user=dVtzVVAAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=dVtzVVAAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "dVtzVVAAAAAJ"
+                    },
+                    {
+                        "name": "H Yin",
+                        "link": "https://scholar.google.com/citations?user=4gdSoOYAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=4gdSoOYAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "4gdSoOYAAAAJ"
+                    },
+                    {
+                        "name": "W Ping",
+                        "link": "https://scholar.google.com/citations?user=6gKEYRgAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=6gKEYRgAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "6gKEYRgAAAAJ"
+                    },
+                    {
+                        "name": "P Molchanov",
+                        "link": "https://scholar.google.com/citations?user=J9PoyoIAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=J9PoyoIAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "J9PoyoIAAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "thecvf.com",
+                    "file_format": "PDF",
+                    "link": "https://openaccess.thecvf.com/content/CVPR2024/papers/Lin_VILA_On_Pre-training_for_Visual_Language_Models_CVPR_2024_paper.pdf"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=z6SZs_CuqVAJ",
+                "cited_by": {
+                    "total": 119,
+                    "link": "https://scholar.google.com/scholar?cites=5812369142926910671&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "5812369142926910671",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=5812369142926910671&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:z6SZs_CuqVAJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3Az6SZs_CuqVAJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 4,
+                    "link": "https://scholar.google.com/scholar?cluster=5812369142926910671&hl=en&as_sdt=0,40",
+                    "cluster_id": "5812369142926910671",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=5812369142926910671&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:z6SZs_CuqVAJ:scholar.google.com/+llm+pretrain&hl=en&as_sdt=0,40"
+            }
+        },
+        {
+            "position": 5,
+            "title": "Megalodon: Efficient llm pretraining and inference with unlimited context length",
+            "result_id": "EiuIfsWuumYJ",
+            "link": "https://arxiv.org/abs/2404.08801",
+            "snippet": "… of MEGALODON on large-scale longcontext pretraining, we propose multiple novel technical … To improve large-scale pretraining stability, MEGALODON further proposes normalized …",
+            "publication_info": {
+                "summary": "X Ma, X Yang, W Xiong, B Chen, L Yu, H Zhang… - arXiv preprint arXiv …, 2024 - arxiv.org",
+                "authors": [
+                    {
+                        "name": "X Ma",
+                        "link": "https://scholar.google.com/citations?user=6_MQLIcAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=6_MQLIcAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "6_MQLIcAAAAJ"
+                    },
+                    {
+                        "name": "X Yang",
+                        "link": "https://scholar.google.com/citations?user=t8v3JXsAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=t8v3JXsAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "t8v3JXsAAAAJ"
+                    },
+                    {
+                        "name": "W Xiong",
+                        "link": "https://scholar.google.com/citations?user=J9_LwQUAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=J9_LwQUAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "J9_LwQUAAAAJ"
+                    },
+                    {
+                        "name": "B Chen",
+                        "link": "https://scholar.google.com/citations?user=jCNJhFcAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=jCNJhFcAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "jCNJhFcAAAAJ"
+                    },
+                    {
+                        "name": "L Yu",
+                        "link": "https://scholar.google.com/citations?user=wY932-AAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=wY932-AAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "wY932-AAAAAJ"
+                    },
+                    {
+                        "name": "H Zhang",
+                        "link": "https://scholar.google.com/citations?user=H1d4BS8AAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=H1d4BS8AAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "H1d4BS8AAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "arxiv.org",
+                    "file_format": "PDF",
+                    "link": "https://arxiv.org/pdf/2404.08801"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=EiuIfsWuumYJ",
+                "cited_by": {
+                    "total": 14,
+                    "link": "https://scholar.google.com/scholar?cites=7402421100791474962&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "7402421100791474962",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=7402421100791474962&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:EiuIfsWuumYJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3AEiuIfsWuumYJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 2,
+                    "link": "https://scholar.google.com/scholar?cluster=7402421100791474962&hl=en&as_sdt=0,40",
+                    "cluster_id": "7402421100791474962",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=7402421100791474962&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:EiuIfsWuumYJ:scholar.google.com/+llm+pretrain&hl=en&as_sdt=0,40"
+            }
+        },
+        {
+            "position": 6,
+            "title": "When scaling meets llm finetuning: The effect of data, model and finetuning method",
+            "result_id": "WldvUBgqgG8J",
+            "link": "https://arxiv.org/abs/2402.17193",
+            "snippet": "… in the LLM, where LLM model size and pretraining data size … for LLM model size αm often outnumbers that for pretraining … using a larger LLM model is preferred over pretraining on a …",
+            "publication_info": {
+                "summary": "B Zhang, Z Liu, C Cherry, O Firat - arXiv preprint arXiv:2402.17193, 2024 - arxiv.org",
+                "authors": [
+                    {
+                        "name": "B Zhang",
+                        "link": "https://scholar.google.com/citations?user=gqPKjaIAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=gqPKjaIAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "gqPKjaIAAAAJ"
+                    },
+                    {
+                        "name": "Z Liu",
+                        "link": "https://scholar.google.com/citations?user=NKvl_ukAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=NKvl_ukAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "NKvl_ukAAAAJ"
+                    },
+                    {
+                        "name": "C Cherry",
+                        "link": "https://scholar.google.com/citations?user=TNr_OWMAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=TNr_OWMAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "TNr_OWMAAAAJ"
+                    },
+                    {
+                        "name": "O Firat",
+                        "link": "https://scholar.google.com/citations?user=dLaR9lgAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=dLaR9lgAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "dLaR9lgAAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "arxiv.org",
+                    "file_format": "PDF",
+                    "link": "https://arxiv.org/pdf/2402.17193"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=WldvUBgqgG8J",
+                "cited_by": {
+                    "total": 51,
+                    "link": "https://scholar.google.com/scholar?cites=8034468019146020698&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "8034468019146020698",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=8034468019146020698&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:WldvUBgqgG8J:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3AWldvUBgqgG8J%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 3,
+                    "link": "https://scholar.google.com/scholar?cluster=8034468019146020698&hl=en&as_sdt=0,40",
+                    "cluster_id": "8034468019146020698",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=8034468019146020698&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:WldvUBgqgG8J:scholar.google.com/+llm+pretrain&hl=en&as_sdt=0,40"
+            }
+        },
+        {
+            "position": 7,
+            "title": "Llm maybe longlm: Self-extend llm context window without tuning",
+            "result_id": "acYGQfVDmVgJ",
+            "link": "https://arxiv.org/abs/2401.01325",
+            "snippet": "… On the left figure, we show the OOD issue while the input length is out of the pretraining context window size. We suppose that the LLM’s pretraining context window length is 5 and an …",
+            "publication_info": {
+                "summary": "H Jin, X Han, J Yang, Z Jiang, Z Liu, CY Chang… - arXiv preprint arXiv …, 2024 - arxiv.org",
+                "authors": [
+                    {
+                        "name": "H Jin",
+                        "link": "https://scholar.google.com/citations?user=bxLE68cAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=bxLE68cAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "bxLE68cAAAAJ"
+                    },
+                    {
+                        "name": "X Han",
+                        "link": "https://scholar.google.com/citations?user=Uromx98AAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=Uromx98AAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "Uromx98AAAAJ"
+                    },
+                    {
+                        "name": "J Yang",
+                        "link": "https://scholar.google.com/citations?user=hysBvrwAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=hysBvrwAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "hysBvrwAAAAJ"
+                    },
+                    {
+                        "name": "Z Jiang",
+                        "link": "https://scholar.google.com/citations?user=5Es3Yk4AAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=5Es3Yk4AAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "5Es3Yk4AAAAJ"
+                    },
+                    {
+                        "name": "Z Liu",
+                        "link": "https://scholar.google.com/citations?user=0i1w_egAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=0i1w_egAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "0i1w_egAAAAJ"
+                    },
+                    {
+                        "name": "CY Chang",
+                        "link": "https://scholar.google.com/citations?user=EO595aMAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=EO595aMAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "EO595aMAAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "openreview.net",
+                    "file_format": "PDF",
+                    "link": "https://openreview.net/pdf?id=nkOMLBIiI7"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=acYGQfVDmVgJ",
+                "cited_by": {
+                    "total": 58,
+                    "link": "https://scholar.google.com/scholar?cites=6384208667411400297&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "6384208667411400297",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=6384208667411400297&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:acYGQfVDmVgJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3AacYGQfVDmVgJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 6,
+                    "link": "https://scholar.google.com/scholar?cluster=6384208667411400297&hl=en&as_sdt=0,40",
+                    "cluster_id": "6384208667411400297",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=6384208667411400297&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:acYGQfVDmVgJ:scholar.google.com/+llm+pretrain&hl=en&as_sdt=0,40"
+            }
+        },
+        {
+            "position": 8,
+            "title": "User-LLM: Efficient LLM Contextualization with User Embeddings",
+            "result_id": "2jXd3v0FaoUJ",
+            "link": "https://arxiv.org/abs/2402.13598",
+            "snippet": "… Benefit of pretraining We study the benefits of pretraining user encoders for downstream tasks. Results presented in columns 3 and 4 in Table 8 demonstrate that models utilizing …",
+            "publication_info": {
+                "summary": "L Ning, L Liu, J Wu, N Wu, D Berlowitz… - arXiv preprint arXiv …, 2024 - arxiv.org",
+                "authors": [
+                    {
+                        "name": "L Ning",
+                        "link": "https://scholar.google.com/citations?user=FCY4vUEAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=FCY4vUEAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "FCY4vUEAAAAJ"
+                    },
+                    {
+                        "name": "L Liu",
+                        "link": "https://scholar.google.com/citations?user=TPdyoDwAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=TPdyoDwAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "TPdyoDwAAAAJ"
+                    },
+                    {
+                        "name": "J Wu",
+                        "link": "https://scholar.google.com/citations?user=bR5BUAwAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=bR5BUAwAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "bR5BUAwAAAAJ"
+                    },
+                    {
+                        "name": "D Berlowitz",
+                        "link": "https://scholar.google.com/citations?user=pY3QR20AAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=pY3QR20AAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "pY3QR20AAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "arxiv.org",
+                    "file_format": "PDF",
+                    "link": "https://arxiv.org/pdf/2402.13598"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=2jXd3v0FaoUJ",
+                "cited_by": {
+                    "total": 10,
+                    "link": "https://scholar.google.com/scholar?cites=9613502942499648986&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "9613502942499648986",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=9613502942499648986&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:2jXd3v0FaoUJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3A2jXd3v0FaoUJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 4,
+                    "link": "https://scholar.google.com/scholar?cluster=9613502942499648986&hl=en&as_sdt=0,40",
+                    "cluster_id": "9613502942499648986",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=9613502942499648986&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:2jXd3v0FaoUJ:scholar.google.com/+llm+pretrain&hl=en&as_sdt=0,40"
+            }
+        },
+        {
+            "position": 9,
+            "title": "St-llm: Large language models are effective temporal learners",
+            "result_id": "U2INkU3S6VUJ",
+            "link": "https://link.springer.com/chapter/10.1007/978-3-031-72998-0_1",
+            "snippet": "… ST-LLM, a simple but powerful baseline of video LLM. As depicted in Fig. 2(a), with raw spatial-temporal tokens inside LLM, … Therefore, we believe that a well-pretrained image dialogue …",
+            "publication_info": {
+                "summary": "R Liu, C Li, H Tang, Y Ge, Y Shan, G Li - European Conference on …, 2025 - Springer",
+                "authors": [
+                    {
+                        "name": "R Liu",
+                        "link": "https://scholar.google.com/citations?user=pZ3sWH0AAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=pZ3sWH0AAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "pZ3sWH0AAAAJ"
+                    },
+                    {
+                        "name": "C Li",
+                        "link": "https://scholar.google.com/citations?user=a2jrbC0AAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=a2jrbC0AAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "a2jrbC0AAAAJ"
+                    },
+                    {
+                        "name": "Y Ge",
+                        "link": "https://scholar.google.com/citations?user=TtU74NAAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=TtU74NAAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "TtU74NAAAAAJ"
+                    },
+                    {
+                        "name": "Y Shan",
+                        "link": "https://scholar.google.com/citations?user=4oXBp9UAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=4oXBp9UAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "4oXBp9UAAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "arxiv.org",
+                    "file_format": "PDF",
+                    "link": "https://arxiv.org/pdf/2404.00308"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=U2INkU3S6VUJ",
+                "cited_by": {
+                    "total": 5,
+                    "link": "https://scholar.google.com/scholar?cites=6190710393385345619&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "6190710393385345619",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=6190710393385345619&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:U2INkU3S6VUJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3AU2INkU3S6VUJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 2,
+                    "link": "https://scholar.google.com/scholar?cluster=6190710393385345619&hl=en&as_sdt=0,40",
+                    "cluster_id": "6190710393385345619",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=6190710393385345619&engine=google_scholar&hl=en"
+                }
+            }
+        },
+        {
+            "position": 10,
+            "title": "Worldgpt: Empowering llm as multimodal world model",
+            "result_id": "znrvmBJRR4UJ",
+            "link": "https://arxiv.org/abs/2404.18202",
+            "snippet": "… from multimodal embedding into LLM embedding. To help LLM better utilize multimodal information, … Therefore, we propose a gentle pretraining method, inspired by previous studies in …",
+            "publication_info": {
+                "summary": "Z Ge, H Huang, M Zhou, J Li, G Wang, S Tang… - arXiv preprint arXiv …, 2024 - arxiv.org",
+                "authors": [
+                    {
+                        "name": "Z Ge",
+                        "link": "https://scholar.google.com/citations?user=NOiYcWYAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=NOiYcWYAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "NOiYcWYAAAAJ"
+                    },
+                    {
+                        "name": "J Li",
+                        "link": "https://scholar.google.com/citations?user=lm9s-QgAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=lm9s-QgAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "lm9s-QgAAAAJ"
+                    },
+                    {
+                        "name": "S Tang",
+                        "link": "https://scholar.google.com/citations?user=8e7H3PcAAAAJ&hl=en&oi=sra",
+                        "serpapi_scholar_link": "https://serpapi.com/search.json?author_id=8e7H3PcAAAAJ&engine=google_scholar_author&hl=en",
+                        "author_id": "8e7H3PcAAAAJ"
+                    }
+                ]
+            },
+            "resources": [
+                {
+                    "title": "arxiv.org",
+                    "file_format": "PDF",
+                    "link": "https://arxiv.org/pdf/2404.18202"
+                }
+            ],
+            "inline_links": {
+                "serpapi_cite_link": "https://serpapi.com/search.json?engine=google_scholar_cite&hl=en&q=znrvmBJRR4UJ",
+                "cited_by": {
+                    "total": 8,
+                    "link": "https://scholar.google.com/scholar?cites=9603733870707964622&as_sdt=5,40&sciodt=0,40&hl=en",
+                    "cites_id": "9603733870707964622",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=5%2C40&cites=9603733870707964622&engine=google_scholar&hl=en"
+                },
+                "related_pages_link": "https://scholar.google.com/scholar?q=related:znrvmBJRR4UJ:scholar.google.com/&scioq=llm+pretrain&hl=en&as_sdt=0,40",
+                "serpapi_related_pages_link": "https://serpapi.com/search.json?as_sdt=0%2C40&engine=google_scholar&hl=en&num=10&q=related%3AznrvmBJRR4UJ%3Ascholar.google.com%2F",
+                "versions": {
+                    "total": 2,
+                    "link": "https://scholar.google.com/scholar?cluster=9603733870707964622&hl=en&as_sdt=0,40",
+                    "cluster_id": "9603733870707964622",
+                    "serpapi_scholar_link": "https://serpapi.com/search.json?as_sdt=0%2C40&cluster=9603733870707964622&engine=google_scholar&hl=en"
+                },
+                "cached_page_link": "https://scholar.googleusercontent.com/scholar?q=cache:znrvmBJRR4UJ:scholar.google.com/+llm+pretrain&hl=en&as_sdt=0,40"
+            }
+        }
+    ],
+    "message": ""
+}

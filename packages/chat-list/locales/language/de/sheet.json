@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "Datenkontext",
+    "sheet.agent.analyst": "Analyst",
+    "sheet.agent.function": "Funktion",
+    "sheet.agent.chart": "Diagramm",
+    "sheet.agent.translate": "Übersetzen",
+    "sheet.agent.vision": "Vision",
+    "sheet.agent.knowledge": "Wissen",
+    "sheet.agent.coder": "Coder",
+    "sheet.context.data_range": "Datenbereich",
+    "sheet.context.select_data_range": "Datenbereich auswählen",
+    "sheet.context.is_header_in_data_range": "Befindet sich die Überschrift im Datenbereich",
+    "sheet.context.headers": "Überschriften",
+    "sheet.context.select_header_range": "Überschriftsbereich auswählen",
+    "sheet.context.description": "Dies sind die standardmäßigen Tabelleninformationen, die ich gesammelt habe. Wenn sie nicht korrekt sind, können Sie sie ändern, und die Änderung wirkt sich auf das aktuelle Gespräch aus.",
+    "sheet.context.update": "Aktualisieren",
+    "sheet.context.card_title": "Bestätigen Sie die Kontextinformationen",
+    "sheet.context.select_data_and_click": "Wählen Sie den Datenbereich aus und klicken Sie",
+    "sheet.context.select_data_range_desc": "Wählen Sie den Datenbereich aus und klicken Sie auf die rechte Schaltfläche, um Bereichsinformationen zu erhalten."
+}

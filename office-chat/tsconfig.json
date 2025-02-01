@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "./",
+    "noImplicitAny": true,
+    "allowUnusedLabels": false,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "module": "es6",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "outDir": "dist",
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "lib": ["ES2015", "dom"],
+    "pretty": true,
+    "typeRoots": ["node_modules/@types"],
+    "paths": {
+      "@api/*": ["src/_share/api/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "ts-node": {
+    "files": true
+  }
+}

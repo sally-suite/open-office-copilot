@@ -1,0 +1,1 @@
+Por favor, ingrese los requisitos de su diapositiva

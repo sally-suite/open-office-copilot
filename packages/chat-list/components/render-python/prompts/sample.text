@@ -1,0 +1,28 @@
+# import packages
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def main():
+    file_path = '/input/data.xlsx'
+    
+    # read data from data.xlsx
+    data = pd.read_excel(file_path, sheet_name='Sheet1', header=0)
+    
+    # Add prefix 'US' to the first column
+    data['City'] = 'US ' + data['City'].astype(str)
+    
+    # Save the modified data back to excel
+    output_file = '/output/data_modified.xlsx'
+    data.to_excel(output_file, index=False)
+    
+    # Generate a pie chart for Orders
+    plt.figure(figsize=(8, 8))
+    plt.pie(data['Orders'], labels=data['City'], autopct='%1.1f%%')
+    plt.title('Distribution of Orders by City')
+    
+    # Save the chart as an image
+    chart_file = '/output/orders_pie_chart.png'
+    plt.savefig(chart_file)
+    
+if __name__ == '__main__':
+    main()

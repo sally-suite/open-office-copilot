@@ -1,0 +1,14 @@
+{
+    "no_vector_alert": "No knowledge base is found in the current sheet, you can either upload a file, or select the key columns to build knowledge base.",
+    "build_by_file_or_sheet": "You can either upload a file, or select the key columns to build the knowledge base.",
+    "ask": "Ask",
+    "initialize": "Initialize",
+    "refresh": "Refresh",
+    "upload_files": " Upload Files",
+    "knowledge_file": "Knowledge File:",
+    "chunk_size": "Chunk Size:",
+    "initialization": "Knowledgebase initialization",
+    "init_from_file": "Initialize by File",
+    "init_from_columns": "Initialize by Columns",
+    "enter_question": "Enter your question."
+}

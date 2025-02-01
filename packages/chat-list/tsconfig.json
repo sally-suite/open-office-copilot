@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "../",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "ESNext",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2021", "DOM"],
+    "typeRoots": ["./"],
+    "paths": {
+      "@api/*": ["api/*"],
+      "chat-list/*": ["*"]
+    }
+  },
+  "exclude": [],
+  "include": ["**/*.ts", "**/*.tsx", "locales/language/index.js"]
+}

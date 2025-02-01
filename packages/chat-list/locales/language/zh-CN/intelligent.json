@@ -1,0 +1,15 @@
+{
+    "template_desc": "这是一个由表格列信息构建的提示模板，我们将按行生成结果，填充到目标列。",
+    "enter_requirement": "输入您的需求",
+    "prompt_template": "提示词模板：",
+    "column_label": "将结果填入此列：",
+    "column_placeholder": "字母列标签，例如：H",
+    "requirement": "您的需求：",
+    "card_title": "按行运行提示词",
+    "loading_info": "构建提示词模板",
+    "stop": "停止",
+    "send": "发送",
+    "refresh": "刷新",
+    "test_prompt": "测试提示词",
+    "prompt_preview": "提示词预览："
+}

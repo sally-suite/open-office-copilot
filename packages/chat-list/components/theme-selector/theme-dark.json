@@ -1,0 +1,102 @@
+[
+    {
+        "name": "Vertex",
+        "primary": "#F2F2F3",
+        "highlight": "#3D3D42",
+        "title": "#F2F2F3",
+        "body": "#e5e0df",
+        "background": "#050505",
+        "pageBackground": "#19191A",
+        "complementary": "#F2F2F2"
+    },
+    {
+        "name": "Lux",
+        "primary": "#EF9C82",
+        "highlight": "#1D4241",
+        "title": "#FFD9BE",
+        "body": "#F9EEE7",
+        "background": "#123332",
+        "pageBackground": "#1C4241",
+        "complementary": "#82D5EF"
+    },
+    {
+        "name": "Marine",
+        "primary": "#8C98CA",
+        "highlight": "#283156",
+        "title": "#FFFFFF",
+        "body": "#EBECEF",
+        "background": "#080E26",
+        "pageBackground": "#A8AFCC",
+        "complementary": "#CAB88C"
+    },
+    {
+        "name": "Incandescent",
+        "primary": "#FF6680",
+        "highlight": "#433550",
+        "title": "#FF726D",
+        "body": "#DAD1E6",
+        "background": "#241631",
+        "pageBackground": "#110C17",
+        "complementary": "#66FFE5"
+    },
+    {
+        "name": "Blue Steel",
+        "primary": "#66A8EE",
+        "highlight": "#3E4652",
+        "title": "#76B9FF",
+        "body": "#D6E5EF",
+        "background": "#202733",
+        "pageBackground": "#171B21",
+        "complementary": "#EEA866"
+    },
+    {
+        "name": "Mocha",
+        "primary": "#C49F8C",
+        "highlight": "#363433",
+        "title": "#d8b6a4",
+        "body": "#C9C2C0",
+        "background": "#464342",
+        "pageBackground": "#302D2C",
+        "complementary": "#8CB1C4"
+    },
+    {
+        "name": "Wine",
+        "primary": "#FFB393",
+        "highlight": "#421424",
+        "title": "#FFB393",
+        "body": "#F4CAB8",
+        "background": "#5C2438",
+        "pageBackground": "#421424",
+        "complementary": "#93DFFF"
+    },
+    {
+        "name": "Sanguine",
+        "primary": "#C91313",
+        "highlight": "#510C04",
+        "title": "#FAEBEB",
+        "body": "#FFE5E5",
+        "background": "#0A0A0A",
+        "pageBackground": "#0A0A0A",
+        "complementary": "#13C9C9"
+    },
+    {
+        "name": "Bubble Gum",
+        "primary": "#FA95AE",
+        "highlight": "#121212",
+        "title": "#FA95AF",
+        "body": "#E0D6DE",
+        "background": "#1F1F1F",
+        "pageBackground": "#121212",
+        "complementary": "#95FAFA"
+    },
+    {
+        "name": "Verdigris",
+        "primary": "#0A988B",
+        "highlight": "#1C3645",
+        "title": "#FFFFFF",
+        "body": "#CAD6DE",
+        "background": "#112836",
+        "pageBackground": "#112836",
+        "complementary": "#98190A"
+    }
+]

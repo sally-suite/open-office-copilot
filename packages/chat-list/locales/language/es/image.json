@@ -1,0 +1,6 @@
+{
+    "generate": "Generar",
+    "placeholder": "Por favor describe la escena, los personajes y el estilo que imaginas.",
+    "fail": "Error al generar la imagen, inténtalo de nuevo más tarde.",
+    "loading": "Generando imagen, por favor espera..."
+}

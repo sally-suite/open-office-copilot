@@ -1,0 +1,271 @@
+[
+    {
+        "name": "minimalist",
+        "primary": "#6f6f6f",
+        "background": "#F8F8F8",
+        "title": "#030303",
+        "body": "#464646",
+        "highlight": "#D9D9D9",
+        "complementary": "#404040"
+    },
+    {
+        "name": "Pearl",
+        "primary": "#1B1B27",
+        "highlight": "#f5f5f5",
+        "title": "#1B1B27",
+        "body": "#3C3939",
+        "background": "#ECECF3",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#27271B"
+    },
+    {
+        "name": "Chisel",
+        "primary": "#3E2513",
+        "highlight": "#F3E3D8",
+        "title": "#201B18",
+        "body": "#504C49",
+        "background": "#F7F3F0",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#132E3E"
+    },
+    {
+        "name": "Seafoam",
+        "primary": "#26A688",
+        "highlight": "#eafffa",
+        "title": "#333F70",
+        "body": "#333F70",
+        "background": "#D6F5EE",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#8826A6"
+    },
+    {
+        "name": "Crème",
+        "primary": "#D3C5B6",
+        "highlight": "#F2EBDF",
+        "title": "#484237",
+        "body": "#484237",
+        "background": "#DDCFBB",
+        "pageBackground": "#F9F6F0",
+        "complementary": "#B6C4D3"
+    },
+    {
+        "name": "Prisma",
+        "primary": "#BE49DF",
+        "highlight": "#f0d4f7",
+        "title": "#000000",
+        "body": "#272525",
+        "background": "#FFFFFF",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#49BE49"
+    },
+    {
+        "name": "Gama",
+        "primary": "#6237C8",
+        "highlight": "#e0d7f4",
+        "title": "#591CE6",
+        "body": "#272525",
+        "background": "#FDFAF7",
+        "pageBackground": "#FDFAF7",
+        "complementary": "#C86237"
+    },
+    {
+        "name": "Dialogue",
+        "primary": "#E04F00",
+        "highlight": "#fff3ec",
+        "title": "#020202",
+        "body": "#383838",
+        "background": "#ffdac6",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#0091E0"
+    },
+    {
+        "name": "Lavender",
+        "primary": "#403CCF",
+        "highlight": "#E7E0FF",
+        "title": "#403ccf",
+        "body": "#49495A",
+        "background": "#F4F0FF",
+        "pageBackground": "#FBFAFF",
+        "complementary": "#CFCF3C"
+    },
+    {
+        "name": "Howlite",
+        "primary": "#2D2E34",
+        "highlight": "#FFFFFF",
+        "title": "#000000",
+        "body": "#3D3838",
+        "background": "#EDEDED",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#34332D"
+    },
+    {
+        "name": "Kraft",
+        "primary": "#282824",
+        "highlight": "#E8E4DD",
+        "title": "#282824",
+        "body": "#4A4A45",
+        "background": "#DDD6CC",
+        "pageBackground": "#EFECE6",
+        "complementary": "#242828"
+    },
+    {
+        "name": "Petrol",
+        "primary": "#325F7B",
+        "highlight": "#F6F0E4",
+        "title": "#124E73",
+        "body": "#2B4150",
+        "background": "#c9dce9",
+        "pageBackground": "#FFFCF5",
+        "complementary": "#7B4E32"
+    },
+    {
+        "name": "Peach",
+        "primary": "#FFAD94",
+        "highlight": "#FFD1CC",
+        "title": "#403C4E",
+        "body": "#403C4E",
+        "background": "#FFFFFF",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#94E6FF"
+    },
+    {
+        "name": "Oatmeal",
+        "primary": "#E5E5E0",
+        "highlight": "#E8E8E2",
+        "title": "#312F2B",
+        "body": "#272525",
+        "background": "#FFFFFF",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#E0E5E5"
+    },
+    {
+        "name": "Sage",
+        "primary": "#437066",
+        "highlight": "#b0e0d5",
+        "title": "#272D45",
+        "body": "#2C3249",
+        "background": "#EBF4F3",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#664339"
+    },
+    {
+        "name": "Flamingo",
+        "primary": "#F5A3A3",
+        "highlight": "#F3E7E8",
+        "title": "#1F1E1E",
+        "body": "#3B3535",
+        "background": "#FFFAFA",
+        "pageBackground": "#FFFAFA",
+        "complementary": "#A3F5F5"
+    },
+    {
+        "name": "Finesse",
+        "primary": "#38512F",
+        "highlight": "#ffedd3",
+        "title": "#38512F",
+        "body": "#3A3630",
+        "background": "#F2E4CF",
+        "pageBackground": "#FEF5E7",
+        "complementary": "#2F3851"
+    },
+    {
+        "name": "Icebreaker",
+        "primary": "#3257B8",
+        "highlight": "#d3e1f9",
+        "title": "#476FD6",
+        "body": "#15213F",
+        "background": "#EDF1F8",
+        "pageBackground": "#FBFCFE",
+        "complementary": "#B89332"
+    },
+    {
+        "name": "Dune",
+        "primary": "#B88E23",
+        "highlight": "#F7ECD4",
+        "title": "#5C4E3D",
+        "body": "#454240",
+        "background": "#FFFDFA",
+        "pageBackground": "#FFFDFA",
+        "complementary": "#234DB8"
+    },
+    {
+        "name": "Serene",
+        "primary": "#1A2D7A",
+        "highlight": "#D3DCF6",
+        "title": "#1F1E1E",
+        "body": "#3B3535",
+        "background": "#E7EEF9",
+        "pageBackground": "#FFFAFA",
+        "complementary": "#7A681A"
+    },
+    {
+        "name": "Vanilla",
+        "primary": "#224435",
+        "highlight": "#fefce5",
+        "title": "#233939",
+        "body": "#3B4E4E",
+        "background": "#F9F4BE",
+        "pageBackground": "#FFFDE6",
+        "complementary": "#442222"
+    },
+    {
+        "name": "Tranquil",
+        "primary": "#007EBD",
+        "highlight": "#CCEEFF",
+        "title": "#000000",
+        "body": "#272525",
+        "background": "#FFFFFF",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#BD3F00"
+    },
+    {
+        "name": "Terracotta",
+        "primary": "#835E54",
+        "highlight": "#EAE2DF",
+        "title": "#443728",
+        "body": "#443728",
+        "background": "#F7EDE9",
+        "pageBackground": "#FFFCFA",
+        "complementary": "#547983"
+    },
+    {
+        "name": "Snowball",
+        "primary": "#4967E9",
+        "highlight": "#D1D9F9",
+        "title": "#1B1B27",
+        "body": "#404155",
+        "background": "#F9F9FF",
+        "pageBackground": "#F9F9FF",
+        "complementary": "#E9CB49"
+    },
+    {
+        "name": "Wireframe",
+        "primary": "#CCCCCC",
+        "highlight": "#FFFFFF",
+        "title": "#383838",
+        "body": "#383838",
+        "background": "#D9D9D9",
+        "pageBackground": "#F7F7F7",
+        "complementary": "#CCCCCC"
+    },
+    {
+        "name": "Iris",
+        "primary": "#5E4CE6",
+        "highlight": "#E8E6F9",
+        "title": "#231971",
+        "body": "#2a2742",
+        "background": "#d1cbff",
+        "pageBackground": "#FAFAFA",
+        "complementary": "#E6985E"
+    },
+    {
+        "name": "BasicLight",
+        "primary": "#4950bc",
+        "highlight": "#DADBF1",
+        "title": "#000000",
+        "body": "#272525",
+        "background": "#FFFFFF",
+        "pageBackground": "#FFFFFF",
+        "complementary": "#BC4950"
+    }
+]

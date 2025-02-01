@@ -1,0 +1,118 @@
+@toast-content-border-radius: 50px;
+
+.bubble {
+  max-width: 680px;
+  // min-width: 0;
+  min-width: 1px; // for IE bug
+  // background: #8a6f6f;
+  border-radius: 12px;
+
+  &.text,
+  &.typing {
+    min-width: 40px;
+    padding: 12px;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    user-select: text;
+  }
+  &.image {
+    img {
+      display: block;
+      height: auto;
+      border-radius: inherit;
+    }
+  }
+  p {
+    margin: 0;
+  }
+}
+.message {
+  @apply px-2 pt-1 my-1 pb-6;
+}
+.message .bubble {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bubble {
+  background: #f0f1f5;
+}
+.bubble.typing {
+  @apply flex flex-row justify-center  w-14;
+}
+.bubble.text {
+  @apply whitespace-normal;
+}
+.card {
+  background: #fff;
+}
+.bubble.card {
+  @apply w-full whitespace-normal;
+  min-width: 256px;
+}
+.Toolbar-btn {
+  @apply w-full p-0;
+  min-width: 60px;
+}
+.Toolbar-btnIcon {
+  @apply shadow w-12 h-12 inline-flex justify-center items-center;
+  .Icon {
+    font-size: 24px;
+  }
+}
+
+.message-inner {
+  max-width: 100%;
+}
+.Toast-content {
+  @apply rounded-full;
+}
+
+/* .w-card {
+  width: 100%;
+} */
+
+.Btn {
+  border-radius: 5px;
+}
+
+.QuickReply {
+  border-radius: 10px;
+}
+.Input {
+  border-radius: 5px;
+}
+.message-main {
+  @apply flex flex-col;
+}
+.message.right .message-main {
+  align-items: flex-end;
+}
+.message.left .message-main {
+  align-items: flex-start;
+}
+
+.message.left .message-inner {
+  min-width: 50%;
+}
+
+.message.right .bubble {
+  margin-top: 0;
+  margin-left: 0;
+  border-top-right-radius: 0;
+}
+
+.message.left .bubble {
+  margin-top: 0;
+  margin-right: 0;
+  border-top-left-radius: 0;
+}
+
+.message.right .context .bubble {
+  margin-top: 0;
+  margin-left: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}

@@ -1,0 +1,37 @@
+@import './animation.less';
+
+body {
+  padding: 0;
+  margin: 0;
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+
+body[style*='pointer-events: none'] {
+  pointer-events: auto !important;
+}
+
+.form-title {
+  @apply text-lg font-bold pt-2 pb-1;
+}
+.input-label {
+  @apply my-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+}
+.input {
+  @apply px-3 py-1 cursor-pointer rounded-md shadow-sm border border-input whitespace-nowrap;
+}
+.link {
+  @apply text-blue-500;
+}
+.list {
+  @apply max-h-96 overflow-scroll;
+}
+.list-item {
+  @apply flex flex-col h-10 px-2 my-1 rounded-sm cursor-pointer hover:bg-gray-100;
+}
+.list-item.selected {
+  @apply bg-gray-100;
+}
+.float-button {
+  @apply flex flex-row items-center justify-center h-6 px-2 shadow text-center text-sm bg-white text-primary rounded-l-full border fixed bottom-44 right-0 whitespace-nowrap cursor-pointer;
+}

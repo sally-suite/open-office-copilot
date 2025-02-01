@@ -1,0 +1,15 @@
+{
+    "template_desc": "This is a prompt template built from table column information, where we will generate results by row and populate the target column with the results.",
+    "enter_requirement": "Enter your requirement",
+    "prompt_template": "Prompt Template:",
+    "column_label": "Write result into this column:",
+    "column_placeholder": "Letter column label, such as: H",
+    "requirement": "Requirement:",
+    "card_title": "Generate by Row",
+    "loading_info": "Building prompt template information",
+    "stop": "Stop",
+    "send": "Send",
+    "refresh": "Refresh",
+    "test_prompt": "Test Prompt",
+    "prompt_preview": "Prompt Preview:"
+}

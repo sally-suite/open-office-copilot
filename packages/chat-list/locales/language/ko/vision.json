@@ -1,0 +1,12 @@
+{
+    "notes": "이 기능은 Google Gemini API를 기반으로 합니다. 이 링크에서 Gemini API 키를 얻을 수 있습니다: <a class=' text-blue-700'  target='_blank'  href='https://makersuite.google.com/' rel='noreferrer'>Gemini AI</a>. 영어 인식에는 최적이지만, 다른 언어의 인식은 보장되지 않습니다.",
+    "go_to_set_gemini_api_key": "Gemini API 키 설정하기",
+    "upload_images": "이미지 업로드",
+    "please_upload_images": "이미지를 업로드하고 질문을 입력하거나 이미지에서 표를 추출해 주세요.",
+    "ask": "질문하기",
+    "vision_model": "비전 모델:",
+    "extract_table": "표 추출",
+    "extract_formula": "공식 추출",
+    "extract_diagram": "도형 추출",
+    "analyze_chart": "차트 분석"
+}

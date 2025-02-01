@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container * {
+  box-sizing: border-box;
+}
+.select {
+  height: 28px;
+  line-height: 20px;
+  padding: 3px 5px;
+  font-size: 14px; /* 调整字体大小 */
+  border: 1px solid #ccc; /* 添加边框 */
+  border-radius: 10px; /* 添加圆角 */
+  background-color: #fff; /* 设置背景色 */
+  color: #333; /* 设置文字颜色 */
+  outline: none; /* 移除默认的外轮廓 */
+  transition: border-color 0.3s ease; /* 添加过渡效果 */
+}
+
+.select:focus,
+.select:active {
+  outline: none;
+}
+
+.option {
+  padding: 5px;
+}

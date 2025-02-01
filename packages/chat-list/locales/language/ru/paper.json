@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "Мы нашли {{num}} документов для вас.",
+    "filtering_papers": "Фильтрация для вас....",
+    "search_top_num": "Вот {{num}} отобранных документов только для вас!",
+    "search_papers": "Поиск документов",
+    "related_articles": "Связанные статьи",
+    "view": "Просмотреть",
+    "cited_by": "Цитируется {{num}} раз",
+    "add_footnote": "Добавить сноску",
+    "add_cite": "Добавить цитату",
+    "select_text": "Выберите текст, чтобы добавить сноску или цитату",
+    "ask_for_citations": "Запрос ссылок у ИИ",
+    "searching_papers": "Поиск в Google Scholar..."
+}

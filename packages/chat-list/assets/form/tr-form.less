@@ -1,0 +1,59 @@
+.tr-form {
+  display: flex;
+  flex-direction: column;
+  // padding: 5px 5px 40px 5px;
+  // height: calc(100vh - 10px) ;
+  .labelStyle {
+    font-weight: bold;
+  }
+  .form-body{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .form-footer{
+    display: flex;
+    flex-direction: column;
+    // height: 40px;
+    padding: 0 ;
+  }
+
+  .io-container {
+    padding:10px 1px;
+    background: #f6fbff;
+    border-radius: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+    margin: 0 0 10px 0 !important;
+  }
+
+  .editor-box {
+    resize: vertical;
+    overflow: auto;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aecade;
+    .CodeMirror-sizer{
+      min-height: 150px !important;
+    }
+  }
+  div[title=Image]{
+    display: none;
+  }
+  div:has(>div[title=Image]){
+    display: none;
+  }
+  .ant-form-item{
+    margin-bottom: 5px;
+  }
+  .ant-collapse-header{
+    padding: 5px !important;
+    font-weight: bold;
+  }
+  .ant-collapse-content-box{
+    padding: 5px !important;
+  }
+}

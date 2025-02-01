@@ -1,0 +1,1 @@
+Laden Sie die Excel-Datei hoch und geben Sie Ihre Datenanalyseanfrage ein.

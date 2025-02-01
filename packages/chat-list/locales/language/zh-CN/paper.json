@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "我们为您找到{{num}}篇论文。",
+    "filtering_papers": "正在为您筛选....",
+    "search_top_num": "这里有{{num}}篇特选论文专为您准备！",
+    "search_papers": "搜索论文",
+    "related_articles": "相关文章",
+    "view": "查看",
+    "cited_by": "被引用{{num}}次",
+    "add_footnote": "添加脚注",
+    "add_cite": "添加引用",
+    "select_text": "选择文本以添加脚注或引用",
+    "ask_for_citations": "向 AI 请求引用",
+    "searching_papers": "正在搜索 Google Scholar..."
+}

@@ -1,0 +1,15 @@
+{
+    "template_desc": "Dies ist eine Vorlagenprompt, der aus Informationen zu Tabellenspalten erstellt wurde, bei dem wir Ergebnisse zeilenweise generieren und die Zielspalte mit den Ergebnissen ausfüllen.",
+    "enter_requirement": "Geben Sie Ihre Anforderung ein",
+    "prompt_template": "Aufforderungsvorlage:",
+    "column_label": "Das Ergebnis in diese Spalte eintragen:",
+    "column_placeholder": "Buchstaben-Spaltenbeschriftung, zum Beispiel: H",
+    "requirement": "Anforderung:",
+    "card_title": "Prompt auf Zeilenebene anwenden",
+    "loading_info": "Erstellen von Informationen zur Promptvorlage",
+    "stop": "Stop",
+    "send": "Senden",
+    "refresh": "Aktualisieren",
+    "test_prompt": "Test-Prompt",
+    "prompt_preview": "Vorschau der Eingabeaufforderung:"
+}

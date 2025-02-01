@@ -1,0 +1,21 @@
+{
+    "sheet.menu.data_context": "数据上下文",
+    "sheet.agent.analyst": "分析师",
+    "sheet.agent.function": "函数",
+    "sheet.agent.chart": "图表",
+    "sheet.agent.translate": "翻译",
+    "sheet.agent.vision": "图片信息提取",
+    "sheet.agent.knowledge": "知识库问答",
+    "sheet.agent.coder": "代码生成",
+    "sheet.context.data_range": "数据范围",
+    "sheet.context.select_data_range": "选择数据范围",
+    "sheet.context.is_header_in_data_range": "数据范围包含标题",
+    "sheet.context.headers": "标题",
+    "sheet.context.select_header_range": "选择标题范围",
+    "sheet.context.description": "这是我收集的默认工作表信息，如果不准确，您可以修改，修改后的信息将适用于当前对话。",
+    "sheet.context.update": "更新",
+    "sheet.context.card_title": "确认表格信息",
+    "sheet.context.select_data_and_click": "选择数据范围并单击",
+    "sheet.context.select_data_range_desc": "选择数据范围，然后单击右侧按钮以获取范围信息。",
+    "sally.placeholder": "和我聊天，或者@机器人帮你解决问题。"
+}

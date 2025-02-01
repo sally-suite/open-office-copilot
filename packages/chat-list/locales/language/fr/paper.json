@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "Nous avons trouvé {{num}} articles pour vous.",
+    "filtering_papers": "Filtrage pour vous....",
+    "search_top_num": "Voici {{num}} articles sélectionnés rien que pour vous !",
+    "search_papers": "Rechercher des articles",
+    "related_articles": "Articles connexes",
+    "view": "Voir",
+    "cited_by": "Cité par {{num}}",
+    "add_footnote": "Ajouter une note de bas de page",
+    "add_cite": "Ajouter une citation",
+    "select_text": "Sélectionnez du texte pour ajouter une note de bas de page ou une citation",
+    "ask_for_citations": "Demande de citations à l'IA",
+    "searching_papers": "Recherche sur Google Scholar..."
+}

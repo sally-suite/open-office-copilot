@@ -1,0 +1,12 @@
+{
+    "notes": "Esta función se basa en la API Google Gemini. Puede obtener la clave de API de Gemini en este enlace <a class='text-blue-700' target='_blank' href='https://makersuite.google.com/' rel='noreferrer'>Gemini AI</a>. Es mejor para el reconocimiento del inglés; no se garantiza el reconocimiento de otros idiomas.",
+    "go_to_set_gemini_api_key": "Ir para configurar la clave de API de Gemini",
+    "upload_images": "Cargar imágenes",
+    "please_upload_images": "Por favor, cargue imágenes e ingrese su pregunta o extraiga una tabla de la imagen.",
+    "ask": "Preguntar",
+    "vision_model": "Modelo de visión:",
+    "extract_table": "Extraer tabla",
+    "extract_formula": "Extraer fórmula",
+    "extract_diagram": "Extraer diagrama",
+    "analyze_chart": "Analizar gráfico"
+}

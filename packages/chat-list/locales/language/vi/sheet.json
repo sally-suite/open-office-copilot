@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "Ngữ cảnh dữ liệu",
+    "sheet.agent.analyst": "Chuyên viên phân tích",
+    "sheet.agent.function": "Chức năng",
+    "sheet.agent.chart": "Biểu đồ",
+    "sheet.agent.translate": "Dịch",
+    "sheet.agent.vision": "Tầm nhìn",
+    "sheet.agent.knowledge": "Kiến thức",
+    "sheet.agent.coder": "Lập trình viên",
+    "sheet.context.data_range": "Phạm vi dữ liệu",
+    "sheet.context.select_data_range": "Chọn phạm vi dữ liệu",
+    "sheet.context.is_header_in_data_range": "Tiêu đề có trong phạm vi dữ liệu không",
+    "sheet.context.headers": "Tiêu đề",
+    "sheet.context.select_header_range": "Chọn phạm vi tiêu đề",
+    "sheet.context.description": "Đây là thông tin mặc định của bảng mà tôi đã thu thập, nếu không chính xác bạn có thể sửa đổi nó, và sự sửa đổi sẽ có hiệu lực cho cuộc trò chuyện hiện tại.",
+    "sheet.context.update": "Cập nhật",
+    "sheet.context.card_title": "Xác nhận thông tin ngữ cảnh",
+    "sheet.context.select_data_and_click": "Chọn phạm vi dữ liệu và nhấp",
+    "sheet.context.select_data_range_desc": "Chọn phạm vi dữ liệu và nhấp vào nút bên phải để lấy thông tin về phạm vi."
+}

@@ -1,0 +1,20 @@
+{
+    "sheet.menu.data_context": "數據上下文",
+    "sheet.agent.analyst": "分析師",
+    "sheet.agent.function": "功能",
+    "sheet.agent.chart": "圖表",
+    "sheet.agent.translate": "翻譯",
+    "sheet.agent.vision": "視覺",
+    "sheet.agent.knowledge": "知識",
+    "sheet.agent.coder": "程式設計師",
+    "sheet.context.data_range": "數據範圍",
+    "sheet.context.select_data_range": "選擇數據範圍",
+    "sheet.context.is_header_in_data_range": "標題在數據範圍內嗎",
+    "sheet.context.headers": "標題",
+    "sheet.context.select_header_range": "選擇標題範圍",
+    "sheet.context.description": "這是我收集的默認表格資訊，如果不準確，您可以修改它，修改將適用於當前對話。",
+    "sheet.context.update": "更新",
+    "sheet.context.card_title": "確認上下文資訊",
+    "sheet.context.select_data_and_click": "選擇數據範圍並點擊",
+    "sheet.context.select_data_range_desc": "選擇數據範圍並點擊右側按鈕以獲取範圍資訊。"
+}

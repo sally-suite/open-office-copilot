@@ -1,0 +1,6 @@
+{
+    "generate": "生成",
+    "explain": "解释",
+    "placeholder": "请输入您的函数或公式需求，点击生成，或者输入函数或公式，我来解释。",
+    "load_sheet_info": "加载工作表信息"
+}

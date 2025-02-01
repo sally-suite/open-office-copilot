@@ -1,0 +1,5 @@
+{
+    "chart.render_input_placeholder": "추천 버튼을 클릭하여 제가 추천해 드리도록 하세요! 또는 차트 요구 사항을 입력하고 생성 버튼을 클릭하세요.",
+    "chart.recommend_charts": "추천",
+    "chart.create_chart": "생성"
+}

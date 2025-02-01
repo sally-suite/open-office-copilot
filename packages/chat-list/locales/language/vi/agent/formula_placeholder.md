@@ -1,0 +1,1 @@
+Nhập công thức bạn muốn tạo

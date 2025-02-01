@@ -1,0 +1,14 @@
+{
+    "no_vector_alert": "現在のシートに知識ベースが見つかりません。ファイルをアップロードするか、知識ベースを構築するためにキーカラムを選択できます。",
+    "build_by_file_or_sheet": "ファイルをアップロードするか、知識ベースを構築するためにキーカラムを選択できます。",
+    "ask": "質問する",
+    "initialize": "初期化",
+    "refresh": "リフレッシュ",
+    "upload_files": "ファイルをアップロード",
+    "knowledge_file": "知識ファイル：",
+    "chunk_size": "チャンクサイズ：",
+    "initialization": "知識ベースの初期化",
+    "init_from_file": "ファイルから初期化",
+    "init_from_columns": "列から初期化",
+    "enter_question": "質問を入力してください。"
+}

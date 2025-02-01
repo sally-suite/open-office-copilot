@@ -1,0 +1,76 @@
+.container {
+  position: relative;
+}
+
+.captureButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: none;
+  cursor: crosshair;
+  z-index: 200;
+}
+
+.selectionBox {
+  position: absolute;
+  border: 2px dashed rgba(0, 0, 0, 0.5); /* 边框颜色 */
+  background-color: none;
+  z-index: 300; /* 保证选择框在遮罩之上 */
+}
+
+.confirmButton {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.toolbar {
+  position: absolute;
+  bottom: -44px;
+  right: 0;
+  gap: 8px;
+  height: 40px;
+  display: flex;
+  padding: 0 8px;
+  background: #fff;
+  align-items: center;
+  border-radius: 8px;
+  @apply shadow;
+}
+.btn {
+  color: #212b36;
+  cursor: pointer;
+  height: 28px;
+  display: flex;
+  min-width: 28px;
+  transition: all 0.2s ease;
+  align-items: center;
+  border-radius: 6px;
+  justify-content: center;
+}
+.textGray {
+  color: #6b7280;
+}
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  width: 18px;
+}

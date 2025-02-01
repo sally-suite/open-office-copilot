@@ -1,0 +1,15 @@
+{
+    "template_desc": "Il s'agit d'un modèle de prompt construit à partir des informations de colonne de table, où nous générerons des résultats par ligne et remplirons la colonne cible avec les résultats.",
+    "enter_requirement": "Entrez votre exigence",
+    "prompt_template": "Modèle de consigne :",
+    "column_label": "Remplissez le résultat dans cette colonne :",
+    "column_placeholder": "Étiquette de colonne de lettres, par exemple : H",
+    "requirement": "Exigence :",
+    "card_title": "Appliquer la consigne par ligne",
+    "loading_info": "Construction des informations de modèle de consigne",
+    "stop": "Arrêter",
+    "send": "Envoyer",
+    "refresh": "Actualiser",
+    "test_prompt": "Prompt de test",
+    "prompt_preview": "Aperçu de la demande:"
+}

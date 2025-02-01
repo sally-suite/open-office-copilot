@@ -1,0 +1,11 @@
+{
+  "Line Chart": {
+    "name": "Line"
+  },
+  "Column Chart": {
+    "name": "Column"
+  },
+  "Pie Chart": {
+    "name": "Pie"
+  }
+}

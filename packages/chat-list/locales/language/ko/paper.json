@@ -1,0 +1,14 @@
+{
+    "search_some_papers": "당신을 위한 {{num}}개의 논문을 찾았습니다.",
+    "filtering_papers": "필터링 중....",
+    "search_top_num": "당신을 위한 선택된 {{num}}개의 논문이 여기 있습니다!",
+    "search_papers": "논문 검색",
+    "related_articles": "관련 기사",
+    "view": "보기",
+    "cited_by": "{{num}}회 인용됨",
+    "add_footnote": "각주 추가",
+    "add_cite": "인용 추가",
+    "select_text": "각주 또는 인용을 추가할 텍스트 선택",
+    "ask_for_citations": "AI에 인용 요청 중",
+    "searching_papers": "Google Scholar 검색 중..."
+}
