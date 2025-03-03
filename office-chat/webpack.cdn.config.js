@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const package = require("./package.json");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CustomFunctionsMetadataPlugin = require("custom-functions-metadata-plugin");
 const minimist = require("minimist");
 
 const webpack = require("webpack");
@@ -182,10 +181,6 @@ module.exports = async (env, options) => {
       ],
     },
     plugins: [
-      new CustomFunctionsMetadataPlugin({
-        output: "functions.json",
-        input: "./src/functions/index.tsx",
-      }),
       new CopyWebpackPlugin({
         patterns: [
           {

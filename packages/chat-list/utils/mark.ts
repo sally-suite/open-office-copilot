@@ -10,13 +10,11 @@ import remarkStringify from 'remark-stringify';
 import remarkGfm from 'remark-gfm';
 import { unified } from 'unified';
 
-import visit from 'unist-util-visit';
+import { visit } from 'unist-util-visit';
 import { toHtml } from 'hast-util-to-html';
 import type { Plugin } from 'unified';
 import type { Root } from 'hast';
 import { svgAsPng } from './img';
-
-
 
 // SVG 转 PNG 插件
 const svgToImagePlugin: Plugin<[], Root> = function () {

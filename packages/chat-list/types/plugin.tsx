@@ -1069,7 +1069,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     if (msg.role === 'assistant' && msg?.tool_calls?.length > 0) {
                         return {
                             role: 'assistant',
-                            content: `${msg.content}\n\n\`\`\`tools\n${JSON.stringify(msg?.tool_calls, null, 2)}\n\`\`\``
+                            content: msg.content// `${msg.content}\n\n\`\`\`tools\n${JSON.stringify(msg?.tool_calls, null, 2)}\n\`\`\``
                         };
                     }
                     if (msg.role == 'tool') {
@@ -1102,10 +1102,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     }
                     return prev;
                 }, []);
-                console.log('memory');
-                console.log(this.memory);
-                console.log('hisotry');
-                console.log(hisotry);
+
                 const messages = context
                     .concat(hisotry);
                 // console.log(messages)

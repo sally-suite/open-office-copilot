@@ -233,10 +233,10 @@ export const dataRangeAnalyzeMixin = {
                 <CardConfirm content=""
                     okText={i18n.t('base:common.confirm', "Confirm")}
                     onOk={() => {
-                        sendMsg(buildChatMessage(i18n.t('base:common.yes', "Yes"), 'text', 'user'));
+                        deleteMsg(confirmMsg._id);
                         setTimeout(() => {
-                            deleteMsg(confirmMsg._id);
-                        }, 500);
+                            sendMsg(buildChatMessage(i18n.t('base:common.yes', "Yes"), 'text', 'user'));
+                        }, 200);
                     }}
                     cancelText={i18n.t('base:common.reslect_and_confirm', "Reselect and Confirm")}
                     onCancel={() => {

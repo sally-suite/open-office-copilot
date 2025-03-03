@@ -60,10 +60,7 @@ Please refer to your role definition and chat history to reply to me. Please mak
 
 ### For Tool Invocation
 
-If tools are needed, provide:
-
-1. Brief reasoning for tool selection
-2. Tool invocation in JSON format:
+If tools are needed, output tool invocation in one JSON code block, don't repeat tool invocations:
 
 ```tools
 {
