@@ -21,8 +21,6 @@
     "search_image": "البحث عن الصور",
     "generate_image": "إنشاء الصور",
     "summarize": "تلخيص",
-    "grammar": "تصحيح الإملاء والقواعد",
-    "optimize": "تحسين الكتابة",
     "contine_write": "مواصلة الكتابة",
     "make_longer": "توسيع",
     "make_shorter": "تقليل",
@@ -35,5 +33,9 @@
     "change_tone": "تغيير النغمة",
     "no_text_selected": "لم يتم تحديد نص",
     "download": "تنزيل",
-    "copied": "تم النسخ"
+    "copied": "تم النسخ",
+    "rephrase": "إعادة صياغة",
+    "grammar_check": "تصحيح الإملاء والقواعد",
+    "convert_to_table": "تحويل إلى جدول",
+    "convert_to_list": "تحويل إلى قائمة"
 }

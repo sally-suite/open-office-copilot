@@ -17,6 +17,7 @@
     "write_uml": "编写 UML 图表",
     "chat_with_selected_data": "与数据聊天",
     "search": "搜索",
+    "search.tip": "输入您的搜索需求",
     "search_images": "搜索图片",
     "create_images": "生成图片",
     "python_edit_data": "使用 Python 编辑数据",

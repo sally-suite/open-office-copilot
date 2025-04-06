@@ -17,6 +17,9 @@ export interface IUserContextState {
   checkLicense: (license: string) => void;
   openLogin: boolean;
   setOpenLogin: (open: boolean) => void;
+  checkUserState: () => void;
+  signOut?: () => void;
+
 }
 
 export interface IUserState {
@@ -28,7 +31,7 @@ export interface IUserState {
    * 1是订阅用户，2是积分用户
    *  */
   type?: 1 | 2,
-  state: 'free' | 'paid';
+  state: 'online' | 'anonymous';
   order?: string;
   version?: 'standard' | 'pro' | 'trial' | string;
   exp?: number;

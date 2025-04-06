@@ -1,0 +1,41 @@
+.left-nav-title {
+  @apply py-2 px-4 text-xl font-semibold;
+}
+
+.left-nav-item {
+  @apply px-4 py-2 hover:bg-gray-100 cursor-pointer;
+
+  a {
+    @apply block;
+  }
+}
+
+.left-nav-item.active {
+  @apply bg-gray-100;
+
+}
+
+.doc {
+  @apply bg-white p-4 mx-auto pr-72;
+}
+
+.doc-toc {
+  @apply fixed top-24 right-0 w-72;
+}
+
+.doc-toc-list {
+  padding-left: 20px !important;
+}
+
+.doc-toc-list-item {
+  @apply px-2 py-0 hover:bg-gray-100 cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap;
+  list-style: none;
+}
+
+.doc-toc-list-item.active {
+  @apply bg-gray-100;
+}
+
+.doc-toc-list-item.active a {
+  @apply text-gray-900;
+}

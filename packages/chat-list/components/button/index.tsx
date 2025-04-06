@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonProps } from 'chat-list/components/ui/button';
+import { Button as ButtonComponent, ButtonProps } from 'chat-list/components/ui/button';
 import { Loader2, LucideIcon } from 'lucide-react';
 import { cn } from 'chat-list/lib/utils';
 
@@ -11,12 +11,12 @@ interface ILogButton extends ButtonProps {
   icon?: LucideIcon;
   iconClassName?: string;
   action?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   variant?: "secondary" | "default" | "destructive" | "outline" | "ghost" | "link";
   className?: string;
 }
 
-export default function index(props: ILogButton) {
+export default function Button(props: ILogButton) {
   const { type = 'button', action = '', iconClassName = '', loading, icon, variant = 'default', onClick, children, className = '', ...rest } = props;
   const [waiting, setWaiting] = useState(loading);
   const onBtnClick: React.MouseEventHandler<HTMLButtonElement> = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -33,7 +33,7 @@ export default function index(props: ILogButton) {
   }, [loading]);
   const Icon = icon;
   return (
-    <Button
+    <ButtonComponent
       type={type}
       disabled={waiting}
       onClick={onBtnClick}
@@ -47,9 +47,18 @@ export default function index(props: ILogButton) {
       {
         !waiting && Icon && <Icon height={16} width={16} className={cn('shrink-0', iconClassName)} />
       }
-      <span className='mx-1 flex flex-row items-center'>
-        {children}
-      </span>
-    </Button>
+
+      {
+        children && (
+          <span className='mx-1 flex flex-row items-center'>
+            {children}
+          </span>
+        )
+      }
+    </ButtonComponent>
   );
 }
+
+export {
+  Button
+};

@@ -4,3 +4,4 @@ export const SHEET_CHAT_TRANSLATE_ENGINE = 'sheet-chat-translate-engine';
 export const SHEET_CHAT_TRANSLATE_MODE = 'sheet-chat-translate-mode';
 export const SHEET_CHAT_TRANSLATE_STYLE = 'sheet-chat-translate-style';
 export const SHEET_CHAT_IMAGET_TO_TEXT_LANG = 'sheet-chat-image-to-text-lang';
+export const SHEET_CHAT_LANGUAGE_HISTORY = 'sheet-chat-language-history';

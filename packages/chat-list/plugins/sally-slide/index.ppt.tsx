@@ -39,7 +39,7 @@ export class Start extends ChatPluginBase implements IChatPlugin {
       text: true,
       image: true
     },
-    maxSize: 2 * 1014 * 1024,
+    maxSize: 20 * 1014 * 1024,
     maxFiles: 1,
     multiple: false,
   };
@@ -80,7 +80,7 @@ export class Start extends ChatPluginBase implements IChatPlugin {
     // 用户发送的消息，拦截，自定义一些操作
     return input;
   };
-  tools: any[] = ['search', 'search_images', 'create_images', 'generate_presentation', 'generate_speaker_notes', 'optimize_slide'];
+  tools: any[] = ['search', 'create_images', 'generate_presentation', 'generate_speaker_notes', 'optimize_slide'];
   agents: any[] = ['uml', 'vision', 'python'];
   // injectContext = async () => {
   //   const text = await docApi.getSelectedText();

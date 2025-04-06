@@ -10,5 +10,10 @@
     "add_cite": "إضافة اقتباس",
     "select_text": "حدد النص لإضافة حاشية سفلية أو اقتباس",
     "ask_for_citations": "طلب استشهادات من الذكاء الاصطناعي",
-    "searching_papers": "جارٍ البحث في Google Scholar..."
+    "searching_papers": "جارٍ البحث في Google Scholar...",
+    "latex_to_word": "تحويل LaTeX إلى Word",
+    "convert": "تحويل",
+    "try_insert_manually": "فشلت عملية التحويل التالية، يرجى محاولة إدراج المستند يدويًا.",
+    "latext_to_word_tip": "يدعم الصيغ الرياضية والجداول وتنسيق النص",
+    "select_citation_format": "حدد تنسيق الاقتباس"
 }

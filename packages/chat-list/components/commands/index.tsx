@@ -7,7 +7,7 @@ import { extractCommand } from "chat-list/utils";
 
 interface ICommandsProps {
   input: string;
-  onSelect: (command: string) => void;
+  onSelect?: (command: string) => void;
   className: string;
   style?: React.CSSProperties;
 }

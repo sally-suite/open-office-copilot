@@ -1,0 +1,348 @@
+/* MyComponent.module.css */
+.transBox {
+  position: fixed;
+  padding: 0 8px 0 8px; /* 0.5rem * 16px */
+  border-radius: 10px; /* Equivalent to full in Tailwind */
+  border: 1px solid #ebebeb; /* border border-gray-100 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); /* shadow */
+  display: flex;
+  flex-direction: column;
+  z-index: 1000000000;
+  min-width: 370px;
+  max-width: 450px;
+  background: #fff;
+}
+.transBox * {
+  box-sizing: border-box;
+}
+.textWarper {
+  flex: 1;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  /* margin: 8px 0 8px 0; */
+}
+
+.close {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  margin: 4px; /* 0.5rem * 16px */
+  cursor: pointer;
+}
+
+.sideButton {
+  /* No styles were provided for this class. Add styles as needed. */
+}
+
+.tab {
+  font-size: 12px; /* 0.75rem * 16px */
+  border: 1px solid #6b7280;
+  border-radius: 6px; /* Equivalent to full in Tailwind */
+  height: 16px; /* 1.25rem * 16px */
+  padding: 0px 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px; /* 0.25rem * 16px */
+  color: #6b7280; /* text-gray-500 */
+  margin-top: 2px;
+  white-space: nowrap;
+  flex-shrink: 0 !important;
+}
+
+.tab.active {
+  color: #fff;
+  background-color: #6b7280; /* bg-gray-500 */
+}
+
+.tab.disabled {
+  color: #6b7280; /* text-gray-500 */
+  cursor: not-allowed;
+}
+
+.topBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+}
+
+.languageList {
+  padding-left: 12px; /* px-3 -> 3 * 4px = 12px */
+  padding-right: 12px; /* px-3 -> 3 * 4px = 12px */
+  padding-top: 4px; /* py-1 -> 1 * 4px = 4px */
+  padding-bottom: 4px; /* py-1 -> 1 * 4px = 4px */
+  cursor: pointer;
+  border-radius: 6px; /* rounded-md */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* shadow-sm */
+  border: 1px solid var(--input-border-color); /* border border-input */
+  white-space: nowrap;
+  height: 24px; /* h-6 -> 6 * 4px = 24px */
+  font-size: 14px; /* text-sm */
+  line-height: 24px; /* leading-6 -> 6 * 4px = 24px */
+  border-width: 0; /* border-0 */
+  padding-top: 0; /* py-0 */
+  padding-bottom: 0; /* py-0 */
+  box-shadow: none; /* shadow-none */
+  padding-left: 4px; /* px-1 -> 1 * 4px = 4px */
+  padding-right: 4px; /* px-1 -> 1 * 4px = 4px */
+}
+
+/* Input.module.css */
+.inputField {
+  flex: 1;
+  padding: 5px 10px;
+  font-size: 14px; /* 调整字体大小 */
+  border: 1px solid #ccc; /* 添加边框 */
+  border-radius: 10px; /* 添加圆角 */
+  background-color: #fff; /* 设置背景色 */
+  color: #333; /* 设置文字颜色 */
+  outline: none !important; /* 移除默认的外轮廓 */
+  box-shadow: none !important;
+}
+
+.inputField:focus {
+  outline: none !important; /* 移除默认的外轮廓 */
+  box-shadow: none !important;
+  background-color: #f9f9f9; /* 设置背景色 */
+  border: 1px solid #ccc; /* 添加边框 */
+}
+.inputField:active {
+  outline: none !important; /* 移除默认的外轮廓 */
+  box-shadow: none !important;
+  background-color: #f9f9f9; /* 设置背景色 */
+  border: 1px solid #ccc; /* 添加边框 */
+}
+
+.checkboxInput {
+  margin: 0 2px 0 0;
+}
+
+.label {
+  cursor: pointer;
+  margin: 0 8px 0 0;
+  font-size: 14px;
+}
+
+.inputBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 0 8px 0;
+}
+
+.toolBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toolBar > * {
+  margin-right: 8px; /* 0.5rem * 16px */
+}
+
+.toolBar > *:last-child {
+  margin-right: 0; /* 移除最后一个元素的右侧外边距 */
+}
+.sentButton {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: rgba(16, 119, 50, 0.8);
+}
+
+.sentButton:hover {
+  color: rgba(16, 119, 50, 1);
+  cursor: pointer;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation: rotate 1s linear infinite;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #18181b;
+  background-color: #f4f4f5;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  outline: none;
+  white-space: nowrap;
+}
+
+.button:hover {
+  background-color: #eeeeee;
+}
+
+.button:focus {
+  outline: none;
+  /* box-shadow: 0 0 2px rgba(0, 123, 255, 0.8); */
+}
+
+.button:active {
+  background-color: #eeeeee;
+  outline: none;
+}
+
+.primaryButton {
+  background-color: rgba(16, 119, 50, 0.8);
+  color: #fff;
+}
+
+.primaryButton:hover {
+  background-color: rgba(16, 119, 50, 0.9);
+}
+
+.primaryButton:focus {
+  outline: none;
+  /* box-shadow: 0 0 2px rgba(0, 123, 255, 0.8); */
+}
+
+.primaryButton:active {
+  background-color: rgba(16, 119, 50, 1);
+  outline: none;
+}
+
+.disabledButton {
+  background-color: #f4f4f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.disabledButton:hover {
+  background-color: #f4f4f5;
+}
+
+.disabledButton:focus {
+  outline: none;
+}
+
+.enable {
+  color: red;
+}
+.disable {
+  color: rgba(16, 119, 50, 1);
+}
+
+.handBar {
+  /*h-2 w-full cursor-move z-20 bg-red-500*/
+  height: 10px;
+  width: 100%;
+  z-index: 20;
+  cursor: move;
+  text-align: center;
+  line-height: 8px;
+}
+.handBar:hover .hand {
+  display: block;
+}
+.hand {
+  display: none;
+}
+.switch {
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.langList {
+  width: auto !important;
+}
+
+.selectedText {
+  /* max-height: 100px;
+  overflow-y: scroll; */
+}
+.selectedTextWarper {
+  display: block;
+  max-height: 300px;
+  overflow-y: scroll;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 8px 0 8px 0;
+  width: 100%;
+  font-size: 14px;
+}
+.alert {
+  font-size: 12px;
+  color: red;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+.placehoder {
+  padding: 0 4px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Assuming space-y-1 is 0.25rem which equals 4px */
+  width: 100%;
+  max-height: 208px; /* Assuming max-h-52 is 13rem which equals 208px */
+  overflow: auto;
+  margin-top: 8px; /* Assuming mt-2 is 0.5rem which equals 8px */
+}
+
+.messageWrapper {
+  /* No specific styles defined in TailwindCSS, add styles here if needed */
+}
+
+.messageItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 8px 0; /* Assuming my-2 is 0.5rem which equals 8px */
+  padding: 4px; /* Assuming p-1 is 0.25rem which equals 4px */
+}
+
+.messageContent {
+  display: inline-block;
+  background-color: #f0f1f5;
+  padding: 4px 8px; /* Assuming p-1 is 0.25rem which equals 4px, px-2 is 0.5rem which equals 8px */
+  font-size: 14px; /* Assuming text-sm is 0.875rem which equals 14px */
+  border-radius: 10px;
+  color: #333333;
+  max-width: 80%;
+}
+
+.userMessage {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.messageBar {
+  display: flex;
+  margin: 4px; /* Assuming m-1 is 0.25rem which equals 4px */
+  cursor: pointer;
+  width: 32px; /* Assuming w-8 is 2rem which equals 32px */
+}
+.shortcut {
+  font-size: 14px;
+  font-weight: normal;
+  color: #18181b;
+}

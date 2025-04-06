@@ -22,12 +22,12 @@ export interface IVisionRenderProps {
 export default function VisionRender(props: IVisionRenderProps) {
     const { images: sourceImages = [] } = props;
     const { t } = useTranslation(['vision']);
-    const { fileList } = useChatState();
+    const { fileList, model } = useChatState();
     // const { plugin } = useContext(ChatContext);
     const [inputValue, setInputValue] = useState('');
     const [result, setResult] = useState('');
     const [images, setImages] = useState(sourceImages);
-    const { value: model, setValue: setModel } = useLocalStore('vision-model', 'gpt-4o');
+    // const { value: model, setValue: setModel } = useLocalStore('vision-model', '');
     const { value: tipVisible, setValue: setTipVisible } = useLocalStore('sheet-chat-vison-tip', true);
     const [maxTokens, setMaxTokens] = useState(500);
 
@@ -140,10 +140,7 @@ export default function VisionRender(props: IVisionRenderProps) {
     const closeTip = () => {
         setTipVisible(false);
     };
-    const onModelChange = (model: string) => {
-        // console.log(model)
-        setModel(model);
-    };
+
     const onMaxTokensChange = (e: any) => {
         setMaxTokens(e.target.value);
     };
@@ -182,7 +179,7 @@ export default function VisionRender(props: IVisionRenderProps) {
             <h3 className='input-label'>
                 {t('vision_model', 'Vision Model')}
             </h3>
-            <ModelSelect className='h-8' type='vision' value={model} onChange={onModelChange} />
+            <ModelSelect className='h-8' type='vision' />
             <h3 className='input-label'>
                 MAX TOKENS:
             </h3>

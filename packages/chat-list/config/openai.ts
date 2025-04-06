@@ -8,4 +8,7 @@ export const USER_SET_MODEL_API_BASE_URL = 'model_api_base_url';
 
 export const USER_SET_OPENAI_API_HOST = 'openai_api_host';
 export const USER_SET_APP_ID = 'openai_app_id';
+export const USER_SET_AI_MODEL_CONFIG = 'ai_model_config';
+export const USER_SET_AI_MODEL_CONFIG_VALUE = 'ai_model_config_value';
+
 

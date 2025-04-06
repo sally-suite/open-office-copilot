@@ -21,8 +21,6 @@
     "search_image": "이미지 검색",
     "generate_image": "이미지 생성",
     "summarize": "요약",
-    "grammar": "철자 및 문법 수정",
-    "optimize": "작문 개선",
     "contine_write": "계속 쓰기",
     "make_longer": "확장",
     "make_shorter": "줄이기",
@@ -35,5 +33,9 @@
     "change_tone": "어조 변경",
     "no_text_selected": "선택된 텍스트가 없습니다",
     "download": "다운로드",
-    "copied": "복사됨"
+    "copied": "복사됨",
+    "rephrase": "다시 표현하기",
+    "grammar_check": "맞춤법 및 문법 수정",
+    "convert_to_table": "표로 변환",
+    "convert_to_list": "목록으로 변환"
 }

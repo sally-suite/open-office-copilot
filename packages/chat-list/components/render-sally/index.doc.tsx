@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { cn } from 'chat-list/lib/utils';
 
 import CardTranslate from 'chat-list/components/card-translate-doc';
-import promptSetting from 'chat-list/plugins/sally-slide/prompt';
+import promptSetting from 'chat-list/service/writing/prompt';
 import api from '@api/doc';
 // import SallyAvatar from 'chat-list/components/avatars/sally'
 

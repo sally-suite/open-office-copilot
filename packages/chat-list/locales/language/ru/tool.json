@@ -16,6 +16,7 @@
     "write_formula": "Написать формулу",
     "write_uml": "Написать UML",
     "search": "Поиск",
+    "search.tip": "Введите ваши требования к поиску",
     "search_images": "Поиск изображений",
     "create_images": "Создать изображения",
     "python_edit_data": "Редактировать данные с помощью Python",

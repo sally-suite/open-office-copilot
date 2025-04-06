@@ -45,7 +45,7 @@ export const tones = [
 
 export const tools = [
     {
-        code: 'optimize',
+        code: 'rephrase',
         name: 'Improve writing',
         tip: 'Optimize selected text',
         icon: Wand2
@@ -94,7 +94,7 @@ export const tools = [
         icon: Pen
     },
     {
-        code: 'grammar',
+        code: 'spell_grammar',
         name: 'Fix spelling and grammar',
         tip: 'Fix spelling and grammar',
         icon: SpellCheck2
@@ -106,7 +106,7 @@ export const tools = [
         icon: Table
     },
     {
-        code: 'emoji',
+        code: 'add_emoji',
         name: "Emoji",
         tip: 'Add emoji to selected text',
         icon: SmilePlus

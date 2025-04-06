@@ -1,0 +1,1 @@
+export const LICENSE_SECRET = 'xxxxxxxxxx';

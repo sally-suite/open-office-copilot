@@ -21,8 +21,6 @@
     "search_image": "Bilder suchen",
     "generate_image": "Bilder erstellen",
     "summarize": "Zusammenfassen",
-    "grammar": "Rechtschreibung und Grammatik korrigieren",
-    "optimize": "Schrift verbessern",
     "contine_write": "Weiter schreiben",
     "make_longer": "Erweitern",
     "make_shorter": "Verkürzen",
@@ -35,5 +33,9 @@
     "change_tone": "Ton ändern",
     "no_text_selected": "Kein Text ausgewählt",
     "download": "Herunterladen",
-    "copied": "Kopiert"
+    "copied": "Kopiert",
+    "rephrase": "Überarbeiten",
+    "grammar_check": "Rechtschreibung und Grammatik überprüfen",
+    "convert_to_table": "In Tabelle umwandeln",
+    "convert_to_list": "In Liste umwandeln"
 }

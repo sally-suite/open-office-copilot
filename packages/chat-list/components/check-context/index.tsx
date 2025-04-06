@@ -69,7 +69,7 @@ export default function CheckContext({ className = '' }: { className?: string })
             // const sheetInfo = await sheetApi.getSheetInfo();
             setDataContext(JSON.stringify(sheetInfo, null, 2));
             await loopAddress();
-        }, 1000);
+        }, 2000);
     };
     const init = async () => {
         // if (!memStore.init) {
@@ -94,6 +94,16 @@ export default function CheckContext({ className = '' }: { className?: string })
             updateContext();
         }
     }, [messages]);
+
+    useEffect(() => {
+        // 设置焦点事件监听器
+        window.addEventListener('focus', updateContext);
+
+        // 清理函数，在组件卸载时移除监听器
+        return () => {
+            window.removeEventListener('focus', updateContext);
+        };
+    }, []); // 空依赖数组意味着只在组件挂载和卸载时执行
 
     if (!dataContext) {
         return null;

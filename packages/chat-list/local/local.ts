@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { DEFAULT_MODEL } from "chat-list/config/llm";
-import { USER_SET_AI_MODEL, USER_SET_AI_PROVIDER, USER_SET_MODEL_API_BASE_URL, USER_SET_MODEL_API_KEY } from "chat-list/config/openai";
+import { USER_SET_AI_MODEL, USER_SET_AI_MODEL_CONFIG, USER_SET_AI_PROVIDER, USER_SET_MODEL_API_BASE_URL, USER_SET_MODEL_API_KEY } from "chat-list/config/openai";
 import { SHEET_CHAT_FROM_LANG, SHEET_CHAT_TO_LANG, SHEET_CHAT_TRANSLATE_ENGINE } from "chat-list/config/translate";
 import { GptModel } from "chat-list/types/chat";
 import { ILangItem } from "chat-list/types/translate";
@@ -14,6 +14,8 @@ export const USER_TOKEN_EXPIRE = 'user-token-expire';
 const AGENT_MODEL = 'agent-model';
 export const AGENT_TOOL = 'agent-tool';
 export const AGENT_AGENT = 'agent-agent';
+import userApi from '@api/user';
+import { IApiSeting } from "chat-list/types/openai";
 
 const memoryStore = {
   cache: new Map(),
@@ -218,6 +220,7 @@ export const setColAgents = (name: string, tools: string[]) => {
 
 export const setModel = async (model: string) => {
   // USER_SET_AI_MODEL
+
   return setLocalStore(USER_SET_AI_MODEL, model);
 };
 export const getModel = async () => {
@@ -239,20 +242,36 @@ export const setApiKey = async (provider: string, apiKey: string) => {
   return await setLocalStore(`${USER_SET_MODEL_API_KEY}_${provider}`, apiKey);
 };
 
+export const getBaseUrl = async (provider: string) => {
+  return await getLocalStore(`${USER_SET_MODEL_API_BASE_URL}_${provider}`);
+};
+
+export const setBaseUrl = async (provider: string, apiKey: string) => {
+  return await setLocalStore(`${USER_SET_MODEL_API_BASE_URL}_${provider}`, apiKey);
+};
+
 export async function getApiConfig(model?: string, provider?: string) {
+
   const tarModel = model || getLocalStore(USER_SET_AI_MODEL) || DEFAULT_MODEL;
   const tarProvider = provider || getLocalStore(USER_SET_AI_PROVIDER) || '';
   const apiLocalKey = tarProvider ? `${USER_SET_MODEL_API_KEY}_${tarModel}_${tarProvider}` : `${USER_SET_MODEL_API_KEY}_${tarModel}`;
   const apiBaseUrlKey = tarProvider ? `${USER_SET_MODEL_API_BASE_URL}_${tarModel}_${tarProvider}` : `${USER_SET_MODEL_API_BASE_URL}_${tarModel}`;
 
-  const apiHost = getLocalStore(apiBaseUrlKey) || 'https://api.openai.com/v1';
-  const apiKey = getLocalStore(apiLocalKey);
+  const apiHost = getLocalStore(apiBaseUrlKey)
+
+  // const apiKey = getLocalStore(apiLocalKey);
+
+
   const clear = async () => {
     setLocalStore(apiLocalKey, '');
     setLocalStore(apiBaseUrlKey, '');
+
   };
   return {
-    model: tarModel, apiKey, apiHost, clear
+    model: tarModel,
+    apiKey: 'default',
+    apiHost,
+    clear
   };
 }
 
@@ -270,3 +289,47 @@ export const setApiConfig = async (model: string, apiKey: string, baseUrl: strin
     setLocalStore(apiBaseUrlKey, '');
   }
 };
+
+
+export const getCurrentModelConfig = async (): Promise<IApiSeting> => {
+  const id = await getLocalStore(USER_SET_AI_MODEL_CONFIG);
+  if (id) {
+    const config = await getModelConfig(id);
+    if (config) {
+      return config;
+    }
+  }
+  const tarModel = getLocalStore(USER_SET_AI_MODEL) || DEFAULT_MODEL;
+  const tarProvider = getLocalStore(USER_SET_AI_PROVIDER) || '';
+  const apiLocalKey = tarProvider ? `${USER_SET_MODEL_API_KEY}_${tarModel}_${tarProvider}` : `${USER_SET_MODEL_API_KEY}_${tarModel}`;
+  const apiBaseUrlKey = tarProvider ? `${USER_SET_MODEL_API_BASE_URL}_${tarModel}_${tarProvider}` : `${USER_SET_MODEL_API_BASE_URL}_${tarModel}`;
+
+  const baseUrl = getLocalStore(apiBaseUrlKey)
+  const apiKey = getLocalStore(apiLocalKey);
+  if (apiKey) {
+    return {
+      id: '',
+      model: tarModel as string,
+      provider: tarProvider as string,
+      apiKey,
+      baseUrl: baseUrl as string,
+      custom: false
+    }
+  }
+
+  return {
+    id: '',
+    model: 'gpt-4o-mini',
+    provider: '',
+    apiKey: '',
+    baseUrl: '',
+    custom: false
+  }
+}
+
+export const setModelConfig = async (key: string, value: IApiSeting) => {
+  return setLocalStore(`${USER_SET_AI_MODEL_CONFIG}_${key}`, value);
+}
+export const getModelConfig = async (key: string): Promise<IApiSeting> => {
+  return getLocalStore(`${USER_SET_AI_MODEL_CONFIG}_${key}`);
+}

@@ -83,3 +83,12 @@ export const OpenAIModels: Record<OpenAIModelID, OpenAIModel> = {
     tokenLimit: 8000,
   },
 };
+
+export interface IApiSeting {
+  id?: string;
+  provider: string;
+  model: string;
+  apiKey?: string;
+  baseUrl?: string;
+  custom?: boolean;
+}

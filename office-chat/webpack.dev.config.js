@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
-
 const devCerts = require("office-addin-dev-certs");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const package = require("./package.json");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CustomFunctionsMetadataPlugin = require("custom-functions-metadata-plugin");
 const minimist = require("minimist");
 
 const webpack = require("webpack");
@@ -21,6 +21,7 @@ async function getHttpsOptions() {
   const httpsOptions = await devCerts.getHttpsServerOptions();
   return { ca: httpsOptions.ca, key: httpsOptions.key, cert: httpsOptions.cert };
 }
+console.log(process.env.TIMEOUT);
 
 function getCssLoaders() {
   return ["style-loader", "css-loader", "postcss-loader"];
@@ -37,6 +38,7 @@ const ExtConfig = {
   "generate-slides": [".ppt.tsx", ".ppt.ts", ".slide.tsx", ".slide.ts", ".office.ts", ".office.tsx"],
   jupyter: [".excel.tsx", ".excel.ts", ".sheet.tsx", ".sheet.ts", ".office.ts", ".office.tsx"],
   references: [".word.tsx", ".word.ts", ".doc.tsx", ".doc.ts", ".office.ts", ".office.tsx"],
+  latex: [".word.tsx", ".word.ts", ".doc.tsx", ".doc.ts", ".office.ts", ".office.tsx"],
 };
 
 const mockExts = isProd ? [] : [".mock.ts", ".mock.tsx"];
@@ -196,6 +198,13 @@ module.exports = async (env, options) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        VERSION: JSON.stringify(package.version),
+      }),
+      new CustomFunctionsMetadataPlugin({
+        output: "functions.json",
+        input: "./src/functions/index.tsx",
+      }),
       new CopyWebpackPlugin({
         patterns: [
           {
@@ -207,8 +216,7 @@ module.exports = async (env, options) => {
             to: "[name]" + "[ext]",
             transform(content) {
               if (dev) {
-                return content;
-                // return content.toString().replace(new RegExp(urlDev, "g"), "https://localhost/");
+                return content.toString().replace(new RegExp(urlDev, "g"), "https://localhost/");
               } else {
                 return content.toString().replace(new RegExp(urlDev, "g"), urlProd);
               }

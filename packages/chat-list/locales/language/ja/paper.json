@@ -10,5 +10,10 @@
     "add_cite": "引用を追加",
     "select_text": "脚注または引用を追加するためにテキストを選択",
     "ask_for_citations": "AIに引用をリクエスト中",
-    "searching_papers": "Google Scholarを検索中..."
+    "searching_papers": "Google Scholarを検索中...",
+    "latex_to_word": "LaTeXをWordに変換",
+    "convert": "変換",
+    "try_insert_manually": "以下の変換に失敗しました。手動でドキュメントを挿入してください。",
+    "latext_to_word_tip": "数式、表、テキストの書式設定をサポート",
+    "select_citation_format": "引用フォーマットを選択"
 }

@@ -1,0 +1,37 @@
+
+services:
+  app:
+    build: .
+    image: sally-suite:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DOMAIN_NAME: ""
+      ADMIIN_EMAILS: "admin@sallysuite.com"
+      ADMIIN_PASSWORD: "admin123"
+      NEXTAUTH_SECRET: SALLYFORYOU
+      NEXT_PUBLIC_VERCEL_ENV: production
+      POSTGRES_DATABASE: sallysuite
+      POSTGRES_HOST: db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: passowrd01
+      DATABASE_URL: postgres://postgres:passowrd01@db:5432/sallysuite
+    restart: always
+
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: passowrd01
+      POSTGRES_DB: sallysuite
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

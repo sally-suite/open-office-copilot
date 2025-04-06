@@ -72,7 +72,7 @@ export default React.memo(function ToolList(props: IToolListProps) {
         init();
     }, []);
     return (
-        <div className='flex flex-col text-sm mb-32 relative'>
+        <div className='flex flex-col text-sm relative'>
             {/* <p className='markdown py-1'>
                 {t('sheet.agent.sally.choose_tool')}
             </p> */}

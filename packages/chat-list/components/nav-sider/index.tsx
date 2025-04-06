@@ -10,8 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import Tooltip from 'chat-list/components/tooltip';
 
 const LeftNavigation = () => {
-    const { user } = useUserState();
-    const { plugins, plugin, setPlugin, resetList, messages, setMode, } = useChatState();
+    const { user, plugins, plugin, setPlugin, resetList, messages, setMode, } = useChatState();
     const navigate = useNavigate();
 
     const onSelect = (plg: IChatPlugin) => {
@@ -76,26 +75,25 @@ const LeftNavigation = () => {
                         </div>
                     );
                 })}
-
-                <div className={cn(
-                    'flex flex-row items-center justify-center hover:bg-gray-100 cursor-pointer w-full h-10'
-                )}
-                    onClick={onCreate}
-                >
-                    <Avatar icon={Plus} height={20} width={20} />
-                </div>
+                {
+                    user.state != 'anonymous' && (
+                        <div className={cn(
+                            'flex flex-row items-center justify-center hover:bg-gray-100 cursor-pointer w-full h-10'
+                        )}
+                            onClick={onCreate}
+                        >
+                            <Avatar icon={Plus} height={20} width={20} />
+                        </div>
+                    )
+                }
             </div>
-            <div className="flex items-center justify-center py-1 border-t whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer " >
-                {/* <img className="h-8 w-8 rounded-full" src={user.image} alt="User Avatar" /> */}
+            {/* <div className="flex items-center justify-center py-1 border-t whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer " >
                 <div className="h-6 w-6 rounded-full flex shrink-0 justify-center items-center border bg-gray-200 text-sm "  >
                     <a target='_blank' href="https://www.sally.bot/profile" rel="noreferrer">
                         {user?.email?.charAt(0).toUpperCase() || ''}
                     </a>
                 </div>
-                {/* <div className="ml-2 whitespace-nowrap overflow-hidden text-ellipsis text-gray-500">
-                    {user.email}
-                </div> */}
-            </div>
+            </div> */}
         </div>
     );
 };

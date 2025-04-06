@@ -20,7 +20,6 @@ import useChatState from 'chat-list/hook/useChatState';
 import EmojiSelector from 'chat-list/components/emoji-select';
 import { IAgent } from 'chat-list/types/agent';
 import { cn } from 'chat-list/lib/utils';
-// import Tooltip from '../tooltip';
 import preview from 'chat-list/assets/img/preview.png';
 import { DocType } from 'chat-list/types/plugin';
 import { useTranslation } from 'react-i18next';
@@ -67,7 +66,7 @@ export default function AgenForm(props: IAgentFormProps) {
     const { docType, className, value, onSubmit, onChange } = props;
     const { t } = useTranslation(['agent', 'tool', 'base']);
     const { tools } = useChatState();
-
+    console.log(JSON.stringify(tools, null, 2))
     const formSchema = useMemo(() => {
         const schema = z.object({
             avatar: z.string(),
@@ -145,8 +144,7 @@ export default function AgenForm(props: IAgentFormProps) {
             form.unregister('name');
         };
     }, [form]);
-    // const list = tools.map(p => p.name).join(',');
-    // console.log(list)
+
     return (
         <Form {...form}  >
             <>
@@ -253,23 +251,6 @@ export default function AgenForm(props: IAgentFormProps) {
                                 );
                             }}
                         />
-
-                        {/* <FormField
-                            control={form.control}
-                            name="dataAsContext"
-                            render={({ field }) => (
-                                <FormItem className='flex flex-col'>
-                                    <FormLabel>{t('dataAsContext.field_name', '')}</FormLabel>
-                                    <FormControl>
-                                        <Checkbox checked={field.value} placeholder={t('dataAsContext.placeholder', '')} onCheckedChange={field.onChange} />
-                                    </FormControl>
-                                    <FormDescription>
-                                        {t('dataAsContext.description', '')}
-                                    </FormDescription>
-                                </FormItem>
-                            )}
-                        /> */}
-
                     </form>
                     <div className=' flex flex-row p-2 justify-between shadow  space-x-1'>
                         <Button type="submit" onClick={form.handleSubmit(onSubmit)}>
@@ -288,9 +269,7 @@ export default function AgenForm(props: IAgentFormProps) {
                         </Button>
                     </div>
                 </div>
-
             </>
-
         </Form>
     );
 }

@@ -10,6 +10,7 @@ class UserServiceMock implements IUserService {
     setUserProperty: (key: string, value: string) => Promise<void>;
     getUserProperty: (key: string) => Promise<string>;
     checkUser: () => Promise<IUserOrderState>;
+    sentMessage?: (message: IUserMessage) => Promise<void>;
     deductPoints?: (message: IUserMessage) => Promise<void>;
     getAgents = (params: { email: string, type: string }) => {
         return Promise.resolve({} as IAgent[]);

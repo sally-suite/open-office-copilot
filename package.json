@@ -1,32 +1,40 @@
 {
-  "name": "mate-chat",
+  "name": "sally-enterprise",
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "cd office-chat && npm run build"
+    "build:office": "cd office-chat && npm run build",
+    "build:outlook": "cd outlook-chat && npm run build",
+    "build:chat": "cd sally-chat && npm run build",
+    "push:web": "cd web-server && git add . && git commit -m release && git push && cd ..",
+    "push:outlook": "npm run build:outlook && npm run push:web && npm run push:code",
+    "push:office": "npm run build:office && npm run push:web && npm run push:code",
+    "push:chat": "npm run build:chat && npm run push:web && npm run push:code",
+    "push:code": "git add . && git commit -m release && git push",
+    "build:all": "npm run build:outlook && npm run build:chat && npm run build:office",
+    "build:image": "cd web-server && npm run build:docker",
+    "push:office-chat": "npm run build:office && npm run build:chat && npm run push:web && npm run push:code",
+    "build": "npm run build:all && npm run build:image && docker compose up -d",
+    "export": "docker save -o sally-suite.tar sally-suite:latest",
+    "compose-up-for-amd64": "DOCKER_DEFAULT_PLATFORM=linux/amd64 docker compose up -d",
+    "compose-up": "docker compose up -d"
   },
   "workspaces": {
     "packages": [
       "packages/*"
     ],
-    "sheet-chat": [
-      "sheet-chat"
+    "office-chat": [
+      "office-chat"
     ],
-    "doc-chat": [
-      "doc-chat"
-    ],
-    "excel-chat": [
-      "excel-chat"
-    ],
-    "word-chat": [
-      "word-chat"
+    "outlook-chat": [
+      "outlook-chat"
     ],
     "nohoist": [
       "**"
     ]
   },
-  "repository": "git@github.com:hongyin163/mate-chat.git",
+  "repository": "git@github.com:hongyin163/sally-enterprise.git",
   "author": "hongyin163 <hongyin163@163.com>",
   "license": "MIT",
   "dependencies": {}

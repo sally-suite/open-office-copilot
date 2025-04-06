@@ -12,7 +12,7 @@ class UserServiceMock implements IUserService {
         return token;
     };
     getEmail = (): Promise<string> => {
-        return Promise.resolve('sally-suite@hotmail.com');
+        return Promise.resolve('hongyin163@gmail.com');
     };
     setUserProperty: (key: string, value: string) => Promise<void> = async (key: string, value: string) => {
         // await sleep()
@@ -20,12 +20,29 @@ class UserServiceMock implements IUserService {
         return Promise.resolve();
     };
     getUserProperty: (key: string) => Promise<string> = async (key: string) => {
+        // const store: any = {
+        //     'OPENAI_API_MODEL': "gpt-3.5-turbo"
+        // }
+        // return store[key] || ""
         const value = getLocalStore(key) as unknown as string;
         return Promise.resolve(value);
     };
     checkUser = async (): Promise<IUserOrderState> => {
+        // await sleep();
+        // debugger;
         const result = await api.checkUser({});
+        // debugger;
         return result;
+        // return Promise.resolve({
+        //     type: 1,
+        //     state: 'paid',
+        //     email: 'test@mail.com',
+        //     order: null,
+        //     version: 'pro',
+        //     exp: Date.now() + 1000000,
+        //     points: 999999,
+        //     key: 'test',
+        // } as unknown as IUserOrderState)
     };
     sentMessage: (message: IUserMessage) => Promise<void> = async (message) => {
         console.log(message)
@@ -36,17 +53,19 @@ class UserServiceMock implements IUserService {
         return;
     };
     getAgent = async (id: string) => {
-        return await api.getAgent({ id });
+        // return await api.getAgent({ id });
+        return null;
     }
     getAgents = async ({ email, type }: any) => {
-        return await api.getAgents({ email, type });
+        // return await api.getAgents({ email, type });
+        return Promise.resolve([]);
     }
     addAgent = async (agent: IAgent) => {
-        await api.addAgent(agent);
+        // await api.addAgent(agent);
         return Promise.resolve();
     }
     updateAgent = async (agent: IAgent) => {
-        await api.updateAgent(agent)
+        // await api.updateAgent(agent)
         return Promise.resolve();
     }
     getPoints = async () => {
@@ -54,7 +73,9 @@ class UserServiceMock implements IUserService {
         // return 1000;
     }
     getConversation = async () => {
-        return [];
+        return await api.getConversation({
+            offset: 0
+        });
     }
 
 }

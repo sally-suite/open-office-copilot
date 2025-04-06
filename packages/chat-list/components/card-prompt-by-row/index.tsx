@@ -137,10 +137,8 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
         setProgress(Math.floor((m + 1) / prompts.length * 100));
         continue;
       }
-      const { apiKey } = await getApiConfig();
       const { content } = await chat({
         messages,
-        model: apiKey ? undefined : 'gpt-4o-mini'
       });
       // console.log('setValuesByRange', [[content]], startRow + m, columnNum, 1, 1)
       await sheetApi.setValuesByRange([[content]], startRow + m, columnNum, 1, 1);
@@ -169,11 +167,9 @@ export const ApplyPromptByRowForm = (props: ICardPrompByRowProps) => {
       role: 'user',
       content: prompt,
     }];
-    const { apiKey } = await getApiConfig();
     const { content } = await chat({
       messages,
       stream: false,
-      model: apiKey ? undefined : 'gpt-4o-mini'
     });
     setTestResult(content);
   };

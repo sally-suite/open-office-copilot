@@ -28,6 +28,8 @@ import Message from '../message';
 import TextSelectionToolbar from 'chat-list/components/text-selection-toolbar';
 
 import EricPromote from '../eric-promo';
+import Button from '../button';
+import { PauseCircle } from 'lucide-react';
 interface IChatListProps {
   className?: string;
 }
@@ -59,7 +61,8 @@ const App = (props: IChatListProps) => {
     mode,
     setMode,
     placeholder,
-    status
+    status,
+    loadPrompts
   } = context;
 
   function renderMessageContent(msg: IChatMessage) {
@@ -120,6 +123,12 @@ const App = (props: IChatListProps) => {
   const onClearMessage = () => {
     newChat();
   };
+
+  function onAbort() {
+    if (plugin) {
+      plugin.stop();
+    }
+  }
 
   const renderIntroduction = () => {
     let content: string | React.ReactNode = "";
@@ -189,6 +198,10 @@ const App = (props: IChatListProps) => {
 
   }, [agent]);
 
+  useEffect(() => {
+    loadPrompts();
+  }, [])
+
 
   if (loading) {
     return (
@@ -232,7 +245,6 @@ const App = (props: IChatListProps) => {
           <Message key={plugin.action} timestamp='' message={{ _id: "0", type: 'text', content: '' }} renderMessageContent={renderIntroduction} />
         </div>
       )}
-
       {
         messages.length > 0 && (
           <MessageList
@@ -241,6 +253,16 @@ const App = (props: IChatListProps) => {
             messages={messages}
             renderMessageContent={renderMessageContent}
           />
+        )
+      }
+      {
+        (typing || status == 'processing') && (
+          <div className='flex flex-row-reverse items-center justify-center mt-4 mb-10'>
+            <Button onClick={onAbort} className='w-auto rounded-full pl-0 pr-2' variant='outline'>
+              <PauseCircle className='text-primary h-5 cursor-pointer pulse mr-1' />
+              {t('common.stop_output')}
+            </Button>
+          </div>
         )
       }
       <div className=' w-full flex flex-row items-center z-20 relative'>

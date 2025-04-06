@@ -13,7 +13,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "node ./script/build-cdn.mjs",
+    "build": "node ./script/build-cdn.mjs && cp -r  ./dist/assets ../web-server/public/office-chat",
     "dev": "NODE_ENV=development webpack serve --mode development",
     "mock": "NODE_ENV=development MOCK=true webpack serve --config webpack.dev.config.js --mode development --name ",
     "lint": "office-addin-lint check",
@@ -25,6 +25,7 @@
     "stop": "office-addin-debugging stop manifest.xml",
     "validate": "office-addin-manifest validate manifest-v4.xml",
     "watch": "NODE_ENV=development webpack --mode development --watch",
+    "build-prod": "node ./script/build-prod.mjs",
     "testppt": "npm run start:web -- --document 'https://onedrive.live.com/personal/a9404808f9508531/_layouts/15/doc.aspx?resid=44342fae-3ca1-4120-b0d3-60c290fe42f0&cid=a9404808f9508531&login_hint=hongyin163%40163.com&ct=1725169024070&wdOrigin=OFFICECOM-WEB.START.EDGEWORTH&wdPreviousSessionSrc=HarmonyWeb&wdPreviousSession=8390dd85-7dfa-412e-98b4-ba59829c3b6e'",
     "testexcel": "npm run start:web -- --document 'https://onedrive.live.com/personal/a9404808f9508531/_layouts/15/doc.aspx?resid=2231c59d-b292-414d-a632-3ecd94821a33&cid=a9404808f9508531&login_hint=hongyin163%40163.com&ct=1715599989687&wdOrigin=OFFICECOM-WEB.START.EDGEWORTH&wdPreviousSessionSrc=HarmonyWeb&wdPreviousSession=53929381-9cd8-4ae7-abab-e6d3e953426d'",
     "testword": "npm run start:web -- --document 'https://onedrive.live.com/personal/a9404808f9508531/_layouts/15/Doc.aspx?resid=A9404808F9508531!1681&cid=a9404808f9508531&migratedtospo=true&app=Word'"
@@ -38,6 +39,7 @@
     "core-js": "^3.36.1",
     "date-fns": "2.28.0",
     "default-user-agent": "^1.0.0",
+    "dotenv": "^16.4.7",
     "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
     "file-loader": "^6.2.0",

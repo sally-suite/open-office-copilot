@@ -1,0 +1,54 @@
+.menu-button {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  height: 40px;
+  width: 40px;
+}
+
+.menu-icon {
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.45);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.45);
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+
+.menu-icon::before {
+  top: -6px;
+}
+
+.menu-icon::after {
+  top: 6px;
+}
+
+.menu-button.active .menu-icon {
+  transform: rotate(45deg);
+}
+
+.menu-button.active .menu-icon::before {
+  transform: rotate(90deg);
+  top: 0;
+}
+
+.menu-button.active .menu-icon::after {
+  transform: rotate(90deg);
+  top: 0;
+}

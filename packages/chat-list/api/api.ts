@@ -12,12 +12,11 @@
  */
 const api = {
   login: 'POST /auth/login', //token
-  regist: 'POST /regist',
   getMessages: 'GET /message/get_messages',
-  getConversation: 'GET /message/get_conversation',
-  chat: 'POST /chat',
+  sentMessage: 'POST /message/sent_message',
+  chat: 'POST /chat_proxy',
+  chatStreamLine: 'STREAMLINE /chat_proxy',
   embeddings: 'POST /embeddings',
-  chatStream: 'STREAM /chat_stream',
   completions: 'POST /completions',
   speechToText: 'POST /speech_to_text',
   setUserProperty: 'POST /user/set_property',
@@ -39,8 +38,6 @@ const api = {
   getPlanList: 'POST /plans/get_plans',
   removePlan: 'POST /plans/remove_plan',
   imageProxy: 'PROXY /images/proxy',
-  stockIndicators: 'POST /stock/indicators',
-  stockPrices: 'POST /stock/prices',
   addBookmark: 'POST /bookmark/add_bookmark',
   getBookmarkList: 'POST /bookmark/get_bookmarks',
   removeBookmark: 'POST /bookmark/remove_bookmark',
@@ -48,6 +45,10 @@ const api = {
   searchScholar: 'POST /search/scholar/search_scholar',
   getCitation: 'POST /search/scholar/get_citation',
   getProviderModels: 'POST /models/get_provider_models',
+  getUserPrompts: 'POST /prompts/get_prompts',
+  addUserPrompt: 'POST /prompts/add_prompt',
+  removeUserPrompt: 'POST /prompts/remove_prompt',
+
 };
 
 export default api;

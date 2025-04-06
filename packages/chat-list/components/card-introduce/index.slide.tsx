@@ -1,18 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useChatState from 'chat-list/hook/useChatState';
 
 import { useTranslation } from 'react-i18next';
-import promptSetting from 'chat-list/plugins/sally-slide/prompt';
-import CardTranslate from 'chat-list/components/card-translate-doc';
-import { buildChatMessage } from 'chat-list/utils';
-import api from '@api/slide';
-import commonApi from "@api/index";
-import gpt from '@api/gpt';
 import Avatar from '../avatars';
 
-import { chatByPrompt } from 'chat-list/service/message';
-import { ImageSearchResult } from 'chat-list/types/search';
-import { ImageGenerations } from 'chat-list/types/image';
 import { IChatPlugin } from 'chat-list/types/plugin';
 import { useNavigate } from 'react-router-dom';
 
@@ -51,7 +42,7 @@ export default function ToolList() {
     }, []);
 
     return (
-        <div className='flex flex-col text-sm mb-96'>
+        <div className='flex flex-col text-sm '>
             <p className='markdown py-1'>
                 {t('sheet.agent.sally.choose_tool')}
             </p>

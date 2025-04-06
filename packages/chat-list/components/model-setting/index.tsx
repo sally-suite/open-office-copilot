@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'chat-list/components/modal';
-import { ChevronsUpDown, Loader2, Trash } from 'lucide-react';
+import { ChevronsUpDown, Loader2 } from 'lucide-react';
 import { Input } from 'chat-list/components/ui/input';
-import { USER_SET_MODEL_API_KEY } from 'chat-list/config/openai';
 import { useTranslation } from 'react-i18next';
-import { getApiConfig, getApiKey, setApiKey, setLocalStore } from 'chat-list/local/local';
+import { getModelConfig, setModelConfig } from 'chat-list/local/local';
 import {
     Select,
     SelectContent,
@@ -13,7 +12,6 @@ import {
     SelectValue,
 } from "chat-list/components/ui/select";
 
-import IconButton from '../icon-button';
 import { Providers } from 'chat-list/config/model';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '../ui/command';
 import { cn } from 'chat-list/lib/utils';
@@ -21,22 +19,21 @@ import Button from '../button';
 import { Badge } from '../ui/badge';
 import { formatCurrency, formatNumber } from 'chat-list/utils';
 import { models as getModels } from 'chat-list/service/open-ai';
+import useChatState from 'chat-list/hook/useChatState';
+import gptApi from '@api/gpt';
+import { MODEL_LIST } from 'chat-list/config/llm';
+import { IApiSeting } from 'chat-list/types/openai';
 
-interface IApiSeting {
-    provider: string;
-    model: string;
-    apiKey: string;
-    baseUrl?: string;
-    custom?: boolean;
-}
+
+
 
 interface IModelSettingProps {
-    isEdit: boolean;
     open: boolean;
     onOpen: (open: boolean) => void;
     value: IApiSeting
-    onChange: (value: IApiSeting) => void
-    onRemove?: (model: string, provider: string) => void;
+    onSave: (value: IApiSeting) => void
+    onRemove?: (id: string) => void;
+    onClose?: () => void;
 }
 
 
@@ -56,71 +53,66 @@ interface Model {
 
 
 export default function ModelSetting(props: IModelSettingProps) {
-    const { isEdit, open, value = { provider: '', model: '', baseUrl: '', apiKey: '', custom: false }, onChange, onOpen, onRemove } = props;
+    const { open, value, onSave, onOpen, onRemove } = props;
     const { t } = useTranslation();
+    const { setApiKey, getApiKey, setBaseUrl } = useChatState();
 
-    // const [open, setOpen] = useState(visible);
     const [setting, setSetting] = useState<IApiSeting>({
+        id: value?.id,
         provider: '',
-        model: value.model,
-        baseUrl: value.baseUrl,
+        model: value?.model,
+        baseUrl: value?.baseUrl,
+        custom: value?.custom,
         apiKey: ''
     });
     const [provider, setProvider] = useState(null);
     const [models, setModels] = useState<Model[]>([]);
     const [openSelectModel, setOpenSelectModel] = useState(false);
-
     const [loading, setLoading] = useState(false);
-    const modelKey = `${USER_SET_MODEL_API_KEY}_${setting.model}`;
 
     const onConfirm = async () => {
-        // setLocalStore(`${USER_SET_MODEL_API_KEY}_${setting.model}`, setting.apiKey || '');
-        // setLocalStore(USER_SET_OPENAI_API_HOST, setting.apiHost || 'https://api.openai.com/v1');
-        // await userApi.setUserProperty(modelKey, setting.apiKey || '');
-        // setOpen(false);
         if (!setting.model && !setting.apiKey) {
             return;
         }
 
-        const result = Providers.find(p => p.id === setting.provider);
         if (setting.apiKey) {
             setApiKey(setting.provider, setting.apiKey);
         }
-        await onChange({
-            ...setting,
-            baseUrl: result.baseUrl
+        if (setting.baseUrl) {
+            setBaseUrl(setting.provider, setting.baseUrl);
+        }
+
+        const m = setting.model.trim();
+        const result = await gptApi.addModel({
+            id: setting.custom ? setting.id : null,
+            provider: setting.provider,
+            baseUrl: setting.baseUrl,
+            model: m
+        });
+
+        await setModelConfig(result.id, setting);
+
+        await onSave({
+            ...result
         });
     };
     const handleRemove = async () => {
-        onClear();
-        if (onRemove) {
-            await onRemove(setting.model, setting.provider);
+        const inside = MODEL_LIST.some(p => p.value == setting.id);
+        if (inside) {
+            return;
         }
-
+        await gptApi.removeModel(setting.id);
+        if (onRemove) {
+            await onRemove(setting.id);
+        }
     };
 
-    const onClear = async () => {
-        setLocalStore(modelKey, '');
-        // await userApi.setUserProperty(modelKey, '');
-        const { clear } = await getApiConfig(setting.model, setting.provider);
-        await clear();
-        setSetting({ ...setting, apiKey: '', baseUrl: '', model: '' });
-        // setOpen(false);
-    };
-
-    // const loadKey = async () => {
-    //     setLoading(true);
-    //     const apiKey = await userApi.getUserProperty(modelKey);
-    //     setSetting({ ...setting, apiKey });
-    //     setLoading(false);
-    // }
 
     const onValueChange = (name: string, e: any) => {
         setSetting({ ...setting, [name]: e.target.value });
     };
 
     const onProviderChange = async (value: any) => {
-
         const provider = Providers.find(p => p.id == value) || null;
 
         setProvider(provider);
@@ -135,10 +127,6 @@ export default function ModelSetting(props: IModelSettingProps) {
             'model': ''
         });
 
-        // if (value == 'custom') {
-        //     return;
-        // }
-        // loadModel(value);
     };
 
     const onModelChange = (value: any) => {
@@ -151,13 +139,10 @@ export default function ModelSetting(props: IModelSettingProps) {
             setOpenSelectModel(false);
         }
     };
-    const loadModel = async (provider: string) => {
+    const loadModel = async () => {
         setLoading(true);
-        // const list = await api.getProviderModels({
-        //     provider
-        // })
+
         const list = await getModels(setting.baseUrl, setting.apiKey);
-        console.log(list);
         const options = list.data.map((item: any) => {
             return {
                 value: item.id,
@@ -172,45 +157,54 @@ export default function ModelSetting(props: IModelSettingProps) {
     };
 
     const onLoadModels = async () => {
-        await loadModel(provider.id);
+        await loadModel();
         setOpenSelectModel(true);
 
     };
 
-    useEffect(() => {
-        if (!open) {
+    const initSetting = async () => {
+        if (!value) {
+            setSetting({
+                id: '',
+                model: '',
+                baseUrl: '',
+                apiKey: '',
+                provider: ''
+            });
             return;
         }
-        const { model, baseUrl, apiKey, custom, provider } = value;
-        if (provider) {
-            const result = Providers.find(p => p.id === provider);
-
-            setSetting({
-                model,
-                baseUrl: result.baseUrl,
-                apiKey,
-                custom,
-                provider: result.id
-            });
-
-            setProvider(result);
-
-            // if (result.id !== 'custom') {
-            //     loadModel(result.id);
-            // }
-        } else {
-            setSetting({
-                model,
-                baseUrl,
-                apiKey,
-                custom,
-                provider: 'custom'
-            });
-
-            setProvider('custom');
+        const { model, custom, provider, baseUrl, id, apiKey } = value;
+        if (id) {
+            const modelConfig = await getModelConfig(id);
+            if (modelConfig) {
+                setSetting({
+                    id,
+                    model,
+                    baseUrl: baseUrl || modelConfig.baseUrl,
+                    apiKey: modelConfig.apiKey || "",
+                    custom,
+                    provider: provider || modelConfig.provider
+                });
+                setProvider(provider || modelConfig.provider);
+                return;
+            }
         }
+        setSetting({
+            id,
+            model,
+            baseUrl,
+            apiKey: apiKey || '',
+            custom,
+            provider
+        });
 
-    }, [open, value]);
+        setProvider(provider);
+
+    }
+
+    useEffect(() => {
+        initSetting();
+    }, [value]);
 
     return (
         <Modal
@@ -247,7 +241,7 @@ export default function ModelSetting(props: IModelSettingProps) {
                 </div>
                 <div className="p-1">
                     <h3 className="input-label"><span className=' text-red-500'>*</span> API KEY</h3>
-                    <Input placeholder={'API KEY'} value={setting.apiKey} onChange={onValueChange.bind(null, 'apiKey')} />
+                    <Input placeholder={'API KEY'} autoFocus value={setting.apiKey} onChange={onValueChange.bind(null, 'apiKey')} />
                 </div>
                 {
                     setting.apiKey && (
@@ -348,14 +342,18 @@ export default function ModelSetting(props: IModelSettingProps) {
                         </div>
                     )
                 }
-                {
+                {/* {
                     setting.provider == 'custom' && (
                         <div className="p-1">
                             <h3 className="input-label">BASE URL</h3>
                             <Input placeholder={'https://api.openai.com/v1'} value={setting.baseUrl} onChange={onValueChange.bind(null, 'baseUrl')} />
                         </div>
                     )
-                }
+                } */}
+                <div className="p-1">
+                    <h3 className="input-label">BASE URL</h3>
+                    <Input placeholder={'https://api.openai.com/v1'} value={setting.baseUrl} onChange={onValueChange.bind(null, 'baseUrl')} />
+                </div>
 
                 {
                     provider && (
@@ -384,16 +382,9 @@ export default function ModelSetting(props: IModelSettingProps) {
                     <Button size='sm' onClick={onConfirm}>
                         {t('common.confirm', 'Confirm')}
                     </Button>
-                    <Button size='sm' variant="secondary" onClick={onClear} >
-                        {t('common.clear', 'Clear')}
+                    <Button size='sm' variant="secondary" onClick={handleRemove} >
+                        {t('common.remove', 'Remove')}
                     </Button>
-                    {
-                        isEdit && (setting.custom) && (
-                            <IconButton className='shrink-0 border-0 text-red-500 h-8 w-8' icon={Trash} onClick={handleRemove} >
-
-                            </IconButton>
-                        )
-                    }
                 </div>
             </div>
         </Modal>

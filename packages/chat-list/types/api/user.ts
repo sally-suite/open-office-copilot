@@ -11,6 +11,7 @@ export interface IUserService {
     getUserProperty: (key: string) => Promise<string>;
     checkUser: () => Promise<IUserOrderState>;
     getPoints?: () => Promise<number>;
+    sentMessage?: (message: IUserMessage) => Promise<void>;
     deductPoints?: (message: IUserMessage) => Promise<void>;
     getAgents?: (params: { email: string, type: string }) => Promise<IAgent[]>;
     updateAgent?: (agent: IAgent) => Promise<void>;
@@ -21,4 +22,5 @@ export interface IUserService {
     getPlan?: (id: string) => Promise<IPlan>;
     removePlan?: (id: string) => Promise<void>;
     getPlanList?: () => Promise<IPlan[]>;
+
 }

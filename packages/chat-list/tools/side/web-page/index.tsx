@@ -1,10 +1,10 @@
 import { ITool } from 'chat-list/types/plugin';
 import getPageContent from './get_page_content';
-import getSelectText from './get_page_selected_text';
+// import getSelectText from './get_page_selected_text';
 
 export const tools: ITool[] = [
   getPageContent,
-  getSelectText
+  // getSelectText
 ];
 
 export default tools;

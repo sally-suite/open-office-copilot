@@ -89,7 +89,7 @@ export class Start extends ChatPluginBase implements IChatPlugin {
     // 用户发送的消息，拦截，自定义一些操作
     return input;
   };
-  tools: any[] = ['search', 'search_news', 'search_images', 'create_images', 'generate_presentation'];
+  tools: any[] = ['search', 'create_images', 'generate_presentation'];
   agents: any[] = [];
   // injectContext = async () => {
   //   const text = await docApi.getSelectedText();

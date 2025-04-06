@@ -1,20 +1,21 @@
 import React, { useMemo } from 'react';
 import useChatState from 'chat-list/hook/useChatState';
 import { useTranslation } from 'react-i18next';
-import promptSetting from 'chat-list/plugins/sally-slide/prompt';
+import promptSetting from 'chat-list/service/writing/prompt';
 import CardTranslate from 'chat-list/components/card-translate-doc';
-import { buildChatMessage } from 'chat-list/utils';
+import { buildChatMessage, template } from 'chat-list/utils';
 import api from '@api/doc';
 import commonApi from "@api/index";
 import gpt from '@api/gpt';
 import { chatByPrompt } from 'chat-list/service/message';
 import { ImageSearchResult } from 'chat-list/types/search';
 import { ImageGenerations } from 'chat-list/types/image';
-
+import Tooltip from '../tooltip';
+import { HelpCircle } from 'lucide-react';
 
 export default function ToolList() {
     const { t } = useTranslation(['base', 'tool']);
-    const { plugin, setAgentTools, chat, appendMsg, setTyping, setPlaceholder, showMessage } = useChatState();
+    const { plugin, chat, appendMsg, setTyping, showMessage, setDataContext } = useChatState();
     const tooList = useMemo(() => {
         return [
             {
@@ -26,55 +27,51 @@ export default function ToolList() {
                 icon: '',
             },
             {
-                code: 'optimize',
+                code: 'rephrase',
                 icon: '',
             },
+            // {
+            //     code: 'contine_write',
+            //     icon: '',
+            // },
+            // {
+            //     code: 'make_longer',
+            //     icon: '',
+            // },
             {
-                code: 'contine_write',
+                code: 'grammar_check',
                 icon: '',
             },
-            {
-                code: 'make_longer',
-                icon: '',
-            },
-            {
-                code: 'make_shorter',
-                icon: '',
-            },
-            {
-                code: 'make_titles',
-                icon: '',
-            },
+            // {
+            //     code: 'make_titles',
+            //     icon: '',
+            // },
             {
                 code: 'search_images',
                 icon: '',
             },
-            // {
-            //     code: 'add_emoji',
-            //     icon: '',
-            // },
             {
-                code: 'visualize_as_table',
+                code: 'convert_to_table',
                 icon: '',
             },
             {
-                code: 'remove_line_breaks',
-                icon: 'Remove line breaks',
+                code: 'convert_to_list',
+                icon: '',
+            },
+            {
+                code: 'format_text',
+                icon: '',
             },
             // {
-            //     code: 'create_images',
-            //     icon: '',
-            // }
+            //     code: 'remove_line_breaks',
+            //     icon: 'Remove line breaks',
+            // },
         ];
     }, []);
-    const onSelect = (id: string) => {
-        const tip = t(`tool:${id}.tip`, '');
-        setPlaceholder(tip);
-        setAgentTools([{ id, name: id, enable: true }]);
-    };
 
     const callTool = async (item: any) => {
         // setResult('')
+        setDataContext('');
         if (item.code == 'translate') {
             appendMsg(buildChatMessage(
                 <CardTranslate
@@ -136,30 +133,30 @@ export default function ToolList() {
         } else {
 
             setTyping(true);
-            const prompt = (promptSetting as any)[item.code];
-            let text;
-            if (item.code == 'summarize' || item.code == 'make_titles') {
+            let text = await api.getSelectedText();
+            if (!text) {
                 text = await api.getDocumentContent();
-            } else {
-                text = await api.getSelectedText();
             }
             if (!text) {
                 appendMsg(buildChatMessage(t('doc.no_text_selected'), 'text', 'assistant'));
                 return;
             }
             const msg = showMessage('', 'assistant');
+            const promptTpl = promptSetting[item.code];
+            const prompt = template(promptTpl, {
+                input: text
+            })
             plugin.memory.push({
                 role: 'user',
-                content: `${prompt}\n\nUSER INPUT:\n${text}`
+                content: prompt
             });
             await chat({
                 stream: true,
-                temperature: 0.7,
-                messages: [
-                    {
-                        role: 'user',
-                        content: `${prompt}\n\nUSER INPUT:\n${text}\n\nOUTPUT:`
-                    }]
+                temperature: 0.8,
+                messages: [{
+                    role: 'user',
+                    content: prompt
+                }],
             }, (done, result) => {
                 if (!result.content) {
                     return;
@@ -176,28 +173,16 @@ export default function ToolList() {
     };
 
     return (
-        <div className='flex flex-col text-sm mb-96'>
-            <p className='markdown py-1'>
-                {t('sheet.agent.sally.choose_tool')}
+        <div className='flex flex-col text-sm'>
+            <p className=' font-semibold text-lg py-1 mb-4'>
+                Hi, I&apos;m Sally, Welcome. 👋
             </p>
-            <div className='grid grid-cols-2 gap-2 mt-1'>
-                {
-                    plugin.tools?.map((id) => {
-                        return (
-                            <div
-                                className='flex items-center justify-center py-1 px-1 text-center cursor-pointer rounded-xl border border-slate-200 bg-white select-none hover:bg-slate-100 hover:border-slate-100 transform transition-transform duration-200 hover:scale-102 active:scale-[98%] overflow-hidden'
-                                key={id}
-                                onClick={onSelect.bind(null, id)}
-                            >
-                                {t(`tool:${id}`)}
-                            </div>
-                        );
-                    })
-                }
-            </div>
-            <p className=' py-1 mt-4'>
-                {t('doc.agent.sally.choose_tool')}
-            </p>
+            <h3 className='py-1 text-base flex flex-row items-center'>
+                {t('common.tools')}
+                <Tooltip className='' tip={t('common.inside_tool_tip', 'Select the text in the document and use the following tools.')}>
+                    <HelpCircle className='text-gray-500 ml-1' height={16} width={16} />
+                </Tooltip>
+            </h3>
             <div className='grid grid-cols-1 gap-2 mt-1'>
                 <div className='grid grid-cols-2 sm:grid-cols-4 gap-1 mt-2 '>
                     {

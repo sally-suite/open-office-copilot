@@ -1,0 +1,1 @@
+"{\"function_code\":\"=ARRAYFORMULA(IF(E2:E<>\\\"\\\",\\\"n\\\",))\",\"explain\":\"This function will change the unit in the 'Unit' column to 'n'. It uses the ARRAYFORMULA function to apply the transformation to the entire column at once.\"}"

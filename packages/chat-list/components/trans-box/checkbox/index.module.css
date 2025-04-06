@@ -1,0 +1,9 @@
+.checkbox {
+  height: 24px;
+  width: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

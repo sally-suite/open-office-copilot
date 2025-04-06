@@ -2,10 +2,9 @@
 import { PromptType, callPrompt } from './writing/util'
 /* global global, Office, self, window */
 import { insertMarkdown, insertFootnoteToDoc } from '../_share/add-on/mark-katex';
-import { insertFootnote } from '../_share/add-on/doc';
-import { extractJsonDataFromMd, sleep } from 'chat-list/utils';
-import { SHEET_CHAT_SITE } from 'chat-list/config/site';
+import { extractJsonDataFromMd, sleep, StreamingMarkdownProcessor } from 'chat-list/utils';
 import api from '@api/index';
+import { getApiConfig } from 'chat-list/local/local';
 
 Office.onReady(async () => {
 
@@ -25,50 +24,6 @@ async function getSelectedText() {
 }
 
 
-interface MarkdownProcessor {
-  processChunk: (chunk: string) => Promise<string>;
-}
-
-class StreamingMarkdownProcessor {
-  processedParagraphsCount: number = 0;
-  buffer: string = '';
-  paragraphDelimiter: RegExp = /\n\s*\n/;
-  async processStream(chunk: string): Promise<{
-    newParagraphs: string[];
-    remainingBuffer: string;
-  }> {
-    this.buffer += chunk;
-    const parts = this.buffer.split(this.paragraphDelimiter);
-
-    // 保留最后一个可能不完整的段落
-    const remainingBuffer = parts.pop() || '';
-
-    // 只处理新的段落
-    const newParagraphs = await Promise.all(
-      parts.slice(this.processedParagraphsCount)
-    );
-
-    // 更新已处理段落计数
-    this.processedParagraphsCount = parts.length;
-
-    // 更新buffer只包含未完成的部分
-    this.buffer = remainingBuffer;
-
-    return {
-      newParagraphs,
-      remainingBuffer
-    };
-  }
-
-  async finalize(): Promise<string[]> {
-    if (!this.buffer) return [];
-    const final = this.buffer.trim();
-    this.buffer = '';
-    this.processedParagraphsCount = 0;
-    return [final];
-  }
-}
-
 async function generate(name: PromptType, event: any, position: string = Word.InsertLocation.after) {
   try {
     await Word.run(async (context) => {
@@ -86,8 +41,12 @@ async function generate(name: PromptType, event: any, position: string = Word.In
 
       // 创建Markdown处理器实例
       const markdownProcessor = new StreamingMarkdownProcessor();
-
-      await callPrompt(name, text, { model: 'gpt-4o-mini', stream: true, temperature: 0.8 },
+      const { apiKey } = await getApiConfig();
+      await callPrompt(name, text, {
+        model: apiKey ? undefined : 'gpt-4o-mini',
+        stream: true,
+        temperature: 0.8
+      },
         async (done, result) => {
           // console.log(result.delta?.content)
           if (done) {
@@ -173,7 +132,12 @@ async function spellCheck(event: any) {
       const messageRange = selection.insertText('Checking...\n', Word.InsertLocation.after);
 
       await context.sync();
-      const result = await callPrompt('spell_check', text, { model: 'gpt-4o-mini', stream: false, temperature: 0.8 });
+      const { apiKey } = await getApiConfig();
+      const result = await callPrompt('spell_check', text, {
+        model: apiKey ? undefined : 'gpt-4o-mini',
+        stream: false,
+        temperature: 0.8
+      });
       if (result) {
         const comment = extractJsonDataFromMd(result);
         // console.log(comment);
@@ -228,7 +192,12 @@ async function grammarCheck(event: any) {
       const messageRange = selection.insertText('Checking...\n', Word.InsertLocation.after);
 
       await context.sync();
-      const result = await callPrompt('grammar_check', text, { model: 'gpt-4o-mini', stream: false, temperature: 0.8 });
+      const { apiKey } = await getApiConfig();
+      const result = await callPrompt('spell_grammar', text, {
+        model: apiKey ? undefined : 'gpt-4o-mini',
+        stream: false,
+        temperature: 0.8
+      });
       if (result) {
         const comment = extractJsonDataFromMd(result);
         // console.log(comment);
@@ -285,8 +254,12 @@ async function addCitation(event: any) {
       const text = selection.text;
       let range = selection.insertText('Searching...\n', Word.InsertLocation.after);
       await context.sync();
-
-      const result = await callPrompt(name, text, { model: 'gpt-4o-mini', stream: false, temperature: 0.8 });
+      const { apiKey } = await getApiConfig();
+      const result = await callPrompt(name, text, {
+        model: apiKey ? undefined : 'gpt-4o-mini',
+        stream: false,
+        temperature: 0.8
+      });
       if (result) {
         const footNote = extractJsonDataFromMd(result);
         const title = footNote.title;
@@ -332,7 +305,12 @@ async function reviewComment(event: any) {
       const messageRange = selection.insertText('Reviewing...\n', Word.InsertLocation.after);
 
       await context.sync();
-      const result = await callPrompt('review_comment', text, { model: 'gpt-4o-mini', stream: false, temperature: 0.8 });
+      const { apiKey } = await getApiConfig();
+      const result = await callPrompt('review_comment', text, {
+        model: apiKey ? undefined : 'gpt-4o-mini',
+        stream: false,
+        temperature: 0.8
+      });
       if (result) {
         const comment = extractJsonDataFromMd(result);
         const { comments = [] } = comment;
@@ -380,7 +358,12 @@ async function correctComment(event: any) {
       const messageRange = selection.insertText('Correcting...\n', Word.InsertLocation.after);
 
       await context.sync();
-      const result = await callPrompt('correct_comment', text, { model: 'gpt-4o-mini', stream: false, temperature: 0.8 });
+      const { apiKey } = await getApiConfig();
+      const result = await callPrompt('correct_comment', text, {
+        model: apiKey ? undefined : 'gpt-4o-mini',
+        stream: false,
+        temperature: 0.8
+      });
       if (result) {
         const comment = extractJsonDataFromMd(result);
         const { comments = [] } = comment;
@@ -430,7 +413,12 @@ async function detecAIComment(event: any) {
       const messageRange = selection.insertText('Detecting...\n', Word.InsertLocation.after);
 
       await context.sync();
-      const result = await callPrompt('detect', text, { model: 'gpt-4o-mini', stream: false, temperature: 0.8 });
+      const { apiKey } = await getApiConfig();
+      const result = await callPrompt('detect', text, {
+        model: apiKey ? undefined : 'gpt-4o-mini',
+        stream: false,
+        temperature: 0.8
+      });
       if (result) {
         const comment = extractJsonDataFromMd(result);
         // console.log(comment);
@@ -470,7 +458,7 @@ async function detecAIComment(event: any) {
 }
 
 async function paraphrase(event: any) {
-  return await generate('paraphrase', event, 'Replace')
+  return await generate('rephrase', event, 'Replace')
 }
 
 async function convertToTable(event: any) {

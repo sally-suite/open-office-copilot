@@ -1,6 +1,6 @@
 import React from 'react';
 import useChatState from 'chat-list/hook/useChatState';
-import { Bookmark, Twitter, Youtube } from 'lucide-react';
+import { Bookmark, MessageSquarePlus, Twitter, Youtube, History } from 'lucide-react';
 import AgentPanel from 'chat-list/components/agent-panel';
 import { useTranslation } from 'react-i18next';
 import { cn } from 'chat-list/lib/utils';
@@ -14,9 +14,12 @@ export default function index() {
 
     const navigate = useNavigate();
 
-    const onClickBookmark = () => {
-        navigate(`/bookmarks/${plugin.action}`);
-    };
+    // const onClickBookmark = () => {
+    //     navigate(`/bookmarks/${plugin.action}`);
+    // };
+    const onClickHistory = () => {
+        navigate(`/history/${plugin.action}`);
+    }
     return (
         <div className={cn('w-full relative z-20 border-b shadow',
             // (open) ? "h-10" : " h-0"
@@ -30,20 +33,26 @@ export default function index() {
                         <AgentPanel />
                     )
                 }
-                <Tooltip tip={t('common.bookmarks', 'Bookmarks')}>
+                {/* <Tooltip tip={t('common.bookmarks', 'Bookmarks')}>
                     <div
                         className=' w-auto border-none px-1 py-3 cursor-pointer '
                         onClick={onClickBookmark}
                     >
-
                         <Bookmark height={18} width={18} />
-
+                    </div>
+                </Tooltip> */}
+                <Tooltip tip={t('common.chat_history', 'Chat History')}>
+                    <div
+                        className=' w-auto border-none px-1 py-3 cursor-pointer '
+                        onClick={onClickHistory}
+                    >
+                        <History height={18} width={18} />
                     </div>
                 </Tooltip>
                 <div className='flex-1'></div>
                 {
                     messages.length > 0 && (
-                        <Button className='w-20 h-6' variant='secondary' onClick={newChat} >
+                        <Button icon={MessageSquarePlus} className='w-auto sm:w-auto h-6' variant='secondary' onClick={newChat} >
                             {t('base:common.new_chat')}
                         </Button>
                     )

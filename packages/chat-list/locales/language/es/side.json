@@ -21,8 +21,6 @@
     "search_image": "Buscar imágenes",
     "generate_image": "Generar imágenes",
     "summarize": "Resumir",
-    "grammar": "Corregir ortografía y gramática",
-    "optimize": "Mejorar la escritura",
     "contine_write": "Seguir escribiendo",
     "make_longer": "Expandir",
     "make_shorter": "Reducir",
@@ -35,5 +33,9 @@
     "change_tone": "Cambiar tono",
     "no_text_selected": "No se ha seleccionado texto",
     "download": "Descargar",
-    "copied": "Copiado"
+    "copied": "Copiado",
+    "rephrase": "Reformular",
+    "grammar_check": "Corregir ortografía y gramática",
+    "convert_to_table": "Convertir en tabla",
+    "convert_to_list": "Convertir en lista"
 }

@@ -1,0 +1,65 @@
+.setting {
+  user-select: none;
+}
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.plugins {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  justify-items: start;
+}
+.plgitem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #18181b;
+  background-color: #f4f4f5;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  outline: none;
+  white-space: nowrap;
+}
+
+.button:hover {
+  background-color: #eeeeee;
+}
+
+.button:focus {
+  outline: none;
+  /* box-shadow: 0 0 2px rgba(0, 123, 255, 0.8); */
+}
+
+.button:active {
+  background-color: #eeeeee;
+  outline: none;
+}

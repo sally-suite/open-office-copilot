@@ -16,6 +16,7 @@
     "write_formula": "撰寫公式",
     "write_uml": "撰寫 UML",
     "search": "搜尋",
+    "search.tip": "輸入您的搜尋需求",
     "search_images": "搜尋圖片",
     "create_images": "生成圖片",
     "python_edit_data": "使用 Python 編輯數據",

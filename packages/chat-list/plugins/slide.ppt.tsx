@@ -4,7 +4,5 @@ import Formula from './formula';
 import Uml from './uml';
 import Vision from './vision';
 import Python from './python';
-import Image from './image';
-import Eric from './eric';
 
-export const plugins = [Home, Vision, Image, Uml, Formula, Python, Eric];
+export const plugins = [Home, Uml, Formula, Vision, Python];

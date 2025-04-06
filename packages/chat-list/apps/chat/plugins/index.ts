@@ -9,19 +9,19 @@ import Stock from 'chat-list/plugins/stock';
 
 // import Crypto from 'chat-list/plugins/crypto';
 import PowerPoint from 'chat-list/plugins/presentation';
-import Word from 'chat-list/plugins/article';
+// import Word from 'chat-list/plugins/article';
 import Jupyter from 'chat-list/plugins/jupyter';
 import Uml from 'chat-list/plugins/uml';
 import Image from 'chat-list/plugins/image';
 import Eric from 'chat-list/plugins/eric';
-import Claude from 'chat-list/plugins/claude';
+// import Claude from 'chat-list/plugins/claude';
 
 import Sally from './sally';
 
 export const plugins = [
     // Planner,
     Sally,
-    Word,
+    // Word,
     PowerPoint,
     Python,
     Jupyter,

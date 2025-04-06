@@ -10,5 +10,10 @@
     "add_cite": "添加引用",
     "select_text": "选择文本以添加脚注或引用",
     "ask_for_citations": "向 AI 请求引用",
-    "searching_papers": "正在搜索 Google Scholar..."
+    "searching_papers": "正在搜索 Google Scholar...",
+    "latex_to_word": "LaTeX 转 Word",
+    "convert": "转换",
+    "try_insert_manually": "以下转换失败，请尝试手动插入文档。",
+    "latext_to_word_tip": "支持数学公式、表格和文本格式",
+    "select_citation_format": "选择引用格式"
 }

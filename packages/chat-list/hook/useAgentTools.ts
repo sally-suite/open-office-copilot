@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import useLocalStore from './useLocalStore';
-import { AGENT_AGENT, AGENT_TOOL, getLocalStore } from 'chat-list/local/local';
-import { IAgentTools, IChatPlugin, IAgentToolItem, DocType } from 'chat-list/types/plugin';
+import { useEffect, useState } from 'react';
+import { AGENT_AGENT, AGENT_TOOL, getLocalStore, setLocalStore } from 'chat-list/local/local';
+import { IAgentTools, IChatPlugin, IAgentToolItem, DocType, ITool } from 'chat-list/types/plugin';
 import { snakeToWords } from 'chat-list/utils';
 
 
-export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[], docType: DocType): IAgentTools {
+export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[], docType: DocType, tools: ITool[]): IAgentTools {
     const agentToolKey = `${docType}_${AGENT_TOOL}_${plugin.action}`;
     const colAgentKey = `${docType}_${AGENT_AGENT}_${plugin.action}`;
-    // const { value: agentTools, setValue: setAgentTools } = useLocalStore(agentToolKey, null);
+    // const { value: agentTools, setValue: setAgentTools } = useLocalStore<any[]>(agentToolKey, null);
     // const { value: colAgents, setValue: setColAgents } = useLocalStore(colAgentKey, null);
     const [colAgents, setColAgents] = useState([]);
     const [agentTools, setAgentTools] = useState([]);
@@ -39,7 +38,7 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
         });
         setColAgents(list);
     };
-    const init = () => {
+    const init = async () => {
 
         // const tools = plugin.tools;
         // setAgentTools(tools.map((name) => {
@@ -106,31 +105,56 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
         //     setColAgents(newList)
         // }
 
-        const tools = plugin.tools;
-        setAgentTools(tools.map((name) => {
-            return {
-                id: name,
-                name: snakeToWords(name),
-                enable: true
-            };
-        }));
+        // const tools = plugin.tools;
+        // setAgentTools(tools.map((name) => {
+        //     return {
+        //         id: name,
+        //         name: snakeToWords(name),
+        //         enable: true
+        //     };
+        // }));
 
-        const agents = plugin.agents;
-        const colAgents = agents.map((name) => {
-            const plg = plugins.find(p => p.action == name);
-            if (!plg) {
-                return null;
+        // const agents = plugin.agents;
+        // const colAgents = agents.map((name) => {
+        //     const plg = plugins.find(p => p.action == name);
+        //     if (!plg) {
+        //         return null;
+        //     }
+        //     return {
+        //         id: plg.action,
+        //         icon: plg.icon,
+        //         name: plg.name,
+        //         enable: true
+        //     };
+        // }).filter(p => !!p);
+        // setColAgents(colAgents);
+        const agentToolKey = `${docType}_${AGENT_TOOL}_${plugin.action}`;
+        // const colAgentKey = `${docType}_${AGENT_AGENT}_${plugin.action}`;
+        const tls = await getLocalStore(agentToolKey);
+        if (tls) {
+            setAgentTools(tls);
+        } else {
+            if (plugin.tools && plugin.tools.length > 0) {
+                plugin.tools = plugin.tools.filter(name => tools.some(tool => tool.name == name));
+                const list = plugin.tools.map((id) => {
+                    return {
+                        id,
+                        name: id,
+                        enable: true
+                    };
+                });
+                setLocalStore(agentToolKey, list);
+                setAgentTools(list);
+            } else {
+                setAgentTools([]);
             }
-            return {
-                id: plg.action,
-                icon: plg.icon,
-                name: plg.name,
-                enable: true
-            };
-        }).filter(p => !!p);
-        setColAgents(colAgents);
+        }
 
     };
+    const setAgentToolLocal = (tls: IAgentToolItem[]) => {
+        setAgentTools(tls);
+        setLocalStore(`${docType}_${AGENT_TOOL}_${plugin.action}`, tls);
+    }
     const reset = () => {
         const tools = plugin.tools;
         setAgentTools(tools.map((name) => {
@@ -141,27 +165,28 @@ export default function useAgentTools(plugin: IChatPlugin, plugins: IChatPlugin[
             };
         }));
 
-        const agents = plugin.agents;
-        const colAgents = agents.map((name) => {
-            const plg = plugins.find(p => p.action == name);
-            return {
-                id: plg.action,
-                icon: plg.icon,
-                name: plg.name,
-                enable: true
-            };
-        });
-        setColAgents(colAgents);
+        // const agents = plugin.agents;
+        // const colAgents = agents.map((name) => {
+        //     const plg = plugins.find(p => p.action == name);
+        //     return {
+        //         id: plg.action,
+        //         icon: plg.icon,
+        //         name: plg.name,
+        //         enable: true
+        //     };
+        // });
+        // setColAgents(colAgents);
     };
-    // useEffect(() => {
-    //     init();
-    // }, [plugin])
+    useEffect(() => {
+        init();
+    }, [plugin]);
+
     return {
         agentTools,
         colAgents,
         setAgentTool,
         setColAgent,
-        setAgentTools,
+        setAgentTools: setAgentToolLocal,
         setColAgents,
         reset
     };

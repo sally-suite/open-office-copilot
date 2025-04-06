@@ -4,6 +4,7 @@ import LanguageList from "chat-list/components/language-list";
 import toast from "chat-list/components/ui/use-toast";
 import useLocalStore from "chat-list/hook/useLocalStore";
 import {
+  SHEET_CHAT_LANGUAGE_HISTORY,
   SHEET_CHAT_TRANSLATE_MODE,
 } from "chat-list/config/translate";
 import TransStyleList from "../trans-style-list";
@@ -16,7 +17,7 @@ import { extractJsonDataFromMd, isTwoDimensionalArray, template } from "chat-lis
 import useChatState from "chat-list/hook/useChatState";
 import Progress from "../progress";
 import transDataPrompt from './promps/translate.md';
-import { getApiConfig } from "chat-list/local/local";
+import { X } from "lucide-react";
 
 export function buildTransLateMessages(data: string[][], sourceLanguage: string, targetLanguage: string, style: string) {
   const tableData = JSON.stringify(data, null, 2);
@@ -55,11 +56,16 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
   const { targetLanguage, tone, sheetName, batchSize = 3 } = props;
   const { t } = useTranslation(['translate']);
   const [rows, setRows] = useState(batchSize);
+
   const [target, setTarget] = useState(targetLanguage);
-  const { value: mode, setValue: setMode } = useLocalStore(
+
+  const { value: mode, setValue: setMode } = useLocalStore<'overwrite' | 'new-sheet'>(
     SHEET_CHAT_TRANSLATE_MODE,
     "overwrite"
   );
+  const { value: languageHistory, setValue: setLanguageHistory } =
+    useLocalStore<Array<{ value: string, text: string }>>(SHEET_CHAT_LANGUAGE_HISTORY, []);
+
   const [style, setStyle] = useState(tone || "Formal");
   const [progress, setProgress] = useState(0);
   const running = useRef(false);
@@ -97,9 +103,7 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
         targetLanguage,
         style || 'Formal'
       );
-      const { apiKey } = await getApiConfig();
       const result = await context.chat({
-        model: apiKey ? undefined : 'gpt-4o-mini',
         messages,
         temperature: 0.5,
       });
@@ -165,6 +169,9 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
 
   const onSelectTarget = (value: string, text: string) => {
     setTarget(text);
+    if (!languageHistory.some(lang => lang.value === value)) {
+      setLanguageHistory([...languageHistory, { value, text }]);
+    }
   };
 
   const onSelectStyle = (value: string, text: string) => {
@@ -187,6 +194,22 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
       return 0;
     }
     setRows(Number(e.target.value));
+  };
+  const selectHistoryLanguage = async (lang: { value: string, text: string }) => {
+    setTarget(lang.text);
+    running.current = true;
+    await translateSheetByGpt(
+      '',
+      lang.value,
+      mode,
+      style,
+      sheetName,
+      rows
+    );
+  };
+
+  const removeLanguage = (valueToRemove: string) => {
+    setLanguageHistory(languageHistory.filter(lang => lang.value !== valueToRemove));
   };
   return (
     <div className="flex flex-col mx-auto w-full">
@@ -229,6 +252,29 @@ export default React.memo(function CardTranslateSetting(props: ICardSettingProps
         <h3 className="input-label">{t('translate_rows_per_batch', 'Translate rows per batch:')}</h3>
         <Input type="number" value={rows} onChange={onRowsChange}></Input>
       </div>
+      {languageHistory.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-2">
+          {languageHistory.map((lang) => (
+            <div key={lang.value} className="relative">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => selectHistoryLanguage(lang)}
+                className="px-3 h-8 sm:w-auto bg-gray-100 rounded-md text-sm hover:bg-gray-200 pr-8"
+              >
+                {t(`language:${lang.value}`)}
+              </Button>
+              <div
+                onClick={() => removeLanguage(lang.value)}
+                className="absolute -top-1 -right-1 p-1 rounded-full opacity-50 bg-gray-400 hover:bg-gray-500 text-white cursor-pointer"
+              >
+                <X className="w-3 h-3" />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {
         progress > 0 && (
           <Progress className="my-2" percentage={progress} />

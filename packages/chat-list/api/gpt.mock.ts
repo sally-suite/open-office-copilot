@@ -1,73 +1,173 @@
-import { IGptService } from '../types/api/gpt';
-import { IChatBody, IChatResult, ICompletionsBody, IEmbeddingsBody } from 'chat-list/types/chat';
+import { IGptService } from 'chat-list/types/api/gpt'
+import { IChatBody, IChatResult, IEmbeddingsBody } from 'chat-list/types/chat';
 import { isProd } from 'chat-list/utils';
-import api from '.';
+import api from '@api/index';
+import { getCurrentModelConfig } from 'chat-list/local/local';
+import * as openai from 'chat-list/service/open-ai'
 import { IGetImagesOptions } from 'chat-list/types/image';
-import { getApiConfig } from 'chat-list/local/local';
-import * as openai from 'chat-list/service/open-ai';
+
 
 class GptServiceMock implements IGptService {
     embeddings = async (body: IEmbeddingsBody) => {
-        const result = await api.embeddings({
-            body
-        });
+        const { apiKey } = await getCurrentModelConfig();
+
+        if (!apiKey) {
+            const result = await api.embeddings(body);
+            return result;
+        }
+        const result = await openai.embeddings(body);
         return result;
     };
     speechToText = async (audio: string): Promise<string> => {
         const result: any = await api.speechToText({
             audio
-        });
+        })
         if (!isProd()) {
             console.log('speechToText output', result);
         }
         return result;
     };
-    chat: (chatBody: IChatBody, callback?: (done: boolean, text: string, stop: () => void) => void) => Promise<IChatResult> = async (chatBody: IChatBody, callback) => {
-        const { messages = [], temperature = 0, stream, ...rest } = chatBody;
+    chat: (chatBody: IChatBody, callback?: (done: boolean, result: IChatResult, stop: () => void) => void) => Promise<IChatResult> = async (chatBody: IChatBody, callback) => {
+        const { apiKey } = await getCurrentModelConfig();
+        if (!apiKey) {
+            const { messages = [], temperature = 0, stream, ...rest } = chatBody;
+            if (!stream) {
+                const res = await api.chat({
+                    messages,
+                    temperature,
+                    ...rest
+                });
+                let result;
+                if (res.choices.length > 0) {
+                    result = res.choices[0].message;
+                } else {
+                    result = {
+                        content: '',
+                    };
+                }
+                if (callback && result) {
+                    await callback(true, result, null);
+                }
+                return result;
+            } else {
+                const res: any = { content: '', reasoning_content: '', delta: { reasoning_content: '', content: '' }, tool_calls: [] };
+                let lastLine = '';
+                await api.chatStreamLine({
+                    messages,
+                    temperature,
+                    stream,
+                    ...rest
+                }, {}, async (done, line, abort) => {
+                    console.log(line)
+                    if (done) {
+                        return callback(done, res, abort);
+                    }
+                    if (!line || line.includes('[DONE]')) {
+                        return;
+                    }
+                    const json: any = line.replace(/^data:/, '');
+                    let data;
+                    try {
+                        data = JSON.parse(lastLine + json);
+                        lastLine = '';
+                    } catch (e) {
+                        lastLine = json;
+                        return;
+                    }
+                    // const data = JSON.parse(json);
+                    // lines.push(json)
+                    if (data.choices && data.choices.length > 0) {
+                        const choice = data.choices[0]
+
+
+                        // handle reasoning_content
+                        if (choice.delta?.reasoning_content) {
+                            console.log('reasoning_content', choice.delta?.reasoning_content)
+                            res.reasoning_content += choice.delta?.reasoning_content;
+                            res.delta.reasoning_content = choice.delta?.reasoning_content;
+                        } else {
+                            res.delta.reasoning_content = '';
+                        }
+                        if (choice.delta?.content) {
+                            console.log('content', choice.delta?.content)
+                            res.content += choice.delta?.content;
+                            res.delta.content = choice.delta?.content;
+                        } else {
+                            res.delta.content = '';
+                        }
+
+                        const toolCalls = choice.delta?.toolCalls || choice.delta?.tool_calls;
+                        if (toolCalls != undefined) {
+                            res.tool_calls = openai.mergeToolCalls(res.tool_calls, toolCalls);
+                        }
+                    }
+
+                    if (callback && res) {
+                        await callback(done, res, abort);
+                    }
+                });
+                return res;
+            }
+        }
+
+        const { agent, messages = [], temperature = 0, stream, ...rest } = chatBody;
         if (!stream) {
-            const result = await api.chat({
+            const res = await openai.chat({
                 messages,
                 temperature,
                 ...rest
             });
+            let result;
+            if (res.choices.length > 0) {
+                result = res.choices[0].message;
+            } else {
+                result = {
+                    content: '',
+                };
+            }
+            if (callback && result) {
+                await callback(true, result, null);
+            }
             return result;
         } else {
-            return api.chatStream({
+            let res: any = { content: '', tool_calls: [] };
+            await openai.chatStream({
                 messages,
                 temperature,
+                stream,
                 ...rest
-            }, {}, callback);
+            }, async (done: boolean, result: IChatResult, stop: any) => {
+                if (!result) {
+                    return;
+                }
+                res = result
+                if (callback && result) {
+                    await callback(done, result, stop);
+                }
+            });
+            if (callback && res) {
+                await callback(true, res, stop);
+            }
+            return res;
         }
-    };
-    completions: (body: ICompletionsBody) => Promise<string> = async (body: ICompletionsBody) => {
-        const { prompt = '', temperature = 0, ...rest } = body;
-        if (!isProd()) {
-            console.log('completions input', prompt);
-        }
-        const result = await api.completions({
-            prompt,
-            temperature,
-            ...rest
-        });
-        return result;
     };
     generateImages = async (body: IGetImagesOptions) => {
-        const { apiKey } = await getApiConfig();
+        const { apiKey } = await getCurrentModelConfig();
+
         if (!apiKey) {
             return api.generateImages(body);
         }
         return openai.generateImages(body);
+    }
+    addModel = (value: { id?: string, model: string, provider?: string, baseUrl?: string }) => {
+        return api.addModel(value);
     };
-    addModel = (model: string, baseUrl: string) => {
-        return api.addModel({ model, baseUrl });
-    };
-    getModels: () => Promise<{ model: string, baseUrl: string }[]> = () => {
+    getModels: () => Promise<{ id: string, model: string, provider?: string, baseUrl: string }[]> = () => {
         return api.getModels({});
     };
-    removeModel = (model: string) => {
-        return api.removeModel({ model });
+    removeModel = (id: string) => {
+        return api.removeModel({ id });
     };
-
 }
 
 export default new GptServiceMock();

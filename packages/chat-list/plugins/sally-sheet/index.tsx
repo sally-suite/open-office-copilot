@@ -10,6 +10,8 @@ import CardIntroduce from 'chat-list/components/card-introduce';
 import { dataRangeAnalyzeMixin } from '../_mixins/sheet';
 import ContextSheet from "chat-list/components/context-sheet";
 import { ISheetInfo } from "chat-list/types/api/sheet";
+import sheetApi from '@api/sheet';
+
 /**
  * Main service, task split ,plan
  */
@@ -33,7 +35,7 @@ export class Main extends ChatPluginBase implements IChatPlugin {
       text: true,
       image: true
     },
-    maxSize: 2 * 1014 * 1024,
+    maxSize: 20 * 1014 * 1024,
     maxFiles: 3,
     multiple: true,
   };
@@ -123,13 +125,19 @@ export class Main extends ChatPluginBase implements IChatPlugin {
     const { setTyping } = this.context;
     setTyping(true);
     if (!message.content) {
+      setTyping(false);
       return;
     }
-    if (message.mentions.length == 0 && this.memory.length == 0) {
-      setTyping(true);
+    // if (message.mentions.length == 0 && this.memory.length == 0) {
+    //   setTyping(true);
 
-      await (this as any).showSheetInfo(message);
-      return;
+    //   await (this as any).showSheetInfo(message);
+    //   return;
+    // }
+    const sheetInfo = await sheetApi.getSheetInfo();
+    if (sheetInfo) {
+      const activeRange = sheetInfo.activeRange;
+      await sheetApi.activeSheet(sheetInfo.current, activeRange);
     }
     return await super.onReceive(message);
   };

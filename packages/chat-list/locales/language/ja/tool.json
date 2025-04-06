@@ -17,6 +17,7 @@
     "write_uml": "UML ダイアグラムを書く",
     "chat_with_selected_data": "データとチャット",
     "search": "Webページを検索",
+    "search.tip": "検索条件を入力してください",
     "search_images": "画像を検索",
     "create_images": "画像を生成",
     "python_edit_data": "Pythonでデータを編集",

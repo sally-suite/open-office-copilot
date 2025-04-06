@@ -24,9 +24,16 @@ export const main: ITool['func'] = async ({
     context: ChatState
 }): Promise<any> => {
     const { appendMsg } = context;
-    const content = message.content;
+    // const content = message.content;
+    let text = await docApi.getSelectedText();
+    if (!text) {
+        const cotent = await docApi.getDocumentContent();
+        text = cotent;
+    }
 
-    const text = await docApi.getDocumentContent();
+    if (text.length > 20000) {
+        return "# Alert:\n\nThe document is too long, please select a part of the document to process, limit to 20000 characters.";
+    }
 
     // if (is_make_titles || is_summarize || is_translate) {
     //     if (text.length > 20000) {

@@ -16,6 +16,7 @@
     "write_formula": "كتابة الصيغة",
     "write_uml": "كتابة UML",
     "search": "بحث",
+    "search.tip": "أدخل متطلبات البحث الخاصة بك",
     "search_images": "البحث عن صور",
     "create_images": "إنشاء صور",
     "python_edit_data": "تحرير البيانات باستخدام Python",

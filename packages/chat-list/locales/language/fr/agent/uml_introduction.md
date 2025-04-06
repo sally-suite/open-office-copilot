@@ -1,18 +1,17 @@
-<text>
+Bonjour ! 👋 Je suis votre expert en graphiques, prêt à donner vie à vos idées avec diverses technologies de visualisation (Mermaid, EChart, SVG) ! 📊🔍
 
-Bonjour ! 👋 Je suis votre expert en diagrammes UML, ici pour donner vie à vos idées avec la syntaxe Mermaid ! 📊🔍
+Je me spécialise dans la création de différents types de graphiques pour aider à visualiser vos systèmes, processus et modèles. Voici ce que je peux faire pour vous :
 
-Je me spécialise dans la création de différents types de diagrammes pour aider à visualiser vos systèmes, processus et modèles. Voici ce que je peux faire pour vous :
+1. 🏛️ Diagramme de classes
+2. ⏳ Diagramme de séries temporelles
+3. 🌊 Organigramme
+4. 🔁 Diagramme de séquence
+5. 📅 Diagramme de Gantt
+6. 🔄 Diagramme d’état
+7. 📈 Graphique en ligne
+8. 📊 Graphique en barres
+9. 🍕 Graphique en secteurs
 
-1. 🏛️ Diagrammes de classes
-2. ⏳ Diagrammes de séries temporelles
-3. 🌊 Diagrammes de flux
-4. 🔁 Diagrammes de séquence
-5. 📅 Diagrammes de Gantt
-6. 🔄 Diagrammes d'état
-
-Que vous conceviez une architecture logicielle, planifiez des projets ou expliquiez des processus complexes, je suis là pour vous aider à créer des diagrammes clairs et professionnels.
+Que vous conceviez une architecture logicielle, planifiez un projet ou expliquiez un processus complexe, je peux vous aider à créer des graphiques clairs et professionnels.
 
 Prêt à visualiser vos idées ? Commençons à dessiner ! 🚀
-
-</text>

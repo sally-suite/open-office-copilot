@@ -1,0 +1,71 @@
+{
+    "allowCustomDataForDataTypeAny": true,
+    "functions": [
+        {
+            "description": "Call llm model,first parameter is model name,including:gpt-3.5-turbo,gpt-4,glm-4",
+            "helpUrl": "/guide/custom-functions#slask",
+            "id": "ASK",
+            "name": "ASK",
+            "parameters": [
+                {
+                    "description": "model to use,include:gpt-3.5-turbo,gpt-4,glm-4",
+                    "name": "model",
+                    "optional": true,
+                    "type": "any"
+                },
+                {
+                    "name": "args",
+                    "optional": true,
+                    "repeating": true,
+                    "type": "any"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "Call GPT3.5 model",
+            "helpUrl": "/guide/custom-functions#slgpt3",
+            "id": "GPT3",
+            "name": "GPT3",
+            "parameters": [
+                {
+                    "name": "args",
+                    "optional": true,
+                    "repeating": true,
+                    "type": "any"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "call GPT4 model",
+            "helpUrl": "/guide/custom-functions#slgpt4",
+            "id": "GPT4",
+            "name": "GPT4",
+            "parameters": [
+                {
+                    "name": "args",
+                    "optional": true,
+                    "repeating": true,
+                    "type": "any"
+                }
+            ],
+            "result": {}
+        },
+        {
+            "description": "call GLM model",
+            "helpUrl": "/guide/custom-functions#slglm",
+            "id": "GLM",
+            "name": "GLM",
+            "parameters": [
+                {
+                    "name": "args",
+                    "optional": true,
+                    "repeating": true,
+                    "type": "any"
+                }
+            ],
+            "result": {}
+        }
+    ]
+}

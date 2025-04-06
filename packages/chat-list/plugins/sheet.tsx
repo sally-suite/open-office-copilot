@@ -5,7 +5,6 @@ import Vision from './vision';
 import Coder from './coder';
 import Python from './python';
 import Jupyter from './jupyter';
-import Eric from './eric';
 
 export const plugins = [
   Sally,
@@ -15,7 +14,6 @@ export const plugins = [
   Jupyter,
   Vision,
   Translate,
-  Eric
 ];
 
 export const homeQuickReplies = (): any[] => {

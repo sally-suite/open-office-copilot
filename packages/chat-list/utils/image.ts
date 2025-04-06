@@ -12,4 +12,20 @@ export default {
     get(key: string): string {
         return IMAGES.get(key) || '';
     },
+    clear() {
+        IMAGES.clear();
+    },
+    values() {
+        // convert IMAGES to json
+        return Array.from(IMAGES.entries()).reduce((acc: any, [key, value]) => {
+            acc[key] = value;
+            return acc;
+        }, {});
+    },
+    load(values: any) {
+        // convert json to IMAGES
+        Object.keys(values).forEach(key => {
+            IMAGES.set(key, values[key]);
+        });
+    }
 };

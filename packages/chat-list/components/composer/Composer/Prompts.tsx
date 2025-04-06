@@ -1,10 +1,14 @@
+import Button from "chat-list/components/button";
+import { Plus } from "lucide-react";
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 // import promptList from 'chat-list/data/prompts/prompt.json'
 // import Icon from 'chat-list/components/icon'
 // import { LucideIcon } from "lucide-react";
 
 export interface IPrompts {
-    act: string, prompt: string
+    name: string, prompt: string
 }
 
 interface ICommandsProps {
@@ -16,7 +20,7 @@ interface ICommandsProps {
 }
 
 export const fetchMentions = (prompts: IPrompts[], mentionInput: string) => {
-    return prompts.filter(item => item.act.toLowerCase().includes(mentionInput.toLowerCase()));
+    return prompts.filter(item => item.name.toLowerCase().includes(mentionInput.toLowerCase()));
 };
 
 export const fetchPromptByInput = (prompts: IPrompts[], input: string) => {
@@ -44,11 +48,15 @@ export const completeTextWithSelectedPrompt = (mention: IPrompts, input: string)
 
 export default React.memo(function Commands(props: ICommandsProps) {
     const { input, onSelect, className = "", prompts = [], style = {} } = props;
+    const { t } = useTranslation(['base', 'tool']);
+
     const [bottom, setBottom] = useState(0);
     const [list, setList] = useState<IPrompts[]>([]);
     const [mentionInput, setMentionInput] = useState('');
     const [showMentionList, setShowMentionList] = useState(false);
     const [waiting, setWaiting] = useState(true);
+    const navigate = useNavigate();
+
     const store = useRef(null);
     const onSelectCommand = (item: IPrompts) => {
         if (onSelect) {
@@ -56,12 +64,13 @@ export default React.memo(function Commands(props: ICommandsProps) {
         }
     };
     const onInputChange = () => {
-        if (!input) {
+        if (!input || !input.startsWith('/')) {
             setShowMentionList(false);
             return;
         }
         if (input.endsWith('/')) {
             setShowMentionList(true);
+            console.log(prompts)
             setList(prompts);
             return;
         }
@@ -91,7 +100,9 @@ export default React.memo(function Commands(props: ICommandsProps) {
     //         }
     //     }
     // }, [showMentionList, list]);
-
+    const onAdd = async () => {
+        navigate('/prompt-manage');
+    }
 
 
     useEffect(() => {
@@ -111,11 +122,7 @@ export default React.memo(function Commands(props: ICommandsProps) {
     if (!showMentionList) {
         return null;
     }
-    if (list.length == 0) {
-        return null;
-    }
 
-    // console.log(list)
     return (
         <div
             className={` relative markdown ml-0 mr-0  ${className}`}
@@ -127,19 +134,19 @@ export default React.memo(function Commands(props: ICommandsProps) {
                 ...style,
             }}
         >
-            <div className=" absolute left-0 shadow-md border bg-popover rounded-md bottom-4 transition-all right-0 max-h-[400px] overflow-auto">
+            <div className=" absolute left-0 shadow-md border bg-popover rounded-md bottom-2 transition-all right-0 max-h-[400px] overflow-auto">
                 {list.map((item) => {
                     return (
                         <div
                             className={` markdown cursor-pointer hover:bg-gray-100 p-1 ${list.length == 1 ? "bg-gray-200" : ""
                                 }`}
-                            key={item.act}
+                            key={item.name}
                             onClick={onSelectCommand.bind(this, item)}
                         >
                             <div className="flex flex-row items-start  ">
                                 <div>
                                     <div className="flex flex-row items-center">
-                                        <span className="ml-1 font-bold">{item.act}{ }</span>
+                                        <span className="ml-1 font-bold">{item.name}{ }</span>
                                     </div>
                                     <div className="pl-1 mt-1 line-clamp-3">
                                         {item.prompt}
@@ -150,6 +157,11 @@ export default React.memo(function Commands(props: ICommandsProps) {
                         </div>
                     );
                 })}
+                <div className='w-full flex justify-center p-2'>
+                    <Button icon={Plus} onClick={onAdd} variant="ghost" >
+                        {t('common.add_prompt')}
+                    </Button>
+                </div>
             </div>
         </div>
     );

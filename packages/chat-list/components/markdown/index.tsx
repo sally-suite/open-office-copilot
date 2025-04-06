@@ -80,10 +80,10 @@ export default React.memo(function Markdown(props: IMarkdownProps) {
   }, []);
 
   const content = replaceImageLinks(children);
-  let remarkPlugins = [remarkGfm, remarkMermaid];
+  let remarkPlugins = [remarkGfm];
   let rehypePlugins = [];
   if (supportMath) {
-    remarkPlugins = [remarkGfm, remarkMath, remarkMermaid];
+    remarkPlugins = [remarkGfm, remarkMath];
     rehypePlugins = (platform == 'google' || docType == 'slide') ? [rehypeMathjax] : [rehypeKatex];
   }
 

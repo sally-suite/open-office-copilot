@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Check, ChevronUp, Copy, Edit, FileOutput, Loader2, Play, } from 'lucide-react';
 import IconButton from 'chat-list/components/icon-button';
 
-import { buildChatMessage, copyByClipboard } from 'chat-list/utils';
+import { buildChatMessage, copyByClipboard, svgAsPng } from 'chat-list/utils';
 
 import { cn } from 'chat-list/lib/utils';
 import { useTranslation } from 'react-i18next';
@@ -15,29 +15,40 @@ import CodePreview from 'chat-list/components/code-preview';
 import sheetApi from '@api/sheet';
 import slideApi from '@api/slide';
 import docApi from '@api/doc';
-import Loading from '../loading';
+import mermaid from 'mermaid';
+
+const MermaidTheme = [
+    { name: 'neutral', color: '#808080' },  // 中性灰
+    { name: 'base', color: '#F1E2C2' },    // 黑色
+    { name: 'default', color: '#936FDA' }, // 白色
+    { name: 'dark', color: '#000000' },    // 黑色
+    { name: 'forest', color: '#13540C' },  // 森林绿
+];
 
 export const Code = (props: any) => {
     const { children, } = props;
     const codeProps = children[0].props;
     const script: string = codeProps.children[0];
 
-    const lng = useMemo(() => {
+    const language = useMemo(() => {
         const codeClass = codeProps.className;
         const match = /language-(\w+)/.exec(codeClass || '');
         const lng = match ? match[1] : '';
         return lng;
-    }, []);
+    }, [codeProps.className]);
     const { docType, appendMsg, status, setPreview } = useChatState();
     const [copyOk, setCopyOk] = React.useState(false);
     const [running, setRunning] = useState(false);
     const [isGenerating, setIsGenerating] = useState(false);
     const [prevContent, setPrevContent] = useState(script);
-    const [language, setLanguage] = useState(lng);
+    // const [language, setLanguage] = useState(lng);
     const [expand, setExpand] = useState(false);
+    const [mermaidSvg, setMermaidSvg] = useState('');
+    const svgContainer = useRef<HTMLDivElement>(null);
+    const [theme, setTheme] = useState('neutral');
     const { t } = useTranslation();
     const navigate = useNavigate();
-
+    const isMermaid = language === 'mermaid';
     const isFunction = language === 'javascript' || language === 'python';
     const onRun = async () => {
         try {
@@ -130,8 +141,32 @@ export const Code = (props: any) => {
     };
     const toogleExpand = () => {
         setExpand(!expand);
-
     };
+    const inserToDoc = async () => {
+        const svg = svgContainer.current.childNodes[0] as SVGElement;
+        const { data } = await svgAsPng(svg, 4);
+        const rect = svg.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        if (docType === 'sheet') {
+            await sheetApi.insertImage(data, width, height);
+        } else if (docType === 'doc') {
+            await docApi.insertImage(data, width, height);
+        } else if (docType === 'slide') {
+            await slideApi.insertImage(data, width, height);
+        }
+    }
+    const copyDiagram = async () => {
+        const svg = svgContainer.current.childNodes[0] as SVGElement;
+        const { data } = await svgAsPng(svg, 4);
+        const html = `<img src="${data}"/>`
+        copyByClipboard(html, html);
+        setCopyOk(true);
+        setTimeout(() => {
+            setCopyOk(false);
+        }, 1000);
+    }
     // if (!copyCodeBtn) {
     //     return <pre className='bg-slate-700 p-1'>{children}</pre>;
     // }
@@ -144,17 +179,17 @@ export const Code = (props: any) => {
         }
         return tip;
     }, []);
-    const init = () => {
-        const { children, } = props;
-        const codeProps = children[0].props;
-        const codeClass = codeProps.className;
-        const match = /language-(\w+)/.exec(codeClass || '');
-        const language = match ? match[1] : '';
-        setLanguage(language);
-        if (language && language == 'bash') {
-            setExpand(true);
-        }
-    };
+    // const init = () => {
+    //     const { children, } = props;
+    //     const codeProps = children[0].props;
+    //     const codeClass = codeProps.className;
+    //     const match = /language-(\w+)/.exec(codeClass || '');
+    //     const language = match ? match[1] : '';
+    //     setLanguage(language);
+    //     if (language && language == 'bash') {
+    //         setExpand(true);
+    //     }
+    // };
 
     const renderTopbar = () => {
         return (
@@ -263,6 +298,82 @@ export const Code = (props: any) => {
         );
     };
 
+    const handleThemeChange = (value: string) => {
+        setTheme(value);
+    };
+
+    const renderMermaidToolbar = () => {
+        if (!isMermaid) return null;
+
+        return (
+            <div className="mt-4 flex items-center gap-2">
+                {
+                    docType !== 'chat' && (
+                        <IconButton
+                            title={insertTitle}
+                            onClick={inserToDoc}
+                            className=' w-auto mr-1 px-1 py-3 '
+                            icon={FileOutput}
+                        >
+                            {t('common.insert')}
+                        </IconButton>
+                    )
+                }
+                {
+                    (docType == 'chat' || docType == 'side') && (
+                        <IconButton
+                            onClick={copyDiagram}
+                            className=' w-auto px-1 py-3 mr-1'
+                            icon={(
+                                copyOk ? Check : Copy
+                            )}
+                        >
+                            {t('common.copy')}
+                        </IconButton>
+                    )
+                }
+                {
+                    MermaidTheme.map(({ name, color }, i) => {
+                        return (
+                            <div key={i}
+                                style={{
+                                    backgroundColor: color
+                                }}
+                                className={cn(
+                                    "w-5 h-5 rounded-full  cursor-pointer",
+                                    theme === name && 'border-2 border-white'
+                                )}
+                                onClick={() => handleThemeChange(name)}
+                            >
+
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        );
+    };
+
+    useEffect(() => {
+        if (isMermaid && script) {
+            const renderMermaid = async () => {
+                try {
+                    mermaid.initialize({
+                        theme: theme,
+                        startOnLoad: false,
+                    });
+
+                    const svg = await mermaid.render('mermaid-diagram', script);
+                    setMermaidSvg(svg);
+                } catch (error) {
+                    console.error('Mermaid rendering error:', error);
+                }
+            };
+
+            renderMermaid();
+        }
+    }, [script, theme, isMermaid]);
+
     useEffect(() => {
         if (script !== prevContent) {
             setIsGenerating(true);
@@ -270,14 +381,14 @@ export const Code = (props: any) => {
         } else {
             const timer = setTimeout(() => {
                 setIsGenerating(false);
-            }, 500);
+            }, 1000);
             return () => clearTimeout(timer);
         }
     }, [script, prevContent]);
 
-    useEffect(() => {
-        init();
-    }, []);
+    // useEffect(() => {
+    //     init();
+    // }, []);
 
     return (
         <div
@@ -330,6 +441,12 @@ export const Code = (props: any) => {
             {
                 expand && renderToolbar()
             }
+            {(!isGenerating && isMermaid && mermaidSvg) && (
+                <div className="mt-4">
+                    <div ref={svgContainer} dangerouslySetInnerHTML={{ __html: mermaidSvg }} />
+                    {renderMermaidToolbar()}
+                </div>
+            )}
         </div>
     );
 };

@@ -33,7 +33,7 @@ export class Start extends ChatPluginBase implements IChatPlugin {
       text: false,
       image: false
     },
-    maxSize: 2 * 1014 * 1024,
+    maxSize: 20 * 1014 * 1024,
     maxFiles: 1,
     multiple: false,
   };

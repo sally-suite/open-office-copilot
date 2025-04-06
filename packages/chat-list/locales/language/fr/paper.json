@@ -10,5 +10,10 @@
     "add_cite": "Ajouter une citation",
     "select_text": "Sélectionnez du texte pour ajouter une note de bas de page ou une citation",
     "ask_for_citations": "Demande de citations à l'IA",
-    "searching_papers": "Recherche sur Google Scholar..."
+    "searching_papers": "Recherche sur Google Scholar...",
+    "latex_to_word": "Convertir LaTeX en Word",
+    "convert": "Convertir",
+    "try_insert_manually": "La conversion suivante a échoué. Veuillez essayer d'insérer le document manuellement.",
+    "latext_to_word_tip": "Prend en charge les formules mathématiques, les tableaux et la mise en forme du texte",
+    "select_citation_format": "Sélectionnez le format de citation"
 }

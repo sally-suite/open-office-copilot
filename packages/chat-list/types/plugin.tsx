@@ -1,15 +1,15 @@
 import { ChatMessageType, ChatMessageWithoutId, IChatMessage, IChatOptions, QuickReplyItem, Sender } from "chat-list/types/message";
 import { ReactNode } from "react";
-import { adaptToolArguments, extractJsonDataFromMd, memoize, removeMentions, sleep, snakeToWords, template, uuid } from "chat-list/utils";
+import { adaptToolArguments, extractJsonDataFromMd, extractToolJsonDataFromMd, memoize, removeMentions, sleep, snakeToWords, template, uuid } from "chat-list/utils";
 import { GptModel, IChatBody, IChatResult, ICompletionsBody, IMessageBody, Role, ToolFunctinCall, ToolFunction } from "./chat";
 import React from "react";
 import { IUserState } from "./user";
 import { AGENT_AGENT, getLocalStore } from "chat-list/local/local";
 import i18n from 'chat-list/locales/i18n';
 import ContextText from 'chat-list/components/context-text';
-import { IsSupportToolCallModel } from "chat-list/config/model";
+import { IsSupportSystemRoleModel, IsSupportToolCallModel } from "chat-list/config/model";
 import taskExecListPrompt from 'chat-list/service/react/task_exec_list.md';
-
+import userApi from '@api/user';
 
 export interface IModelConfig {
     model?: GptModel;
@@ -61,6 +61,10 @@ export interface IChatPlugin {
      * id
      */
     id?: string;
+    /**
+     * conversation id
+     *  */
+    conversationId?: string;
     /**
      * chat context
      */
@@ -151,7 +155,6 @@ export interface IChatPlugin {
      * @returns 
      */
     onLoad?: () => void;
-    shortTermMemory: IMessageBody[];
     memory: IMessageBody[];
     sendTaskSuccessMsg: (result: string, from: IChatMessage['from']) => void;
     /**
@@ -221,13 +224,22 @@ export abstract class ChatPluginBase implements IChatPlugin {
     onSend?: (input: IChatMessage) => void;
     onLoad?: () => void;
     transfer?: (message: IChatMessage) => Promise<IChatMessage>;
-    shortTermMemory: IMessageBody[] = [];
     memory: IMessageBody[] = [];
     push = (message: IMessageBody) => {
         this.memory.push(message);
         if (process.env.NODE_ENV === 'development') {
             console.log(this.action, this.memory);
         }
+        const { user, platform } = this.context;
+        userApi.sentMessage({
+            conversationId: this.conversationId,
+            senderId: message.role == 'user' ? user.email : message.role,
+            receiverId: this.action,
+            content: JSON.stringify(message),
+            agent: this.action,
+            model: this.context.model,
+            platform: platform
+        })
     };
     tools: string[] = [];
     agents: string[] = [];
@@ -532,9 +544,17 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 { role: 'user', content: 'Please summarize the conversation.' }
                 ]
             });
+        const contexts = this.context.messages.filter(p => p.context);
+        if (contexts.length > 0) {
+            return [{
+                role: 'assistant',
+                content: `[Context]\n${contexts[contexts.length - 1].context}\n\n[History]\n${result.content}`
+            }]
+        }
         return [
             {
-                role: 'assistant', content: `\n[History]\n${result.content}`
+                role: 'assistant',
+                content: `\n[History]\n${result.content}`
             },
         ];
     };
@@ -650,6 +670,9 @@ export abstract class ChatPluginBase implements IChatPlugin {
     conversationId = uuid();
     abort: () => void = null;
     stop = () => {
+        if (window.abort) {
+            window.abort();
+        }
         if (this.abort) {
             this.abort();
         }
@@ -772,10 +795,17 @@ export abstract class ChatPluginBase implements IChatPlugin {
             dataContext = additionalContext;
         }
 
-        const context: IMessageBody[] = [{
-            role: 'system',
-            content: instruction
-        }];
+        if (i18n.resolvedLanguage) {
+            instruction += `\n\n[Language]: \nIf the user does not specify, prioritize responding in ${i18n.resolvedLanguage}.`
+        }
+
+        const context: IMessageBody[] = []
+        if (IsSupportSystemRoleModel(tarModel)) {
+            context.push({
+                role: 'system',
+                content: instruction
+            })
+        }
 
         if (this.memory.length > 20) {
             this.memory = await this.summaryHistory(this.memory);
@@ -807,7 +837,6 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 const result = await chat({
                     agent: this.action,
                     messages,
-                    temperature: 0.7,
                     model: tarModel,
                     // functions,
                     tools: tarTools,
@@ -815,33 +844,59 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 }, async (done: boolean, res: IChatResult, abort) => {
                     this.abort = abort;
                     isStream = true;
-                    if (!res.content) {
+                    if (!res || (!res.content && !res.reasoning_content)) {
                         return;
                     }
-                    if (res.content) {
+
+                    const content = res.reasoning_content ? `${res.reasoning_content}\n\n----\n\n${res.content}` : res.content;
+                    if (res.content || res.reasoning_content) {
                         if (!isAppend) {
                             setStatus('processing');
-                            resMsg.content = res.content;
+                            resMsg.content = content
                             appendMsg(resMsg);
                             isAppend = true;
                         } else {
-                            resMsg.content = res.content;
+                            resMsg.content = content
                             updateMsg(resMsg._id, resMsg);
                         }
+                    }
+                    if (res.tool_calls && res.tool_calls.length > 0) {
+                        setTyping(true);
+                        setStatus('typing');
                     }
                     if (done) {
                         setStatus('done');
                         if (res.content) {
-                            // this.push({
-                            //     role: 'assistant',
-                            //     content: res.content
-                            // })
-                            resMsg.content = res.content;
+                            resMsg.content = content;
                             updateMsg(resMsg._id, resMsg);
                         }
                         isAppend = false;
                         resMsg = this.buildChatMessage('', 'text');
                     }
+
+                    // if (!res.content) {
+                    //     return;
+                    // }
+                    // if (res.content) {
+                    //     if (!isAppend) {
+                    //         setStatus('processing');
+                    //         resMsg.content = res.content;
+                    //         appendMsg(resMsg);
+                    //         isAppend = true;
+                    //     } else {
+                    //         resMsg.content = res.content;
+                    //         updateMsg(resMsg._id, resMsg);
+                    //     }
+                    // }
+                    // if (done) {
+                    //     setStatus('done');
+                    //     if (res.content) {
+                    //         resMsg.content = res.content;
+                    //         updateMsg(resMsg._id, resMsg);
+                    //     }
+                    //     isAppend = false;
+                    //     resMsg = this.buildChatMessage('', 'text');
+                    // }
                 });
                 setStatus('processing');
                 if (!result) {
@@ -853,8 +908,8 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     }
                     break;
                 }
-
                 if (result.content && (result.tool_calls && result.tool_calls.length > 0)) {
+                    setTyping(true);
                     // this.push({ role: 'assistant', content: result.content })
                     if (!isStream) {
                         // this.push({ role: 'assistant', content: result.content })
@@ -892,8 +947,13 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     break;
                 }
             }
-        }
-        finally {
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                console.log('Fetch aborted:')
+                return;
+            }
+            throw error;
+        } finally {
             setTyping(false);
             setStatus('done');
         }
@@ -1031,11 +1091,20 @@ export abstract class ChatPluginBase implements IChatPlugin {
             instruction = `${this.instruction}\n\n${additionalContext}`;
             dataContext = additionalContext;
         }
-        const context: IMessageBody[] = [{
-            role: 'system',
-            content: instruction
-        }];
+
         const tarModel = options.model || model;
+
+        if (i18n.resolvedLanguage) {
+            instruction += `\n\n[Language]: \nIf the user does not specify, prioritize responding in ${i18n.resolvedLanguage}.`
+        }
+
+        const context: IMessageBody[] = []
+        if (IsSupportSystemRoleModel(tarModel)) {
+            context.push({
+                role: 'system',
+                content: instruction
+            })
+        }
 
         this.push({
             role: 'user',
@@ -1069,7 +1138,7 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     if (msg.role === 'assistant' && msg?.tool_calls?.length > 0) {
                         return {
                             role: 'assistant',
-                            content: msg.content// `${msg.content}\n\n\`\`\`tools\n${JSON.stringify(msg?.tool_calls, null, 2)}\n\`\`\``
+                            content: msg.content//`${msg.content}\n\n\`\`\`tools\n${JSON.stringify(msg?.tool_calls, null, 2)}\n\`\`\``
                         };
                     }
                     if (msg.role == 'tool') {
@@ -1108,30 +1177,32 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 // console.log(messages)
                 const result = await chat({
                     messages,
-                    temperature: 0.7,
                     model: tarModel,
                     stream: true
                 }, async (done: boolean, res: IChatResult, abort) => {
                     this.abort = abort;
-                    if (!res.content) {
+
+                    if (!res || (!res.content && !res.reasoning_content)) {
                         return;
                     }
 
-                    if (res.content) {
+                    const content = res.reasoning_content ? `${res.reasoning_content}\n\n----\n\n${res.content}` : res.content;
+
+                    if (res.content || res.reasoning_content) {
                         if (!isAppend) {
                             setStatus('processing');
-                            resMsg.content = res.content;
+                            resMsg.content = content
                             appendMsg(resMsg);
                             isAppend = true;
                         } else {
-                            resMsg.content = res.content;
+                            resMsg.content = content
                             updateMsg(resMsg._id, resMsg);
                         }
                     }
                     if (done) {
                         setStatus('done');
                         if (res.content) {
-                            resMsg.content = res.content;
+                            resMsg.content = content
                             updateMsg(resMsg._id, resMsg);
                         }
                         isAppend = false;
@@ -1140,13 +1211,21 @@ export abstract class ChatPluginBase implements IChatPlugin {
                 });
                 setTyping(true);
                 const content = result.content;
-                // console.log(content)
-                let res = extractJsonDataFromMd(content);
-                if ((content.includes('```tools') || content.includes('```json')) && !res.tools) {
+                let res = extractToolJsonDataFromMd(content);
+                if (content.includes('```tools') && !res.tools) {
                     const json = await this.fixJsonFormat(content);
-                    // console.log('fix json')
-                    // console.log(json)
-                    res = extractJsonDataFromMd(json);
+                    res = extractToolJsonDataFromMd(json);
+                    if (!res.tools) {
+                        this.push({
+                            role: 'assistant',
+                            content: content
+                        })
+                        this.push({
+                            role: 'user',
+                            content: 'Parse tools json failed, please check the format and output right json.'
+                        })
+                        continue;
+                    }
                 }
                 // console.log(res)
                 if ((res.tools && res.tools.length > 0)) {
@@ -1176,10 +1255,12 @@ export abstract class ChatPluginBase implements IChatPlugin {
                     break;
                 }
             }
-        } catch (e) {
-            console.error(e);
-            setTyping(false);
-            setStatus('done');
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                console.log('Fetch aborted:')
+                return;
+            }
+            throw error;
         } finally {
             setTyping(false);
             setStatus('done');
@@ -1201,7 +1282,12 @@ export interface IAgentTools {
 
 export type IChatStatus = 'typing' | 'processing' | 'done';
 export type IPreview = { title: string, component: React.ReactNode, className?: string };
-
+export type IQuickPrompt = {
+    id: string;
+    name: string;
+    prompt: string;
+    order: number;
+}
 export type ChatState = {
     platform: Platform;
     text: string;
@@ -1236,6 +1322,10 @@ export type ChatState = {
     setModel?: (model: GptModel) => void;
     provider?: string,
     setProvider?: (provider: string) => void;
+    setApiKey?: (provider: string, apiKey: string) => void;
+    setBaseUrl?: (provider: string, baseUrl: string) => void;
+    getApiKey?: (provider: string) => Promise<string>;
+    getBaseUrl?: (provider: string) => Promise<string>;
     dataContext?: string;
     setDataContext?: (dataContext: string) => void;
     dataAsContext: boolean;
@@ -1261,5 +1351,7 @@ export type ChatState = {
     preview?: IPreview;
     setPreview?: (preview: IPreview) => void;
     loadAgents?: () => Promise<void>;
+    prompts?: IQuickPrompt[];
+    loadPrompts?: () => Promise<void>;
 };
 

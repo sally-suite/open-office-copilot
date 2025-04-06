@@ -10,5 +10,10 @@
     "add_cite": "Добавить цитату",
     "select_text": "Выберите текст, чтобы добавить сноску или цитату",
     "ask_for_citations": "Запрос ссылок у ИИ",
-    "searching_papers": "Поиск в Google Scholar..."
+    "searching_papers": "Поиск в Google Scholar...",
+    "latex_to_word": "Конвертировать LaTeX в Word",
+    "convert": "Конвертировать",
+    "try_insert_manually": "Следующее преобразование не удалось. Попробуйте вставить документ вручную.",
+    "latext_to_word_tip": "Поддерживает математические формулы, таблицы и форматирование текста",
+    "select_citation_format": "Выберите формат цитирования"
 }

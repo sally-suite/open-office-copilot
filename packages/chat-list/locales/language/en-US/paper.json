@@ -10,5 +10,10 @@
     "add_cite": "Add Cite",
     "select_text": "Select text to add footnote or cite",
     "ask_for_citations": " Asking AI for citations",
-    "searching_papers": "Searching google scholar..."
+    "searching_papers": "Searching google scholar...",
+    "latex_to_word": "Convert Latex to Word",
+    "convert": "Convert",
+    "try_insert_manually": "The following conversion failed, please try inserting the document manually.",
+    "latext_to_word_tip": "Supports math formulas, tables, and text formatting",
+    "select_citation_format": "Select citation format"
 }

@@ -12,16 +12,20 @@ export const MODEL_LIST = [
         name: 'GPT-4o-mini',
     },
     {
-        value: 'deepseek-chat',
-        name: 'DEEPSEAK-V3'
-    },
-    {
         value: 'gpt-4o',
         name: 'GPT-4o'
     },
     {
-        value: 'o1-mini',
-        name: 'o1-mini'
+        value: 'o3-mini',
+        name: 'o3-mini'
+    },
+    {
+        value: 'deepseek-chat',
+        name: 'DEEPSEAK-V3'
+    },
+    {
+        value: 'deepseek-reasoner',
+        name: 'DEEPSEAK-R1'
     },
     {
         value: 'claude-3.5-haiku',

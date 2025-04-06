@@ -355,7 +355,7 @@ const ChapterManager: React.FC<ChapterManagerProps> = (props: ChapterManagerProp
     }, [status]);
 
     return (
-        <div className={cn('w-full h-full p-2 overflow-hidden', className)}>
+        <div className={cn('w-full h-full p-2 overflow-auto', className)}>
             {
                 status == 'input' && (
                     <>

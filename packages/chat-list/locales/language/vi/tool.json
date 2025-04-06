@@ -16,6 +16,7 @@
     "write_formula": "Viết Công Thức",
     "write_uml": "Viết UML",
     "search": "Tìm Kiếm",
+    "search.tip": "Nhập yêu cầu tìm kiếm của bạn",
     "search_images": "Tìm Kiếm Hình Ảnh",
     "create_images": "Tạo Hình Ảnh",
     "python_edit_data": "Chỉnh Sửa Dữ Liệu Bằng Python",

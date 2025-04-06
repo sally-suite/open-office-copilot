@@ -67,7 +67,7 @@ export default function AgenForm(props: IAgentFormProps) {
     const { docType, className, value, onSubmit, onChange } = props;
     const { t } = useTranslation(['agent', 'tool', 'base']);
     const { tools } = useChatState();
-
+    console.log(JSON.stringify(tools, null, 2))
     const formSchema = useMemo(() => {
         const schema = z.object({
             avatar: z.string(),
@@ -246,8 +246,6 @@ export default function AgenForm(props: IAgentFormProps) {
                                         </FormControl>
                                         <FormDescription className=' whitespace-normal break-all'>
                                             {tools?.length > 0 && t('tools.description', '')}
-                                            {tools?.length === 0 && t('tools.description.not_available', '')}
-                                            <a href='https://forms.gle/RZjHvJrqE2SsANHz9' target='_blank' className='cursor-pointer text-blue-500' rel="noreferrer">{t('tools.new_tool_rquest', '')}</a>
                                         </FormDescription>
                                     </FormItem>
                                 );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import useUserState from 'chat-list/hook/useUserState';
-import useLocalStore from 'chat-list/hook/useLocalStore';
+// import useLocalStore from 'chat-list/hook/useLocalStore';
 import Modal from "chat-list/components/modal";
 import { useNavigate } from 'react-router-dom';
 import useChatState from 'chat-list/hook/useChatState';
@@ -11,8 +11,8 @@ export default function EricPromote() {
 
     const { points, user, loading } = useUserState();
     const navigate = useNavigate();
-
-    const { value: isPromoteAlert, setValue: setIsPromoteAlert, } = useLocalStore<boolean>('sally-promote-alert', false);
+    const [isPromoteAlert, setIsPromoteAlert] = useState(false);
+    // const { value: isPromoteAlert, setValue: setIsPromoteAlert, } = useLocalStore<boolean>('sally-promote-alert', false);
     const [showAlert, setShowAlert] = useState(false);
     const setAgent = (agent: string) => {
         const plg = plugins.find((p) => p.action === agent);
@@ -32,6 +32,7 @@ export default function EricPromote() {
         setAgent('eric');
     };
     useEffect(() => {
+
         if (loading) {
             return;
         }
@@ -45,6 +46,11 @@ export default function EricPromote() {
             return;
         }
         if (points <= 0 && Date.now() > user.exp) {
+            setShowAlert(true);
+        }
+
+        const timeout = 1746028800000;
+        if (Date.now() > Number(timeout)) {
             setShowAlert(true);
         }
     }, [loading, points, user, isPromoteAlert]);
@@ -63,11 +69,11 @@ export default function EricPromote() {
                 confirmText='Chat with Eric'
                 showClose={false}
                 showConfirm={false}
-                title={"Free Trial Period Ending"}
+                title={"Version Expired"}
                 open={showAlert}
                 onClose={() => {
-                    setShowAlert(false);
-                    setIsPromoteAlert(true);
+                    // setShowAlert(false);
+                    // setIsPromoteAlert(true);
                 }}
             >
                 <div className='markdown text-base '>
@@ -75,7 +81,7 @@ export default function EricPromote() {
                         Dear {user.username},
                     </p>
                     <p>
-                        Your <b>7-day trial</b> of Sally AI has ended. ✨
+                        Your current version has expired.
                     </p>
                     <p>
                         You can upgrade or get an extra 7-day trial:
@@ -85,7 +91,7 @@ export default function EricPromote() {
                             <a target='_blank' rel="noreferrer" href="https://www.sally.bot/pricing">Upgrade now at a special discount</a>
                         </li>
                         <li>
-                            <a target='_blank' rel="noreferrer" href="https://www.sally.bot/earn-free-trial">Share your review to get extra 7 free days</a>
+                            <a target='_blank' rel="noreferrer" href="https://www.sally.bot/earn-free-trial">Share your review and email me to get an extra 7-day trial.</a>
                         </li>
                     </ul>
                     <p>

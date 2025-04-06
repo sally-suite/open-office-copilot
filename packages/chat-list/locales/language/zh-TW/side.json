@@ -21,8 +21,6 @@
     "search_image": "搜尋圖片",
     "generate_image": "生成圖片",
     "summarize": "總結",
-    "grammar": "修正拼寫和語法",
-    "optimize": "改善寫作",
     "contine_write": "繼續寫作",
     "make_longer": "擴展",
     "make_shorter": "縮短",
@@ -35,5 +33,9 @@
     "change_tone": "改變語氣",
     "no_text_selected": "未選取文字",
     "download": "下載",
-    "copied": "已複製"
+    "copied": "已複製",
+    "rephrase": "潤色",
+    "grammar_check": "修正拼字和語法",
+    "convert_to_table": "轉換成表格",
+    "convert_to_list": "轉換成列表"
 }

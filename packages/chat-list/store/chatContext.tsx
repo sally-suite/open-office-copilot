@@ -39,6 +39,9 @@ import CustomAgent from 'chat-list/plugins/custom';
 import { IAgent } from 'chat-list/types/agent';
 import ToolMessage from 'chat-list/components/tool-message';
 import { DEFAULT_MODEL } from 'chat-list/config/llm';
+import usePrompts from 'chat-list/hook/usePrompts';
+import imageStore from 'chat-list/utils/image';
+import { initDB, saveSession } from 'chat-list/service/history';
 
 const PLATFORM = platform();
 const memStore = {
@@ -94,12 +97,11 @@ const ChatProvider = ({
   const context = useRef<ChatState>(null);
   const { value: mode, setValue: setMode } = useLocalStore<{ [x: string]: ModeType }>('sally-chat-mode', {});
   const [mute, setMute] = useState(false);
-  const { model, setModel, provider, setProvider } = useModel();
-
-  const [conversationId, setConversationId] = useState(uuid());
+  const { model, setModel, provider, setProvider, setApiKey, setBaseUrl, getApiKey, getBaseUrl } = useModel();
+  const { prompts, loadPrompts } = usePrompts(docType);
   const { value: dataAsContext, setValue: setDataAsContext } = useLocalStore<boolean>('sheet-chat-data-context', true);
   const [dataContext, setDataContext] = useState('');
-  const { agentTools, colAgents, setAgentTools, setAgentTool, setColAgent, setColAgents } = useAgentTools(plugin, plugins, docType);
+  const { agentTools, colAgents, setAgentTools, setAgentTool, setColAgent, setColAgents } = useAgentTools(plugin, plugins, docType, tools);
   const [replies, setReplies] = useState([]);
   const [fileList, setFileList] = useState<File[]>([]);
   const [status, setStatus] = useState<IChatStatus>('done');
@@ -178,10 +180,11 @@ const ChatProvider = ({
 
   const newChat = () => {
     resetList([]);
+    imageStore.clear();
     try {
       plugins.forEach((plg) => {
-        plg.shortTermMemory = [];
         plg.memory = [];
+        plg.conversationId = uuid();
         plugin.stop();
       });
       plugin.stop();
@@ -311,7 +314,7 @@ const ChatProvider = ({
         });
         // const fileNames = message.files.map(p => `1. ${p.name}`).join('\n');
         if (fileContent) {
-          message.content = text + '\n\nReply to me using the attached files below:\n\n' + fileContent;
+          message.content = 'Reply to me using the attached files below directly:\n\n<files>\n\n' + fileContent + '\n\n</files>\n\n' + text;
           // message.type = 'text';
           // message.content = `Here are files:\n${fileNames}\n\n${text}\nlet knowledge handle it.`
         } else {
@@ -326,7 +329,7 @@ const ChatProvider = ({
       publish(message);
     }, 0);
 
-  }, [conversationId, model, plugins, dataContext, user]);
+  }, [model, plugins, dataContext, user]);
 
 
   const subscribeMessage = useCallback(() => {
@@ -359,19 +362,8 @@ const ChatProvider = ({
           message.content = removeMentions(message.content);
           message.text = message.content;
         }
-
-        if (message.content == 'hello' || message.content == 'hi') {
-          await sleep(1000);
-          appendMsg(buildChatMessage('Hello! How can I assist you today?', 'text'));
-          return;
-        }
-
-        if (message.content == '你好' || message.content == '你好呀') {
-          await sleep(1000);
-          appendMsg(buildChatMessage('你好！有什么我可以帮助你的吗？', 'text',));
-          return;
-        }
         await plugin.onReceive(message);
+
         // check points, if points < 0, show message to user
       } catch (e) {
         console.error(e);
@@ -383,8 +375,8 @@ const ChatProvider = ({
           setUserState({
             isAuthenticated: false
           });
-        } else {
-          appendMsg(buildChatMessage(`Exception: ${e.message}`, 'text'));
+        } else if (e.message) {
+          appendMsg(buildChatMessage(`${e.message}`, 'text'));
         }
 
       } finally {
@@ -426,17 +418,16 @@ const ChatProvider = ({
     //       mentions: [plg.action]
     //     })
     //   })
-  }, [plugin, conversationId, model]);
+  }, [plugin, model]);
 
   const chatByModel = useCallback(async (args: IChatBody, callback: any) => {
 
     args.model = args.model || model;
     args.agent = plugin.action;
-    args.temperature = typeof args.temperature === 'undefined' ? 0.7 : args.temperature;
+    // args.temperature = typeof args.temperature === 'undefined' ? 0.7 : args.temperature;
+    // args.top_p = typeof args.top_p === 'undefined' ? 0.9 : args.top_p;
+    // args.max_tokens = typeof args.max_tokens === 'undefined' ? 1024 : args.max_tokens;
     const result = await chat(args, callback);
-    if (user.version !== 'pro' && user.version !== 'standard' && user.version !== 'basic' && user.version !== 'trial') {
-      updatePoints();
-    }
     return result;
   }, [model, plugin]);
 
@@ -524,6 +515,28 @@ const ChatProvider = ({
     });
   };
 
+  const saveChatHistory = async () => {
+    try {
+      await initDB(docType)
+      if (messages.length > 0) {
+        // store session to index db
+        const session = {
+          id: plugin.conversationId,
+          model,
+          input: messages[0].content,
+          messages: messages.filter(msg => msg.type !== 'card'),
+          memory: plugin.memory,
+          images: imageStore.values(),
+          agent: plugin.action,
+          createdAt: new Date().toISOString(),
+        }
+        saveSession(session);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   context.current = {
     platform: PLATFORM,
     plugins,
@@ -558,6 +571,10 @@ const ChatProvider = ({
     setModel,
     provider,
     setProvider,
+    setApiKey,
+    setBaseUrl,
+    getApiKey,
+    getBaseUrl,
     dataAsContext,
     setDataAsContext,
     dataContext,
@@ -577,7 +594,9 @@ const ChatProvider = ({
     setFileList,
     preview,
     setPreview,
-    loadAgents
+    loadAgents,
+    prompts,
+    loadPrompts
   };
 
   useEffect(() => {
@@ -595,29 +614,22 @@ const ChatProvider = ({
       setPlaceholder(placeholder);
     }
 
-    // if (plugin.action != plugins[0].action) {
-    if (plugin.tools && plugin.tools.length > 0) {
-      plugin.tools = plugin.tools.filter(name => tools.some(tool => tool.name == name));
-      const agentTools = plugin.tools.map((id) => {
-        return {
-          id,
-          name: id,
-          enable: true
-        };
-      });
+    // if (plugin.tools && plugin.tools.length > 0) {
+    //   plugin.tools = plugin.tools.filter(name => tools.some(tool => tool.name == name));
+    //   const list = plugin.tools.map((id) => {
+    //     return {
+    //       id,
+    //       name: id,
+    //       enable: true
+    //     };
+    //   });
 
-      setAgentTools(agentTools);
-    } else {
-      setAgentTools([]);
-    }
-
+    //   setAgentTools(list);
     // } else {
     //   setAgentTools([]);
     // }
 
   }, [plugin]);
-
-
 
   useEffect(() => {
     plugin.context = context.current;
@@ -641,9 +653,6 @@ const ChatProvider = ({
     };
   }, [subscribeMessage]);
 
-  useEffect(() => {
-    setConversationId(uuid());
-  }, [plugin, model]);
 
   useEffect(() => {
     if (!user.isAuthenticated) {
@@ -659,6 +668,12 @@ const ChatProvider = ({
     memStore.privateState = true;
     checkState();
   }, [plugin]);
+
+  useEffect(() => {
+
+    saveChatHistory();
+
+  }, [messages, plugin, model]);
 
   // console.log('agent_tools', agentTools)
 

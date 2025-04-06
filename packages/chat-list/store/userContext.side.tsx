@@ -121,29 +121,15 @@ const UserProvider = ({ children }: any) => {
     });
   }, [user]);
 
-  // const checkTimestamp = async () => {
-  //   // a month
-  //   if (timestampLoading) {
-  //     return;
-  //   }
-  //   if (timestamp > 0) {
-  //     if (Date.now() - timestamp > 1000 * 60 * 60 * 24 * 30) {
-  //       setTimestamp(Date.now());
-  //       await setGpt4limit(0);
-  //       await setGpt3limit(0);
-  //     }
-  //   } else {
-  //     setTimestamp(Date.now());
-  //   }
-  // }
-
-  // const checkLimit = async () => {
-  //   if (!gptFreelimitLoading && !gpt4limitLoading && !gpt3limitLoading && !timestampLoading) {
-  //     await checkTimestamp();
-  //     setLoading(false);
-  //   }
-  // }
-
+  const signOut = async () => {
+    setToken('');
+    await setLicenseConfig('');
+    setUser({
+      ...user,
+      isAuthenticated: false
+    })
+    setOpenLogin(true);
+  }
 
   const updatePoints = async () => {
     try {
@@ -177,7 +163,9 @@ const UserProvider = ({ children }: any) => {
       updatePoints,
       checkLicense,
       openLogin,
-      setOpenLogin
+      setOpenLogin,
+      signOut,
+      checkUserState
     }}>
       {children}
     </UserContext.Provider>

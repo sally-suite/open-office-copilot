@@ -18,7 +18,7 @@ export const FileList: React.FC<FileListProps> = ({ fileList, onFileRemove }) =>
 
   return (
     <>
-      <div className="flex flex-row justify-start w-full my-1 max-h-40 overflow-auto">
+      <div className="flex flex-row justify-start w-full my-1 max-h-40 overflow-auto px-1">
         {fileList.filter((file) => file.type.startsWith('image/')).map((file, i) => (
           <div
             className="flex flex-row flex-shrink-0 text-sm h-16 text-gray-600 items-center justify-between overflow-hidden relative"

@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
-
 const devCerts = require("office-addin-dev-certs");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const package = require("./package.json");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CustomFunctionsMetadataPlugin = require("custom-functions-metadata-plugin");
 const minimist = require("minimist");
 
 const webpack = require("webpack");
@@ -15,8 +15,8 @@ const argv = minimist(process.argv.slice(2));
 const name = argv.name;
 
 const urlDev = "https://localhost:3001/";
-const urlProd = `https://www.sally.bot/${package.name}/`; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
-const publicPath = `https://www.sally.bot/${package.name}/${name}/`; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const urlProd = `{hostname}/${package.name}/`; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const publicPath = `/${package.name}/${name}/`; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
 async function getHttpsOptions() {
   const httpsOptions = await devCerts.getHttpsServerOptions();
@@ -37,6 +37,8 @@ const ExtConfig = {
   "slide-chat": [".ppt.tsx", ".ppt.ts", ".slide.tsx", ".slide.ts", ".office.ts", ".office.tsx"],
   "generate-slides": [".ppt.tsx", ".ppt.ts", ".slide.tsx", ".slide.ts", ".office.ts", ".office.tsx"],
   jupyter: [".excel.tsx", ".excel.ts", ".sheet.tsx", ".sheet.ts", ".office.ts", ".office.tsx"],
+  references: [".word.tsx", ".word.ts", ".doc.tsx", ".doc.ts", ".office.ts", ".office.tsx"],
+  latex: [".word.tsx", ".word.ts", ".doc.tsx", ".doc.ts", ".office.ts", ".office.tsx"],
 };
 
 const ExtArray = ExtConfig[name] || [];
@@ -181,6 +183,13 @@ module.exports = async (env, options) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        VERSION: JSON.stringify(package.version),
+      }),
+      new CustomFunctionsMetadataPlugin({
+        output: "functions.json",
+        input: "./src/functions/index.tsx",
+      }),
       new CopyWebpackPlugin({
         patterns: [
           {
@@ -206,6 +215,18 @@ module.exports = async (env, options) => {
         chunks: ["polyfill", name],
         hash: true,
         inject: "body",
+      }),
+      new FileManagerPlugin({
+        events: {
+          onEnd: {
+            copy: [
+              {
+                source: path.resolve(__dirname, `dist/${name}/`),
+                destination: path.resolve(__dirname, `../web-server/public/${package.name}/${name}/`),
+              },
+            ],
+          },
+        },
       }),
     ],
   };

@@ -72,6 +72,16 @@ export default function index() {
         }
     }, [messages]);
 
+    useEffect(() => {
+        // 设置焦点事件监听器
+        window.addEventListener('focus', updateContext);
+
+        // 清理函数，在组件卸载时移除监听器
+        return () => {
+            window.removeEventListener('focus', updateContext);
+        };
+    }, []); // 空依赖数组意味着只在组件挂载和卸载时执行
+
     if (!dataContext) {
         return;
     }

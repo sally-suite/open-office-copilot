@@ -2,26 +2,15 @@ import userApi from '@api/user';
 
 import React, { createContext, useCallback, useLayoutEffect, useState } from 'react';
 import { IUserContextState, IUserState } from 'chat-list/types/user';
-import { getLicenseConfig, setLicenseConfig, getToken, getTokenExpireTime, setToken } from 'chat-list/local/local';
+import { getLicenseConfig, setLicenseConfig, getToken, setToken } from 'chat-list/local/local';
 import { login } from 'chat-list/service/auth';
 const UserContext = createContext<IUserContextState>(null);
 
 const UserProvider = ({ children }: any) => {
-  const [user, setUser] = useState<IUserState>({});
+  const [user, setUser] = useState<IUserState>(null);
   const [points, setPoints] = useState(0);
   const [loading, setLoading] = useState(true);
   const [openLogin, setOpenLogin] = useState(false);
-
-  const checkToken = async (token: string) => {
-    if (!token) {
-      return false;
-    }
-    const time = await getTokenExpireTime();
-    if (Date.now() > time) {
-      return false;
-    }
-    return true;
-  };
 
   const checkUserState = async () => {
     // check token first
@@ -34,21 +23,21 @@ const UserProvider = ({ children }: any) => {
     // if licnese is expire, show dialog
     try {
       setLoading(true);
-      const token = await getToken();
+      // const token = await getToken();
 
-      if (!token) {
-        const licenseKey = getLicenseConfig();
-        if (licenseKey) {
-          const token = await login(licenseKey);
-          setToken(token);
-        } else {
-          setUser({
-            ...user,
-            isAuthenticated: false
-          });
-          return;
-        }
-      }
+      // if (!token) {
+      //   const licenseKey = getLicenseConfig();
+      //   if (licenseKey) {
+      //     const token = await login(licenseKey);
+      //     setToken(token);
+      //   } else {
+      //     setUser({
+      //       ...user,
+      //       isAuthenticated: false
+      //     });
+      //     return;
+      //   }
+      // }
 
       const userState = await userApi.checkUser();
       const { state, email, version, exp, interval, type, points } = userState;
@@ -96,7 +85,7 @@ const UserProvider = ({ children }: any) => {
       setToken(token);
       await setLicenseConfig(licenseKey || '');
       const userState = await userApi.checkUser();
-      const { state, email, version, exp, gptLimit, interval, type, points } = userState;
+      const { state, email, version, exp, interval, type, points } = userState;
       // console.log(userState)
       setUser({
         ...user,
@@ -105,7 +94,6 @@ const UserProvider = ({ children }: any) => {
         state,
         version,
         exp,
-        gptLimit,
         interval,
         username: email.split('@')[0],
         isAuthenticated: true
@@ -118,17 +106,26 @@ const UserProvider = ({ children }: any) => {
     }
   };
 
-
   const updatePoints = async () => {
-    try {
-      const points = await userApi.getPoints();
-      if (typeof points !== 'undefined') {
-        setPoints(points);
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   const points = await userApi.getPoints();
+    //   if (typeof points !== 'undefined') {
+    //     setPoints(points);
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
+
+  const signOut = async () => {
+    setToken('');
+    await setLicenseConfig('');
+    setUser({
+      ...user,
+      isAuthenticated: false
+    })
+    setOpenLogin(true);
+  }
 
   useLayoutEffect(() => {
     checkUserState();
@@ -148,8 +145,10 @@ const UserProvider = ({ children }: any) => {
       points,
       updatePoints,
       checkLicense,
+      signOut,
       openLogin,
-      setOpenLogin
+      setOpenLogin,
+      checkUserState
     }}>
       {children}
     </UserContext.Provider>

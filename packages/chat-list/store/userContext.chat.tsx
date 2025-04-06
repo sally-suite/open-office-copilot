@@ -107,7 +107,8 @@ const UserProvider = ({ children }: any) => {
       updatePoints,
       checkLicense,
       openLogin,
-      setOpenLogin
+      setOpenLogin,
+      checkUserState
     }}>
       {children}
     </UserContext.Provider>

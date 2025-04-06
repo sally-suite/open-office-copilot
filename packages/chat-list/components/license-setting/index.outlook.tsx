@@ -9,15 +9,17 @@ import userApi from '@api/user';
 import { UserContext } from 'chat-list/store/userContext';
 import { useTranslation } from 'react-i18next';
 import useChatState from 'chat-list/hook/useChatState';
-import docApi from '@api/doc';
+import docApi from '@api/email';
 import Button from '../button';
+import PriceCard from '../price-card';
+import Loading from '../loading';
 
 const memStore = {
     init: false
 };
 
 export default function LicenseSetting() {
-    const { user, setUserState, loading: authLoading, checkLicense, openLogin: open, setOpenLogin: setOpen } = useContext(UserContext);
+    const { user, setUserState, loading: authLoading, checkLicense, openLogin: open, setOpenLogin: setOpen, signOut } = useContext(UserContext);
     useChatState();
     // const [open, setOpen] = useState(false);
     const [licenseKey, setLicenseKey] = useState('');
@@ -49,27 +51,12 @@ export default function LicenseSetting() {
         setLicenseKey(e.target.value);
     };
     const signInBy = async (platfrom: 'azure-ad' | 'google') => {
-        // const licenseKey = await getLicenseConfig();
-        // appendMsg(buildChatMessage(<CardLicense licenseKey={licenseKey} />, 'card', 'assistant'))
-
-        // setLoading(true);
-        // const LicenseKey = await getLicenseConfig();
-        // setLicenseKey(LicenseKey);
-        // setLoading(false);
-        // setOpen(true)
         const host = window.location.hostname;
         setOpen(false);
         docApi.openDialog(`https://${host}/auth/add-on/callback/target?platform=${platfrom}`, {}, async (message) => {
             const res = JSON.parse(message);
             const licenseKey = res.key;
-            const token = await userApi.login(licenseKey);
-            // console.log(token)
-            setToken(token);
-            await setLicenseConfig(licenseKey || '');
-            setUserState({
-                ...user,
-                isAuthenticated: true
-            });
+            await checkLicense(licenseKey);
             setOpen(false);
         });
     };
@@ -77,6 +64,10 @@ export default function LicenseSetting() {
     const showSignIn = () => {
         setOpen(true);
     };
+
+    const onSignOut = async () => {
+        await signOut();
+    }
 
     const checkKey = async () => {
         const token = await getToken();
@@ -96,10 +87,23 @@ export default function LicenseSetting() {
             checkKey();
         }
     }, [authLoading]);
+
+    if (authLoading) {
+        return (
+            <Loading className='h-6 w-6' />
+        );
+    }
+
+    if (user?.isAuthenticated) {
+        return (
+            <PriceCard onSignOut={onSignOut} />
+        );
+    }
+
+
     return (
         <>
             <Tooltip tip={t('common.login')}>
-                {/* <KeyRound name='openai' className="ml-1" width={16} height={16} onClick={showSignIn} /> */}
                 <div className='block text-xs rounded-full border px-2 cursor-pointer whitespace-nowrap' onClick={showSignIn}>
                     {t('common.login')}
                 </div>
@@ -119,8 +123,7 @@ export default function LicenseSetting() {
                         </div>
                     )
                 }
-
-                {/* <div className="grid gap-4 py-4 px-2">
+                <div className="grid gap-4 py-4 px-2">
                     <Button
                         variant={"outline"}
                         disabled={loading}
@@ -149,7 +152,7 @@ export default function LicenseSetting() {
                     </Button>
                 </div>
 
-                <hr /> */}
+                <hr />
                 {
                     !loading && (
                         <div className="p-1">

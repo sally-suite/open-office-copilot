@@ -451,7 +451,7 @@ export const Composer = React.forwardRef<ComposerHandle, ComposerProps>(
 
     return (
       <>
-        <div className="p-0 pb-0 flex flex-col bg-white border border-primary rounded-md  overflow-hidden">
+        <div className="p-0 pb-0 flex flex-col bg-white border border-primary rounded-md">
           {
             !!context && (
               <div className="text-sm p-0">

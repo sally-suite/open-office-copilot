@@ -24,6 +24,9 @@ import LanguageSelect from '../language-select';
 import Message from 'chat-list/components/message';
 import TextSelectionToolbar from 'chat-list/components/text-selection-toolbar';
 import EricPromote from '../eric-promo';
+import Button from '../button';
+import { PauseCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface IChatListProps {
   className?: string;
@@ -31,6 +34,7 @@ interface IChatListProps {
 
 const App = (props: IChatListProps) => {
   const { className } = props;
+  const { t } = useTranslation('base');
 
   // const [loading, setLoading] = useState(true);
   // const { user } = useContext(UserContext);
@@ -106,6 +110,12 @@ const App = (props: IChatListProps) => {
     newChat();
   };
 
+  function onAbort() {
+    if (plugin) {
+      plugin.stop();
+    }
+  }
+
   const renderIntroduction = () => {
     let content: string | React.ReactNode = "";
     if (plugin) {
@@ -164,6 +174,16 @@ const App = (props: IChatListProps) => {
             messages={messages}
             renderMessageContent={renderMessageContent}
           />
+        )
+      }
+      {
+        (typing || status == 'processing') && (
+          <div className='flex flex-row-reverse items-center justify-center mt-4 mb-10'>
+            <Button onClick={onAbort} className='w-auto rounded-full pl-0 pr-2' variant='outline'>
+              <PauseCircle className='text-primary h-5 cursor-pointer pulse mr-1' />
+              {t('common.stop_output')}
+            </Button>
+          </div>
         )
       }
       {

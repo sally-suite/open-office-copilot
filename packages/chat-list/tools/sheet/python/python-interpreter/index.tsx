@@ -2,8 +2,7 @@
 import { ChatState, ITool } from "chat-list/types/plugin";
 import instruction from './instruction.md';
 import { buildChatMessage, extractCodeFromMd } from "chat-list/utils";
-import { createXlsxFile, prepareFolder, writeFile, runFunction, readFilesToData, convertFileToMark, updateFileToSheet, prepareFont, readFileToBase64 } from '../util';
-import CardDownloadFile from 'chat-list/components/card-download-from-python';
+import { createXlsxFile, prepareFolder, writeFile, runFunction, readFilesToData, convertFileToMark, prepareFont, readFileToBase64 } from '../util';
 import React from "react";
 import sheetApi from '@api/sheet';
 import slideApi from '@api/slide';
@@ -20,9 +19,9 @@ export const func = async ({ active_sheet, script, output_files, explain, contex
     if (!script) {
         return `Sorry! I can't generate the script code`;
     }
+    const { appendMsg, docType, platform, setPreview, user } = context;
     const code = extractCodeFromMd(script);
     const resMsg = buildChatMessage(`${explain}\n\`\`\`python\n${code}\n\`\`\``, 'text');
-    const { appendMsg, docType, platform, setPreview } = context;
     appendMsg(resMsg);
 
     // let wboutArrayBuffer

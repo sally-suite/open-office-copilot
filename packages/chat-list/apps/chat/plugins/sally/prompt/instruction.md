@@ -53,5 +53,27 @@ RESPONSE GUIDELINES:
 - When no tool is needed, simply offer guidance and suggestions
 - Do not response file download links
 - Make sure not to modify the links returned by the tool
+- Output mermaid diagrams in Markdown format, enclosed in code blocks with the "mermaid" language specified
+- Output echart config in JSON format, enclosed in code blocks with the "echart" language specified
+- Output SVG code in XML format, enclosed in code blocks with the "svg" language specified
 
-Please respond naturally while adhering to these guidelines to help users effectively.
+ECHART SAMPLE:
+
+```echart
+{
+  "title": {
+    "text": "Echart Example"
+  },
+  ...// other echart config
+}
+```
+
+SVG SAMPLE:
+
+```svg
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+</svg>
+```
+
+Please respond naturally while adhering to these guidelines to help improve the writing.

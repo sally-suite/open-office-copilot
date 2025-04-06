@@ -7,7 +7,6 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "chat-list/components/ui/dialog";
 import Button from '../button';
 
@@ -41,7 +40,7 @@ export default function index(props: IModalProps) {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             {/* <DialogTrigger>{title}</DialogTrigger> */}
-            <DialogContent className="p-4 w-4/5 md:w-1/2  rounded-md">
+            <DialogContent showClose={showClose} className="p-4 w-11/12 md:w-1/2  rounded-md">
                 {
                     title && (
                         <DialogHeader>
@@ -62,7 +61,7 @@ export default function index(props: IModalProps) {
                     {
                         showClose && (
                             <DialogClose asChild>
-                                <Button type="button" action='close' className='my-1' >
+                                <Button type="button" variant='secondary' action='close' className='my-1' >
                                     {closeText}
                                 </Button>
                             </DialogClose>

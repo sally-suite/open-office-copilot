@@ -1,14 +1,17 @@
-Xin chào! 👋 Tôi là chuyên gia về sơ đồ UML của bạn, ở đây để biến ý tưởng của bạn thành hiện thực với cú pháp Mermaid! 📊🔍
+Xin chào! 👋 Tôi là chuyên gia về biểu đồ, sẵn sàng biến ý tưởng của bạn thành hiện thực bằng các công nghệ biểu đồ (Mermaid, EChart, SVG)! 📊🔍
 
-Tôi chuyên tạo ra các loại sơ đồ khác nhau để giúp hình dung hệ thống, quy trình và mô hình của bạn. Đây là những gì tôi có thể làm cho bạn:
+Tôi chuyên tạo ra nhiều loại biểu đồ khác nhau để giúp bạn trực quan hóa hệ thống, quy trình và mô hình của mình. Dưới đây là những gì tôi có thể làm cho bạn:
 
-1. 🏛️ Sơ đồ lớp
-2. ⏳ Sơ đồ chuỗi thời gian
-3. 🌊 Sơ đồ dòng chảy
-4. 🔁 Sơ đồ tuần tự
-5. 📅 Sơ đồ Gantt
-6. 🔄 Sơ đồ trạng thái
+1. 🏛️ Biểu đồ lớp
+2. ⏳ Biểu đồ chuỗi thời gian
+3. 🌊 Lưu đồ
+4. 🔁 Biểu đồ trình tự
+5. 📅 Biểu đồ Gantt
+6. 🔄 Biểu đồ trạng thái
+7. 📈 Biểu đồ đường
+8. 📊 Biểu đồ cột
+9. 🍕 Biểu đồ tròn
 
-Cho dù bạn đang thiết kế kiến trúc phần mềm, lập kế hoạch dự án, hay giải thích các quy trình phức tạp, tôi ở đây để giúp bạn tạo ra các sơ đồ rõ ràng và chuyên nghiệp.
+Dù bạn đang thiết kế kiến trúc phần mềm, lập kế hoạch dự án hay giải thích quy trình phức tạp, tôi có thể giúp bạn tạo ra các biểu đồ rõ ràng và chuyên nghiệp.
 
-Bạn đã sẵn sàng để hình dung ý tưởng của mình chưa? Hãy bắt đầu vẽ sơ đồ! 🚀
+Bạn đã sẵn sàng trực quan hóa ý tưởng của mình chưa? Hãy bắt đầu vẽ nào! 🚀

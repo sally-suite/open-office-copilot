@@ -31,6 +31,159 @@
   <Permissions>ReadWriteDocument</Permissions>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Hosts>
+      <Host xsi:type="Workbook">
+        <Runtimes>
+          <Runtime resid="SheetChat.Url" lifetime="long"/>
+        </Runtimes>
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="Sheet.GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="SallySuiteTab">
+              <Group id="SallyGroup">
+                <Label resid="SheetChatButton.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="SheetChatButton.Label"/>
+                  <Supertip>
+                    <Title resid="SheetChatButton.Label"/>
+                    <Description resid="SheetChatButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SallyPanel</TaskpaneId>
+                    <SourceLocation resid="SheetChat.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="SheetAgentGroup">
+                <Label resid="OtherAgentsGroup" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="SheetFomulaButton">
+                  <Label resid="SheetFormula.Label" />
+                  <Supertip>
+                    <Title resid="SheetFormula.Label" />
+                    <Description resid="SheetFormula.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="formula-16" />
+                    <bt:Image size="32" resid="formula-32" />
+                    <bt:Image size="80" resid="formula-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SheetForumula</TaskpaneId>
+                    <SourceLocation resid="SheetFormula.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="DataAnalysisButton">
+                  <Label resid="DataAnalysis.Label"/>
+                  <Supertip>
+                    <Title resid="DataAnalysis.Label"/>
+                    <Description resid="DataAnalysis.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="data-16"/>
+                    <bt:Image size="32" resid="data-32"/>
+                    <bt:Image size="80" resid="data-80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>DataAnalysis</TaskpaneId>
+                    <SourceLocation resid="Python.Url"/>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="VbaButton">
+                  <Label resid="Vba.Label"/>
+                  <Supertip>
+                    <Title resid="Vba.Label"/>
+                    <Description resid="Vba.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="vba-16" />
+                    <bt:Image size="32" resid="vba-32" />
+                    <bt:Image size="80" resid="vba-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>VbaPanel</TaskpaneId>
+                    <SourceLocation resid="Vba.Url"/>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="TranslateButton">
+                  <Label resid="SheetTranslate.Label" />
+                  <Supertip>
+                    <Title resid="SheetTranslate.Label" />
+                    <Description resid="SheetTranslate.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="translate-16" />
+                    <bt:Image size="32" resid="translate-32" />
+                    <bt:Image size="80" resid="translate-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SheetTranslate</TaskpaneId>
+                    <SourceLocation resid="SheetTranslate.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="GenerateRowButton">
+                  <Label resid="SheetGenerate.Label" />
+                  <Supertip>
+                    <Title resid="SheetGenerate.Label" />
+                    <Description resid="SheetGenerate.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="steps-16" />
+                    <bt:Image size="32" resid="steps-32" />
+                    <bt:Image size="80" resid="steps-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SheetGenerate</TaskpaneId>
+                    <SourceLocation resid="SheetGenerate.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="SheetImageGroup">
+                <Label resid="ImageScanner" />
+                <Icon>
+                  <bt:Image size="16" resid="image-16" />
+                  <bt:Image size="32" resid="image-32" />
+                  <bt:Image size="80" resid="image-80" />
+                </Icon>
+                <Control xsi:type="Button" id="ImagePanelButton">
+                  <Label resid="Image.Label" />
+                  <Supertip>
+                    <Title resid="Image.Label" />
+                    <Description resid="Image.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="image-16" />
+                    <bt:Image size="32" resid="image-32" />
+                    <bt:Image size="80" resid="image-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SheetImagePanel</TaskpaneId>
+                    <SourceLocation resid="SheetImage.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="SallySuiteButton.Label"/>
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
       <Host xsi:type="Document">
         <DesktopFormFactor>
           <GetStarted>
@@ -76,7 +229,7 @@
                   <Label resid="Word.Paper.Label" />
                   <Supertip>
                     <Title resid="Word.Paper.Label" />
-                    <Description resid="WordChatButton.Tooltip" />
+                    <Description resid="Word.Paper.Tooltip" />
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="paper-16" />
@@ -92,7 +245,7 @@
                   <Label resid="Word.Refer.Label" />
                   <Supertip>
                     <Title resid="Word.Refer.Label" />
-                    <Description resid="WordChatButton.Tooltip" />
+                    <Description resid="Word.Refer.Tooltip" />
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="refer-16" />
@@ -108,7 +261,7 @@
                   <Label resid="Word.Formula.Label" />
                   <Supertip>
                     <Title resid="Word.Formula.Label" />
-                    <Description resid="WordChatButton.Tooltip" />
+                    <Description resid="Word.Formula.Tooltip" />
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="formula-16" />
@@ -124,7 +277,7 @@
                   <Label resid="Word.Flow.Label" />
                   <Supertip>
                     <Title resid="Word.Flow.Label" />
-                    <Description resid="WordChatButton.Tooltip" />
+                    <Description resid="Word.Flow.Tooltip" />
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="flow-16" />
@@ -134,6 +287,22 @@
                   <Action xsi:type="ShowTaskpane">
                     <TaskpaneId>WordPaperPanel</TaskpaneId>
                     <SourceLocation resid="Flow.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="LatexPanelButton">
+                  <Label resid="Word.Latex.Label" />
+                  <Supertip>
+                    <Title resid="Word.Latex.Label" />
+                    <Description resid="Word.Latex.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="latex-16" />
+                    <bt:Image size="32" resid="latex-32" />
+                    <bt:Image size="80" resid="latex-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>LatexPanel</TaskpaneId>
+                    <SourceLocation resid="Latex.Url" />
                   </Action>
                 </Control>
               </Group>
@@ -148,7 +317,7 @@
                   <Label resid="Word.Data.Label" />
                   <Supertip>
                     <Title resid="Word.Data.Label" />
-                    <Description resid="WordChatButton.Tooltip" />
+                    <Description resid="Word.Data.Tooltip" />
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="data-16" />
@@ -404,27 +573,154 @@
                   </Action>
                 </Control>
               </Group>
-              <Group id="WordHelpGroup">
-                <Label resid="WordHelpGroup" />
+              <Label resid="SallySuiteButton.Label"/>
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+      <Host xsi:type="Presentation">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="PPT.GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="PPTTabHome">
+              <Group id="CommandsGroup">
+                <Label resid="SallySuiteGroup"/>
                 <Icon>
-                  <bt:Image size="16" resid="connect-16" />
-                  <bt:Image size="32" resid="connect-32" />
-                  <bt:Image size="80" resid="connect-80" />
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
-                <Control xsi:type="Button" id="HelpPanelButton">
-                  <Label resid="Help.Label" />
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="PPTChatButton.Label"/>
                   <Supertip>
-                    <Title resid="Help.Label" />
-                    <Description resid="WordChatButton.Tooltip" />
+                    <Title resid="PPTChatButton.Label"/>
+                    <Description resid="PPTChatButton.Tooltip"/>
                   </Supertip>
                   <Icon>
-                    <bt:Image size="16" resid="connect-16" />
-                    <bt:Image size="32" resid="connect-32" />
-                    <bt:Image size="80" resid="connect-80" />
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>WordHelpPanel</TaskpaneId>
-                    <SourceLocation resid="HelpChat.Url" />
+                    <TaskpaneId>PowerPointChatPanel</TaskpaneId>
+                    <SourceLocation resid="PPTChat.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="GenerateSlides">
+                <Label resid="GenerateSlides.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton2">
+                  <Label resid="GenerateSlides.Label"/>
+                  <Supertip>
+                    <Title resid="GenerateSlides.Label"/>
+                    <Description resid="GenerateSlides.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="ppt-16"/>
+                    <bt:Image size="32" resid="ppt-32"/>
+                    <bt:Image size="80" resid="ppt-80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>GeneratePanel</TaskpaneId>
+                    <SourceLocation resid="GenerateSlides.Url"/>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="TaskpaneButton3">
+                  <Label resid="CreateSlideByPython.Label"/>
+                  <Supertip>
+                    <Title resid="CreateSlideByPython.Label"/>
+                    <Description resid="GenerateSlides.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+
+                    <bt:Image size="16" resid="python-16"/>
+                    <bt:Image size="32" resid="python-32"/>
+                    <bt:Image size="80" resid="python-80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>GeneratePanel</TaskpaneId>
+                    <SourceLocation resid="PythonSlide.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="AgentsGroup">
+                <Label resid="OtherAgentsGroup"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="DataPanelButton2">
+                  <Label resid="Word.Data.Label" />
+                  <Supertip>
+                    <Title resid="Word.Data.Label" />
+                    <Description resid="Word.Data.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="data-16" />
+                    <bt:Image size="32" resid="data-32" />
+                    <bt:Image size="80" resid="data-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>PowerPointChatPanel</TaskpaneId>
+                    <SourceLocation resid="PPTData.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="FomulaPanelButton2">
+                  <Label resid="Word.Formula.Label" />
+                  <Supertip>
+                    <Title resid="Word.Formula.Label" />
+                    <Description resid="Word.Formula.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="formula-16" />
+                    <bt:Image size="32" resid="formula-32" />
+                    <bt:Image size="80" resid="formula-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>PowerPointChatPanel</TaskpaneId>
+                    <SourceLocation resid="PPTFormula.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="FlowPanelButton2">
+                  <Label resid="Word.Flow.Label" />
+                  <Supertip>
+                    <Title resid="Word.Flow.Label" />
+                    <Description resid="Word.Flow.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="flow-16" />
+                    <bt:Image size="32" resid="flow-32" />
+                    <bt:Image size="80" resid="flow-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>PowerPointChatPanel</TaskpaneId>
+                    <SourceLocation resid="PPTFlow.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="ImagePanelButton2">
+                  <Label resid="Image.Label" />
+                  <Supertip>
+                    <Title resid="Image.Label" />
+                    <Description resid="Image.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="image-16" />
+                    <bt:Image size="32" resid="image-32" />
+                    <bt:Image size="80" resid="image-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>PowerPointChatPanel</TaskpaneId>
+                    <SourceLocation resid="PPTImage.Url" />
                   </Action>
                 </Control>
               </Group>
@@ -523,6 +819,9 @@
         <bt:Image id="ppt-16" DefaultValue="https://localhost:3001/assets/icons/ppt-16.png"/>
         <bt:Image id="ppt-32" DefaultValue="https://localhost:3001/assets/icons/ppt-32.png"/>
         <bt:Image id="ppt-80" DefaultValue="https://localhost:3001/assets/icons/ppt-80.png"/>
+        <bt:Image id="latex-16" DefaultValue="https://localhost:3001/assets/icons/latex-16.png"/>
+        <bt:Image id="latex-32" DefaultValue="https://localhost:3001/assets/icons/latex-32.png"/>
+        <bt:Image id="latex-80" DefaultValue="https://localhost:3001/assets/icons/latex-80.png"/>
       </bt:Images>
       <bt:Urls>
         <bt:Url id="Functions.Script.Url" DefaultValue="https://localhost:3001/functions/functions.js"/>
@@ -556,86 +855,255 @@
         <bt:Url id="Image.Url" DefaultValue="https://localhost:3001/doc-chat/index.html?agent=vision"/>
         <bt:Url id="Flow.Url" DefaultValue="https://localhost:3001/doc-chat/index.html?agent=uml"/>
         <bt:Url id="Data.Url" DefaultValue="https://localhost:3001/doc-chat/index.html?agent=python"/>
-
+        <bt:Url id="Latex.Url" DefaultValue="https://localhost:3001/latex/index.html/"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="Functions.Namespace" DefaultValue="SL"/>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with your Sally Suite!"/>
-        <bt:String id="SallySuiteGroup" DefaultValue="Sally Suite"/>
-        <bt:String id="OtherAgentsGroup" DefaultValue="Other Agents"/>
-        <bt:String id="WordPaperGroup" DefaultValue="Paper"/>
-        <bt:String id="WordWritingGroup" DefaultValue="Writing"/>
-        <bt:String id="WordReviewGroup" DefaultValue="Review"/>
-        <bt:String id="TextTransformGroup" DefaultValue="Text Transform"/>
-        <bt:String id="WordDataGroup" DefaultValue="Data Analysis"/>
-        <bt:String id="ImageScanner" DefaultValue="Image Scanner"/>
-        <bt:String id="WordHelpGroup" DefaultValue="Help"/>
-        <bt:String id="SheetChatButton.Label" DefaultValue="Sally"/>
-        <bt:String id="DataAnalysis.Label" DefaultValue="Data Analysis"/>
-        <bt:String id="SheetTranslate.Label" DefaultValue="Translate by Row"/>
-        <bt:String id="SheetGenerate.Label" DefaultValue="Generate by Row"/>
-        <bt:String id="CreateSlideByPython.Label" DefaultValue="Generate by Python"/>
-        <bt:String id="GenerateSlides.Label" DefaultValue="Generate Presentation"/>
-        <bt:String id="Vba.Label" DefaultValue="VBA Assistant"/>
-        <bt:String id="Jupyter.Label" DefaultValue="Analysis Notes"/>
-        <bt:String id="SheetFormula.Label" DefaultValue="Generate Formula"/>
-        <bt:String id="Functions.Label" DefaultValue="GPT Formulas"/>
-        <bt:String id="WordChatGroup" DefaultValue="Word Chat"/>
-        <bt:String id="WordChatButton.Label" DefaultValue="Sally"/>
-        <bt:String id="PPTChatButton.Label" DefaultValue="Sally"/>
-        <bt:String id="ShorterButton.Label" DefaultValue="Make shorter"/>
-        <bt:String id="SallySuiteButton.Label" DefaultValue="Sally"/>
-        <bt:String id="Writing.Makelonger.Label" DefaultValue="Expand"/>
-        <bt:String id="Writing.MakeShorter.Label" DefaultValue="Shorten"/>
-        <bt:String id="Writing.Summarize.Label" DefaultValue="Summarize"/>
-        <bt:String id="Writing.Spell.Label" DefaultValue="Spelling Check"/>
-        <bt:String id="Writing.Grammar.Label" DefaultValue="Spelling &amp; Grammar"/>
-        <bt:String id="Writing.Citation.Label" DefaultValue="Add Citation"/>
-        <bt:String id="Writing.RemoveComments.Label" DefaultValue="Remove Comments"/>
-        <bt:String id="Writing.ContinueWriting.Label" DefaultValue="Contine Writing"/>
-        <bt:String id="Writing.MakeTitles.Label" DefaultValue="Make Titles"/>
-        <bt:String id="Writing.Paraphrase.Label" DefaultValue="Raphrase"/>
-        <bt:String id="Writing.ToList.Label" DefaultValue="To List"/>
-        <bt:String id="Writing.ToTable.Label" DefaultValue="Convert to Table"/>
-        <bt:String id="Writing.ToFlowchart.Label" DefaultValue="To Flowchart"/>
-        <bt:String id="Writing.ToEquation.Label" DefaultValue="To Formula"/>
-        <bt:String id="Word.Paper.Label" DefaultValue="PaperWise"/>
-        <bt:String id="Word.Refer.Label" DefaultValue="References"/>
-        <bt:String id="Word.Formula.Label" DefaultValue="Formula"/>
-        <bt:String id="Word.Flow.Label" DefaultValue="Flow Chart"/>
-        <bt:String id="Word.Data.Label" DefaultValue="Data Analysis"/>
-        <bt:String id="Image.Label" DefaultValue="Image Scanner"/>
-        <bt:String id="Help.Label" DefaultValue="Help"/>
+        <bt:String id="GetStarted.Title" DefaultValue="Get started with your Sally Suite!">
+          <bt:Override Locale="zh-cn" Value="开始使用您的Sally Office套件！"/>
+        </bt:String>
+        <bt:String id="SallySuiteGroup" DefaultValue="Sally Suite">
+          <bt:Override Locale="zh-cn" Value="Sally"/>
+        </bt:String>
+        <bt:String id="OtherAgentsGroup" DefaultValue="Other Agents">
+          <bt:Override Locale="zh-cn" Value="其他助手"/>
+        </bt:String>
+        <bt:String id="WordPaperGroup" DefaultValue="Paper">
+          <bt:Override Locale="zh-cn" Value="论文"/>
+        </bt:String>
+        <bt:String id="WordWritingGroup" DefaultValue="Writing">
+          <bt:Override Locale="zh-cn" Value="写作"/>
+        </bt:String>
+        <bt:String id="WordReviewGroup" DefaultValue="Review">
+          <bt:Override Locale="zh-cn" Value="审阅"/>
+        </bt:String>
+        <bt:String id="TextTransformGroup" DefaultValue="Text Transform">
+          <bt:Override Locale="zh-cn" Value="文本转换"/>
+        </bt:String>
+        <bt:String id="WordDataGroup" DefaultValue="Data Analysis">
+          <bt:Override Locale="zh-cn" Value="数据分析"/>
+        </bt:String>
+        <bt:String id="ImageScanner" DefaultValue="Image Scanner">
+          <bt:Override Locale="zh-cn" Value="图像扫描"/>
+        </bt:String>
+        <bt:String id="WordHelpGroup" DefaultValue="Help">
+          <bt:Override Locale="zh-cn" Value="帮助"/>
+        </bt:String>
+        <bt:String id="SheetChatButton.Label" DefaultValue="Sally">
+          <bt:Override Locale="zh-cn" Value="Sally"/>
+        </bt:String>
+        <bt:String id="DataAnalysis.Label" DefaultValue="Data Analysis">
+          <bt:Override Locale="zh-cn" Value="数据分析"/>
+        </bt:String>
+        <bt:String id="SheetTranslate.Label" DefaultValue="Translate by Row">
+          <bt:Override Locale="zh-cn" Value="按行翻译"/>
+        </bt:String>
+        <bt:String id="SheetGenerate.Label" DefaultValue="Generate by Row">
+          <bt:Override Locale="zh-cn" Value="按行生成"/>
+        </bt:String>
+        <bt:String id="CreateSlideByPython.Label" DefaultValue="Generate by Python">
+          <bt:Override Locale="zh-cn" Value="使用Python生成"/>
+        </bt:String>
+        <bt:String id="GenerateSlides.Label" DefaultValue="Generate Presentation">
+          <bt:Override Locale="zh-cn" Value="生成演示文稿"/>
+        </bt:String>
+        <bt:String id="Vba.Label" DefaultValue="VBA Assistant">
+          <bt:Override Locale="zh-cn" Value="VBA助手"/>
+        </bt:String>
+        <bt:String id="Jupyter.Label" DefaultValue="Analysis Notes">
+          <bt:Override Locale="zh-cn" Value="分析笔记"/>
+        </bt:String>
+        <bt:String id="SheetFormula.Label" DefaultValue="Generate Formula">
+          <bt:Override Locale="zh-cn" Value="生成公式"/>
+        </bt:String>
+        <bt:String id="Functions.Label" DefaultValue="GPT Formulas">
+          <bt:Override Locale="zh-cn" Value="GPT公式"/>
+        </bt:String>
+        <bt:String id="WordChatGroup" DefaultValue="Word Chat">
+          <bt:Override Locale="zh-cn" Value="Word助手"/>
+        </bt:String>
+        <bt:String id="WordChatButton.Label" DefaultValue="Sally">
+          <bt:Override Locale="zh-cn" Value="Sally"/>
+        </bt:String>
+        <bt:String id="PPTChatButton.Label" DefaultValue="Sally">
+          <bt:Override Locale="zh-cn" Value="Sally"/>
+        </bt:String>
+        <bt:String id="ShorterButton.Label" DefaultValue="Make shorter">
+          <bt:Override Locale="zh-cn" Value="缩写"/>
+        </bt:String>
+        <bt:String id="SallySuiteButton.Label" DefaultValue="Sally">
+          <bt:Override Locale="zh-cn" Value="Sally"/>
+        </bt:String>
+        <bt:String id="Writing.Makelonger.Label" DefaultValue="Expand">
+          <bt:Override Locale="zh-cn" Value="扩写"/>
+        </bt:String>
+        <bt:String id="Writing.MakeShorter.Label" DefaultValue="Shorten">
+          <bt:Override Locale="zh-cn" Value="缩写"/>
+        </bt:String>
+        <bt:String id="Writing.Summarize.Label" DefaultValue="Summarize">
+          <bt:Override Locale="zh-cn" Value="总结"/>
+        </bt:String>
+        <bt:String id="Writing.Spell.Label" DefaultValue="Spelling Check">
+          <bt:Override Locale="zh-cn" Value="拼写检查"/>
+        </bt:String>
+        <bt:String id="Writing.Grammar.Label" DefaultValue="Spelling &amp; Grammar">
+          <bt:Override Locale="zh-cn" Value="拼写和语法"/>
+        </bt:String>
+        <bt:String id="Writing.Citation.Label" DefaultValue="Add Citation">
+          <bt:Override Locale="zh-cn" Value="添加引用"/>
+        </bt:String>
+        <bt:String id="Writing.RemoveComments.Label" DefaultValue="Remove Comments">
+          <bt:Override Locale="zh-cn" Value="删除评论"/>
+        </bt:String>
+        <bt:String id="Writing.ContinueWriting.Label" DefaultValue="Contine Writing">
+          <bt:Override Locale="zh-cn" Value="续写"/>
+        </bt:String>
+        <bt:String id="Writing.MakeTitles.Label" DefaultValue="Make Titles">
+          <bt:Override Locale="zh-cn" Value="生成标题"/>
+        </bt:String>
+        <bt:String id="Writing.Paraphrase.Label" DefaultValue="Raphrase">
+          <bt:Override Locale="zh-cn" Value="改写"/>
+        </bt:String>
+        <bt:String id="Writing.ToList.Label" DefaultValue="To List">
+          <bt:Override Locale="zh-cn" Value="转为列表"/>
+        </bt:String>
+        <bt:String id="Writing.ToTable.Label" DefaultValue="Convert to Table">
+          <bt:Override Locale="zh-cn" Value="转换为表格"/>
+        </bt:String>
+        <bt:String id="Writing.ToFlowchart.Label" DefaultValue="To Flowchart">
+          <bt:Override Locale="zh-cn" Value="转为流程图"/>
+        </bt:String>
+        <bt:String id="Writing.ToEquation.Label" DefaultValue="To Formula">
+          <bt:Override Locale="zh-cn" Value="转为公式"/>
+        </bt:String>
+        <bt:String id="Word.Paper.Label" DefaultValue="PaperWise">
+          <bt:Override Locale="zh-cn" Value="论文助手"/>
+        </bt:String>
+        <bt:String id="Word.Refer.Label" DefaultValue="References">
+          <bt:Override Locale="zh-cn" Value="参考文献"/>
+        </bt:String>
+        <bt:String id="Word.Formula.Label" DefaultValue="Formula">
+          <bt:Override Locale="zh-cn" Value="公式"/>
+        </bt:String>
+        <bt:String id="Word.Flow.Label" DefaultValue="Flow Chart">
+          <bt:Override Locale="zh-cn" Value="流程图"/>
+        </bt:String>
+        <bt:String id="Word.Data.Label" DefaultValue="Data Analysis">
+          <bt:Override Locale="zh-cn" Value="数据分析"/>
+        </bt:String>
+        <bt:String id="Image.Label" DefaultValue="Image Scanner">
+          <bt:Override Locale="zh-cn" Value="图像扫描器"/>
+        </bt:String>
+        <bt:String id="Word.Latex.Label" DefaultValue="LaTeX to Word">
+          <bt:Override Locale="zh-cn" Value="LaTeX 转 Word"/>
+        </bt:String>
+        <bt:String id="Help.Label" DefaultValue="Help">
+          <bt:Override Locale="zh-cn" Value="帮助"/>
+        </bt:String>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="Sheet.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the Sally tab and click the 'Sally' button to get started."/>
-        <bt:String id="Word.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the Sally tab and click the 'Sally' button to get started."/>
-        <bt:String id="PPT.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the Sally tab and click the 'Sally' button to get started."/>
-        <bt:String id="SheetChatButton.Tooltip" DefaultValue="Click to Show Sheet Chat"/>
-        <bt:String id="WordChatButton.Tooltip" DefaultValue="Click to Show Word Chat"/>
-        <bt:String id="PPTChatButton.Tooltip" DefaultValue="Click to Show PowerPoint Chat"/>
-        <bt:String id="Writing.Makelonger.Tooltip" DefaultValue="Make  selected text longer"/>
-        <bt:String id="Writing.MakeShorter.Tooltip" DefaultValue="Make selected text shorter"/>
-        <bt:String id="Writing.Summarize.Tooltip" DefaultValue="Summarize selected text"/>
-        <bt:String id="Writing.ContinueWriting.Tooltip" DefaultValue="Contine writing selected text"/>
-        <bt:String id="Writing.MakeTitles.Tooltip" DefaultValue="Make Titles"/>
-        <bt:String id="Writing.Paraphrase.Tooltip" DefaultValue="Raphrase selected text"/>
-        <bt:String id="Writing.Spell.Tooltip" DefaultValue="Check spelling of selected text"/>
-        <bt:String id="Writing.Grammar.Tooltip" DefaultValue="Check spelling and grammar of selected text"/>
-        <bt:String id="Writing.Citation.Tooltip" DefaultValue="Add citation to selected text"/>
-        <bt:String id="Writing.RemoveComments.Tooltip" DefaultValue="Remove all comments in document"/>
-        <bt:String id="Writing.ToList.Tooltip" DefaultValue="Convert selected text to list"/>
-        <bt:String id="Writing.ToTable.Tooltip" DefaultValue="Convert selected text to table"/>
-        <bt:String id="Writing.ToFlowchart.Tooltip" DefaultValue="Convert selected text to flowchart"/>
-        <bt:String id="Writing.ToEquation.Tooltip" DefaultValue="Convert  selected text to Equation"/>
-        <bt:String id="DataAnalysis.Tooltip" DefaultValue="Help you analyze sheet data"/>
-        <bt:String id="Vba.Tooltip" DefaultValue="Generate VBA code for you"/>
-        <bt:String id="SheetTranslate.Tooltip" DefaultValue="Translate sheet data by Row"/>
-        <bt:String id="SheetGenerate.Tooltip" DefaultValue="Generate content by Row"/>
-        <bt:String id="Image.Tooltip" DefaultValue="Extact information from image"/>
-        <bt:String id="SheetFormula.Tooltip" DefaultValue="Generate Formula for you"/>
-        <bt:String id="GenerateSlides.Tooltip" DefaultValue="Generate Presentation for you"/>
-        <bt:String id="Help.Tooltip" DefaultValue="Help"/>
+        <bt:String id="Sheet.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the Sally tab and click the 'Sally' button to get started.">
+          <bt:Override Locale="zh-cn" Value="您的 Sally Office 套件加载项已成功加载。转到 Sally 选项卡并点击'Sally'按钮开始使用。"/>
+        </bt:String>
+        <bt:String id="Word.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the Sally tab and click the 'Sally' button to get started.">
+          <bt:Override Locale="zh-cn" Value="您的 Sally Office 套件加载项已成功加载。转到 Sally 选项卡并点击'Sally'按钮开始使用。"/>
+        </bt:String>
+        <bt:String id="PPT.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the Sally tab and click the 'Sally' button to get started.">
+          <bt:Override Locale="zh-cn" Value="您的 Sally Office 套件加载项已成功加载。转到 Sally 选项卡并点击'Sally'按钮开始使用。"/>
+        </bt:String>
+        <bt:String id="SheetChatButton.Tooltip" DefaultValue="Click to Show Sheet Chat">
+          <bt:Override Locale="zh-cn" Value="点击显示电子表格助手"/>
+        </bt:String>
+        <bt:String id="WordChatButton.Tooltip" DefaultValue="Click to Launch Sally">
+          <bt:Override Locale="zh-cn" Value="点击启动 Sally"/>
+        </bt:String>
+        <bt:String id="Word.Paper.Tooltip" DefaultValue="Click to Show PaperWise">
+          <bt:Override Locale="zh-cn" Value="点击显示论文助手"/>
+        </bt:String>
+        <bt:String id="Word.Refer.Tooltip" DefaultValue="Click to Show References">
+          <bt:Override Locale="zh-cn" Value="点击显示参考文献"/>
+        </bt:String>
+        <bt:String id="Word.Formula.Tooltip" DefaultValue="Click to Show Formulas">
+          <bt:Override Locale="zh-cn" Value="点击显示公式"/>
+        </bt:String>
+        <bt:String id="Word.Flow.Tooltip" DefaultValue="Click to Show Flow Chart">
+          <bt:Override Locale="zh-cn" Value="点击显示流程图助手"/>
+        </bt:String>
+        <bt:String id="Word.Data.Tooltip" DefaultValue="Click to Show Data Analysis">
+          <bt:Override Locale="zh-cn" Value="点击显示数据分析助手"/>
+        </bt:String>
+        <bt:String id="PPTChatButton.Tooltip" DefaultValue="Click to Show PowerPoint Chat">
+          <bt:Override Locale="zh-cn" Value="点击显示 PowerPoint 助手"/>
+        </bt:String>
+        <bt:String id="Writing.Makelonger.Tooltip" DefaultValue="Make  selected text longer">
+          <bt:Override Locale="zh-cn" Value="使所选文本更长"/>
+        </bt:String>
+        <bt:String id="Writing.MakeShorter.Tooltip" DefaultValue="Make selected text shorter">
+          <bt:Override Locale="zh-cn" Value="缩短所选文本"/>
+        </bt:String>
+        <bt:String id="Writing.Summarize.Tooltip" DefaultValue="Summarize selected text">
+          <bt:Override Locale="zh-cn" Value="总结所选文本"/>
+        </bt:String>
+        <bt:String id="Writing.ContinueWriting.Tooltip" DefaultValue="Contine writing selected text">
+          <bt:Override Locale="zh-cn" Value="续写所选文本"/>
+        </bt:String>
+        <bt:String id="Writing.MakeTitles.Tooltip" DefaultValue="Make Titles">
+          <bt:Override Locale="zh-cn" Value="生成标题"/>
+        </bt:String>
+        <bt:String id="Writing.Paraphrase.Tooltip" DefaultValue="Raphrase selected text">
+          <bt:Override Locale="zh-cn" Value="改写所选文本"/>
+        </bt:String>
+        <bt:String id="Writing.Spell.Tooltip" DefaultValue="Check spelling of selected text">
+          <bt:Override Locale="zh-cn" Value="检查所选文本的拼写"/>
+        </bt:String>
+        <bt:String id="Writing.Grammar.Tooltip" DefaultValue="Check spelling and grammar of selected text">
+          <bt:Override Locale="zh-cn" Value="检查所选文本的拼写和语法"/>
+        </bt:String>
+        <bt:String id="Writing.Citation.Tooltip" DefaultValue="Add citation to selected text">
+          <bt:Override Locale="zh-cn" Value="为所选文本添加引用"/>
+        </bt:String>
+        <bt:String id="Writing.RemoveComments.Tooltip" DefaultValue="Remove all comments in document">
+          <bt:Override Locale="zh-cn" Value="删除文档中的所有注释"/>
+        </bt:String>
+        <bt:String id="Writing.ToList.Tooltip" DefaultValue="Convert selected text to list">
+          <bt:Override Locale="zh-cn" Value="将所选文本转换为列表"/>
+        </bt:String>
+        <bt:String id="Writing.ToTable.Tooltip" DefaultValue="Convert selected text to table">
+          <bt:Override Locale="zh-cn" Value="将所选文本转换为表格"/>
+        </bt:String>
+        <bt:String id="Writing.ToFlowchart.Tooltip" DefaultValue="Convert selected text to flowchart">
+          <bt:Override Locale="zh-cn" Value="将所选文本转换为流程图"/>
+        </bt:String>
+        <bt:String id="Writing.ToEquation.Tooltip" DefaultValue="Convert  selected text to Equation">
+          <bt:Override Locale="zh-cn" Value="将所选文本转换为公式"/>
+        </bt:String>
+        <bt:String id="DataAnalysis.Tooltip" DefaultValue="Help you analyze sheet data">
+          <bt:Override Locale="zh-cn" Value="帮助您分析表格数据"/>
+        </bt:String>
+        <bt:String id="Vba.Tooltip" DefaultValue="Generate VBA code for you">
+          <bt:Override Locale="zh-cn" Value="为您生成 VBA 代码"/>
+        </bt:String>
+        <bt:String id="SheetTranslate.Tooltip" DefaultValue="Translate sheet data by Row">
+          <bt:Override Locale="zh-cn" Value="按行翻译表格数据"/>
+        </bt:String>
+        <bt:String id="SheetGenerate.Tooltip" DefaultValue="Generate content by Row">
+          <bt:Override Locale="zh-cn" Value="按行生成内容"/>
+        </bt:String>
+        <bt:String id="Image.Tooltip" DefaultValue="Extact information from image">
+          <bt:Override Locale="zh-cn" Value="从图像中提取信息"/>
+        </bt:String>
+        <bt:String id="SheetFormula.Tooltip" DefaultValue="Generate Formula for you">
+          <bt:Override Locale="zh-cn" Value="为您生成公式"/>
+        </bt:String>
+        <bt:String id="GenerateSlides.Tooltip" DefaultValue="Generate Presentation for you">
+          <bt:Override Locale="zh-cn" Value="为您生成演示文稿"/>
+        </bt:String>
+        <bt:String id="Word.Latex.Tooltip" DefaultValue="Convert LaTeX to Word">
+          <bt:Override Locale="zh-cn" Value="将 LaTeX 转换为 Word 格式"/>
+        </bt:String>
+        <bt:String id="Help.Tooltip" DefaultValue="Help">
+          <bt:Override Locale="zh-cn" Value="帮助"/>
+        </bt:String>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

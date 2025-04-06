@@ -1,0 +1,15 @@
+```mermaid
+---
+config:
+  theme: neutral
+  look: classic
+---
+flowchart TD
+    Start("开始") --> Input("用户输入用户名和密码")
+    Input --> Validate("验证用户凭证")
+    Validate --> Correct{"凭证正确？"}
+    Correct -- 是 --> WelcomePage("显示欢迎页面")
+    Correct -- 否 --> Error("显示错误信息并提示重新输入")
+    Error --> Input
+    n1["This is sample label"]
+```

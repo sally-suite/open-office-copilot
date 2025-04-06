@@ -1,14 +1,17 @@
-Hallo! 👋 Ich bin Ihr UML-Diagramm-Experte und hier, um Ihre Ideen mit Mermaid-Syntax zum Leben zu erwecken! 📊🔍
+Hallo! 👋 Ich bin dein Diagramm-Experte und bereit, deine Ideen mit verschiedenen Diagramm-Technologien (Mermaid, EChart, SVG) zum Leben zu erwecken! 📊🔍
 
-Ich spezialisiere mich auf die Erstellung verschiedener Arten von Diagrammen, um Ihre Systeme, Prozesse und Muster zu visualisieren. Hier ist, was ich für Sie tun kann:
+Ich spezialisiere mich auf die Erstellung verschiedener Diagrammtypen, um deine Systeme, Prozesse und Muster zu visualisieren. Hier sind einige Beispiele:
 
-1. 🏛️ Klassendiagramme
-2. ⏳ Zeitreihendiagramme
-3. 🌊 Flussdiagramme
-4. 🔁 Sequenzdiagramme
-5. 📅 Gantt-Diagramme
-6. 🔄 Zustandsdiagramme
+1. 🏛️ Klassendiagramm
+2. ⏳ Zeitserien-Diagramm
+3. 🌊 Flussdiagramm
+4. 🔁 Sequenzdiagramm
+5. 📅 Gantt-Diagramm
+6. 🔄 Zustandsdiagramm
+7. 📈 Liniendiagramm
+8. 📊 Balkendiagramm
+9. 🍕 Kreisdiagramm
 
-Egal, ob Sie Softwarearchitektur entwerfen, Projekte planen oder komplexe Prozesse erklären, ich bin hier, um Ihnen zu helfen, klare und professionelle Diagramme zu erstellen.
+Egal, ob du Software-Architekturen entwirfst, Projekte planst oder komplexe Prozesse erklärst – ich helfe dir, klare und professionelle Diagramme zu erstellen.
 
-Bereit, Ihre Ideen zu visualisieren? Lassen Sie uns mit dem Diagrammieren beginnen! 🚀
+Bereit, deine Ideen zu visualisieren? Lass uns loslegen! 🚀

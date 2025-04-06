@@ -1,0 +1,138 @@
+/* MyComponent.module.css */
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 2px; /* 0.25rem * 16px */
+  position: fixed;
+
+  right: -100px; /* 0.25rem * 16px */
+  background-color: white;
+  border-radius: 20px; /* Equivalent to full in Tailwind */
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* transition: all 0.3s ease-in-out; */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.container:hover {
+  right: 0;
+}
+.containerExpanded {
+  height: auto;
+}
+
+.group {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 32px; /* 2rem * 16px */
+  width: 32px; /* 2rem * 16px */
+  border-radius: 9999px; /* Equivalent to full in Tailwind */
+  font-size: 14px; /* 0.875rem * 16px */
+}
+
+.groupGreen {
+  background-color: #a7f3d0;
+}
+
+.groupGray {
+  background-color: #f3f4f6;
+}
+
+.textGreen {
+  color: #065f46;
+}
+
+.textGray {
+  color: #262626;
+}
+
+.iconContainer {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 32px; /* 2rem * 16px */
+  width: 32px; /* 2rem * 16px */
+  border-radius: 9999px; /* Equivalent to full in Tailwind */
+}
+.bar {
+  position: fixed;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px; /* Assuming space-x-1 is 1rem which equals 16px, divided by 4 to convert to px */
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 2px;
+  cursor: pointer;
+  background-color: white;
+  overflow: hidden;
+  width: auto;
+  box-sizing: border-box;
+  border: none;
+}
+
+.sidebar {
+  position: fixed;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 2px;
+  cursor: pointer;
+  background-color: white;
+  overflow: hidden;
+  width: 36px; /* Assuming w-10 is 2.5rem which equals 40px */
+  /* height: 36px; */
+  box-sizing: border-box;
+  border: none;
+  opacity: 0.5;
+}
+
+.sidebar:hover {
+  width: auto;
+  /* height: auto; */
+  overflow: hidden;
+  opacity: 1;
+}
+
+.barItem {
+  width: 32px; /* Assuming w-8 is 2rem which equals 32px */
+  height: 32px; /* Assuming h-8 is 2rem which equals 32px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #f1f5f9; /* Assuming bg-slate-100 */
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.barItem:hover {
+  background-color: #d1d5db; /* Assuming bg-slate-300 */
+}
+
+.barItem.active {
+  background-color: #a7f3d0;
+}
+
+.barItem:first-child {
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+}
+
+.barItem:last-child {
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+}

@@ -7,7 +7,7 @@ export interface IGptService {
     completions?: (body: ICompletionsBody) => Promise<string>;
     embeddings: (body: IEmbeddingsBody) => Promise<number[]>;
     generateImages?: (body: IGetImagesOptions) => Promise<ImageGenerations>;
-    addModel?: (model: string, provider: string) => Promise<void>;
+    addModel?: (value: { id?: string, model: string, provider?: string, baseUrl?: string }) => Promise<void>;
     getModels?: () => Promise<{ model: string, baseUrl: string }[]>;
-    removeModel?: (model: string, provider: string) => Promise<void>;
+    removeModel?: (id: string) => Promise<void>;
 }

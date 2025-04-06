@@ -25,12 +25,6 @@ export const func = async ({ user_requirements, context }: { user_requirements: 
     const exampleRow = values[0]; // 获取示例数据行
     for (let batch = 0; batch < totalBatches; batch++) {
         const batchValues = values.slice(batch * BATCH_SIZE, (batch + 1) * BATCH_SIZE);
-        // const prompt = template(answerDataTmp, {
-        //     exampleRow: JSON.stringify(exampleRow, null, 2),
-        //     tableData: JSON.stringify(batchValues, null, 2), // 将示例数据行添加到批次数据中
-        //     requirement: user_requirements
-        // });
-        // const input = `USER REQUIREMENT:\n${user_requirements}`;
         let content = '';
         await chatByTemplate(answerDataTmp, {
             requirements: user_requirements,
@@ -53,7 +47,11 @@ export const func = async ({ user_requirements, context }: { user_requirements: 
             }
         }
         if (Array.isArray(value) && value.length > 0 && Array.isArray(value[0])) {
-            await sheetApi.setValuesByRange(value, row + batch * BATCH_SIZE, col, value.length, colNum);
+            try {
+                await sheetApi.setValuesByRange(value, row + batch * BATCH_SIZE, col, value.length, value[0].length);
+            } catch (e) {
+                console.error(e);
+            }
             allValues = allValues.concat(value);
         }
     }

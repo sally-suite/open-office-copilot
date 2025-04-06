@@ -10,11 +10,17 @@ import remarkStringify from 'remark-stringify';
 import remarkGfm from 'remark-gfm';
 import { unified } from 'unified';
 
-import { visit } from 'unist-util-visit';
+import visit from 'unist-util-visit';
 import { toHtml } from 'hast-util-to-html';
 import type { Plugin } from 'unified';
 import type { Root } from 'hast';
 import { svgAsPng } from './img';
+import mermaid from 'mermaid';
+
+mermaid.initialize({
+    theme: 'neutral',
+    startOnLoad: false,
+});
 
 // SVG 转 PNG 插件
 const svgToImagePlugin: Plugin<[], Root> = function () {
@@ -138,3 +144,44 @@ const buildHtmlWithMathjax = async (text: string) => {
     const html = hastNode.value as string;
     return html;
 };
+
+
+export class StreamingMarkdownProcessor {
+    processedParagraphsCount = 0;
+    buffer = '';
+    paragraphDelimiter = /\n\s*\n/;
+    async processStream(chunk: string): Promise<{
+        newParagraphs: string[];
+        remainingBuffer: string;
+    }> {
+        this.buffer += chunk;
+        const parts = this.buffer.split(this.paragraphDelimiter);
+
+        // 保留最后一个可能不完整的段落
+        const remainingBuffer = parts.pop() || '';
+
+        // 只处理新的段落
+        const newParagraphs = await Promise.all(
+            parts.slice(this.processedParagraphsCount)
+        );
+
+        // 更新已处理段落计数
+        this.processedParagraphsCount = parts.length;
+
+        // 更新buffer只包含未完成的部分
+        this.buffer = remainingBuffer;
+
+        return {
+            newParagraphs,
+            remainingBuffer
+        };
+    }
+
+    async finalize(): Promise<string[]> {
+        if (!this.buffer) return [];
+        const final = this.buffer.trim();
+        this.buffer = '';
+        this.processedParagraphsCount = 0;
+        return [final];
+    }
+}

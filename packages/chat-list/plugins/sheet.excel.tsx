@@ -7,7 +7,6 @@ import Vision from './vision';
 import Python from './python';
 import Vba from './vba';
 import Jupyter from './jupyter';
-import Eric from './eric';
 
 export const plugins = [
   Sally,
@@ -17,8 +16,7 @@ export const plugins = [
   Vision,
   Translate,
   Intelligent,
-  Jupyter,
-  Eric
+  Jupyter
 ];
 
 export const homeQuickReplies = (): any[] => {

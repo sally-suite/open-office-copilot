@@ -1,9 +1,9 @@
-import { SHEET_CHAT_API_KEY, SHEET_CHAT_SITE } from "chat-list/config/site";
+import { SHEET_CHAT_SITE } from "chat-list/config/site";
 import { fail } from 'chat-list/components/ui/use-toast';
 import { getToken } from "chat-list/local/local";
 
 
-export type RequestConfig = RequestInit & { params?: any; data?: any };
+export type RequestConfig = RequestInit & { params?: any; data?: any, hideErrorAlert?: boolean };
 
 export type StreamRequestConfig = RequestInit & { params?: any; data?: any, parseChunk?: (chunkValue: string) => string };
 
@@ -98,9 +98,13 @@ export class Request {
   // 拦截请求，统一处理异常
   async interceptFetch(url: string, config: RequestConfig) {
     try {
-      const { url: fullUrl, config: mergedConfig } = await this.prepareConfig(url, config);
+      const { url: fullUrl, config: mergedConfig, } = await this.prepareConfig(url, config);
       const response = await fetch(fullUrl, mergedConfig);
       if (!response.ok) {
+        const text = await response.text();
+        if (text) {
+          throw new ErrorWithCode(text, response.status);
+        }
         throw new ErrorWithCode(`Request failed with status ${response.status}`, response.status);
       }
 
@@ -119,6 +123,9 @@ export class Request {
       console.log(url, error);
       console.error('Request failed:', error.message);
       // fail(error.message)
+      if (error.code == 403) {
+        fail(error.message)
+      }
       throw error;
     }
   }
@@ -127,6 +134,9 @@ export class Request {
     try {
       const { parseChunk, ...rest } = mergedConfig as any;
       const controller = new AbortController();
+      window.abort = () => {
+        controller.abort();
+      }
       const response = await fetch(fullUrl, {
         ...rest,
         method: 'POST',
@@ -134,6 +144,10 @@ export class Request {
       });
 
       if (!response.ok) {
+        const text = await response.text();
+        if (text) {
+          throw new ErrorWithCode(text, response.status);
+        }
         throw new ErrorWithCode(`Request failed with status ${response.status}`, response.status);
       }
 
@@ -145,7 +159,6 @@ export class Request {
         controller.abort();
       };
       const lines = [];
-
       for await (const line of makeTextSteamLineIterator(reader)) {
         lines.push(line);
         if (callback) {
@@ -162,9 +175,13 @@ export class Request {
       return lines;
 
     } catch (error) {
+
       // 可以在这里处理异常，例如上报错误，显示错误提示等
       console.error('Request failed:', error);
       console.log(error.stack);
+      if (error.code == 403) {
+        fail(error.message)
+      }
       throw error;
     }
   }
@@ -175,6 +192,9 @@ export class Request {
     try {
       const { parseChunk, ...rest } = mergedConfig as any;
       const controller = new AbortController();
+      window.abort = () => {
+        controller.abort();
+      }
       const response = await fetch(fullUrl, {
         ...rest,
         method: 'POST',
@@ -182,6 +202,10 @@ export class Request {
       });
 
       if (!response.ok) {
+        const text = await response.text();
+        if (text) {
+          throw new ErrorWithCode(text, response.status);
+        }
         throw new ErrorWithCode(`Request failed with status ${response.status}`, response.status);
       }
 
@@ -225,6 +249,9 @@ export class Request {
       // 可以在这里处理异常，例如上报错误，显示错误提示等
       console.error('Request failed:', error);
       console.log(error.stack);
+      if (error.code == 403) {
+        fail(error.message)
+      }
       throw error;
     }
   }
@@ -269,14 +296,18 @@ export class Request {
         method: "POST"
       });
       if (!response.ok) {
-        throw new ErrorWithCode(`Request failed with status ${response.status}`, response.status);
+        const text = await response.text();
+        throw new ErrorWithCode(`Request failed with status ${response.status},${text}`, response.status);
       }
       return response;
     } catch (error) {
       // 可以在这里处理异常，例如上报错误，显示错误提示等
       console.log(url, error);
       console.error('Request failed:', error.message);
-      fail(error.message);
+      if (!config.hideErrorAlert) {
+        fail(error.message);
+      }
+      // fail(error.message);
       throw error;
     }
   }

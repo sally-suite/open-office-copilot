@@ -17,10 +17,10 @@ import QuickReply from 'chat-list/components/quick-reply';
 import { QuickReplyItem } from 'chat-list/types/message';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// import prompt from 'chat-list/data/prompts'
-// import i18n from 'chat-list/locales/i18n';
+import prompt from 'chat-list/data/prompts'
+import i18n from 'chat-list/locales/i18n';
 import GoogleDrive from 'chat-list/components/drive-google';
-
+import Commands from 'chat-list/components/commands';
 // import PluginSetting from 'chat-list/components/plugin-setting'
 // eslint-disable-next-line @typescript-eslint/ban-types
 type ChatComposerExtProps = {
@@ -48,7 +48,7 @@ export default React.memo(function ChatComposer(props: IChatComposerProps) {
   // const [isAccessoryOpen, setIsAccessoryOpen] = useState(false);
   const { plugin, setText, plugins, docType, mute,
     setMute, resetList, appendMsg, setTyping, replies, quickReply,
-    colAgents, newChat, fileList, setFileList, platform
+    colAgents, newChat, fileList, setFileList, platform, prompts
   } = useContext(ChatContext);
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -215,14 +215,11 @@ export default React.memo(function ChatComposer(props: IChatComposerProps) {
 
   return (
     <div className=' pt-1'>
-      {/* {!isAccessoryOpen && (
-        <Commands
-          input={text}
-          className=" absolute left-0 right-0"
-          onSelect={onCommandSelect}
-        />
-      )} */}
-
+      {/* <Commands
+        input={text}
+        className=" absolute left-0 right-0"
+      onSelect={onCommandSelect}
+      /> */}
       {/* <PluginSetting onChange={() => void 0} /> */}
       <div className='px-1 relative'>
         <QuickReply items={replies} quickReply={onQuickReply} />
@@ -248,8 +245,8 @@ export default React.memo(function ChatComposer(props: IChatComposerProps) {
           onToolbarClick={onToolbarClick}
           onAccessoryToggle={onAccessoryToggle}
           mentions={[]}
-          // prompts={(docType === 'doc' || docType === 'side') ? prompt[i18n.resolvedLanguage as any] || prompt['en-US'] : []}
-          prompts={[]}
+          prompts={prompts}
+          // prompts={[]}
           files={fileList}
           onFilesChange={onFilesChange}
         // onImageSend={onImageSend}

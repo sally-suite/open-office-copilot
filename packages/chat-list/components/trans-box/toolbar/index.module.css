@@ -1,0 +1,52 @@
+.bar {
+  /* position: fixed; */
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 2px;
+  cursor: pointer;
+  background-color: white;
+  /* overflow: hidden; */
+  width: auto;
+  box-sizing: border-box;
+  border: none;
+}
+
+.barItem {
+  width: 32px; /* Assuming w-8 is 2rem which equals 32px */
+  height: 32px; /* Assuming h-8 is 2rem which equals 32px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.barItem:hover {
+  background-color: #d1d5db; /* Assuming bg-slate-300 */
+}
+
+.barItem.active {
+  background-color: #a7f3d0;
+}
+
+/* .barItem:first-child {
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+}
+
+.barItem:last-child {
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+} */
+
+.textGray {
+  color: #262626;
+}

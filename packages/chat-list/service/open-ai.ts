@@ -1,6 +1,14 @@
 import { IEmbeddingsBody } from 'chat-list/types/chat';
-import { getApiConfig } from 'chat-list/local/local';
+import { getCurrentModelConfig } from 'chat-list/local/local';
 import { fail } from 'chat-list/components/ui/use-toast';
+
+export class ErrorWithCode extends Error {
+    code: number;
+    constructor(message: string, code: number) {
+        super(message);
+        this.code = code;
+    }
+}
 
 async function* makeTextSteamLineIterator(reader: ReadableStreamDefaultReader) {
     const utf8Decoder = new TextDecoder("utf-8");
@@ -66,43 +74,38 @@ export function mergeToolCalls(toToolCalls: any[], fromToolCalls: any[]) {
 
 export const chat = async (body: any) => {
 
-    const { apiKey, apiHost } = await getApiConfig();
+    const { apiKey, baseUrl } = await getCurrentModelConfig();
     const key = apiKey;
-    const response = await fetch(`${apiHost}/chat/completions`, {
+    const response = await fetch(`${baseUrl}/chat/completions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${key}`,
-            "HTTP-Referer": "https://www.sally.bot",
-            "X-Title": "Sally",
+            Authorization: `Bearer ${key}`
         },
         body: JSON.stringify(body)
     });
     if (!response.ok) {
-        fail(`Request failed with status ${response.status}`);
-        throw new Error(`Request failed with status ${response.status}`);
+        fail(`Request failed with status ${response.status} ${response.statusText}`);
+        throw new ErrorWithCode(`Request failed with status ${response.status} ${response.statusText}`, response.status);
     }
     const result = await response.json();
     // console.log(result)
     return result;
 };
 
-export const models = async (apiHost: string, apiKey: string) => {
+export const models = async (baseUrl: string, apiKey: string) => {
     const key = apiKey;
-    const response = await fetch(`${apiHost}/models`, {
+    const response = await fetch(`${baseUrl}/models`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${key}`,
-            "HTTP-Referer": "https://www.sally.bot",
-            "X-Title": "Sally",
+            Authorization: `Bearer ${key}`
         }
     });
-    console.log(response);
     // check status
     if (!response.ok) {
-        fail(`Request failed with status ${response.status}`);
-        throw new Error(`Request failed with status ${response.status}`);
+        fail(`Request failed with status ${response.status} ${response.statusText}`);
+        throw new ErrorWithCode(`Request failed with status ${response.status} ${response.statusText}`, response.status);
     }
     const result = await response.json();
     // console.log(result)
@@ -110,86 +113,107 @@ export const models = async (apiHost: string, apiKey: string) => {
 };
 
 export const chatStream = async (body: any, callback: any) => {
-    const { apiKey, apiHost } = await getApiConfig();
+    const { apiKey, baseUrl } = await getCurrentModelConfig();
     const key = apiKey;
-
-    const controller = new AbortController();
-    const response = await fetch(`${apiHost}/chat/completions`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${key}`,
-            "HTTP-Referer": "https://www.sally.bot",
-            "X-Title": "Sally",
-        },
-        body: JSON.stringify(body)
-    });
-    // const result = await response.json();
-    if (!response.ok) {
-        fail(`Request failed with status ${response.status}`);
-        throw new Error(`Request failed with status ${response.status}`);
-    }
-
-    const data = response.body;
-    const reader = data.getReader();
-    let done = false;
-    const stop = () => {
-        done = true;
-        controller.abort();
-    };
-    const res: any = { content: '', tool_calls: [] };
-    const lines = [];
-    for await (const line of makeTextSteamLineIterator(reader)) {
-        if (!(line as string).startsWith("data:")) {
-            continue;
+    try {
+        const controller = new AbortController();
+        window.abort = () => {
+            controller.abort();
         }
-        lines.push(line);
-        if (!line || line.includes('[DONE]')) {
-            continue;
+        const response = await fetch(`${baseUrl}/chat/completions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${key}`
+            },
+            body: JSON.stringify(body),
+            signal: controller.signal,
+        });
+        // const result = await response.json();
+        if (!response.ok) {
+            fail(`Request failed with status ${response.status} ${response.statusText}`);
+            throw new ErrorWithCode(`Request failed with status ${response.status} ${response.statusText}`, response.status);
         }
-        const json: any = line.replace(/^data:/, '');
-        const data = JSON.parse(json);
-        // lines.push(json)
-        if (data.choices && data.choices.length > 0) {
-            const choice = data.choices[0];
-            const content = choice.delta?.content;
-            const toolCalls = choice.delta?.tool_calls;
-            if (content !== undefined && content != null) {
-                res.content += content;
 
+        const data = response.body;
+        const reader = data.getReader();
+        let done = false;
+        const stop = () => {
+            done = true;
+            controller.abort();
+        };
+        const res: any = { content: '', reasoning_content: '', delta: { content: '', reasoning_content: '', }, tool_calls: [] };
+        const lines = [];
+        for await (const line of makeTextSteamLineIterator(reader)) {
+            if (!(line as string).startsWith("data:")) {
+                continue;
             }
-            if (toolCalls != undefined) {
-                res.tool_calls = mergeToolCalls(res.tool_calls, toolCalls);
+            lines.push(line);
+            if (!line || line.includes('[DONE]')) {
+                continue;
+            }
+            const json: any = line.replace(/^data:/, '');
+            const data = JSON.parse(json);
+            // lines.push(json)
+            if (data.choices && data.choices.length > 0) {
+                const choice = data.choices[0];
+                const content = choice.delta?.content;
+                const reasoning_content = choice.delta?.reasoning_content;
+                const toolCalls = choice.delta?.tool_calls;
+
+                if (reasoning_content !== undefined && reasoning_content != null) {
+                    res.reasoning_content += reasoning_content;
+                    res.delta.reasoning_content = reasoning_content;
+                } else {
+                    res.delta.reasoning_content = "";
+                }
+
+                if (content !== undefined && content != null) {
+                    res.content += content;
+                    res.delta.content = content;
+                } else {
+                    res.delta.content = "";
+                }
+
+                if (toolCalls != undefined) {
+                    res.tool_calls = mergeToolCalls(res.tool_calls, toolCalls);
+                }
+            } else if (data.error) {
+                fail(data.error.message);
+                throw new Error(JSON.stringify(data.error, null, 2));
+            }
+            if (callback && res) {
+                await callback(done, res, () => {
+                    stop();
+                });
             }
         }
-        if (callback && res) {
-            await callback(done, res, () => {
+        if (callback) {
+            await callback(true, '', () => {
                 stop();
             });
         }
+        return res;
+    } catch (error) {
+        // 可以在这里处理异常，例如上报错误，显示错误提示等
+        console.error('Request failed:', error);
+        console.log(error.stack);
+        throw error;
     }
-    if (callback) {
-        await callback(true, '', () => {
-            stop();
-        });
-    }
-    return res;
 };
 export const embeddings = async (body: IEmbeddingsBody) => {
-    const { apiKey, apiHost } = await getApiConfig();
+    const { apiKey, baseUrl } = await getCurrentModelConfig();
     const key = apiKey;
-    const response = await fetch(`${apiHost}/embeddings`, {
+    const response = await fetch(`${baseUrl}/embeddings`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${key}`,
-            "HTTP-Referer": "https://www.sally.bot",
-            "X-Title": "Sally",
+            Authorization: `Bearer ${key}`
         },
         body: JSON.stringify(body)
     });
     if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
+        throw new ErrorWithCode(`Request failed with status ${response.status} ${response.statusText}`, response.status);
     } else {
         const result = await response.json();
         return result.data[0].embedding;
@@ -198,15 +222,13 @@ export const embeddings = async (body: IEmbeddingsBody) => {
 
 export const generateImages = async (body: any) => {
 
-    const { apiKey, apiHost } = await getApiConfig();
+    const { apiKey, baseUrl } = await getCurrentModelConfig();
     const key = apiKey;
-    const response = await fetch(`${apiHost}/images/generations`, {
+    const response = await fetch(`${baseUrl}/images/generations`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${key}`,
-            "HTTP-Referer": "https://www.sally.bot",
-            "X-Title": "Sally",
+            Authorization: `Bearer ${key}`
         },
         body: JSON.stringify(body)
     });

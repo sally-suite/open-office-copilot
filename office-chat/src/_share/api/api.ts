@@ -45,6 +45,10 @@ const api = {
   searchScholar: 'POST /search/scholar/search_scholar',
   getCitation: 'POST /search/scholar/get_citation',
   getProviderModels: 'POST /models/get_provider_models',
+  getUserPrompts: 'POST /prompts/get_prompts',
+  addUserPrompt: 'POST /prompts/add_prompt',
+  removeUserPrompt: 'POST /prompts/remove_prompt',
+
 };
 
 export default api;

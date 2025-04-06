@@ -3,7 +3,7 @@ import Vision from 'chat-list/plugins/vision';
 import Sally from './sally-side';
 import PowerPoint from 'chat-list/plugins/presentation';
 import Article from 'chat-list/plugins/article';
-import Eric from './eric';
+// import Eric from './eric';
 import Formula from './formula';
 import Latext from './latex';
 export const plugins = [
@@ -13,7 +13,7 @@ export const plugins = [
     Latext,
     Formula,
     Vision,
-    Eric
+    // Eric
 ];
 
 export const homeQuickReplies = (): any[] => {

@@ -10,5 +10,10 @@
     "add_cite": "인용 추가",
     "select_text": "각주 또는 인용을 추가할 텍스트 선택",
     "ask_for_citations": "AI에 인용 요청 중",
-    "searching_papers": "Google Scholar 검색 중..."
+    "searching_papers": "Google Scholar 검색 중...",
+    "latex_to_word": "LaTeX를 Word로 변환",
+    "convert": "변환",
+    "try_insert_manually": "다음 변환이 실패했습니다. 문서를 수동으로 삽입해 주세요.",
+    "latext_to_word_tip": "수식, 표 및 텍스트 서식을 지원",
+    "select_citation_format": "인용 형식 선택"
 }

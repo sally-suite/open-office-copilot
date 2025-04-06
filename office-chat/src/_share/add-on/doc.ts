@@ -1,6 +1,7 @@
 import { ITableOption } from "chat-list/types/api/sheet";
 import { pixelsToPoints } from './utils';
-import { insertFootnoteToDoc } from './mark-katex'
+// import MarkdownToWord from './mark-word'
+import { insertMarkdown, insertFootnoteToDoc } from './mark-katex'
 import { Footnote } from "chat-list/types/api/doc";
 import { runCode } from "./code";
 
@@ -16,23 +17,27 @@ export const insertText = async (text: string, options: {
         position: Word.InsertLocation.after
     }): Promise<void> => {
     const { type = 'html', position = Word.InsertLocation.after } = options;
+    console.log(text)
+    if (type == 'html') {
+        return new Promise((resolve, reject) => {
+            Office.context.document.setSelectedDataAsync(
+                text,
+                {
+                    coercionType: type == 'html' ? Office.CoercionType.Html : Office.CoercionType.Text,
 
-    return new Promise((resolve, reject) => {
-        Office.context.document.setSelectedDataAsync(
-            text,
-            {
-                coercionType: type == 'html' ? Office.CoercionType.Html : Office.CoercionType.Text,
-
-            },
-            (asyncResult) => {
-                if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-                    resolve(null);
-                } else {
-                    reject(asyncResult.error);
+                },
+                (asyncResult) => {
+                    if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+                        resolve(null);
+                    } else {
+                        reject(asyncResult.error);
+                    }
                 }
-            }
-        );
-    })
+            );
+        })
+    } else {
+        await insertMarkdown(text)
+    }
 
     // return await Word.run(async function (context) {
     //     // 获取当前选定的范围

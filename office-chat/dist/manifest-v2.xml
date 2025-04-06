@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>76C0E0A1-3445-4F1F-8DC9-9D37917FEC4F</Id>
+  <Version>1.1.0.0</Version>
+  <ProviderName>Shenzhen Shitu Management Consulting Co., Ltd</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Sally Suite"/>
+  <Description DefaultValue="Sally Suite is an artificial intelligence assistant."/>
+  <IconUrl DefaultValue="https://localhost/assets/logo-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost/assets/logo-64.png"/>
+  <SupportUrl DefaultValue="https://www.sally.bot/#contact"/>
+  <AppDomains>
+    <AppDomain>https://www.sally.bot</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Workbook"/>
+    <Host Name="Document"/>
+    <Host Name="Presentation"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+      <Set Name="SharedRuntime" MinVersion="1.1"/>
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://localhost/sheet-chat/index.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <Runtimes>
+          <Runtime resid="SheetChat.Url" lifetime="long"/>
+        </Runtimes>
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="Sheet.GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="SallySuiteTab">
+              <Group id="SallyGroup">
+                <Label resid="SheetChatButton.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="SheetChatButton.Label"/>
+                  <Supertip>
+                    <Title resid="SheetChatButton.Label"/>
+                    <Description resid="SheetChatButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SallyButton</TaskpaneId>
+                    <SourceLocation resid="SheetChat.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="DataAnalysisGroup">
+                <Label resid="DataAnalysis.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="python-16"/>
+                  <bt:Image size="32" resid="python-32"/>
+                  <bt:Image size="80" resid="python-80"/>
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton2">
+                  <Label resid="DataAnalysis.Label"/>
+                  <Supertip>
+                    <Title resid="DataAnalysis.Label"/>
+                    <Description resid="SheetChatButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="python-16"/>
+                    <bt:Image size="32" resid="python-32"/>
+                    <bt:Image size="80" resid="python-80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>PythonButton</TaskpaneId>
+                    <SourceLocation resid="Python.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="JupyterGroup">
+                <Label resid="Jupyter.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="jupyter-16" />
+                  <bt:Image size="32" resid="jupyter-32" />
+                  <bt:Image size="80" resid="jupyter-80" />
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton4">
+                  <Label resid="Jupyter.Label"/>
+                  <Supertip>
+                    <Title resid="Jupyter.Label"/>
+                    <Description resid="SheetChatButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="jupyter-16" />
+                    <bt:Image size="32" resid="jupyter-32" />
+                    <bt:Image size="80" resid="jupyter-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>JupyterButton</TaskpaneId>
+                    <SourceLocation resid="Jupyter.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="VbaGroup">
+                <Label resid="Vba.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="vba-16" />
+                  <bt:Image size="32" resid="vba-32" />
+                  <bt:Image size="80" resid="vba-80" />
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton3">
+                  <Label resid="Vba.Label"/>
+                  <Supertip>
+                    <Title resid="Vba.Label"/>
+                    <Description resid="SheetChatButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="vba-16" />
+                    <bt:Image size="32" resid="vba-32" />
+                    <bt:Image size="80" resid="vba-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>VbaButton</TaskpaneId>
+                    <SourceLocation resid="Vba.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="SallySuiteButton.Label"/>
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="Word.GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <FunctionFile resid="DocCommands.Url" />
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="WordTabHome">
+              <Group id="WordSallyGroup">
+                <Label resid="WordCommandsGroup" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="SallyWordPanelButton">
+                  <Label resid="WordChatButton.Label" />
+                  <Supertip>
+                    <Title resid="WordChatButton.Label" />
+                    <Description resid="WordChatButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.32x32" />
+                    <bt:Image size="80" resid="Icon.80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>WordChatPanel</TaskpaneId>
+                    <SourceLocation resid="WordChat.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="WordPaperGroup">
+                <Label resid="WordPaperGroup" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="PaperPanelButton">
+                  <Label resid="Word.Paper.Label" />
+                  <Supertip>
+                    <Title resid="Word.Paper.Label" />
+                    <Description resid="WordChatButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="paper-16" />
+                    <bt:Image size="32" resid="paper-32" />
+                    <bt:Image size="80" resid="paper-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>WordPaperPanel</TaskpaneId>
+                    <SourceLocation resid="Paper.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="ReferPanelButton">
+                  <Label resid="Word.Refer.Label" />
+                  <Supertip>
+                    <Title resid="Word.Refer.Label" />
+                    <Description resid="WordChatButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="refer-16" />
+                    <bt:Image size="32" resid="refer-32" />
+                    <bt:Image size="80" resid="refer-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>WordPaperPanel</TaskpaneId>
+                    <SourceLocation resid="WordReferences.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="FomulaPanelButton">
+                  <Label resid="Word.Formula.Label" />
+                  <Supertip>
+                    <Title resid="Word.Formula.Label" />
+                    <Description resid="WordChatButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="formula-16" />
+                    <bt:Image size="32" resid="formula-32" />
+                    <bt:Image size="80" resid="formula-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>WordPaperPanel</TaskpaneId>
+                    <SourceLocation resid="Formula.Url" />
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="FlowPanelButton">
+                  <Label resid="Word.Flow.Label" />
+                  <Supertip>
+                    <Title resid="Word.Flow.Label" />
+                    <Description resid="WordChatButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="flow-16" />
+                    <bt:Image size="32" resid="flow-32" />
+                    <bt:Image size="80" resid="flow-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>WordPaperPanel</TaskpaneId>
+                    <SourceLocation resid="Flow.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="WordDataGroup">
+                <Label resid="WordDataGroup" />
+                <Icon>
+                  <bt:Image size="16" resid="data-16" />
+                  <bt:Image size="32" resid="data-32" />
+                  <bt:Image size="80" resid="data-80" />
+                </Icon>
+                <Control xsi:type="Button" id="DataPanelButton">
+                  <Label resid="Word.Data.Label" />
+                  <Supertip>
+                    <Title resid="Word.Data.Label" />
+                    <Description resid="WordChatButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="data-16" />
+                    <bt:Image size="32" resid="data-32" />
+                    <bt:Image size="80" resid="data-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>WordDataPanel</TaskpaneId>
+                    <SourceLocation resid="Data.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="WordImageGroup">
+                <Label resid="WordImageGroup" />
+                <Icon>
+                  <bt:Image size="16" resid="image-16" />
+                  <bt:Image size="32" resid="image-32" />
+                  <bt:Image size="80" resid="image-80" />
+                </Icon>
+                <Control xsi:type="Button" id="ImagePanelButton">
+                  <Label resid="Image.Label" />
+                  <Supertip>
+                    <Title resid="Image.Label" />
+                    <Description resid="WordChatButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="image-16" />
+                    <bt:Image size="32" resid="image-32" />
+                    <bt:Image size="80" resid="image-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>WordImagePanel</TaskpaneId>
+                    <SourceLocation resid="Image.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="WordWritingGroup">
+                <Label resid="WordWritingGroup" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="ExpandButton">
+                  <Label resid="Writing.Makelonger.Label" />
+                  <Supertip>
+                    <Title resid="Writing.Makelonger.Label" />
+                    <Description resid="Writing.Makelonger.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="expand-16" />
+                    <bt:Image size="32" resid="expand-32" />
+                    <bt:Image size="80" resid="expand-80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>makeLonger</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="ContinueButton">
+                  <Label resid="Writing.ContinueWriting.Label" />
+                  <Supertip>
+                    <Title resid="Writing.ContinueWriting.Label" />
+                    <Description resid="Writing.ContinueWriting.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="continue-16" />
+                    <bt:Image size="32" resid="continue-32" />
+                    <bt:Image size="80" resid="continue-80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>contineWriting</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="RefineButton">
+                  <Label resid="Writing.Refine.Label" />
+                  <Supertip>
+                    <Title resid="Writing.Refine.Label" />
+                    <Description resid="Writing.Optimize.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="refine-16" />
+                    <bt:Image size="32" resid="refine-32" />
+                    <bt:Image size="80" resid="refine-80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>refine</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="ParaphraseButton">
+                  <Label resid="Writing.Paraphrase.Label" />
+                  <Supertip>
+                    <Title resid="Writing.Paraphrase.Label" />
+                    <Description resid="Writing.Optimize.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="paraphrase-16" />
+                    <bt:Image size="32" resid="paraphrase-32" />
+                    <bt:Image size="80" resid="paraphrase-80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>paraphrase</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="ShorterButton">
+                  <Label resid="Writing.MakeShorter.Label" />
+                  <Supertip>
+                    <Title resid="Writing.MakeShorter.Label" />
+                    <Description resid="Writing.MakeShorter.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="shorten-16" />
+                    <bt:Image size="32" resid="shorten-32" />
+                    <bt:Image size="80" resid="shorten-80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>makeShorter</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="SummaryButton">
+                  <Label resid="Writing.Summarize.Label" />
+                  <Supertip>
+                    <Title resid="Writing.Summarize.Label" />
+                    <Description resid="Writing.Summarize.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="summarize-16" />
+                    <bt:Image size="32" resid="summarize-32" />
+                    <bt:Image size="80" resid="summarize-80" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>summarize</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="WordHelpGroup">
+                <Label resid="WordHelpGroup" />
+                <Icon>
+                  <bt:Image size="16" resid="connect-16" />
+                  <bt:Image size="32" resid="connect-32" />
+                  <bt:Image size="80" resid="connect-80" />
+                </Icon>
+                <Control xsi:type="Button" id="HelpPanelButton">
+                  <Label resid="Help.Label" />
+                  <Supertip>
+                    <Title resid="Help.Label" />
+                    <Description resid="WordChatButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="connect-16" />
+                    <bt:Image size="32" resid="connect-32" />
+                    <bt:Image size="80" resid="connect-80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>WordHelpPanel</TaskpaneId>
+                    <SourceLocation resid="HelpChat.Url" />
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="SallySuiteButton.Label"/>
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+      <Host xsi:type="Presentation">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="PPT.GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="CommandsGroup">
+                <Label resid="WordCommandsGroup"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="PPTChatButton.Label"/>
+                  <Supertip>
+                    <Title resid="PPTChatButton.Label"/>
+                    <Description resid="PPTChatButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>PowerPointChatPanel</TaskpaneId>
+                    <SourceLocation resid="PPTChat.Url"/>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="TaskpaneButton2">
+                  <Label resid="CreateSlideByPython.Label"/>
+                  <Supertip>
+                    <Title resid="CreateSlideByPython.Label"/>
+                    <Description resid="SheetChatButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+
+                    <bt:Image size="16" resid="python-16"/>
+                    <bt:Image size="32" resid="python-32"/>
+                    <bt:Image size="80" resid="python-80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>PythonButton</TaskpaneId>
+                    <SourceLocation resid="PythonSlide.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://localhost/assets/logo-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://localhost/assets/logo-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://localhost/assets/logo-80.png"/>
+        <bt:Image id="shorten-16" DefaultValue="https://localhost/assets/icons/shorten-16.png"/>
+        <bt:Image id="shorten-32" DefaultValue="https://localhost/assets/icons/shorten-32.png"/>
+        <bt:Image id="shorten-80" DefaultValue="https://localhost/assets/icons/shorten-80.png"/>
+        <bt:Image id="expand-16" DefaultValue="https://localhost/assets/icons/expand-16.png"/>
+        <bt:Image id="expand-32" DefaultValue="https://localhost/assets/icons/expand-32.png"/>
+        <bt:Image id="expand-80" DefaultValue="https://localhost/assets/icons/expand-80.png"/>
+        <bt:Image id="continue-16" DefaultValue="https://localhost/assets/icons/continue-16.png"/>
+        <bt:Image id="continue-32" DefaultValue="https://localhost/assets/icons/continue-32.png"/>
+        <bt:Image id="continue-80" DefaultValue="https://localhost/assets/icons/continue-80.png"/>
+        <bt:Image id="summarize-16" DefaultValue="https://localhost/assets/icons/summarize-16.png"/>
+        <bt:Image id="summarize-32" DefaultValue="https://localhost/assets/icons/summarize-32.png"/>
+        <bt:Image id="summarize-80" DefaultValue="https://localhost/assets/icons/summarize-80.png"/>
+        <bt:Image id="refine-16" DefaultValue="https://localhost/assets/icons/refine-16.png"/>
+        <bt:Image id="refine-32" DefaultValue="https://localhost/assets/icons/refine-32.png"/>
+        <bt:Image id="refine-80" DefaultValue="https://localhost/assets/icons/refine-80.png"/>
+        <bt:Image id="paraphrase-16" DefaultValue="https://localhost/assets/icons/paraphrase-16.png"/>
+        <bt:Image id="paraphrase-32" DefaultValue="https://localhost/assets/icons/paraphrase-32.png"/>
+        <bt:Image id="paraphrase-80" DefaultValue="https://localhost/assets/icons/paraphrase-80.png"/>
+        <bt:Image id="make-titles-16" DefaultValue="https://localhost/assets/icons/make-titles-16.png"/>
+        <bt:Image id="make-titles-32" DefaultValue="https://localhost/assets/icons/make-titles-32.png"/>
+        <bt:Image id="make-titles-80" DefaultValue="https://localhost/assets/icons/make-titles-80.png"/>
+        <bt:Image id="connect-16" DefaultValue="https://localhost/assets/icons/connect-16.png"/>
+        <bt:Image id="connect-32" DefaultValue="https://localhost/assets/icons/connect-32.png"/>
+        <bt:Image id="connect-80" DefaultValue="https://localhost/assets/icons/connect-80.png"/>
+        <bt:Image id="python-16" DefaultValue="https://localhost/assets/icons/python-16.png"/>
+        <bt:Image id="python-32" DefaultValue="https://localhost/assets/icons/python-32.png"/>
+        <bt:Image id="python-80" DefaultValue="https://localhost/assets/icons/python-80.png"/>
+        <bt:Image id="vba-16" DefaultValue="https://localhost/assets/icons/vba-16.png"/>
+        <bt:Image id="vba-32" DefaultValue="https://localhost/assets/icons/vba-32.png"/>
+        <bt:Image id="vba-80" DefaultValue="https://localhost/assets/icons/vba-80.png"/>
+        <bt:Image id="jupyter-16" DefaultValue="https://localhost/assets/icons/jupyter-16.png"/>
+        <bt:Image id="jupyter-32" DefaultValue="https://localhost/assets/icons/jupyter-32.png"/>
+        <bt:Image id="jupyter-80" DefaultValue="https://localhost/assets/icons/jupyter-80.png"/>
+        <bt:Image id="openai-16" DefaultValue="https://localhost/assets/icons/openai-16.png"/>
+        <bt:Image id="openai-32" DefaultValue="https://localhost/assets/icons/openai-32.png"/>
+        <bt:Image id="openai-80" DefaultValue="https://localhost/assets/icons/openai-80.png"/>
+        <bt:Image id="paper-16" DefaultValue="https://localhost/assets/icons/paper-16.png"/>
+        <bt:Image id="paper-32" DefaultValue="https://localhost/assets/icons/paper-32.png"/>
+        <bt:Image id="paper-80" DefaultValue="https://localhost/assets/icons/paper-80.png"/>
+        <bt:Image id="refer-16" DefaultValue="https://localhost/assets/icons/refer-16.png"/>
+        <bt:Image id="refer-32" DefaultValue="https://localhost/assets/icons/refer-32.png"/>
+        <bt:Image id="refer-80" DefaultValue="https://localhost/assets/icons/refer-80.png"/>
+        <bt:Image id="formula-16" DefaultValue="https://localhost/assets/icons/formula-16.png"/>
+        <bt:Image id="formula-32" DefaultValue="https://localhost/assets/icons/formula-32.png"/>
+        <bt:Image id="formula-80" DefaultValue="https://localhost/assets/icons/formula-80.png"/>
+        <bt:Image id="flow-16" DefaultValue="https://localhost/assets/icons/flow-16.png"/>
+        <bt:Image id="flow-32" DefaultValue="https://localhost/assets/icons/flow-32.png"/>
+        <bt:Image id="flow-80" DefaultValue="https://localhost/assets/icons/flow-80.png"/>
+        <bt:Image id="data-16" DefaultValue="https://localhost/assets/icons/data-16.png"/>
+        <bt:Image id="data-32" DefaultValue="https://localhost/assets/icons/data-32.png"/>
+        <bt:Image id="data-80" DefaultValue="https://localhost/assets/icons/data-80.png"/>
+        <bt:Image id="image-16" DefaultValue="https://localhost/assets/icons/image-16.png"/>
+        <bt:Image id="image-32" DefaultValue="https://localhost/assets/icons/image-32.png"/>
+        <bt:Image id="image-80" DefaultValue="https://localhost/assets/icons/image-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Functions.Script.Url" DefaultValue="https://localhost/functions/functions.js"/>
+        <bt:Url id="Functions.Metadata.Url" DefaultValue="https://localhost/functions/functions.json"/>
+        <bt:Url id="Functions.LearnMore.Url" DefaultValue="https://www.sally.bot/guide/custom-functions"/>
+        <bt:Url id="Functions.Page.Url" DefaultValue="https://localhost/functions/index.html"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://www.sally.bot"/>
+        <bt:Url id="SheetChat.Url" DefaultValue="https://localhost/sheet-chat/index.html"/>
+        <bt:Url id="Python.Url" DefaultValue="https://localhost/python/index.html"/>
+        <bt:Url id="PythonSlide.Url" DefaultValue="https://localhost/python-slide/index.html"/>
+        <bt:Url id="Vba.Url" DefaultValue="https://localhost/vba/index.html"/>
+        <bt:Url id="Jupyter.Url" DefaultValue="https://localhost/jupyter/index.html"/>
+        <bt:Url id="WordChat.Url" DefaultValue="https://localhost/doc-chat/index.html"/>
+        <bt:Url id="DocCommands.Url" DefaultValue="https://localhost/doc-commands/index.html"/>
+        <bt:Url id="PPTChat.Url" DefaultValue="https://localhost/slide-chat/index.html"/>
+        <bt:Url id="WordReferences.Url" DefaultValue="https://localhost/references/index.html"/>
+        <bt:Url id="HelpChat.Url" DefaultValue="https://localhost/doc-chat/index.html?agent=eric"/>
+        <bt:Url id="Formula.Url" DefaultValue="https://localhost/doc-chat/index.html?agent=formula"/>
+        <bt:Url id="Paper.Url" DefaultValue="https://localhost/doc-chat/index.html?agent=paper"/>
+        <bt:Url id="Image.Url" DefaultValue="https://localhost/doc-chat/index.html?agent=vision"/>
+        <bt:Url id="Flow.Url" DefaultValue="https://localhost/doc-chat/index.html?agent=uml"/>
+        <bt:Url id="Data.Url" DefaultValue="https://localhost/doc-chat/index.html?agent=python"/>
+
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Functions.Namespace" DefaultValue="SL"/>
+        <bt:String id="GetStarted.Title" DefaultValue="Get started with your Sally Suite!"/>
+        <bt:String id="SheetCommandsGroup" DefaultValue="Sally Suite"/>
+        <bt:String id="WordCommandsGroup" DefaultValue="Sally Suite"/>
+        <bt:String id="WordPaperGroup" DefaultValue="Paper"/>
+        <bt:String id="WordWritingGroup" DefaultValue="Writing"/>
+        <bt:String id="WordDataGroup" DefaultValue="Data Analysis"/>
+        <bt:String id="WordImageGroup" DefaultValue="Image Scanner"/>
+        <bt:String id="WordHelpGroup" DefaultValue="Help"/>
+        <bt:String id="SheetChatButton.Label" DefaultValue="Sally"/>
+        <bt:String id="DataAnalysis.Label" DefaultValue="Data Analysis"/>
+        <bt:String id="CreateSlideByPython.Label" DefaultValue="Create by Python"/>
+        <bt:String id="Vba.Label" DefaultValue="VBA Assistant"/>
+        <bt:String id="Jupyter.Label" DefaultValue="Analysis Notes"/>
+        <bt:String id="Functions.Label" DefaultValue="GPT Formulas"/>
+        <bt:String id="WordChatGroup" DefaultValue="Word Chat"/>
+        <bt:String id="WordChatButton.Label" DefaultValue="Sally"/>
+        <bt:String id="PPTChatButton.Label" DefaultValue="Sally"/>
+        <bt:String id="ShorterButton.Label" DefaultValue="Make shorter"/>
+        <bt:String id="SallySuiteButton.Label" DefaultValue="Sally"/>
+        <bt:String id="Writing.Makelonger.Label" DefaultValue="Expand"/>
+        <bt:String id="Writing.MakeShorter.Label" DefaultValue="Shorten"/>
+        <bt:String id="Writing.Summarize.Label" DefaultValue="Summarize"/>
+        <bt:String id="Writing.ContinueWriting.Label" DefaultValue="Contine Writing"/>
+        <bt:String id="Writing.MakeTitles.Label" DefaultValue="Make Titles"/>
+        <bt:String id="Writing.Refine.Label" DefaultValue="Refine"/>
+        <bt:String id="Writing.Paraphrase.Label" DefaultValue="Paraphrase"/>
+        <bt:String id="Word.Paper.Label" DefaultValue="PaperWise"/>
+        <bt:String id="Word.Refer.Label" DefaultValue="References"/>
+        <bt:String id="Word.Formula.Label" DefaultValue="Formula"/>
+        <bt:String id="Word.Flow.Label" DefaultValue="Flow Chart"/>
+        <bt:String id="Word.Data.Label" DefaultValue="Data Analysis"/>
+        <bt:String id="Image.Label" DefaultValue="Image Scanner"/>
+        <bt:String id="Help.Label" DefaultValue="Help"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="Sheet.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the HOME tab and click the 'Sheet Chat' button to get started."/>
+        <bt:String id="Word.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the HOME tab and click the 'Word Chat' button to get started."/>
+        <bt:String id="PPT.GetStarted.Description" DefaultValue="Your Sally Suite add-in loaded succesfully. Go to the HOME tab and click the 'Word Chat' button to get started."/>
+        <bt:String id="SheetChatButton.Tooltip" DefaultValue="Click to Show Sheet Chat"/>
+        <bt:String id="WordChatButton.Tooltip" DefaultValue="Click to Show Word Chat"/>
+        <bt:String id="PPTChatButton.Tooltip" DefaultValue="Click to Show PowerPoint Chat"/>
+        <bt:String id="Writing.Makelonger.Tooltip" DefaultValue="Make Longer"/>
+        <bt:String id="Writing.MakeShorter.Tooltip" DefaultValue="Make Shorter"/>
+        <bt:String id="Writing.Summarize.Tooltip" DefaultValue="Summarize"/>
+        <bt:String id="Writing.ContinueWriting.Tooltip" DefaultValue="Contine Writing"/>
+        <bt:String id="Writing.MakeTitles.Tooltip" DefaultValue="Make Titles"/>
+        <bt:String id="Writing.Optimize.Tooltip" DefaultValue="Embellish"/>
+        <bt:String id="Help.Tooltip" DefaultValue="Help"/>
+
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

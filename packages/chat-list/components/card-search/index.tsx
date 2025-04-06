@@ -18,7 +18,7 @@ export default function CardSearch(props: ICardFormulaInfoProps) {
     return (
         <Card className="w-full">
             <CardTitle>{t('common.reference')}</CardTitle>
-            <CardContent className="flex flex-col items-start justify-start space-y-1 sm:items-stretch sm:flex-row sm:space-x-1 sm:space-y-0">
+            <CardContent className="flex flex-col items-start justify-start space-y-1">
                 {
                     results.map((result, index) => {
                         return (

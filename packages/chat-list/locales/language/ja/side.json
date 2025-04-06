@@ -21,8 +21,6 @@
     "search_image": "画像検索",
     "generate_image": "画像を生成",
     "summarize": "要約",
-    "grammar": "スペルと文法を修正",
-    "optimize": "文章を改善",
     "contine_write": "書き続ける",
     "make_longer": "拡張",
     "make_shorter": "短縮",
@@ -35,5 +33,9 @@
     "change_tone": "トーンを変更",
     "no_text_selected": "テキストが選択されていません",
     "download": "ダウンロード",
-    "copied": "コピー済み"
+    "copied": "コピー済み",
+    "rephrase": "言い換え",
+    "grammar_check": "スペルと文法を修正",
+    "convert_to_table": "テーブルに変換",
+    "convert_to_list": "リストに変換"
 }

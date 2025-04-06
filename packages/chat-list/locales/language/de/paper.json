@@ -10,5 +10,10 @@
     "add_cite": "Zitation hinzufügen",
     "select_text": "Text auswählen, um eine Fußnote oder ein Zitat hinzuzufügen",
     "ask_for_citations": "KI nach Zitaten fragen",
-    "searching_papers": "Google Scholar wird durchsucht..."
+    "searching_papers": "Google Scholar wird durchsucht...",
+    "latex_to_word": "LaTeX in Word umwandeln",
+    "convert": "Umwandeln",
+    "try_insert_manually": "Die folgende Konvertierung ist fehlgeschlagen. Bitte versuchen Sie, das Dokument manuell einzufügen.",
+    "latext_to_word_tip": "Unterstützt mathematische Formeln, Tabellen und Textformatierung",
+    "select_citation_format": "Zitationsformat auswählen"
 }

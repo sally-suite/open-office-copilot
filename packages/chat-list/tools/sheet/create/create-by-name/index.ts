@@ -4,7 +4,6 @@ import sheet from '@api/sheet';
 import instruction from './instruction.md';
 import { ChatState, ITool } from 'chat-list/types/plugin';
 import { arrayToMarkdownTable, buildChatMessage } from 'chat-list/utils';
-import { Sender } from 'chat-list/types/message';
 import { FieldConfig } from 'chat-list/types/field';
 import { DataValidationColConfig } from 'chat-list/types/api/sheet';
 import { Grid3X3 } from 'lucide-react';

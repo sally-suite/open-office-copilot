@@ -1,10 +1,8 @@
 import { IUserOrderState } from 'chat-list/types/license';
 import { IUserService } from 'chat-list/types/api/user'
-import { sleep } from 'chat-list/utils';
 import api from '@api/index';
 import { login } from 'chat-list/service/auth'
-import { getLocalStore, setLocalStore } from 'chat-list/local/local'
-import { IApiLimit, IUserMessage } from 'chat-list/types/user';
+import { IUserMessage } from 'chat-list/types/user';
 import { IAgent } from 'chat-list/types/agent';
 
 class UserService implements IUserService {
@@ -17,25 +15,44 @@ class UserService implements IUserService {
     };
     setUserProperty: (key: string, value: string) => Promise<void> = async (key: string, value: string) => {
         // await sleep()
-        setLocalStore(key, value)
+        // setLocalStore(key, value)
         return Promise.resolve();
     };
     getUserProperty: (key: string) => Promise<string> = async (key: string) => {
-        const value = getLocalStore(key) as unknown as string;
-        return Promise.resolve(value);
+        // const store: any = {
+        //     'OPENAI_API_MODEL': "gpt-3.5-turbo"
+        // }
+        // return store[key] || ""
+        // const value = getLocalStore(key) as unknown as string;
+        return Promise.resolve("");
     };
     checkUser = async (): Promise<IUserOrderState> => {
-        const result = await api.checkUser(null);
-        return result;
+        // await sleep();
+        // debugger;
+        // const result = await api.checkUser(null);
+        // // debugger;
+        // return result;
+        return Promise.resolve({
+            type: 1,
+            state: 'paid',
+            email: 'test@mail.com',
+            order: null,
+            version: 'pro',
+            exp: Date.now() + 1000000,
+            points: 999999,
+            key: 'test',
+
+        } as unknown as IUserOrderState)
     };
     sentMessage? = async (message: IUserMessage) => {
-        await api.sentMessage(message);
+        // await api.sentMessage(message);
     };
     getAgent = async (id: string) => {
         return await api.getAgent({ id });
     }
     getAgents = async ({ email, type }: any) => {
-        return await api.getAgents({ email, type });
+        // return await api.getAgents({ email, type });
+        return Promise.resolve([]);
     }
     addAgent = async (agent: IAgent) => {
         await api.addAgent(agent);

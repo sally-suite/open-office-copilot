@@ -8,13 +8,14 @@ import { getLicenseConfig, getToken } from 'chat-list/local/local';
 import { UserContext } from 'chat-list/store/userContext';
 import { useTranslation } from 'react-i18next';
 import Button from '../button';
+import PriceCard from '../price-card';
 
 const memStore = {
     init: false
 };
 
 export default function LicenseSetting() {
-    const { loading: authLoading, checkLicense, openLogin: open, setOpenLogin: setOpen } = useContext(UserContext);
+    const { user, loading: authLoading, checkLicense, openLogin: open, setOpenLogin: setOpen, signOut } = useContext(UserContext);
     // const [open, setOpen] = useState(false);
     const [licenseKey, setLicenseKey] = useState('');
     const [loading, setLoading] = useState(false);
@@ -58,11 +59,23 @@ export default function LicenseSetting() {
         }
     };
 
+    const onSignOut = async () => {
+        await signOut();
+    }
+
     useEffect(() => {
         if (!authLoading) {
             checkKey();
         }
     }, [authLoading]);
+
+
+    if (user?.isAuthenticated) {
+        return (
+            <PriceCard onSignOut={onSignOut} />
+        );
+    }
+
     return (
         <>
             <Tooltip tip={t('common.login')}>

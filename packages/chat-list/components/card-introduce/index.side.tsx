@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import useChatState from 'chat-list/hook/useChatState';
 
 import { useTranslation } from 'react-i18next';
-import promptSetting from 'chat-list/plugins/sally-slide/prompt';
+import promptSetting from 'chat-list/service/writing/prompt';
 import CardTranslate from 'chat-list/components/card-translate-doc';
-import { buildChatMessage } from 'chat-list/utils';
+import { buildChatMessage, template } from 'chat-list/utils';
 import api from '@api/doc';
 import commonApi from "@api/index";
 import gpt from '@api/gpt';
@@ -12,6 +12,8 @@ import gpt from '@api/gpt';
 import { chatByPrompt } from 'chat-list/service/message';
 import { ImageSearchResult } from 'chat-list/types/search';
 import { ImageGenerations } from 'chat-list/types/image';
+import Tooltip from '../tooltip';
+import { HelpCircle } from 'lucide-react';
 
 
 export default function ToolList() {
@@ -28,7 +30,7 @@ export default function ToolList() {
                 icon: '',
             },
             {
-                code: 'optimize',
+                code: 'rephrase',
                 icon: '',
             },
             {
@@ -126,7 +128,6 @@ export default function ToolList() {
         } else {
 
             setTyping(true);
-            const prompt = (promptSetting as any)[item.code];
             let text;
             if (item.code == 'summarize' || item.code == 'make_titles') {
                 text = await api.getDocumentContent();
@@ -138,18 +139,21 @@ export default function ToolList() {
                 return;
             }
             const msg = showMessage('', 'assistant');
+            const promptTpl = promptSetting[item.code];
+            const prompt = template(promptTpl, {
+                input: text
+            })
             plugin.memory.push({
                 role: 'user',
-                content: `${prompt}\n\nUSER INPUT:\n${text}`
+                content: prompt
             });
             await chat({
                 stream: true,
-                temperature: 0.7,
-                messages: [
-                    {
-                        role: 'user',
-                        content: `${prompt}\n\nUSER INPUT:\n${text}\n\nOUTPUT:`
-                    }]
+                temperature: 0.8,
+                messages: [{
+                    role: 'user',
+                    content: prompt
+                }],
             }, (done, result) => {
                 if (!result.content) {
                     return;
@@ -166,8 +170,8 @@ export default function ToolList() {
     };
 
     return (
-        <div className='flex flex-col text-sm mb-96'>
-            <p className='markdown py-1'>
+        <div className='flex flex-col text-sm'>
+            {/* <p className='markdown py-1'>
                 {t('sheet.agent.sally.choose_tool')}
             </p>
             <div className='grid grid-cols-2 gap-2 mt-1'>
@@ -187,7 +191,16 @@ export default function ToolList() {
             </div>
             <p className=' py-1 mt-4'>
                 {t('doc.agent.sally.choose_tool')}
+            </p> */}
+            <p className=' font-semibold text-lg py-1 mb-4'>
+                Hi, I&apos;m Sally, Welcome. 👋
             </p>
+            <h3 className='py-1 text-base flex flex-row items-center'>
+                {t('common.tools')}
+                <Tooltip className='' tip={t('common.inside_tool_tip', 'Select the text in the document and use the following tools.')}>
+                    <HelpCircle className='text-gray-500 ml-1' height={16} width={16} />
+                </Tooltip>
+            </h3>
             <div className='grid grid-cols-1 gap-2 mt-1'>
                 <div className='grid grid-cols-2 sm:grid-cols-4 gap-1 mt-2 '>
                     {

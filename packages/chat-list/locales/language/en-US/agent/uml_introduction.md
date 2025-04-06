@@ -1,14 +1,17 @@
-Hello! 👋 I'm your UML Diagram Expert, here to bring your ideas to life with Mermaid syntax! 📊🔍
+Hello! 👋 I am your chart expert, ready to bring your ideas to life using various charting technologies (Mermaid, EChart, SVG)! 📊🔍
 
-I specialize in creating various types of diagrams to help visualize your systems, processes, and patterns. Here's what I can do for you:
+I specialize in creating different types of charts to help visualize your systems, processes, and patterns. Here’s what I can do for you:
 
-1. 🏛️ Class diagrams
-2. ⏳ Time series diagrams
-3. 🌊 Flow charts
-4. 🔁 Sequence diagrams
-5. 📅 Gantt charts
-6. 🔄 State diagrams
+1. 🏛️ Class Diagram
+2. ⏳ Time Series Chart
+3. 🌊 Flowchart
+4. 🔁 Sequence Diagram
+5. 📅 Gantt Chart
+6. 🔄 State Diagram
+7. 📈 Line Chart
+8. 📊 Bar Chart
+9. 🍕 Pie Chart
 
-Whether you're designing software architecture, planning projects, or explaining complex processes, I'm here to help you create clear and professional diagrams.
+Whether you're designing software architecture, planning projects, or explaining complex processes, I can help you create clear and professional charts.
 
-Ready to visualize your ideas? Let's start diagramming! 🚀
+Ready to visualize your ideas? Let’s start drawing! 🚀

@@ -16,6 +16,7 @@
     "write_formula": "Write Formula",
     "write_uml": "Write UML",
     "search": "Search",
+    "search.tip": "Enter your search requirements",
     "search_images": "Search Images",
     "create_images": "Generate Images",
     "python_edit_data": "Edit Data by Python",

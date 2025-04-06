@@ -11,6 +11,9 @@ const remarkMermaid = (options) => (ast, file) => {
   const results = instances.map(([node]) => {
     try {
       // @ts-expect-error The mermaid types are wrong.
+      mermaid.initialize({
+        theme: options.theme || 'default',
+      });
       const result = mermaid.render(`remark-mermaid-${counter}`, node.value);
       counter += 1;
       return {

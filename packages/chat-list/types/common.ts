@@ -20,3 +20,7 @@ declare module 'chrome' {
     const value: any;
     export default value;
 }
+
+interface Window {
+    abort: () => void;
+}

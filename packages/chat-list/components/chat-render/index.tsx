@@ -29,6 +29,7 @@ import Message from '../message';
 import EricPromote from '../eric-promo';
 import Button from '../button';
 import TextSelectionToolbar from 'chat-list/components/text-selection-toolbar';
+import { PauseCircle } from 'lucide-react';
 
 interface IChatListProps {
   className?: string;
@@ -141,9 +142,16 @@ const App = (props: IChatListProps) => {
       </div>
     );
   };
+
   const onClearMessage = () => {
     newChat();
   };
+
+  function onAbort() {
+    if (plugin) {
+      plugin.stop();
+    }
+  }
 
   const gotoSetting = () => {
     navigate(`/setting/${plugin.id}`);
@@ -247,6 +255,16 @@ const App = (props: IChatListProps) => {
             messages={messages}
             renderMessageContent={renderMessageContent}
           />
+        )
+      }
+      {
+        (typing || status == 'processing') && (
+          <div className='flex flex-row-reverse items-center justify-center mt-4 mb-10'>
+            <Button onClick={onAbort} className='w-auto rounded-full pl-0 pr-2' variant='outline'>
+              <PauseCircle className='text-primary h-5 cursor-pointer pulse mr-1' />
+              {t('common.stop_output')}
+            </Button>
+          </div>
         )
       }
       {/* {

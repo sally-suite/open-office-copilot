@@ -12,6 +12,7 @@ import VisionRender from 'chat-list/components/render-vision';
 import React from 'react';
 import i18n from 'chat-list/locales/i18n';
 import imagePng from 'chat-list/assets/img/image.png';
+import { getApiConfig } from 'chat-list/local/local';
 
 export class Vision extends ChatPluginBase implements IChatPlugin {
   name = i18n.t('sheet.agent.vision', 'Vision');
@@ -65,10 +66,24 @@ export class Vision extends ChatPluginBase implements IChatPlugin {
   text: string;
   images: File[];
   onReceive = async (message: IChatMessage) => {
+    const { appendMsg } = this.context;
     const { type, text, files } = message;
     let msg: any = message;
     if (type == 'parts') {
       msg = await this.convertMessage({ text, files, type: 'parts' } as any);
+    }
+
+    const apiKey = await getApiConfig();
+    if (apiKey) {
+      try {
+        return await super.onReceive({ _id: message._id, role: message.role, content: msg.content }, {
+          stream: false
+        });
+      } catch (e) {
+        console.error(e);
+        appendMsg(this.buildChatMessage("An exception occurs when extracting information from pictures, please make sure that the model supports picture information extraction, we recommend using a multimodal model such as gpt-4o."));
+        return;
+      }
     }
     return await super.onReceive({ _id: message._id, role: message.role, content: msg.content }, {
       model: 'gpt-4o',

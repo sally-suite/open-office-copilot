@@ -17,6 +17,7 @@ export interface IEmailService {
     setToRecipients: (recipients: { displayName: string, emailAddress: string }[]) => Promise<void>;
     setCCRecipients: (recipients: { displayName: string, emailAddress: string }[]) => Promise<void>;
     setBCCRecipients: (recipients: { displayName: string, emailAddress: string }[]) => Promise<void>;
+    openDialog: (url: string, options?: any, callback?: (result: any) => void) => Promise<void>;
 }
 
 

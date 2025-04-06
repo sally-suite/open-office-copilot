@@ -16,6 +16,7 @@
     "write_formula": "수식 작성",
     "write_uml": "UML 작성",
     "search": "검색",
+    "search.tip": "검색 요구 사항을 입력하세요",
     "search_images": "이미지 검색",
     "create_images": "이미지 생성",
     "python_edit_data": "파이썬으로 데이터 편집",

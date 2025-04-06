@@ -1,0 +1,27 @@
+```mermaid
+---
+config:
+  theme: neutral
+  look: classic
+---
+flowchart TD
+    Start("开始") --> Input("用户输入用户名和密码")
+    Input --> Validate("验证用户凭证")
+    Validate --> Correct{"凭证正确？"}
+    Correct -- 是 --> WelcomePage("显示欢迎页面")
+    Correct -- 否 --> Error("显示错误信息并提示重新输入")
+    Error --> Input
+    n1["This is sample label"]
+    n1@{ img: "https://static.mermaidchart.dev/whiteboard/default-image-shape.svg", h: 200, w: 200, pos: "b"}
+```
+
+### 2. **牛顿第二定律（加速度定律）**
+**公式：**
+$$ \mathbf{F} = m \mathbf{a} $$
+**解释：**
+物体的加速度 $\mathbf{a}$ 与作用在物体上的合外力 $\mathbf{F}$ 成正比，与物体的质量 $m$ 成反比。即力等于质量乘以加速度。
+
+**应用：**
+计算物体在受力作用下的加速度，或根据加速度反推力的大小。
+
+---

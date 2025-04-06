@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "./",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2015"],
+    "typeRoots": ["/packages/chat-list/*"],
+    "paths": {
+      "@api/*": ["/packages/chat-list/api/*"],
+      "chat-list/*": ["/packages/chat-list/*"]
+    }
+  },
+  "exclude": [],
+  "include": []
+}

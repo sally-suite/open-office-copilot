@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Icon from 'chat-list/components/icon';
-import AgentList from 'chat-list/components/agent-list';
 import useUserState from 'chat-list/hook/useUserState';
-import { X } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
 import { IChatPlugin } from 'chat-list/types/plugin';
 import { useNavigate } from 'react-router-dom';
@@ -96,7 +94,7 @@ const LeftNavigation = (props: ILeftNavigationProps) => {
                             </Tooltip>
                         );
                     })}
-                    <div className={cn(
+                    {/* <div className={cn(
                         'flex flex-row items-center h-16 w-16 justify-center hover:bg-gray-100 cursor-pointer '
                     )}
                         onClick={profile}
@@ -113,18 +111,10 @@ const LeftNavigation = (props: ILeftNavigationProps) => {
                                 </div>
                             )
                         }
-                    </div>
+                    </div> */}
                 </div>
 
             </div>
-            {/* <div className="flex items-center p-4 border-t whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer " onClick={profile}>
-                <div className="h-10 w-10 rounded-full flex shrink-0 justify-center items-center border bg-gray-200 text-xl "  >
-                    {user.email.charAt(0).toUpperCase()}
-                </div>
-                <div className="ml-2 whitespace-nowrap overflow-hidden text-ellipsis text-gray-500">
-                    {user.email}
-                </div>
-            </div> */}
         </div>
     );
 };

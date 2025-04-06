@@ -86,6 +86,44 @@ export const extractJsonDataFromMd = (inputText: string) => {
 };
 
 
+export const extractToolJsonDataFromMd = (inputText: string) => {
+    try {
+        return JSON.parse(inputText);
+    } catch (err) {
+        const renderer = new marked.Renderer();
+        const codeBlocks: string[] = [];
+        //@ts-ignore
+        renderer.code = (code, infostring) => {
+            if (infostring?.trim() === "tools") {
+                codeBlocks.push(code);
+            }
+            return "";
+        };
+
+        marked(inputText, { renderer });
+
+        let jsonData = codeBlocks.length > 0 ? codeBlocks[0] : null;
+
+        if (!jsonData) {
+            const regex = /```tools\s*([\s\S]+?)\s*```/;
+            const match = regex.exec(inputText);
+            if (match && match[1]) {
+                jsonData = match[1];
+            }
+        }
+
+        if (jsonData) {
+            try {
+                return JSON.parse(jsonData);
+            } catch (error) {
+                console.error("Error parsing JSON from 'tools' block:", error);
+            }
+        }
+        return {};
+    }
+};
+
+
 export const extractJsFunctionFromMd = (inputText: string) => {
     // Regular expression to extract JSON data
     const regex = /```.*\n([\s\S]+?)```/;

@@ -158,7 +158,7 @@ export const addPackages = (packages: string[] = []) => {
 
 export const initEnv = memoize<(packages?: string[]) => Promise<PyodideInterface>>(async (packages: string[] = []): Promise<PyodideInterface> => {
     console.log('Initializing Python environment, please wait for a moment...');
-    await loadScript('https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js');
+    await loadScript('/lib/pyodide/pyodide.js');
     const pyodide = await loadPyodide();
     await pyodide.loadPackage("micropip");
     const micropip = pyodide.pyimport("micropip");
@@ -722,7 +722,7 @@ export async function prepareFont(language = 'en-US') {
     };
     try {
         const font = fontMap[language] || '/yahei/Microsoft-YaHei.ttf';
-        const fontUrl = `https://cdn.sally.bot/font${font}`;//`font/yahei/${font}`;
+        const fontUrl = `/font${font}`;//`font/yahei/${font}`;
         const data = await fetch(fontUrl)
             .then(response => response.arrayBuffer());
         const pyodide = await initEnv();

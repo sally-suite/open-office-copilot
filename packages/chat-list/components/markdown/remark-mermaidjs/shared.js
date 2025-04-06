@@ -31,7 +31,7 @@ export function replaceCodeBlocks(
   for (const [i, [node, index, parent]] of instances.entries()) {
     const result = results[i];
     if (result.success) {
-      const [value, hChild] = processDiagram(result.result);
+      const [value, hChild] = processDiagram(result.result, i);
       hChild.properties['title'] = 'mermaid-graph';
       hChild.properties['description'] = result.code;
       parent.children[index] = {

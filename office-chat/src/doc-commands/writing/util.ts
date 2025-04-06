@@ -1,5 +1,5 @@
 import { chat } from 'chat-list/service/message';
-import promptSetting from './prompt'
+import promptSetting from 'chat-list/service/writing/prompt'
 import { IChatBody, IChatResult } from 'chat-list/types/chat';
 import { template } from 'chat-list/utils';
 

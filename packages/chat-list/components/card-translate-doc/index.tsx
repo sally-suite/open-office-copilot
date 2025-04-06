@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import toast from "chat-list/components/ui/use-toast";
 import Setting, { ILangItem } from './setting';
 import useChatState from 'chat-list/hook/useChatState';
-import { buildTransLateDocMessages, translateDocByGoogle } from 'chat-list/service/doc';
+import { buildTransLateDocMessages } from 'chat-list/service/doc';
 import docApi from '@api/doc';
 import { IMessageBody } from 'chat-list/types/chat';
 
@@ -11,8 +11,7 @@ interface ICardTranslateDocProps {
 }
 
 export default React.memo(function CardTranslate({ onTranslate }: ICardTranslateDocProps) {
-  const { chat, platform, showMessage, setTyping } = useChatState();
-  const lastMsg = useRef(null);
+  const { chat, platform, showMessage, setTyping, resetList, plugin } = useChatState();
   async function translateDocByGpt(sourceLanguage: string, targetLanguage: string, mode: string, style: string) {
     const text = await docApi.getSelectedText();
 
@@ -22,11 +21,13 @@ export default React.memo(function CardTranslate({ onTranslate }: ICardTranslate
       targetLanguage,
       style
     ) as IMessageBody[];
-    if (lastMsg.current) {
-      lastMsg.current.delete();
-    }
+
+    resetList([]);
+    plugin.memory.push({
+      role: 'user',
+      content: `help me translate follow text to ${targetLanguage}\n\n${text}`
+    })
     const msg = showMessage('', 'assistant');
-    lastMsg.current = msg;
     const result = await chat({
       messages,
       temperature: 0.7,
@@ -38,6 +39,10 @@ export default React.memo(function CardTranslate({ onTranslate }: ICardTranslate
       msg.update(result.content);
       if (done) {
         msg.update(result.content);
+        plugin.memory.push({
+          role: 'assistant',
+          content: result.content
+        })
       }
     });
 
@@ -45,42 +50,24 @@ export default React.memo(function CardTranslate({ onTranslate }: ICardTranslate
   }
 
   const onTransSet = async ({
-    source,
     target,
-    engine,
     mode,
     style,
   }: {
-    source: ILangItem;
     target: ILangItem;
-    engine: 'google' | 'gpt';
     mode: 'overwrite' | 'new-sheet';
     style: string;
   }) => {
-    // console.log('source', source)
-    // console.log('target', target)
-    // console.log('engine', engine)
-    // console.log('mode', mode)
-    // console.log('style', style)
     if (!target) {
       toast.fail('Please select target language');
       return;
     }
-    let result = '';
-    if (platform == 'google' && (!engine || engine === 'google')) {
-      result = await translateDocByGoogle(source?.value || '', target.value);
-      if (result) {
-        onTranslate?.(result);
-      }
-    } else {
-      await translateDocByGpt(
-        source?.text || '',
-        target.text,
-        mode,
-        style
-      );
-    }
-
+    await translateDocByGpt(
+      '',
+      target.text,
+      mode,
+      style
+    );
   };
   return (
     <Setting

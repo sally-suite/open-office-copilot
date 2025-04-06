@@ -75,6 +75,7 @@ export interface IChatBody {
 export interface IChatResult {
   role?: Role;
   content?: string;
+  reasoning_content?: string;
   function_call?: FunctionCall;
   tool_calls?: ToolFunctinCall[];
   usage?: IUsage;

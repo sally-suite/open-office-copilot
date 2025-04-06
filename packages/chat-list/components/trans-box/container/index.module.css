@@ -1,0 +1,126 @@
+/* MyComponent.module.css */
+
+.container {
+  position: fixed;
+  padding: 0 12px; /* 0.5rem * 16px */
+  border-radius: 10px; /* Equivalent to full in Tailwind */
+  border: 1px solid #ebebeb; /* border border-gray-100 */
+  background: #fff; /*#f5f5f5; */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 14px 40px -4px #00000014, 0 12px 40px -4px #00000014;
+  font-family: -apple-system, 'system-ui', Helvetica Neue, Tahoma, PingFang SC,
+    Microsoft Yahei, Arial, Hiragino Sans GB, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  background: #f5f5f5;
+  color: #333;
+}
+.transBox * {
+  box-sizing: border-box;
+}
+
+.close {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  margin: 4px; /* 0.5rem * 16px */
+  cursor: pointer;
+  color: #dddddd;
+  z-index: 99;
+  background: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  /* border: 1px solid #ebebeb; */
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.topBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  margin: 0 0 4px 0;
+}
+
+.label {
+  cursor: pointer;
+  margin: 0 8px 0 0;
+  font-size: 14px;
+}
+
+.inputBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 0 8px 0;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation: rotate 1s linear infinite;
+}
+
+.enable {
+  color: red;
+}
+.disable {
+  color: rgba(16, 119, 50, 1);
+}
+
+.handBar {
+  /*h-2 w-full cursor-move z-20 bg-red-500*/
+  height: 40px;
+  width: 30%;
+  margin: 0 auto;
+  z-index: 20;
+  cursor: grab;
+  text-align: center;
+  line-height: 32px;
+  /* background: #ebebeb; */
+}
+.handBar:active {
+  cursor: grabbing;
+}
+.handBar:hover .hand {
+  display: block;
+}
+.hand {
+  display: none;
+}
+
+.alert {
+  font-size: 12px;
+  color: red;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.initial {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.animated {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}

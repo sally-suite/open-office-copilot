@@ -17,6 +17,7 @@
     "write_uml": "Escribir diagrama UML",
     "chat_with_selected_data": "Chatear con los datos",
     "search": "Buscar páginas web",
+    "search.tip": "Ingrese sus requisitos de búsqueda",
     "search_images": "Buscar imágenes",
     "create_images": "Generar imágenes",
     "python_edit_data": "Editar datos con Python",

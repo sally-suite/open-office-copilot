@@ -10,5 +10,10 @@
     "add_cite": "Thêm trích dẫn",
     "select_text": "Chọn văn bản để thêm chú thích hoặc trích dẫn",
     "ask_for_citations": "Yêu cầu AI trích dẫn",
-    "searching_papers": "Đang tìm kiếm trên Google Scholar..."
+    "searching_papers": "Đang tìm kiếm trên Google Scholar...",
+    "latex_to_word": "Chuyển đổi LaTeX sang Word",
+    "convert": "Chuyển đổi",
+    "try_insert_manually": "Chuyển đổi sau không thành công, vui lòng thử chèn tài liệu thủ công.",
+    "latext_to_word_tip": "Hỗ trợ công thức toán học, bảng và định dạng văn bản",
+    "select_citation_format": "Chọn định dạng trích dẫn"
 }
