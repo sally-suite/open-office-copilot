@@ -110,7 +110,7 @@ The following are the Agents currently supported by the platform and their featu
 - [Discord](https://discord.gg/txPgpZmv36)
 - [Whatsapp](https://wa.me/8619066504137)
 
-# License
+## License
 
 This project uses a dual licensing model. Users can choose one of the following options:
 
