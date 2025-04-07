@@ -126,12 +126,19 @@ Open Office Copilot 目前支持以下平台和软件，并将持续扩展，你
 - [x] 支持 桌面客户端（Windows、MacOS）
 - [x] Agent 应用市场
 
-## 许可证
-
-MIT
-
 ---
 
-## **总结**
+## 许可证
 
-Open Office Copilot 是一个即将开源的办公 AI 助手，支持 Microsoft Office 和 Google Workspace。它提供多个 AI Agent，包括写作助手、数据分析、公式编辑、邮件撰写等，支持多种 AI 模型（GPT-4o、Claude 3.5、DeepSeek V3）。用户可以通过多个平台（浏览器、Office 插件、Google 扩展）使用。技术栈包括 Next.js、PostgreSQL、React 等，支持多种语言。当前仍在开发 WPS Office 兼容性，欢迎社区反馈和贡献。
+本项目采用双授权模式，用户可以选择以下两种方式之一使用本项目：
+
+1. **开源协议（AGPL-3.0）**
+
+   - 本项目基于 [GNU AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html) 协议开源。
+   - 如果您选择此协议，您必须遵守 AGPL-3.0 的条款，包括在修改和分发代码时也必须开源。
+
+2. **商业授权**
+   - 如果您希望将本项目用于闭源或商业用途，请购买商业授权。
+   - 商业授权详情请参阅 [LICENSE.md](./LICENSE.md)。
+
+如需获取商业授权或有任何疑问，请联系：[sally-suite@hotmail.com]。
