@@ -27,9 +27,8 @@ If you wish to use this software for commercial purposes, or if you wish to use 
 The commercial license allows you to:
 
 - Use this software in commercial products without having to disclose your source code
-- Offer this software as a network service without providing source code to users
 - Use this software in projects that do not comply with AGPLv3 terms
-- Receive professional technical support and maintenance services (optional)
+- Receive professional technical support and maintenance services
 
 ### Commercial License Terms
 
