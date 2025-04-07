@@ -76,17 +76,17 @@ The following are the Agents currently supported by the platform and their featu
 
 ## Technical Details
 
-## Backend
+### Backend
 
 - Node.js 20+
 - Nextjs 13
 
-## Database
+### Database
 
 - Sequelize
 - PosgreSQL
 
-## Frontend
+### Frontend
 
 - React 18+
 - Tailwindcss 3+
