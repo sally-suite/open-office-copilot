@@ -112,4 +112,15 @@ The following are the Agents currently supported by the platform and their featu
 
 # License
 
-MIT
+This project uses a dual licensing model. Users can choose one of the following options:
+
+1. **Open Source License (AGPL-3.0)**
+
+   - This project is licensed under the [GNU AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html) open source license.
+   - If you choose this license, you must comply with the terms of AGPL-3.0, including the obligation to open source any modifications or distributions.
+
+2. **Commercial License**
+   - If you wish to use this project for closed-source or commercial purposes, you must purchase a commercial license.
+   - For details, please refer to [LICENSE.md](./LICENSE.md).
+
+For commercial licensing or any inquiries, please contact: [sally-suite@hotmail.com].
