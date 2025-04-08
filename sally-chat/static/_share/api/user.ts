@@ -25,19 +25,19 @@ class UserService implements IUserService {
     };
     checkUser = async (): Promise<IUserOrderState> => {
         // await sleep();
-        // const result = await api.checkUser(null);
-        // // debugger;
-        // return result;
-        return Promise.resolve({
-            type: 1,
-            state: 'paid',
-            email: 'test@mail.com',
-            order: null,
-            version: 'pro',
-            exp: Date.now() + 1000000,
-            points: 999999,
-            key: 'test',
-        } as unknown as IUserOrderState)
+        const result = await api.checkUser(null);
+        // debugger;
+        return result;
+        // return Promise.resolve({
+        //     type: 1,
+        //     state: 'paid',
+        //     email: 'test@mail.com',
+        //     order: null,
+        //     version: 'pro',
+        //     exp: Date.now() + 1000000,
+        //     points: 999999,
+        //     key: 'test',
+        // } as unknown as IUserOrderState)
     };
     sentMessage? = async (message: IUserMessage) => {
         // await api.sentMessage(message);
