@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "../",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@api/*": ["static/_share/api/*"]
+    }
+  },
+  "exclude": ["static/_share/mock"],
+  "include": [
+    "../packages/**/*.ts",
+    "./static/**/*.ts",
+    "./static/**/*.tsx",
+    "./types/**/*.ts"
+  ]
+}

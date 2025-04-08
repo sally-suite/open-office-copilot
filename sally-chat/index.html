@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandas绘制图表</title>
+    <!-- 引入Plotly的JavaScript文件 -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+
+    <script type="module">
+        async function loadPyodide() {
+            window.pyodide = await window.loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.0/full/' });
+        }
+
+        async function loadPandas() {
+            await window.pyodide.loadPackage(['pandas', 'micropip']);
+        }
+
+        async function runPythonCode(data) {
+            await loadPyodide();
+            await loadPandas();
+            async function installOpenpyxl() {
+                const micropip = pyodide.pyimport('micropip');
+                // await micropip.install('openpyxl');
+                // await micropip.install('plotly');
+                await micropip.install('matplotlib');
+
+            }
+            await installOpenpyxl();
+            // // Python代码
+            const pythonCode = `
+                # -*- coding: utf-8 -*-
+                import matplotlib.pyplot as plt
+                import base64
+                from io import BytesIO
+
+                # 创建示例数据
+                x = [1, 2, 3, 4, 5]
+                y = [2, 3, 5, 7, 11]
+
+                # 创建折线图
+                plt.plot(x, y)
+                plt.xlabel('X Asix')
+                plt.ylabel(' Axis')
+                plt.title('Line Chart')
+
+                # 将图表转换为Base64编码的图像数据
+                buffer = BytesIO()
+                plt.savefig(buffer, format='png')
+                buffer.seek(0)
+                img_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+
+                img_base64
+            `;
+
+            // 执行Python代码
+            const fileBase64 = await window.pyodide.runPython(pythonCode);
+
+            // // 读取保存的图片文件并显示在HTML中
+            // const response = await fetch('/plot_image.png');
+            // const blob = await response.blob();
+            // const url = URL.createObjectURL(blob);
+
+            const imgElement = document.createElement('img');
+            // 把base64编码的图片数据转换为URL
+            const url = `data:image/png;base64,${fileBase64}`;
+            imgElement.src = url;
+
+            // 将图片插入到HTML中
+            const plotDiv = document.getElementById('plot');
+            plotDiv.appendChild(imgElement);
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = e.target.result;
+                // 将文件数据传递给Python环境进行处理
+
+                runPythonCode(data);
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+        runPythonCode();
+    </script>
+</head>
+
+<body>
+    <h1>Pandas绘制图表</h1>
+    <!-- 绘制图表的区域 -->
+    <div id="plot"></div>
+    <input type="file" id="fileInput" accept=".xlsx">
+</body>
+
+</html>

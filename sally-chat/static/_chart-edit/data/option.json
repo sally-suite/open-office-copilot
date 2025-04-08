@@ -1,0 +1,51 @@
+{
+    "title": {
+        "text": "Revenue Over the Years"
+    },
+    "tooltip": {
+        "trigger": "axis",
+        "formatter": "{b} : ${c}"
+    },
+    "xAxis": {
+        "type": "category",
+        "data": [
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007",
+            "2008",
+            "2009",
+            "2010"
+        ],
+        "name": "Year"
+    },
+    "yAxis": {
+        "type": "value",
+        "name": "Revenue (in USD)"
+    },
+    "series": [
+        {
+            "name": "Revenue",
+            "type": "line",
+            "data": [
+                15930,
+                12766,
+                21893,
+                24922,
+                358595,
+                482503,
+                541379,
+                437635,
+                777742,
+                1240346
+            ],
+            "label": {
+                "show": true,
+                "position": "top"
+            }
+        }
+    ]
+}

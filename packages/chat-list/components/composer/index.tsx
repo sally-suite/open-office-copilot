@@ -17,10 +17,10 @@ import QuickReply from 'chat-list/components/quick-reply';
 import { QuickReplyItem } from 'chat-list/types/message';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import prompt from 'chat-list/data/prompts'
-import i18n from 'chat-list/locales/i18n';
-import GoogleDrive from 'chat-list/components/drive-google';
-import Commands from 'chat-list/components/commands';
+// import prompt from 'chat-list/data/prompts'
+// import i18n from 'chat-list/locales/i18n';
+// import GoogleDrive from 'chat-list/components/drive-google';
+// import Commands from 'chat-list/components/commands';
 // import PluginSetting from 'chat-list/components/plugin-setting'
 // eslint-disable-next-line @typescript-eslint/ban-types
 type ChatComposerExtProps = {
@@ -135,16 +135,16 @@ export default React.memo(function ChatComposer(props: IChatComposerProps) {
       ]);
     }
 
-    if (platform == 'other') {
-      leftActions = leftActions.concat([
-        {
-          title: 'Attach Google Drive file',
-          children: (
-            <GoogleDrive onSelect={onFileSelect} />
-          )
-        }
-      ]);
-    }
+    // if (platform == 'other') {
+    //   leftActions = leftActions.concat([
+    //     {
+    //       title: 'Attach Google Drive file',
+    //       children: (
+    //         <GoogleDrive onSelect={onFileSelect} />
+    //       )
+    //     }
+    //   ]);
+    // }
 
 
     return leftActions;

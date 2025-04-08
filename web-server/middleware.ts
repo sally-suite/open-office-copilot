@@ -5,6 +5,8 @@ import { COOKIE_NAME, NEXTAUTH_SECRET } from "./constants/auth";
 import { ADMIIN_EMAILS } from "./constants/site";
 // import { checkAccesskey } from "./service/access";
 
+const apiRegex = /^\/api(?!\/admin\b).*/;
+
 
 const addCors = async (req) => {
   // const { name, email, picture } = req['token'];
@@ -101,11 +103,18 @@ export default function middleware(req: NextRequest) {
   }
   // req.nextUrl
 
+  // req.nextUrl
+  const { pathname } = req.nextUrl;
+  if (apiRegex.test(pathname)) {
+    return addCors(req)
+  }
+
   return authMiddleware(req as any);
 }
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
     "/admin/:path*",
+    "/api/:path*",
   ],
 };
