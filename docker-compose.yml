@@ -14,8 +14,8 @@ services:
     environment:
       NEXTAUTH_URL: "https://localhost"
       DOMAIN_NAME: "https://localhost"
-      ADMIIN_EMAILS: "admin@sallysuite.com"
-      ADMIIN_PASSWORD: "admin123"
+      ADMIIN_EMAILS: "admin"
+      ADMIIN_PASSWORD: "123456"
       NEXTAUTH_SECRET: SALLYFORYOU
       NEXT_PUBLIC_VERCEL_ENV: production
       POSTGRES_DATABASE: sallysuite

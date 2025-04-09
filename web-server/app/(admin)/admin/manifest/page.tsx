@@ -1250,7 +1250,7 @@ const manifest = {
 
 export default function Manifest() {
   const [type, setType] = useState<'office' | 'outlook'>('office')
-  const [hostname, setHostname] = useState('')
+  const [hostname, setHostname] = useState('https://localhost')
   const [preview, setPreview] = useState('')
 
   useEffect(() => {

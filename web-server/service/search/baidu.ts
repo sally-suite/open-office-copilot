@@ -1,7 +1,7 @@
 import { ImageItem, ImageSearchResult, SearchResult } from "@/types/search";
 import { getPageContent, getSearchapiJson } from "./util";
 
-const SEARCH_NUM = 2;
+const SEARCH_NUM = 4;
 
 export const search = async (input: string, apiKey: string): Promise<SearchResult[]> => {
   // 判断input是字符串还是网址，如果是网址，直接获取网页内容，如果是网址，调用search接口，获取网址，然后获取网页内容。

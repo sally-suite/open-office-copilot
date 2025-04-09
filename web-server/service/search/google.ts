@@ -2,7 +2,7 @@ import { ImageItem, ImageSearchResult, PaperItem, SearchResult } from "@/types/s
 import { SERPER_API_KEY } from '@/constants/search';
 import { getPageContent, getSearchapiJson } from './util';
 
-const SEARCH_NUM = 2;
+const SEARCH_NUM = 4;
 
 
 export const search = async (input: string, apiKey: string): Promise<SearchResult[]> => {

@@ -142,7 +142,9 @@ export const proxyImage = async (url: string): Promise<string> => {
             setTimeout(() => resolve(''), 10000); // 超时10秒返回空字符串
         });
 
-        const imageProxyPromise = api.imageProxy({ url }).then(async (response) => {
+        const imageProxyPromise = api.imageProxy({ url }, {
+            hideErrorAlert: true
+        }).then(async (response) => {
             if (response) {
                 const blob: Blob = await response.blob();
                 const base64Image = await blobToBase64Image(blob);
