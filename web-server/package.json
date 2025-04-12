@@ -49,7 +49,7 @@
     "@sequelize/postgres": "^7.0.0-alpha.45",
     "@sequelize/sqlite3": "^7.0.0-alpha.45",
     "@stripe/stripe-js": "^2.1.0",
-    "@thirdweb-dev/react": "^3.14.37",
+    "@thirdweb-dev/react": "^3.16.5",
     "@thirdweb-dev/sdk": "^3.10.56",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
