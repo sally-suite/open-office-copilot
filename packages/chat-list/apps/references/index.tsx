@@ -13,7 +13,6 @@ import 'chat-list/components/icon/svg-icons-register';
 import Wellcome from 'chat-list/components/wellcome';
 import 'chat-list/assets/css/global.css';
 import 'chat-list/assets/css/common.less';
-import 'chat-list/assets/css/chatui-theme.less';
 import 'chat-list/assets/css/editor.less';
 import 'chat-list/assets/css/markdown.less';
 

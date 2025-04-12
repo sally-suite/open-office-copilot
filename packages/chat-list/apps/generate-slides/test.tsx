@@ -5,7 +5,6 @@ import { createRoot } from 'react-dom/client';
 import 'chat-list/components/icon/svg-icons-register';
 import 'chat-list/assets/css/global.css';
 import 'chat-list/assets/css/common.less';
-import 'chat-list/assets/css/chatui-theme.less';
 import 'chat-list/assets/css/editor.less';
 import 'chat-list/assets/css/markdown.less';
 

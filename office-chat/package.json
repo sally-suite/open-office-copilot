@@ -31,7 +31,6 @@
     "testword": "npm run start:web -- --document 'https://onedrive.live.com/personal/a9404808f9508531/_layouts/15/Doc.aspx?resid=A9404808F9508531!1681&cid=a9404808f9508531&migratedtospo=true&app=Word'"
   },
   "dependencies": {
-    "@chatui/core": "^2.4.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-router-dom": "^5.3.3",

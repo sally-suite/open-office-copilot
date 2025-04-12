@@ -25,7 +25,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@chatui/core": "^2.4.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-router-dom": "^5.3.3",

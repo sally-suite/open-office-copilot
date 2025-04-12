@@ -6,7 +6,6 @@ import sheetApi from '@api/sheet';
 import CopyButton from 'chat-list/components/copy-button';
 import 'chat-list/assets/css/global.css';
 import 'chat-list/assets/css/common.less';
-import 'chat-list/assets/css/chatui-theme.less';
 import 'chat-list/assets/css/editor.less';
 import 'chat-list/assets/css/markdown.less';
 
