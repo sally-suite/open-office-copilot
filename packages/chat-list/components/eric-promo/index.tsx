@@ -49,10 +49,6 @@ export default function EricPromote() {
             setShowAlert(true);
         }
 
-        const timeout = 1746028800000;
-        if (Date.now() > Number(timeout)) {
-            setShowAlert(true);
-        }
     }, [loading, points, user, isPromoteAlert]);
 
     if (loading) {
