@@ -30,7 +30,6 @@
   "license": "ISC",
   "dependencies": {
     "@akebifiky/remark-simple-plantuml": "^1.0.2",
-    "@chatui/core": "^2.4.2",
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/lang-markdown": "^6.2.4",
     "@codemirror/lang-python": "^6.1.4",
