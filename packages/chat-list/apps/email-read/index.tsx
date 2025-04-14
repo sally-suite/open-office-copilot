@@ -21,6 +21,7 @@ import Bookmarks from 'chat-list/components/bookmarks';
 import PromptManage from 'chat-list/pages/prompt-manage';
 import History from 'chat-list/components/chat-history';
 import Main from 'chat-list/components/main';
+import EmailAPITest from 'chat-list/components/email-api-test';
 
 const router = createMemoryRouter(
   [

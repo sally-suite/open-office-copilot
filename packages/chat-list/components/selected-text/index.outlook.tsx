@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import docApi from '@api/doc';
+import docApi from '@api/email';
 import { TextCursorInput, Mail, X } from 'lucide-react';
 import useChatState from 'chat-list/hook/useChatState';
 import { htmlToText } from 'chat-list/utils';

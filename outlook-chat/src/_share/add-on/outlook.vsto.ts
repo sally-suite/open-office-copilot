@@ -1,5 +1,5 @@
 import { ITableOption } from "chat-list/types/api/sheet";
-import { buildHtml } from "chat-list/utils";
+import { arrayToMarkdownTable, buildHtml } from "chat-list/utils";
 
 const getOutlookHost = () => {
     if (!window?.chrome?.webview) {
@@ -19,8 +19,11 @@ export const insertText = async (text: string, options: {
         type: 'html',
         position: ''
     }): Promise<void> => {
-    const { type = 'html' } = options;
-
+    const { type = 'html', position } = options;
+    const outlook = getOutlookHost();
+    console.log('insetText', text, position);
+    const result = outlook.insertText(text, type, position);
+    console.log(result);
 }
 
 export const insertImage = async (base64: string, width?: number, height?: number, altTitle?: string, altDescription?: string) => {
@@ -28,36 +31,38 @@ export const insertImage = async (base64: string, width?: number, height?: numbe
 }
 
 export const insertTable = async (values: string[][], options: ITableOption) => {
-    const {
-        headerRowColor = '#80cf9c',
-        headerFontColor = '#000000',
-        firstRowColor = '#ffffff',
-        secondRowColor = '#eaf8f0',
-        footerRowColor = '#bbe7cc',
-        borderColor = '#EDEDED',
-        rowFontColor = '#000000',
-        theme = 'LIGHT_GREY',
-    } = options;
 
+    const mark = arrayToMarkdownTable(values, true)
+    const html = await buildHtml(mark, false);
+    insertText(html, {
+        type: 'html',
+        position: 'After'
+    })
 };
 
 
 export const getSelectedText = async (): Promise<string> => {
-
-}
-
-const getBodyText = async (): Promise<{ text: string, type: 'email' }> => {
-
-
-}
-
-export const getSelectedTextAndType = async (): Promise<{ text: string, type: 'text' | 'email' }> => {
-
+    const outlook = getOutlookHost();
+    const result = outlook.getSelectedText();
+    return result;
 }
 
 
 export const getDocumentContent = async () => {
-  
+    const outlook = getOutlookHost();
+    const result = outlook.getDocumentContent();
+    return result;
+}
+
+const getSelectedTextAndType = async () => {
+    let text = await getSelectedText();
+    if (!text) {
+        text = await getDocumentContent();
+    }
+    return {
+        text,
+        type: 'text'
+    }
 }
 
 let timer: any;
@@ -68,13 +73,14 @@ const loopSelectedText = (callback: (text: string, type: 'text' | 'email') => vo
         if (result) {
             const { text, type } = result;
             if (callback) {
-                callback(text, type);
+                callback(text, type as any);
             }
         }
 
         await loopSelectedText(callback);
     }, 1000);
 }
+
 
 export const registSelectEvent = (callback: (text: string, type: 'text' | 'email') => void) => {
     loopSelectedText((txt, type) => {
@@ -96,62 +102,18 @@ export const getSelectedImageInfo = (): Promise<{ title: string, description: st
     return null;
 }
 
-
 export function runScript(code: string) {
     eval(`(${code})()`);
 }
 
 
 export const insertTitle = (subject: string) => {
-
+    const outlook = getOutlookHost();
+    outlook.setSubject(subject);
 }
-export const insertParagraph = (body?: string) => {
-    return new Promise((resolve, reject) => {
-        const item = Office.context.mailbox.item;
-        item.body.getTypeAsync((asyncResult) => {
-            if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-                reject(asyncResult.error.message);
-                return;
-            }
 
-            // Prepend data of the appropriate type to the body.
-            if (asyncResult.value === Office.CoercionType.Html) {
-                // Prepend HTML to the body.
-                item.body.prependAsync(body,
-                    { coercionType: Office.CoercionType.Html, asyncContext: { optionalVariable1: 1, optionalVariable2: 2 } },
-                    (asyncResult) => {
-                        if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-                            console.log(asyncResult.error.message);
-                            reject(asyncResult.error.message);
-                            return;
-                        }
-                        resolve(null)
-                        /*
-                          Run additional operations appropriate to your scenario and
-                          use the optionalVariable1 and optionalVariable2 values as needed.
-                        */
-                    });
-            }
-            else {
-                // Prepend plain text to the body.
-                item.body.prependAsync(
-                    body,
-                    { coercionType: Office.CoercionType.Text, asyncContext: { optionalVariable1: 1, optionalVariable2: 2 } },
-                    (asyncResult) => {
-                        if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-                            console.log(asyncResult.error.message);
-                            reject(asyncResult.error.message);
-                            return;
-                        }
-                        resolve(null)
-                        /*
-                          Run additional operations appropriate to your scenario and
-                          use the optionalVariable1 and optionalVariable2 values as needed.
-                        */
-                    });
-            }
-        });
-    })
+export const insertParagraph = (body?: string) => {
+
 }
 
 
@@ -165,7 +127,8 @@ export const openDialog = async (fullUrl: string, options: any = {}, callback?: 
  * @param title 邮件主题
  */
 export const setSubject = async (title: string): Promise<void> => {
-
+    const outlook = getOutlookHost();
+    outlook.setSubject(title);
 };
 
 /**
@@ -174,7 +137,8 @@ export const setSubject = async (title: string): Promise<void> => {
  * @param type 内容类型：'text' 为纯文本，'html' 为 HTML 格式
  */
 export const setBody = async (text?: string, type: 'text' | 'html' = 'text'): Promise<void> => {
-
+    const outlook = getOutlookHost();
+    outlook.setBody(text, type);
 };
 
 /**
@@ -184,7 +148,10 @@ export const setBody = async (text?: string, type: 'text' | 'html' = 'text'): Pr
 export const setToRecipients = async (
     recipients: { displayName: string; emailAddress: string }[]
 ): Promise<void> => {
+    const outlook = getOutlookHost();
+    console.log(recipients);
 
+    outlook.setToRecipients(JSON.stringify(recipients));
 };
 
 /**
@@ -194,7 +161,8 @@ export const setToRecipients = async (
 export const setCCRecipients = async (
     recipients: { displayName: string; emailAddress: string }[]
 ): Promise<void> => {
-
+    const outlook = getOutlookHost();
+    outlook.setCCRecipients(JSON.stringify(recipients));
 };
 
 /**
@@ -204,6 +172,13 @@ export const setCCRecipients = async (
 export const setBCCRecipients = async (
     recipients: { displayName: string; emailAddress: string }[]
 ): Promise<void> => {
-
+    const outlook = getOutlookHost();
+    outlook.setBCCRecipients(JSON.stringify(recipients));
 };
 
+
+export const getMailWindowState = (): 'Read' | 'Compose' | 'Unknown' | '' => {
+    const outlook = getOutlookHost();
+    const state = outlook.getMailWindowState();
+    return state;
+}

@@ -59,7 +59,7 @@ const EmailApiTest: React.FC = () => {
   };
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
+      <div className="p-4 max-w-4xl mx-auto h-screen overflow-auto">
       <h1 className="text-2xl font-bold mb-6">Email API Test</h1>
 
       <div className="bg-gray-100 p-4 mb-6 rounded">
@@ -95,7 +95,7 @@ const EmailApiTest: React.FC = () => {
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             onClick={() =>
               handleApiCall(
-                () => api.insertText(insertText, insertTextType === "html" ? { type: "html" } : undefined),
+                  () => api.insertText(insertText, { type: "html", position: 'Replace' }),
                 "Text inserted."
               )
             }
@@ -120,6 +120,7 @@ const EmailApiTest: React.FC = () => {
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             onClick={() =>
               handleApiCall(async () => {
+                  debugger;
                 const text = await api.getSelectedText();
                 setSelectedText(text);
                 return text;

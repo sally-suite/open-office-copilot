@@ -482,3 +482,9 @@ export const setBCCRecipients = async (
     });
 };
 
+export const getMailWindowState = (): 'Read' | 'Compose' | 'Unknown' | '' => {
+    if (Office.context.mailbox.item && Office.context.mailbox.item.getSelectedDataAsync) {
+        return 'Compose'
+    }
+    return 'Read'
+}

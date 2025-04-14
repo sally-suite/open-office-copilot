@@ -51,9 +51,9 @@ const ExtConfig = {
     ".office.ts",
     ".office.tsx",
   ],
-  "email-read-vsto": [
-    "vsto.tsx",
-    "vsto.ts",
+  "email-vsto": [
+    ".vsto.tsx",
+    ".vsto.ts",
     ".outlook.tsx",
     ".outlook.ts",
     ".email.tsx",
