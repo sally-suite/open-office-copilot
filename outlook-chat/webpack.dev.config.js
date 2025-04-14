@@ -51,6 +51,20 @@ const ExtConfig = {
     ".office.ts",
     ".office.tsx",
   ],
+  "email-read-vsto": [
+    "vsto.tsx",
+    "vsto.ts",
+    ".outlook.tsx",
+    ".outlook.ts",
+    ".email.tsx",
+    ".email.ts",
+    ".word.tsx",
+    ".word.ts",
+    ".doc.tsx",
+    ".doc.ts",
+    ".office.ts",
+    ".office.tsx",
+  ],
 };
 
 const ExtArray = ExtConfig[name] || [];

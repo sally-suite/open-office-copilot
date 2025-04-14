@@ -35,5 +35,8 @@ declare module 'xlsx' {
 }
 
 interface Window {
-    INPUT_EXCEL_FILE: File
+    INPUT_EXCEL_FILE: File;
+    chrome?: {
+        webview?: any;
+    };
 }
