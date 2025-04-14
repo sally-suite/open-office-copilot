@@ -15,7 +15,7 @@
   "scripts": {
     "build": "NODE_ENV=production node ./script/build-cdn.mjs",
     "dev": "NODE_ENV=development webpack serve --mode development",
-    "mock": "NODE_ENV=development MOCK=true webpack serve --config webpack.dev.config.js --mode development --name email-chat",
+    "mock": "NODE_ENV=development MOCK=true webpack serve --config webpack.dev.config.js --mode development --name ",
     "lint": "office-addin-lint check",
     "lint:fix": "office-addin-lint fix",
     "prettier": "office-addin-lint prettier",
